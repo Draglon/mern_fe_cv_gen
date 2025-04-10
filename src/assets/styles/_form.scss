@@ -1,0 +1,57 @@
+.login {
+  &__header {
+    margin-bottom: 24px;
+    text-align: center;
+  }
+}
+
+.form {
+  margin: 0 auto;
+
+  &--small {
+    max-width: 480px;
+  }
+
+  &__wrapper {
+    display: flex;
+    gap: 20px;
+  }
+
+  &__side-left {
+    width: 25%;
+  }
+
+  &__side-right {
+    width: 75%;
+  }
+
+  &__row {
+    display: flex;
+    gap: 16px;
+  }
+
+  &__item {
+    .ant-form-item-label > label {
+      font-weight: bold;
+    }
+  }
+
+  &__button {
+    min-width: 100px;
+  }
+}
+
+.form--create-hobbies {
+  .form__list-space {
+    & > div:first-child {
+      width: 100%;
+    }
+  }
+
+  .form__item-button-remove {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+  }
+}

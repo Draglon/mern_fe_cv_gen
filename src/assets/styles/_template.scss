@@ -1,0 +1,174 @@
+@use 'variables' as v;
+
+.template {
+  background-color: var(--white);
+  display: flex;
+  margin: 0 auto;
+  width: v.$template-width;
+  height: v.$template-height;
+
+  h1 {
+    color: v.$template-container-header-color;
+    font-size: 30pt;
+    margin: 0;
+  }
+  h2 {
+    color: v.$template-container-header-color;
+    font-size: 20pt;
+    margin: 0;
+  }
+  h3 {
+    font-size: 14pt;
+    margin: 0;
+  }
+  h4 {
+    font-size: 12pt;
+    margin: 0;
+  }
+
+  &__sidebar {
+    background-color: v.$template-sidebar-bg-blue;
+    padding-top: v.$template-sidebar-padding;
+    padding-bottom: v.$template-sidebar-padding;
+    width: v.$template-sidebar-width;
+    box-sizing: border-box;
+    .section {
+      padding-left: v.$template-sidebar-padding;
+      padding-bottom: v.$template-sidebar-padding;
+      .section__header {
+        border-color: v.$template-sidebar-border-color;
+        padding-right: v.$template-sidebar-padding;
+        margin-bottom: v.$template-sidebar-margin;
+      }
+      .section__title {
+        color: v.$template-sidebar-title-color;
+      }
+    }
+  }
+
+  &__container {
+    background-color: v.$template-container-bg;
+    color: v.$template-container-color;
+    padding: v.$template-container-padding;
+    width: v.$template-container-width;
+    box-sizing: border-box;
+    .section {
+      padding-top: v.$template-container-margin;
+      .section__header {
+        border-color: v.$template-container-border-color;
+        margin-bottom: v.$template-container-margin;
+      }
+    }
+  }
+
+  .section__header {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    padding-bottom: 2mm;
+  }
+
+  .section__item {
+    margin-bottom: 2mm;
+  }
+
+  .section__subheader {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1mm;
+  }
+
+  .section__period {
+    font-size: 10.5pt;
+    margin: 0;
+  }
+
+  .section__paragraph {
+    margin: 0;
+  }
+
+  .section__label {
+    font-size: 10.5pt;
+    margin: 0;
+  }
+
+  .section__text {
+    margin: 0;
+  }
+}
+
+@media print {
+  @page { 
+		margin: 0 !important;
+		padding: 0 !important;
+		position: relative;
+		page-break-inside: avoid;
+		size: 21cm 29.7cm;
+		zoom: 1.0;
+	}
+
+  .page__header {
+    display: none !important;
+  }
+
+  .page__main {
+    margin: 0;
+    padding: 0;
+  }
+
+  .template {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+
+
+    &__sidebar {
+      position: relative;
+      z-index: 1;
+
+      &:before {
+        content: '';
+        background-color: v.$template-sidebar-bg-blue;
+        width: v.$template-sidebar-width;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+      }
+    }
+    &__container {
+      position: relative;
+      z-index: 1;
+
+      &:before {
+        content: '';
+        background-color: v.$template-container-bg;
+        width: v.$template-container-width;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        z-index: -1;
+      }
+      .section {
+        page-break-before: auto;
+        page-break-after: auto;
+      }
+    }
+  }
+
+  .experience__item {
+    padding-top: 4mm;
+    margin: 0;
+    &:first-child {
+      padding-top: 0;
+    }
+  }
+
+  .experience__item,
+  .section--education,
+  .section--courses,
+  .section--skills {
+    page-break-inside: avoid;
+  }
+}

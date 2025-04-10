@@ -1,0 +1,25 @@
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
+  },
+  "cSpell.words": [
+    "Дата",
+    "antd",
+    "Dneprovsky",
+    "Photoshop"
+  ],
+  "cSpell.customDictionaries": {
+    "custom-dictionary-workspace": {
+      "name": "custom-dictionary-workspace",
+      "path": "${workspaceFolder:MERN_FE_NEXT_JS_RESUME}/.cspell/custom-dictionary-workspace.txt",
+      "addWords": true,
+      "scope": "workspace"
+    }
+  },
+  "cSpell.ignoreWords": [
+    "DIIT",
+    "MERN",
+    "OWOX"
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "Home": {
+    "layout": {
+      "title": "Головна сторінка",
+      "description": "Головна сторінка - опис"
+    },
+    "title": "Створіть своє професійне резюме тут",
+    "subtitle": "Створіть власне професійне резюме за 15 хвилин.",
+    "createResumeButton": "Створити резюме"
+  },
+  "Login": {
+    "layout": {
+      "title": "Увійти",
+      "description": "Увійти - опис"
+    },
+    "title": "Увійти",
+    "description": "Для входу в систему введіть адресу електронної пошти і пароль",
+    "submitButton": "Увійти",
+    "form": {
+      "email": {
+        "label": "Email",
+        "placeholder": "Input email",
+        "error": "Please input your email!"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Input password",
+        "error": "Please input your password!"
+      }
+    }
+  },
+  "Registration": {
+    "layout": {
+      "title": "Реєстрація",
+      "description": "Реєстрація сторінка - опис"
+    },
+    "title": "Реєстрація",
+    "description": "Будь ласка заповніть всі поля",
+    "form": {
+      "email": {
+        "label": "Електронна пошта",
+        "placeholder": "Введіть електронну пошту",
+        "error": "Будь ласка, введіть електронну пошту!"
+      },
+      "password": {
+        "label": "Пароль",
+        "placeholder": "Введіть пароль",
+        "error": "Будь ласка, введіть пароль!"
+      },
+      "userName": {
+        "label": "Ім'я користувача",
+        "placeholder": "Введіть ім'я користувача",
+        "error": "Будь ласка, введіть своє ім'я користувача!"
+      }
+    }
+  },
+  "Profile": {
+    "layout": {
+      "title": "Профіль",
+      "description": "Профіль - опис"
+    },
+    "title": "Профіль"
+  },
+  "Settings": {
+    "layout": {
+      "title": "Налаштування",
+      "description": "Налаштування - опис"
+    },
+    "title": "Налаштування"
+  },
+  "Template": {
+    "layout": {
+      "title": "Резюме",
+      "description": "Резюме - опис"
+    },
+    "personalPhoto":  {
+      "alt": "Персональна фотографія"
+    },
+    "personalData": {
+      "title": "Персональні дані",
+      "name": "Ім'я",
+      "birthday": "Дата народження",
+      "address": "Адреса",
+      "phoneNumber": "Номер телефону",
+      "email": "Email",
+      "skype": "Skype",
+      "linkedin": "LinkedIn"
+    },
+    "personalHobbies": {
+      "title": "Інтереси"
+    },
+    "personalLanguages": {
+      "title": "Мови",
+      "level": {
+        "native": "Рідний",
+        "beginner": "Початківець",
+        "intermediate": "Середній"
+      }
+    },
+    "personalExperience": {
+      "title": "Досвід роботи"
+    },
+    "personalEducation": {
+      "title": "Освіта"
+    },
+    "personalCourses": {
+      "title": "Курси"
+    },
+    "personalSkills": {
+      "title": "Навички"
+    },
+    "personalTools": {
+      "title": "Інструменти"
+    },
+    "skills": "Навички: ",
+    "faculty": "Факультет: ",
+    "specialty": "Спеціальність: "
+  },
+  "Navigation": {
+    "navHome": "Головна",
+    "navLogin": "Логін",
+    "navResume": "Резюме", 
+    "navResumeUS": "Резюме US",
+    "navResumeUA": "Резюме UA"
+  },
+  "LocaleSwitcher": {
+    "label": "Вибрати мову",
+    "locale": "{locale, select, ru {Російська} ua {Українська} en {Англійська} other {Unknown}}"
+  },
+  "shared": {
+    "confirm": "Підтвердити",
+    "cancel": "Відмінити",
+    "logIn": "Увійти",
+    "signUp": "Реєстрація",
+    "logout": "Вийти",
+    "profile": "Профіль",
+    "settings": "Налаштування",
+    "create": "Створити",
+    "next": "Наступний",
+    "previous": "Попередній",
+    "add": "Додати"
+  }
+}

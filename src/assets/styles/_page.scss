@@ -1,0 +1,27 @@
+.page {
+  min-height: 100vh;
+}
+
+.page__main {
+  padding: 15px;
+}
+
+.page__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page__container--small {
+  max-width: 600px;
+}
+
+.page__title, .page__subtitle {
+  color: var(--text-color) !important;
+  margin-top: 0;
+}
+
+.page__block {
+  background-color: var(--white);
+  border-radius: 4px;
+  padding: 32px;
+}

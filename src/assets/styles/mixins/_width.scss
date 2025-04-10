@@ -1,0 +1,24 @@
+$sizes: auto, full, three-quarters, half, quarter;
+
+@function getValue($size) {
+  @if $size == full { @return 100%; }
+  @if $size == three-quarters { @return 75%; }
+  @if $size == half { @return 50%; }
+  @if $size == quarter { @return 25%; }
+
+  @return $size;
+}
+
+@each $size in $sizes {
+  .w-#{$size} {
+    width: getValue($size);
+  }
+
+  .w-max-#{$size} {
+    max-width: getValue($size);
+  }
+
+  .w-min-#{$size} {
+    min-width: getValue($size);
+  }
+}

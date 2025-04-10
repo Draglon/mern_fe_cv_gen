@@ -1,0 +1,127 @@
+@use 'variables' as v;
+
+.personal-info {
+  &__header {
+    border-bottom: 1px solid v.$personal-info-border-color;
+    padding-bottom: 2mm;
+    margin-bottom: 5mm;
+  }
+  &__about {
+    font-size: 10.5pt;
+    margin: 0 !important;
+  }
+}
+
+.experience {
+  &__item {
+    padding-top: 5mm;
+    &:first-child {
+      padding-top: 0;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__header {
+    margin-bottom: 2.5mm;
+  }
+
+  &__header-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  &__title {
+    margin-bottom: 1mm;
+    margin: 0 !important;
+  }
+
+  &__period {
+    font-size: 10.5pt;
+    margin: 0 !important;
+  }
+
+  &__company {
+    font-size: 10.5pt;
+    margin: 0 !important;
+  }
+
+  &__place {
+    font-size: 10.5pt;
+    margin: 0 !important;
+  }
+
+  &__info {
+    font-size: 10.5pt;
+    margin-bottom: 2.5mm !important;
+  }
+}
+
+.skills {
+  display: flex;
+  justify-content: baseline;
+  align-items: start;
+  &__label {
+    font-size: 10.5pt;
+    white-space: nowrap;
+  }
+  &__list {
+    &-item {
+      display: inline-block;
+      &:before {
+        content: '·';
+        font-size: 10.5pt;
+        font-weight: 300;
+        margin: 0 1mm;
+      }
+      &:first-child {
+        margin-left: 3mm;
+        &:before {
+          display: none;
+        }
+      }
+      &-text {
+        font-size: 10.5pt;
+        font-weight: 300;
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+.personal-skills {
+    &__item {
+    // display: flex;
+    // justify-content: flex-start;
+    // align-items: center;
+    margin-bottom: 2mm;
+  }
+
+  // &__label {
+  //   width: 50%;
+  // }
+
+  // &__progress {
+  //   background-color: var(--white);
+  //   border: 1px solid var(--grey-light);
+  //   border-radius: 1mm;
+  //   width: 50mm;
+  //   height: 2mm;
+  //   &-value {
+  //     background-color: var(--blue);
+  //     border-radius: 1mm;
+  //     height: 100%;
+  //   }
+  // }
+}
+
+.personal-tools {
+  &__item {
+    // display: flex;
+    // justify-content: flex-start;
+    // align-items: center;
+    margin-bottom: 2mm;
+  }
+}

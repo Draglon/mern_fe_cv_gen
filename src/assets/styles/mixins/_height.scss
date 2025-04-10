@@ -1,0 +1,23 @@
+$sizes: auto, full, half, quarter;
+
+@function getValue($size) {
+  @if $size == full { @return 100%; }
+  @if $size == half { @return 50%; }
+  @if $size == quarter { @return 25%; }
+
+  @return $size;
+}
+
+@each $size in $sizes {
+  .h-#{$size} {
+    height: getValue($size);
+  }
+
+  .h-max-#{$size} {
+    max-height: getValue($size);
+  }
+
+  .h-min-#{$size} {
+    min-height: getValue($size);
+  }
+}

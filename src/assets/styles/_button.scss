@@ -1,0 +1,31 @@
+.button--primary {
+  background-color: var(--button-primary-bg-color);
+
+  &:hover, &:focus {
+    background-color: var(--button-primary-bg-color-hover) !important;
+  }
+}
+
+.button--secondary {
+  background-color: var(--button-secondary-bg-color);
+
+  &:hover, &:focus {
+    background-color: var(--button-secondary-bg-color-hover) !important;
+  }
+}
+
+.button--warning {
+  background-color: var(--button-warning-bg-color);
+
+  &:hover, &:focus {
+    background-color: var(--button-warning-bg-color-hover) !important;
+  }
+}
+
+.button--danger {
+  background-color: var(--button-danger-bg-color);
+
+  &:hover, &:focus {
+    background-color: var(--button-danger-bg-color-hover) !important;
+  }
+}

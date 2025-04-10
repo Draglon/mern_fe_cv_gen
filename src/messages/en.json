@@ -1,0 +1,325 @@
+{
+  "Home": {
+    "layout": {
+      "title": "Home page",
+      "description": "Home page - description"
+    },
+    "title": "Create your professional resume here",
+    "subtitle": "Create your own professional resume for 15 minutes.",
+    "createResumeButton": "Create resume"
+  },
+  "Login": {
+    "layout": {
+      "title": "Log in",
+      "description": "Login - description"
+    },
+    "title": "Log in",
+    "description": "To log in, enter your email address and password",
+    "submitButton": "Log in",
+    "form": {
+      "email": {
+        "label": "Email",
+        "placeholder": "Input email",
+        "error": "Please input your email!"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Input password",
+        "error": "Please input your password!"
+      }
+    }
+  },
+  "Registration": {
+    "layout": {
+      "title": "Registration",
+      "description": "Registration - description"
+    },
+    "title": "Sign up",
+    "description": "Please, fill all fields",
+    "form": {
+      "email": {
+        "label": "Email",
+        "placeholder": "Input email",
+        "error": "Please input your email!"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Input password",
+        "error": "Please input your password!"
+      },
+      "userName": {
+        "label": "Username",
+        "placeholder": "Input username",
+        "error": "Please input your username!"
+      }
+    }
+  },
+  "Profile": {
+    "layout": {
+      "title": "Profile",
+      "description": "Profile - description"
+    },
+    "title": "Profile"
+  },
+  "Settings": {
+    "layout": {
+      "title": "Settings",
+      "description": "Settings - description"
+    },
+    "title": "Settings"
+  },
+  "CreateResume": {
+    "layout": {
+      "title": "Create resume",
+      "description": "Create resume - description"
+    },
+    "title": "Create resume",
+    "form": {
+      "userUrl": {
+        "label": "Photo"
+      },
+      "firstName": {
+        "label": "Name",
+        "placeholder": "Input name",
+        "errors": {
+          "required": "Please input your name!",
+          "min": "The name must be at least 3 characters long."
+        }
+      },
+      "lastName": {
+        "label": "Surname",
+        "placeholder": "Input surname",
+        "errors": {
+          "required": "Please input your surname!",
+          "min": "The surname must be at least 3 characters long."
+        }
+      },
+      "about": {
+        "label": "About me",
+        "placeholder": "Input information about yourself",
+        "errors": {
+          "required": "Please input your information about yourself!"
+        }
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Input email",
+        "errors": {
+          "required": "Please input your email!",
+          "pattern": "Please input correct your email!"
+        }
+      },
+      "address": {
+        "label": "Address",
+        "placeholder": "Input address"
+      },
+      "phoneNumber": {
+        "label": "Phone number",
+        "placeholder": "Input phone number",
+        "errors": {
+          "pattern": "Please input correct your phone number!"
+        }
+      },
+      "birthday": {
+        "label": "Birthday",
+        "placeholder": "Input birthday",
+        "errors": {
+          "pattern": "Please input correct your birthday!"
+        }
+      },
+      "skype": {
+        "label": "Skype",
+        "placeholder": "Input skype"
+      },
+      "linkedIn": {
+        "label": "LinkedIn",
+        "placeholder": "Input linkedin"
+      },
+      "hobby": {
+        "label": "Hobby",
+        "placeholder": "Input hobby",
+        "errors": {
+          "required": "Please input your hobby!"
+        }
+      },
+      "language": {
+        "label": "Language",
+        "placeholder": "Input language",
+        "errors": {
+          "required": "Please input your language!"
+        }
+      },
+      "languageLevel": {
+        "label": "Level",
+        "placeholder": "Input language level",
+        "errors": {
+          "required": "Please input your language level!"
+        },
+        "levelOptions": {
+          "native": "Native",
+          "elementary": "Elementary (A1)",
+          "preIntermediate": "Pre-Intermediate (A2)",
+          "intermediate": "Intermediate (B1)",
+          "upperIntermediate": "Upper-Intermediate (B2)",
+          "advanced": "Advanced (C1)",
+          "proficiency": "Proficiency (C2)"
+        }
+      },
+      "position": {
+        "label": "Position",
+        "placeholder": "Input position",
+        "error": "Please input your position!"
+      },
+      "companyName": {
+        "label": "Company name",
+        "placeholder": "Input company name",
+        "error": "Please input your company name!"
+      },
+      "location": {
+        "label": "Location",
+        "placeholder": "Input location",
+        "error": "Please input your location!"
+      },
+      "place": {
+        "label": "Place",
+        "placeholder": "Input place",
+        "error": "Please input your place!"
+      },
+      "time": {
+        "label": "Time",
+        "placeholder": "Input time",
+        "error": "Please input your time!"
+      },
+      "startDate": {
+        "label": "Start date",
+        "placeholder": "Input start date",
+        "error": "Please input your start date!"
+      },
+      "endDate": {
+        "label": "End date",
+        "placeholder": "Input end date",
+        "error": "Please input your end date!"
+      },
+      "description": {
+        "label": "Description",
+        "placeholder": "Input description",
+        "error": "Please input your description!"
+      },
+      "skills": {
+        "label": "Description",
+        "placeholder": "Input description",
+        "error": "Please input your description!"
+      },
+      "institute": {
+        "label": "Institute",
+        "placeholder": "Input institute",
+        "error": "Please input your institute!"
+      },
+      "degree": {
+        "label": "Degree",
+        "placeholder": "Input degree",
+        "error": "Please input your degree!"
+      },
+      "specialization": {
+        "label": "Specialization",
+        "placeholder": "Input specialization",
+        "error": "Please input your specialization!"
+      },
+      "course": {
+        "label": "Course name",
+        "placeholder": "Input course",
+        "error": "Please input your course!"
+      },
+      "skill": {
+        "label": "Skill",
+        "placeholder": "Input skill",
+        "error": "Please input your skill!"
+      },
+      "tool": {
+        "label": "Tool",
+        "placeholder": "Input tool",
+        "error": "Please input your tool!"
+      },
+      "level": {
+        "label": "Level",
+        "placeholder": "Input level",
+        "error": "Please input your level!"
+      },
+      "visible": {
+        "label": "Visible"
+      }
+    }
+  },
+  "Template": {
+    "layout": {
+      "title": "Resume",
+      "description": "Resume - description"
+    },
+    "personalPhoto": {
+      "alt": "Personal photo"
+    },
+    "personalData": {
+      "title": "Personal data",
+      "name": "Name",
+      "birthday": "Birthday",
+      "address": "Address",
+      "phoneNumber": "Phone number",
+      "email": "Email",
+      "skype": "Skype",
+      "linkedin": "LinkedIn"
+    },
+    "personalHobbies": {
+      "title": "Hobbies and interests"
+    },
+    "personalLanguages": {
+      "title": "Languages",
+      "level": {
+        "native": "Native",
+        "beginner": "Beginner",
+        "intermediate": "Intermediate"
+      }
+    },
+    "personalExperience": {
+      "title": "Experience"
+    },
+    "personalEducation": {
+      "title": "Education"
+    },
+    "personalCourses": {
+      "title": "Courses"
+    },
+    "personalSkills": {
+      "title": "Skills"
+    },
+    "personalTools": {
+      "title": "Tools"
+    },
+    "skills": "Skills: ",
+    "faculty": "Faculty: ",
+    "specialty": "Specialty: "
+  },
+  "Navigation": {
+    "navHome": "Home",
+    "navLogin": "Login",
+    "navResume": "Resume",
+    "navResumeUS": "Resume US",
+    "navResumeUA": "Резюме UA"
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, ru {Russian} ua {Ukrainian} en {English} other {Unknown}}"
+  },
+  "shared": {
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "logIn": "Log in",
+    "signUp": "Sign up",
+    "logout": "Log out",
+    "profile": "Profile",
+    "settings": "Settings",
+    "create": "Create",
+    "next": "Next",
+    "previous": "Previous",
+    "add": "Add"
+  }
+}

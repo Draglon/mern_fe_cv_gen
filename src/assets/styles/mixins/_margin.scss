@@ -1,0 +1,67 @@
+$sizes: 0, 8, 16, 24, 32;
+
+@each $size in $sizes {
+  .m-#{$size} {
+    margin: $size + px;
+  }
+
+  .mr-#{$size} {
+    margin-right: $size + px;
+  }
+
+  .ml-#{$size} {
+    margin-left: $size + px;
+  }
+
+  .mt-#{$size} {
+    margin-top: $size + px;
+  }
+
+  .mb-#{$size} {
+    margin-bottom: $size + px;
+  }
+
+  .mx-#{$size} {
+    margin-left: $size + px;
+    margin-right: $size + px;
+  }
+
+  .my-#{$size} {
+    margin-top: $size + px;
+    margin-bottom: $size + px;
+  }
+}
+
+$types: auto, inherit, initial, revert;
+
+@each $type in $types {
+  .m-#{$type} {
+    margin: $type;
+  }
+
+  .mr-#{$type} {
+    margin-right: $type;
+  }
+
+  .ml-#{$type} {
+    margin-left: $type;
+  }
+
+  .mt-#{$type} {
+    margin-top: $type;
+  }
+
+  .mb-#{$type} {
+    margin-bottom: $type;
+  }
+
+  .mx-#{$type} {
+    margin-left: $type;
+    margin-right: $type;
+  }
+
+  .my-#{$type} {
+    margin-top: $type;
+    margin-bottom: $type;
+  }
+}

@@ -1,0 +1,67 @@
+$sizes: 0, 8, 16, 24, 32;
+
+@each $size in $sizes {
+  .p-#{$size} {
+    padding: $size + px;
+  }
+
+  .pr-#{$size} {
+    padding-right: $size + px;
+  }
+
+  .pl-#{$size} {
+    padding-left: $size + px;
+  }
+
+  .pt-#{$size} {
+    padding-top: $size + px;
+  }
+
+  .pb-#{$size} {
+    padding-bottom: $size + px;
+  }
+
+  .px-#{$size} {
+    padding-left: $size + px;
+    padding-right: $size + px;
+  }
+
+  .py-#{$size} {
+    padding-top: $size + px;
+    padding-bottom: $size + px;
+  }
+}
+
+$types: auto, inherit, initial, revert;
+
+@each $type in $types {
+  .p-#{$type} {
+    padding: $type;
+  }
+
+  .pr-#{$type} {
+    padding-right: $type;
+  }
+
+  .pl-#{$type} {
+    padding-left: $type;
+  }
+
+  .pt-#{$type} {
+    padding-top: $type;
+  }
+
+  .pb-#{$type} {
+    padding-bottom: $type;
+  }
+
+  .px-#{$type} {
+    padding-left: $type;
+    padding-right: $type;
+  }
+
+  .py-#{$type} {
+    padding-top: $type;
+    padding-bottom: $type;
+  }
+}

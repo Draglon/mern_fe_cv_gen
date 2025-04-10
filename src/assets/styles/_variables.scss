@@ -1,0 +1,63 @@
+:root {
+  // colors
+  --white: #fff;
+  --black: #000;
+  --black-bg: #0A0E11;
+  --black-light: #191A20;
+  --grey: #666;
+  --grey-dark: #333;
+  --grey-light: #999;
+  --grey-lighter: #F5F5F5;
+  --blue: #3e6691;
+
+  --primary-color: #3F36E1;
+  --primary-color-hover: #3F36E1;
+
+  // variables
+  --background: var(--grey-lighter);
+  --text-color: var(--black);
+  --link-color: var(--blue);
+  --link-color-active: var(--black);
+  --header-bg-color: var(--white);
+  --button-primary-bg-color: var(--primary-color);
+  --button-primary-bg-color-hover: var(--primary-color-hover);
+}
+
+.dark {
+  --background: var(--black-bg);
+  --text-color: var(--black);
+  --link-color: var(--blue);
+  --link-color-active: var(--white);
+  --header-bg-color: var(--black-light);
+  --button-primary-bg-color: var(--primary-color);
+  --button-primary-bg-color-hover: var(--primary-color-hover);
+}
+
+// ----------- Template ------------
+$template-width: 21cm; // 797px;
+$template-height: auto; // 29.7cm; // 1127px;
+// Template - sidebar
+$template-sidebar-bg-blue: var(--blue);
+$template-sidebar-title-color: var(--white);
+$template-sidebar-text-color: var(--white);
+$template-sidebar-border-color: var(--white);
+$template-sidebar-padding: 5mm;
+$template-sidebar-margin: 5mm;
+$template-sidebar-width: 60mm;
+// Template - container
+$template-container-bg: var(--white);
+$template-container-color: var(--grey);
+$template-container-header-color: var(--grey-dark);
+$template-container-border-color: var(--grey-light);
+$template-container-period-color: var(--grey-light);
+$template-container-hint-color: var(--grey-light);
+$template-container-padding: 10mm;
+$template-container-margin: 5mm;
+$template-container-width: calc(100% - $template-sidebar-width);
+
+// Personal - avatar
+$personal-avatar-width: 50mm;
+$personal-avatar-height: 50mm;
+
+// Personal - info
+$personal-info-border-color: var(--grey-light);

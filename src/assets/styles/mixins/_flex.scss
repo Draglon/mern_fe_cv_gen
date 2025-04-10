@@ -1,0 +1,39 @@
+.d-flex {
+  display: flex;
+}
+
+.d-block {
+  display: block;
+}
+
+$flex-directions: row, row-reverse, column, column-reverse;
+
+@each $direction in $flex-directions {
+  .flex-direction-#{$direction} {
+    flex-direction: $direction;
+  }
+}
+
+$align-items: stretch, flex-start, flex-end, center;
+
+@each $align in $align-items {
+  .align-items-#{$align} {
+    align-items: $align;
+  }
+}
+
+$justify-content-aligns: flex-start, flex-end, center, space-between, space-around, space-evenly, start, end, left, right;
+
+@each $aligns in $justify-content-aligns {
+  .justify-content-#{$aligns} {
+    justify-content: $aligns;
+  }
+}
+
+$wraps: row, row-reverse, column, column-reverse;
+
+@each $wrap in $wraps {
+  .flex-#{$wrap} {
+    flex-wrap: $wrap;
+  }
+}
