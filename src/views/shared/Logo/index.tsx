@@ -11,6 +11,7 @@ const Logo = () => {
         alt="logo"
         width="87"
         height="32"
+        data-testid="logoImg"
       />
     </div>
   );

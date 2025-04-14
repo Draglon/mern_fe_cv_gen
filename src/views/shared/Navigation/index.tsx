@@ -7,11 +7,14 @@ const Navigation = () => {
 
   return (
     <nav className="nav">
-      <NavigationLink href="/create_resume" className="nav__link">
-        Create resume
-      </NavigationLink>
       <NavigationLink href="/resume" className="nav__link">
         {t("navResume")}
+      </NavigationLink>
+      <NavigationLink href="/resume_create" className="nav__link">
+        Resume create
+      </NavigationLink>
+      <NavigationLink href="/resume_edit" className="nav__link">
+        Resume edit
       </NavigationLink>
       <NavigationLink href="/template_us" className="nav__link">
         {t("navResumeUS")}

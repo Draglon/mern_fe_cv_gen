@@ -15,7 +15,7 @@ import PersonalCoursesForm from "./PersonalCoursesForm";
 import PersonalSkillsForm from "./PersonalSkillsForm";
 import PersonalToolsForm from "./PersonalToolsForm";
 
-const CreateResume = () => {
+const ResumeCreate = () => {
   const t = useTranslations("CreateResume");
   const [current, setCurrent] = useState(0);
 
@@ -78,4 +78,4 @@ const CreateResume = () => {
   );
 };
 
-export default CreateResume;
+export default ResumeCreate;

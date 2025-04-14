@@ -4,8 +4,8 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
 
-// import { redirect } from "@/navigation";
-// import { resumeRoute } from "@/lib/routes";
+import { redirect } from "@/i18n/navigation";
+import { resumeRoute } from "@/lib/routes";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalTools from "@/store/personalTools/operations/createPersonalTools";
 import { userIdSelector } from "@/store/auth/selectors";
@@ -61,7 +61,7 @@ const PersonalToolsForm = ({ onPrev }: PersonalToolsFormProps) => {
       return alert("Не удалось получить данные");
     }
 
-    // redirect({ href: resumeRoute, locale });
+    redirect({ href: resumeRoute, locale });
   });
 
   return (

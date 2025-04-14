@@ -13,6 +13,7 @@ const NavigationLink = ({
 }: LinkProps & { children: ReactNode; className?: string }) => {
   const pathname = usePathname();
   const isActive = pathname === href;
+
   return (
     // @ts-ignore
     <Link

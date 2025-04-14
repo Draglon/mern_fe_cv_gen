@@ -13,8 +13,8 @@ import {
 import { personalHobbiesSelector } from "@/store/personalHobbies/selectors";
 import { personalLanguagesSelector } from "@/store/personalLanguages/selectors";
 
-import Avatar from "@/views/shared/TemplateResume/Avatar";
 import Section from "@/views/shared/TemplateResume/Section";
+import PersonalPhoto from "@/views/shared/TemplateResume/PersonalPhoto";
 import PersonalData from "@/views/shared/TemplateResume/PersonalData";
 import PersonalHobbies from "@/views/shared/TemplateResume/PersonalHobbies";
 import PersonalLanguages from "@/views/shared/TemplateResume/PersonalLanguages";
@@ -40,7 +40,7 @@ const ResumeSidebar = ({ personalInfo }: personalInfoProps) => {
     <div className="template__sidebar">
       {personalInfo?.userUrl && (
         <Section>
-          <Avatar
+          <PersonalPhoto
             src={personalInfo.userUrl}
             alt={t("personalPhoto.alt")}
             width={170}

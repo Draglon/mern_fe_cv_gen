@@ -7,7 +7,7 @@ type Props = {
 
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "CreateResume" });
+  const t = await getTranslations({ locale, namespace: "ResumeEdit" });
 
   return {
     title: t("layout.title"),

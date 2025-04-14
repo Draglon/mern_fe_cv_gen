@@ -1,11 +1,11 @@
 @use 'variables' as v;
 
-.personal-avatar {
+.personal-photo {
   position: relative;
   border-radius: 50%;
   overflow: hidden;
-  width: v.$personal-avatar-width;
-  height: v.$personal-avatar-height;
+  width: v.$personal-photo-width;
+  height: v.$personal-photo-height;
   overflow: hidden;
 
   img {
