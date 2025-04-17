@@ -3,62 +3,110 @@ import { useState } from "react";
 import { inc, dec } from "ramda";
 import { useTranslations } from "next-intl";
 
-import Steps from "@/views/shared/Steps";
+import { DEFAULT_LOCALE } from "@/lib/constants/locales";
+import Button from "@/views/shared/antd/Button";
 import { Title } from "@/views/shared/antd/Typography";
-
-import PersonalInfoForm from "./PersonalInfoForm";
-import PersonalHobbiesForm from "./PersonalHobbiesForm";
-import PersonalLanguagesForm from "./PersonalLanguagesForm";
-import PersonalExperienceForm from "./PersonalExperienceForm";
-import PersonalEducationForm from "./PersonalEducationForm";
-import PersonalCoursesForm from "./PersonalCoursesForm";
-import PersonalSkillsForm from "./PersonalSkillsForm";
-import PersonalToolsForm from "./PersonalToolsForm";
+import Steps from "@/views/shared/Steps";
+import LocalTabs from "@/views/shared/LocalTabs";
+import PersonalInfoForm from "@/views/shared/PersonalInfoForm";
+import PersonalHobbiesForm from "@/views/shared/PersonalHobbiesForm";
+import PersonalLanguagesForm from "@/views/shared/PersonalLanguagesForm";
+import PersonalExperienceForm from "@/views/shared/PersonalExperienceForm";
+import PersonalEducationForm from "@/views/shared/PersonalEducationForm";
+import PersonalCoursesForm from "@/views/shared/PersonalCoursesForm";
+import PersonalSkillsForm from "@/views/shared/PersonalSkillsForm";
+import PersonalToolsForm from "@/views/shared/PersonalToolsForm";
 
 const ResumeCreate = () => {
-  const t = useTranslations("CreateResume");
+  const t = useTranslations("ResumeCreate");
+  const tShared = useTranslations("shared");
   const [current, setCurrent] = useState(0);
+  const [locale, setLocale] = useState(DEFAULT_LOCALE);
 
-  const onNext = () => {
+  const onNext = (): void => {
     setCurrent(inc(current));
   };
 
-  const onPrev = () => {
+  const onPrev = (): void => {
     setCurrent(dec(current));
+  };
+
+  const onChange = (locale: string): void => {
+    setLocale(locale);
   };
 
   const CREATE_RESUME_STEPS = [
     {
-      title: "Personal info",
-      content: <PersonalInfoForm onNext={onNext} />,
+      title: t("personalInfo"),
+      content: (
+        <LocalTabs
+          onChange={onChange}
+          Component={<PersonalInfoForm locale={locale} />}
+        />
+      ),
     },
     {
-      title: "Personal hobbies",
-      content: <PersonalHobbiesForm onPrev={onPrev} onNext={onNext} />,
+      title: t("personalHobbies"),
+      content: (
+        <LocalTabs
+          onChange={onChange}
+          Component={<PersonalHobbiesForm locale={locale} />}
+        />
+      ),
     },
     {
-      title: "Personal languages",
-      content: <PersonalLanguagesForm onPrev={onPrev} onNext={onNext} />,
+      title: t("personalLanguages"),
+      content: (
+        <LocalTabs
+          onChange={onChange}
+          Component={<PersonalLanguagesForm locale={locale} />}
+        />
+      ),
     },
     {
-      title: "Personal experience",
-      content: <PersonalExperienceForm onPrev={onPrev} onNext={onNext} />,
+      title: t("personalExperience"),
+      content: (
+        <LocalTabs
+          onChange={onChange}
+          Component={<PersonalExperienceForm locale={locale} />}
+        />
+      ),
     },
     {
-      title: "Personal education",
-      content: <PersonalEducationForm onPrev={onPrev} onNext={onNext} />,
+      title: t("personalEducation"),
+      content: (
+        <LocalTabs
+          onChange={onChange}
+          Component={<PersonalEducationForm locale={locale} />}
+        />
+      ),
     },
     {
-      title: "Personal courses",
-      content: <PersonalCoursesForm onPrev={onPrev} onNext={onNext} />,
+      title: t("personalCourses"),
+      content: (
+        <LocalTabs
+          onChange={onChange}
+          Component={<PersonalCoursesForm locale={locale} />}
+        />
+      ),
     },
     {
-      title: "Personal skills",
-      content: <PersonalSkillsForm onPrev={onPrev} onNext={onNext} />,
+      title: t("personalSkills"),
+      content: (
+        <LocalTabs
+          onChange={onChange}
+          Component={<PersonalSkillsForm locale={locale} />}
+        />
+      ),
     },
     {
-      title: "Personal tools",
-      content: <PersonalToolsForm onPrev={onPrev} />,
+      title: t("personalTools"),
+      content: (
+        <LocalTabs
+          onChange={onChange}
+          Component={<PersonalToolsForm locale={locale} />}
+        />
+      ),
     },
   ];
 
@@ -73,6 +121,18 @@ const ResumeCreate = () => {
           direction="vertical"
           current={current}
         />
+        <footer className="text-right">
+          {current > 0 && (
+            <Button className="" onClick={onPrev}>
+              {tShared("previous")}
+            </Button>
+          )}
+          {current < dec(CREATE_RESUME_STEPS.length) && (
+            <Button className="ml-16" onClick={onNext}>
+              {tShared("next")}
+            </Button>
+          )}
+        </footer>
       </div>
     </div>
   );

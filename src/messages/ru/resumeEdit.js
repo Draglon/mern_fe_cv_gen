@@ -1,9 +1,10 @@
 const resumeEdit = {
   "ResumeEdit": {
     "layout": {
-      "title": "Create resume",
-      "description": "Create resume - description"
+      "title": "Редактировать резюме",
+      "description": "Редактировать резюме - описание"
     },
+    "title": "Редактировать резюме",
   },
 };
 

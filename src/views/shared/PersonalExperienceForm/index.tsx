@@ -1,5 +1,5 @@
 "use client";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
@@ -11,6 +11,10 @@ import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
 import Input from "@/views/shared/antd/Input";
+
+type PersonalExperienceFormProps = {
+  locale: string;
+};
 
 type FieldType = {
   experience: {
@@ -26,18 +30,9 @@ type FieldType = {
   }[];
 };
 
-type PersonalExperienceFormProps = {
-  onNext?: () => void;
-  onPrev?: () => void;
-};
-
-const PersonalExperienceForm = ({
-  onNext,
-  onPrev,
-}: PersonalExperienceFormProps) => {
+const PersonalExperienceForm = ({ locale }: PersonalExperienceFormProps) => {
+  const t = useTranslations("PersonalExperience");
   const tShared = useTranslations("shared");
-  const tCreateResume = useTranslations("CreateResume");
-  const locale = useLocale();
   const dispatch = useAppDispatch();
   const userId = useAppSelector(userIdSelector);
   const { control, handleSubmit } = useForm({
@@ -73,8 +68,6 @@ const PersonalExperienceForm = ({
     if (!data.payload) {
       return alert("Не удалось получить данные");
     }
-
-    onNext?.();
   });
 
   return (
@@ -95,12 +88,12 @@ const PersonalExperienceForm = ({
               control={control}
               className="form__item"
               fieldClassName="form__item-field"
-              label={tCreateResume("form.position.label")}
-              placeholder={tCreateResume("form.position.placeholder")}
+              label={t("form.position.label")}
+              placeholder={t("form.position.placeholder")}
               rules={[
                 {
                   required: true,
-                  message: tCreateResume("form.position.error"),
+                  message: t("form.position.error"),
                 },
               ]}
               size="large"
@@ -112,12 +105,12 @@ const PersonalExperienceForm = ({
               control={control}
               className="form__item"
               fieldClassName="form__item-field"
-              label={tCreateResume("form.companyName.label")}
-              placeholder={tCreateResume("form.companyName.placeholder")}
+              label={t("form.companyName.label")}
+              placeholder={t("form.companyName.placeholder")}
               rules={[
                 {
                   required: true,
-                  message: tCreateResume("form.companyName.error"),
+                  message: t("form.companyName.error"),
                 },
               ]}
               size="large"
@@ -129,12 +122,12 @@ const PersonalExperienceForm = ({
               control={control}
               className="form__item"
               fieldClassName="form__item-field"
-              label={tCreateResume("form.location.label")}
-              placeholder={tCreateResume("form.location.placeholder")}
+              label={t("form.location.label")}
+              placeholder={t("form.location.placeholder")}
               rules={[
                 {
                   required: true,
-                  message: tCreateResume("form.location.error"),
+                  message: t("form.location.error"),
                 },
               ]}
               size="large"
@@ -146,12 +139,12 @@ const PersonalExperienceForm = ({
               control={control}
               className="form__item"
               fieldClassName="form__item-field"
-              label={tCreateResume("form.place.label")}
-              placeholder={tCreateResume("form.place.placeholder")}
+              label={t("form.place.label")}
+              placeholder={t("form.place.placeholder")}
               rules={[
                 {
                   required: true,
-                  message: tCreateResume("form.place.error"),
+                  message: t("form.place.error"),
                 },
               ]}
               size="large"
@@ -163,12 +156,12 @@ const PersonalExperienceForm = ({
               control={control}
               className="form__item"
               fieldClassName="form__item-field"
-              label={tCreateResume("form.time.label")}
-              placeholder={tCreateResume("form.time.placeholder")}
+              label={t("form.time.label")}
+              placeholder={t("form.time.placeholder")}
               rules={[
                 {
                   required: true,
-                  message: tCreateResume("form.time.error"),
+                  message: t("form.time.error"),
                 },
               ]}
               size="large"
@@ -180,12 +173,12 @@ const PersonalExperienceForm = ({
               control={control}
               className="form__item"
               fieldClassName="form__item-field"
-              label={tCreateResume("form.startDate.label")}
-              placeholder={tCreateResume("form.startDate.placeholder")}
+              label={t("form.startDate.label")}
+              placeholder={t("form.startDate.placeholder")}
               rules={[
                 {
                   required: true,
-                  message: tCreateResume("form.startDate.error"),
+                  message: t("form.startDate.error"),
                 },
               ]}
               size="large"
@@ -197,12 +190,12 @@ const PersonalExperienceForm = ({
               control={control}
               className="form__item"
               fieldClassName="form__item-field"
-              label={tCreateResume("form.endDate.label")}
-              placeholder={tCreateResume("form.endDate.placeholder")}
+              label={t("form.endDate.label")}
+              placeholder={t("form.endDate.placeholder")}
               rules={[
                 {
                   required: true,
-                  message: tCreateResume("form.endDate.error"),
+                  message: t("form.endDate.error"),
                 },
               ]}
               size="large"
@@ -214,12 +207,12 @@ const PersonalExperienceForm = ({
               control={control}
               className="form__item"
               fieldClassName="form__item-field"
-              label={tCreateResume("form.description.label")}
-              placeholder={tCreateResume("form.description.placeholder")}
+              label={t("form.description.label")}
+              placeholder={t("form.description.placeholder")}
               rules={[
                 {
                   required: true,
-                  message: tCreateResume("form.description.error"),
+                  message: t("form.description.error"),
                 },
               ]}
               size="large"
@@ -231,12 +224,12 @@ const PersonalExperienceForm = ({
               control={control}
               className="form__item"
               fieldClassName="form__item-field"
-              label={tCreateResume("form.skills.label")}
-              placeholder={tCreateResume("form.skills.placeholder")}
+              label={t("form.skills.label")}
+              placeholder={t("form.skills.placeholder")}
               rules={[
                 {
                   required: true,
-                  message: tCreateResume("form.skills.error"),
+                  message: t("form.skills.error"),
                 },
               ]}
               size="large"
@@ -254,21 +247,12 @@ const PersonalExperienceForm = ({
         name="buttons"
       >
         <Button
-          className="form__button mr-16"
-          type="default"
-          htmlType="button"
-          size="large"
-          onClick={onPrev}
-        >
-          {tShared("previous")}
-        </Button>
-        <Button
           className="form__button"
           type="primary"
           htmlType="submit"
           size="large"
         >
-          {tShared("next")}
+          {tShared("save")}
         </Button>
       </FormItem>
     </Form>

@@ -1,5 +1,5 @@
 "use client";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
@@ -12,19 +12,17 @@ import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
 import Input from "@/views/shared/antd/Input";
 
+type PersonalHobbiesFormProps = {
+  locale: string;
+};
+
 type FieldType = {
   hobbies: { hobby: string }[];
 };
 
-type PersonalHobbiesFormProps = {
-  onNext?: () => void;
-  onPrev?: () => void;
-};
-
-const PersonalHobbiesForm = ({ onNext, onPrev }: PersonalHobbiesFormProps) => {
-  const tCreateResume = useTranslations("CreateResume");
+const PersonalHobbiesForm = ({ locale }: PersonalHobbiesFormProps) => {
+  const t = useTranslations("PersonalHobbies");
   const tShared = useTranslations("shared");
-  const locale = useLocale();
   const dispatch = useAppDispatch();
   const userId = useAppSelector(userIdSelector);
   const { control, handleSubmit } = useForm<FieldType>({
@@ -49,8 +47,6 @@ const PersonalHobbiesForm = ({ onNext, onPrev }: PersonalHobbiesFormProps) => {
     if (!data.payload) {
       return alert("Не удалось получить данные");
     }
-
-    onNext?.();
   });
 
   return (
@@ -74,14 +70,14 @@ const PersonalHobbiesForm = ({ onNext, onPrev }: PersonalHobbiesFormProps) => {
               controlName={`hobbies[${index}].hobby`}
               control={control}
               fieldClassName="form__item-field"
-              label={tCreateResume("form.hobby.label")}
-              placeholder={tCreateResume("form.hobby.placeholder")}
+              label={t("form.hobby.label")}
+              placeholder={t("form.hobby.placeholder")}
               size="large"
               Field={Input}
               rules={[
                 {
                   required: true,
-                  message: tCreateResume("form.hobby.errors.required"),
+                  message: t("form.hobby.errors.required"),
                 },
               ]}
             />
@@ -100,22 +96,12 @@ const PersonalHobbiesForm = ({ onNext, onPrev }: PersonalHobbiesFormProps) => {
         name="buttons"
       >
         <Button
-          className="form__button mr-16"
-          color="default"
-          type="default"
-          htmlType="button"
-          size="large"
-          onClick={onPrev}
-        >
-          {tShared("previous")}
-        </Button>
-        <Button
           className="form__button"
           type="primary"
           htmlType="submit"
           size="large"
         >
-          {tShared("next")}
+          {tShared("save")}
         </Button>
       </FormItem>
     </Form>

@@ -1,0 +1,32 @@
+const personalLanguages = {
+  "PersonalLanguages": {
+    "title": "Языки",
+    "form": {
+      "language": {
+        "label": "Язык",
+        "placeholder": "Выберите язык",
+        "errors": {
+          "required": "Пожалуйста, выберите язык!"
+        }
+      },
+      "languageLevel": {
+        "label": "Уровень",
+        "placeholder": "Выберите уровень языка",
+        "errors": {
+          "required": "Пожалуйста, выберите уровень вашего языка!"
+        },
+        "levelOptions": {
+          "native": "Родной",
+          "elementary": "Элементарный (A1)",
+          "preIntermediate": "Предварительно-средний (A2)",
+          "intermediate": "Средний (B1)",
+          "upperIntermediate": "Выше среднего (B2)",
+          "advanced": "Продвнутый (C1)",
+          "proficiency": "Профессиональный (C2)"
+        }
+      },
+    },
+  },
+};
+
+export default personalLanguages;

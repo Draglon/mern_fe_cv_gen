@@ -1,52 +1,40 @@
 "use client";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
 
-import { redirect } from "@/i18n/navigation";
-import { resumeRoute } from "@/lib/routes";
+import { LANGUAGE_LEVEL } from "@/lib/constants/languages";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import createPersonalTools from "@/store/personalTools/operations/createPersonalTools";
+import createPersonalLanguages from "@/store/personalLanguages/operations/createPersonalLanguages";
 import { userIdSelector } from "@/store/auth/selectors";
 import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
 import Input from "@/views/shared/antd/Input";
-import Checkbox from "@/views/shared/antd/Checkbox";
+import Select from "@/views/shared/antd/Select";
+
+type PersonalLanguagesFormProps = {
+  locale: string;
+};
 
 type FieldType = {
-  tools: {
-    tool: string;
-    level: string;
-    visible: boolean;
-  }[];
+  languages: { language: string; level: string }[];
 };
 
-type PersonalToolsFormProps = {
-  onPrev?: () => void;
-};
-
-const PersonalToolsForm = ({ onPrev }: PersonalToolsFormProps) => {
+const PersonalLanguagesForm = ({ locale }: PersonalLanguagesFormProps) => {
+  const t = useTranslations("PersonalLanguages");
   const tShared = useTranslations("shared");
-  const tCreateResume = useTranslations("CreateResume");
-  const locale = useLocale();
   const dispatch = useAppDispatch();
   const userId = useAppSelector(userIdSelector);
   const { control, handleSubmit } = useForm({
     defaultValues: {
-      tools: [
-        {
-          tool: "",
-          level: "",
-          visible: true,
-        },
-      ],
+      languages: [{ language: "", level: "" }],
     },
   });
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "tools",
+    name: "languages",
   });
 
   const onFinish = handleSubmit(async (values: FieldType) => {
@@ -55,39 +43,37 @@ const PersonalToolsForm = ({ onPrev }: PersonalToolsFormProps) => {
       locale,
       userId,
     };
-    const data = await dispatch(createPersonalTools(params));
+    const data = await dispatch(createPersonalLanguages(params));
 
     if (!data.payload) {
       return alert("Не удалось получить данные");
     }
-
-    redirect({ href: resumeRoute, locale });
   });
 
   return (
     <Form
-      name="create-personal-tools"
+      name="create-personal-languages"
       className="form"
       onFinish={onFinish}
       autoComplete="off"
       layout="vertical"
       preserve
     >
-      <FormList name="tools" append={append}>
+      <FormList name="languages" append={append}>
         {fields.map((field, index) => (
           <Space key={field.id} align="baseline">
             <FormItem
-              name={[index, "tool"]}
-              controlName={`tools[${index}].tool`}
+              name={[index, "language"]}
+              controlName={`languages[${index}].language`}
               control={control}
               className="form__item"
               fieldClassName="form__item-field"
-              label={tCreateResume("form.tool.label")}
-              placeholder={tCreateResume("form.tool.placeholder")}
+              label={t("form.language.label")}
+              placeholder={t("form.language.placeholder")}
               rules={[
                 {
                   required: true,
-                  message: tCreateResume("form.tool.error"),
+                  message: t("form.language.errors.required"),
                 },
               ]}
               size="large"
@@ -95,31 +81,22 @@ const PersonalToolsForm = ({ onPrev }: PersonalToolsFormProps) => {
             />
             <FormItem
               name={[index, "level"]}
-              controlName={`tools[${index}].level`}
+              controlName={`languages[${index}].level`}
               control={control}
-              className="form__item"
-              fieldClassName="form__item-field"
-              label={tCreateResume("form.level.label")}
-              placeholder={tCreateResume("form.level.placeholder")}
+              label={t("form.languageLevel.label")}
+              placeholder={t("form.languageLevel.placeholder")}
               rules={[
                 {
                   required: true,
-                  message: tCreateResume("form.level.error"),
+                  message: t("form.languageLevel.errors.required"),
                 },
               ]}
+              Field={Select}
+              options={LANGUAGE_LEVEL.map((level) => ({
+                label: t(`form.languageLevel.levelOptions.${level}`),
+                value: level,
+              }))}
               size="large"
-              Field={Input}
-            />
-            <FormItem
-              name={[index, "visible"]}
-              controlName={`tools[${index}].visible`}
-              control={control}
-              className="form__item"
-              fieldClassName="form__item-field"
-              label={tCreateResume("form.visible.label")}
-              placeholder={tCreateResume("form.visible.placeholder")}
-              size="large"
-              Field={Checkbox}
             />
             {fields.length > 1 && (
               <MinusCircleOutlined onClick={() => remove(index)} />
@@ -133,26 +110,16 @@ const PersonalToolsForm = ({ onPrev }: PersonalToolsFormProps) => {
         name="buttons"
       >
         <Button
-          className="form__button mr-16"
-          color="default"
-          type="default"
-          htmlType="button"
-          size="large"
-          onClick={onPrev}
-        >
-          {tShared("previous")}
-        </Button>
-        <Button
           className="form__button"
           type="primary"
           htmlType="submit"
           size="large"
         >
-          {tShared("next")}
+          {tShared("save")}
         </Button>
       </FormItem>
     </Form>
   );
 };
 
-export default PersonalToolsForm;
+export default PersonalLanguagesForm;

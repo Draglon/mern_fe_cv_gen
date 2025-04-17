@@ -1,8 +1,7 @@
 "use client";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { Form } from "antd";
-// import type { FormProps } from "antd";
 
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalInfo from "@/store/personalInfo/operations/createPersonalInfo";
@@ -14,6 +13,10 @@ import TextArea from "@/views/shared/antd/TextArea";
 import Button from "@/views/shared/antd/Button";
 import Divider from "@/views/shared/antd/Divider";
 
+type PersonalInfoFormProps = {
+  locale: string;
+};
+
 type FieldType = {
   userUrl: any[];
   firstName: string;
@@ -23,7 +26,6 @@ type FieldType = {
   address: string;
   phoneNumber: string;
   birthday: string;
-  skype: string;
   linkedIn: string;
 };
 
@@ -36,14 +38,12 @@ const defaultValues = {
   address: "",
   phoneNumber: "",
   birthday: "",
-  skype: "",
   linkedIn: "",
 };
 
-const PersonalInfoForm = ({ onNext }: { onNext?: () => void }) => {
-  const tCreateResume = useTranslations("CreateResume");
+const PersonalInfoForm = ({ locale }: PersonalInfoFormProps) => {
+  const t = useTranslations("PersonalInfo");
   const tShared = useTranslations("shared");
-  const locale = useLocale();
   const dispatch = useAppDispatch();
   const userId = useAppSelector(userIdSelector);
   const { control, handleSubmit } = useForm<FieldType>({
@@ -66,8 +66,6 @@ const PersonalInfoForm = ({ onNext }: { onNext?: () => void }) => {
     if (!data.payload) {
       return alert("Не удалось получить данные");
     }
-
-    onNext?.();
   });
 
   return (
@@ -84,7 +82,7 @@ const PersonalInfoForm = ({ onNext }: { onNext?: () => void }) => {
             name="userUrl"
             controlName="userUrl"
             control={control}
-            label={tCreateResume("form.userUrl.label")}
+            label={t("form.userUrl.label")}
             fieldType="upload"
             Field={UploadFile}
             size="large"
@@ -97,16 +95,16 @@ const PersonalInfoForm = ({ onNext }: { onNext?: () => void }) => {
               name="firstName"
               controlName="firstName"
               control={control}
-              label={tCreateResume("form.firstName.label")}
-              placeholder={tCreateResume("form.firstName.placeholder")}
+              label={t("form.firstName.label")}
+              placeholder={t("form.firstName.placeholder")}
               rules={[
                 {
                   required: true,
-                  message: tCreateResume("form.firstName.errors.required"),
+                  message: t("form.firstName.errors.required"),
                 },
                 {
                   min: 3,
-                  message: tCreateResume("form.firstName.errors.min"),
+                  message: t("form.firstName.errors.min"),
                 },
               ]}
               Field={InputField}
@@ -117,16 +115,16 @@ const PersonalInfoForm = ({ onNext }: { onNext?: () => void }) => {
               name="lastName"
               controlName="lastName"
               control={control}
-              label={tCreateResume("form.lastName.label")}
-              placeholder={tCreateResume("form.lastName.placeholder")}
+              label={t("form.lastName.label")}
+              placeholder={t("form.lastName.placeholder")}
               rules={[
                 {
                   required: true,
-                  message: tCreateResume("form.lastName.errors.required"),
+                  message: t("form.lastName.errors.required"),
                 },
                 {
                   min: 3,
-                  message: tCreateResume("form.lastName.errors.min"),
+                  message: t("form.lastName.errors.min"),
                 },
               ]}
               Field={InputField}
@@ -138,12 +136,12 @@ const PersonalInfoForm = ({ onNext }: { onNext?: () => void }) => {
             name="about"
             controlName="about"
             control={control}
-            label={tCreateResume("form.about.label")}
-            placeholder={tCreateResume("form.about.placeholder")}
+            label={t("form.about.label")}
+            placeholder={t("form.about.placeholder")}
             rules={[
               {
                 required: true,
-                message: tCreateResume("form.about.errors.required"),
+                message: t("form.about.errors.required"),
               },
             ]}
             fieldType="textarea"
@@ -159,12 +157,12 @@ const PersonalInfoForm = ({ onNext }: { onNext?: () => void }) => {
             type="email"
             controlName="email"
             control={control}
-            label={tCreateResume("form.email.label")}
-            placeholder={tCreateResume("form.email.placeholder")}
+            label={t("form.email.label")}
+            placeholder={t("form.email.placeholder")}
             rules={[
               {
                 required: true,
-                message: tCreateResume("form.email.errors.required"),
+                message: t("form.email.errors.required"),
               },
             ]}
             Field={InputField}
@@ -175,8 +173,8 @@ const PersonalInfoForm = ({ onNext }: { onNext?: () => void }) => {
             name="address"
             controlName="address"
             control={control}
-            label={tCreateResume("form.address.label")}
-            placeholder={tCreateResume("form.address.placeholder")}
+            label={t("form.address.label")}
+            placeholder={t("form.address.placeholder")}
             Field={InputField}
             size="large"
           />
@@ -185,12 +183,12 @@ const PersonalInfoForm = ({ onNext }: { onNext?: () => void }) => {
             name="phoneNumber"
             controlName="phoneNumber"
             control={control}
-            label={tCreateResume("form.phoneNumber.label")}
-            placeholder={tCreateResume("form.phoneNumber.placeholder")}
+            label={t("form.phoneNumber.label")}
+            placeholder={t("form.phoneNumber.placeholder")}
             rules={[
               {
-                type: "email",
-                message: tCreateResume("form.phoneNumber.errors.email"),
+                type: true,
+                message: t("form.phoneNumber.errors.required"),
               },
             ]}
             Field={InputField}
@@ -201,8 +199,8 @@ const PersonalInfoForm = ({ onNext }: { onNext?: () => void }) => {
             name="birthday"
             controlName="birthday"
             control={control}
-            label={tCreateResume("form.birthday.label")}
-            placeholder={tCreateResume("form.birthday.placeholder")}
+            label={t("form.birthday.label")}
+            placeholder={t("form.birthday.placeholder")}
             Field={InputField}
             size="large"
           />
@@ -211,21 +209,11 @@ const PersonalInfoForm = ({ onNext }: { onNext?: () => void }) => {
 
           <FormItem
             className="w-full"
-            name="skype"
-            controlName="skype"
-            control={control}
-            label={tCreateResume("form.skype.label")}
-            placeholder={tCreateResume("form.skype.placeholder")}
-            Field={InputField}
-            size="large"
-          />
-          <FormItem
-            className="w-full"
             name="linkedIn"
             controlName="linkedIn"
             control={control}
-            label={tCreateResume("form.linkedIn.label")}
-            placeholder={tCreateResume("form.linkedIn.placeholder")}
+            label={t("form.linkedIn.label")}
+            placeholder={t("form.linkedIn.placeholder")}
             Field={InputField}
             size="large"
           />
@@ -242,7 +230,7 @@ const PersonalInfoForm = ({ onNext }: { onNext?: () => void }) => {
           htmlType="submit"
           size="large"
         >
-          {tShared("next")}
+          {tShared("save")}
         </Button>
       </FormItem>
     </Form>

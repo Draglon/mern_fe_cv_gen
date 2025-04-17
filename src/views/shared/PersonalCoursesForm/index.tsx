@@ -1,51 +1,50 @@
 "use client";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
 
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import createPersonalSkills from "@/store/personalSkills/operations/createPersonalSkills";
+import createPersonalCourses from "@/store/personalCourses/operations/createPersonalCourses";
 import { userIdSelector } from "@/store/auth/selectors";
 import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
 import Input from "@/views/shared/antd/Input";
-import Checkbox from "@/views/shared/antd/Checkbox";
+
+type PersonalCoursesFormProps = {
+  locale: string;
+};
 
 type FieldType = {
-  skills: {
-    skill: string;
-    level: string;
-    visible: boolean;
+  courses: {
+    course: string;
+    description: string;
+    startDate: string;
+    endDate: string;
   }[];
 };
 
-type PersonalSkillsFormProps = {
-  onNext?: () => void;
-  onPrev?: () => void;
-};
-
-const PersonalSkillsForm = ({ onNext, onPrev }: PersonalSkillsFormProps) => {
+const PersonalCoursesForm = ({ locale }: PersonalCoursesFormProps) => {
+  const t = useTranslations("PersonalCourses");
   const tShared = useTranslations("shared");
-  const tCreateResume = useTranslations("CreateResume");
-  const locale = useLocale();
   const dispatch = useAppDispatch();
   const userId = useAppSelector(userIdSelector);
   const { control, handleSubmit } = useForm({
     defaultValues: {
-      skills: [
+      courses: [
         {
-          skill: "",
-          level: "",
-          visible: true,
+          course: "",
+          description: "",
+          startDate: "",
+          endDate: "",
         },
       ],
     },
   });
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "skills",
+    name: "courses",
   });
 
   const onFinish = handleSubmit(async (values: FieldType) => {
@@ -54,70 +53,92 @@ const PersonalSkillsForm = ({ onNext, onPrev }: PersonalSkillsFormProps) => {
       locale,
       userId,
     };
-    const data = await dispatch(createPersonalSkills(params));
+    const data = await dispatch(createPersonalCourses(params));
 
     if (!data.payload) {
       return alert("Не удалось получить данные");
     }
-
-    onNext?.();
   });
 
   return (
     <Form
-      name="create-personal-skills"
+      name="create-personal-courses"
       className="form"
       onFinish={onFinish}
       autoComplete="off"
       layout="vertical"
       preserve
     >
-      <FormList name="skills" append={append}>
+      <FormList name="courses" append={append}>
         {fields.map((field, index) => (
           <Space key={field.id} align="baseline">
             <FormItem
-              name={[index, "skill"]}
-              controlName={`skills[${index}].skill`}
+              name={[index, "course"]}
+              controlName={`courses[${index}].course`}
               control={control}
               className="form__item"
               fieldClassName="form__item-field"
-              label={tCreateResume("form.skill.label")}
-              placeholder={tCreateResume("form.skill.placeholder")}
+              label={t("form.course.label")}
+              placeholder={t("form.course.placeholder")}
               rules={[
                 {
                   required: true,
-                  message: tCreateResume("form.skill.error"),
+                  message: t("form.course.error"),
                 },
               ]}
               size="large"
               Field={Input}
             />
             <FormItem
-              name={[index, "level"]}
-              controlName={`skills[${index}].level`}
+              name={[index, "description"]}
+              controlName={`courses[${index}].description`}
               control={control}
               className="form__item"
               fieldClassName="form__item-field"
-              label={tCreateResume("form.level.label")}
-              placeholder={tCreateResume("form.level.placeholder")}
+              label={t("form.description.label")}
+              placeholder={t("form.description.placeholder")}
               rules={[
                 {
                   required: true,
-                  message: tCreateResume("form.level.error"),
+                  message: t("form.description.error"),
                 },
               ]}
               size="large"
               Field={Input}
             />
             <FormItem
-              name={[index, "visible"]}
-              controlName={`skills[${index}].visible`}
+              name={[index, "startDate"]}
+              controlName={`courses[${index}].startDate`}
               control={control}
               className="form__item"
               fieldClassName="form__item-field"
-              label={tCreateResume("form.visible.label")}
+              label={t("form.startDate.label")}
+              placeholder={t("form.startDate.placeholder")}
+              rules={[
+                {
+                  required: true,
+                  message: t("form.startDate.error"),
+                },
+              ]}
               size="large"
-              Field={Checkbox}
+              Field={Input}
+            />
+            <FormItem
+              name={[index, "endDate"]}
+              controlName={`courses[${index}].endDate`}
+              control={control}
+              className="form__item"
+              fieldClassName="form__item-field"
+              label={t("form.endDate.label")}
+              placeholder={t("form.endDate.placeholder")}
+              rules={[
+                {
+                  required: true,
+                  message: t("form.endDate.error"),
+                },
+              ]}
+              size="large"
+              Field={Input}
             />
             {fields.length > 1 && (
               <MinusCircleOutlined onClick={() => remove(index)} />
@@ -131,26 +152,16 @@ const PersonalSkillsForm = ({ onNext, onPrev }: PersonalSkillsFormProps) => {
         name="buttons"
       >
         <Button
-          className="form__button mr-16"
-          color="default"
-          type="default"
-          htmlType="button"
-          size="large"
-          onClick={onPrev}
-        >
-          {tShared("previous")}
-        </Button>
-        <Button
           className="form__button"
           type="primary"
           htmlType="submit"
           size="large"
         >
-          {tShared("next")}
+          {tShared("save")}
         </Button>
       </FormItem>
     </Form>
   );
 };
 
-export default PersonalSkillsForm;
+export default PersonalCoursesForm;

@@ -10,7 +10,8 @@ const shared = {
     "create": "Create",
     "next": "Next",
     "previous": "Previous",
-    "add": "Add"
+    "add": "Add",
+    "save": "Save",
   },
 };
 

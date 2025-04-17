@@ -1,5 +1,5 @@
 "use client";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
@@ -12,6 +12,10 @@ import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
 import Input from "@/views/shared/antd/Input";
 
+type PersonalEducationFormProps = {
+  locale: string;
+};
+
 type FieldType = {
   education: {
     institute: string;
@@ -22,18 +26,9 @@ type FieldType = {
   }[];
 };
 
-type PersonalEducationFormProps = {
-  onNext?: () => void;
-  onPrev?: () => void;
-};
-
-const PersonalEducationForm = ({
-  onNext,
-  onPrev,
-}: PersonalEducationFormProps) => {
+const PersonalEducationForm = ({ locale }: PersonalEducationFormProps) => {
+  const t = useTranslations("PersonalEducation");
   const tShared = useTranslations("shared");
-  const tCreateResume = useTranslations("CreateResume");
-  const locale = useLocale();
   const dispatch = useAppDispatch();
   const userId = useAppSelector(userIdSelector);
   const { control, handleSubmit } = useForm({
@@ -65,8 +60,6 @@ const PersonalEducationForm = ({
     if (!data.payload) {
       return alert("Не удалось получить данные");
     }
-
-    onNext?.();
   });
 
   return (
@@ -87,12 +80,12 @@ const PersonalEducationForm = ({
               control={control}
               className="form__item"
               fieldClassName="form__item-field"
-              label={tCreateResume("form.institute.label")}
-              placeholder={tCreateResume("form.institute.placeholder")}
+              label={t("form.institute.label")}
+              placeholder={t("form.institute.placeholder")}
               rules={[
                 {
                   required: true,
-                  message: tCreateResume("form.institute.error"),
+                  message: t("form.institute.error"),
                 },
               ]}
               size="large"
@@ -104,12 +97,12 @@ const PersonalEducationForm = ({
               control={control}
               className="form__item"
               fieldClassName="form__item-field"
-              label={tCreateResume("form.degree.label")}
-              placeholder={tCreateResume("form.degree.placeholder")}
+              label={t("form.degree.label")}
+              placeholder={t("form.degree.placeholder")}
               rules={[
                 {
                   required: true,
-                  message: tCreateResume("form.degree.error"),
+                  message: t("form.degree.error"),
                 },
               ]}
               size="large"
@@ -121,12 +114,12 @@ const PersonalEducationForm = ({
               control={control}
               className="form__item"
               fieldClassName="form__item-field"
-              label={tCreateResume("form.specialization.label")}
-              placeholder={tCreateResume("form.specialization.placeholder")}
+              label={t("form.specialization.label")}
+              placeholder={t("form.specialization.placeholder")}
               rules={[
                 {
                   required: true,
-                  message: tCreateResume("form.specialization.error"),
+                  message: t("form.specialization.error"),
                 },
               ]}
               size="large"
@@ -138,12 +131,12 @@ const PersonalEducationForm = ({
               control={control}
               className="form__item"
               fieldClassName="form__item-field"
-              label={tCreateResume("form.startDate.label")}
-              placeholder={tCreateResume("form.startDate.placeholder")}
+              label={t("form.startDate.label")}
+              placeholder={t("form.startDate.placeholder")}
               rules={[
                 {
                   required: true,
-                  message: tCreateResume("form.startDate.error"),
+                  message: t("form.startDate.error"),
                 },
               ]}
               size="large"
@@ -155,12 +148,12 @@ const PersonalEducationForm = ({
               control={control}
               className="form__item"
               fieldClassName="form__item-field"
-              label={tCreateResume("form.endDate.label")}
-              placeholder={tCreateResume("form.endDate.placeholder")}
+              label={t("form.endDate.label")}
+              placeholder={t("form.endDate.placeholder")}
               rules={[
                 {
                   required: true,
-                  message: tCreateResume("form.endDate.error"),
+                  message: t("form.endDate.error"),
                 },
               ]}
               size="large"
@@ -178,22 +171,12 @@ const PersonalEducationForm = ({
         name="buttons"
       >
         <Button
-          className="form__button mb-16"
-          color="default"
-          type="default"
-          htmlType="button"
-          size="large"
-          onClick={onPrev}
-        >
-          {tShared("previous")}
-        </Button>
-        <Button
           className="form__button"
           type="primary"
           htmlType="submit"
           size="large"
         >
-          {tShared("next")}
+          {tShared("save")}
         </Button>
       </FormItem>
     </Form>

@@ -1,9 +1,10 @@
 const resumeEdit = {
   "ResumeEdit": {
     "layout": {
-      "title": "Create resume",
-      "description": "Create resume - description"
+      "title": "Edit resume",
+      "description": "Edit resume - description"
     },
+    "title": "Edit resume",
   },
 };
 
