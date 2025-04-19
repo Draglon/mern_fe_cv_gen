@@ -15,6 +15,7 @@ import Divider from "@/views/shared/antd/Divider";
 
 type PersonalInfoFormProps = {
   locale: string;
+  isEdit?: boolean;
 };
 
 type FieldType = {
@@ -41,7 +42,7 @@ const defaultValues = {
   linkedIn: "",
 };
 
-const PersonalInfoForm = ({ locale }: PersonalInfoFormProps) => {
+const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
   const t = useTranslations("PersonalInfo");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
@@ -59,11 +60,13 @@ const PersonalInfoForm = ({ locale }: PersonalInfoFormProps) => {
       userUrl: values?.userUrl ? values.userUrl : "",
     };
 
-    const data = await dispatch(createPersonalInfo(params));
+    const data = isEdit
+      ? console.log("isEdit")
+      : await dispatch(createPersonalInfo(params));
 
     console.log("data: ", data);
 
-    if (!data.payload) {
+    if (!data?.payload) {
       return alert("Не удалось получить данные");
     }
   });

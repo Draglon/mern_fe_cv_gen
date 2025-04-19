@@ -5,14 +5,16 @@ const resumeCreate = {
       "description": "Create resume - description"
     },
     "title": "Create resume",
-    "personalInfo": "Personal info",
-    "personalHobbies": "Personal hobbies",
-    "personalLanguages": "Personal languages",
-    "personalExperience": "Personal experience",
-    "personalEducation": "Personal education",
-    "personalCourses": "Personal courses",
-    "personalSkills": "Personal skills",
-    "personalTools": "Personal tools",
+    "steps": {
+      "general": "General",
+      "hobbies": "Hobbies",
+      "languages": "Languages",
+      "experience": "Experience",
+      "education": "Education",
+      "courses": "Courses",
+      "skills": "Skills",
+      "tools": "Tools",
+    },
   },
 };
 

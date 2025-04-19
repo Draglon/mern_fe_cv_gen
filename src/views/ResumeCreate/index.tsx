@@ -4,18 +4,11 @@ import { inc, dec } from "ramda";
 import { useTranslations } from "next-intl";
 
 import { DEFAULT_LOCALE } from "@/lib/constants/locales";
+import { RESUME_ITEMS } from "@/lib/constants/resume";
 import Button from "@/views/shared/antd/Button";
 import { Title } from "@/views/shared/antd/Typography";
 import Steps from "@/views/shared/Steps";
 import LocalTabs from "@/views/shared/LocalTabs";
-import PersonalInfoForm from "@/views/shared/PersonalInfoForm";
-import PersonalHobbiesForm from "@/views/shared/PersonalHobbiesForm";
-import PersonalLanguagesForm from "@/views/shared/PersonalLanguagesForm";
-import PersonalExperienceForm from "@/views/shared/PersonalExperienceForm";
-import PersonalEducationForm from "@/views/shared/PersonalEducationForm";
-import PersonalCoursesForm from "@/views/shared/PersonalCoursesForm";
-import PersonalSkillsForm from "@/views/shared/PersonalSkillsForm";
-import PersonalToolsForm from "@/views/shared/PersonalToolsForm";
 
 const ResumeCreate = () => {
   const t = useTranslations("ResumeCreate");
@@ -35,80 +28,15 @@ const ResumeCreate = () => {
     setLocale(locale);
   };
 
-  const CREATE_RESUME_STEPS = [
-    {
-      title: t("personalInfo"),
-      content: (
-        <LocalTabs
-          onChange={onChange}
-          Component={<PersonalInfoForm locale={locale} />}
-        />
-      ),
-    },
-    {
-      title: t("personalHobbies"),
-      content: (
-        <LocalTabs
-          onChange={onChange}
-          Component={<PersonalHobbiesForm locale={locale} />}
-        />
-      ),
-    },
-    {
-      title: t("personalLanguages"),
-      content: (
-        <LocalTabs
-          onChange={onChange}
-          Component={<PersonalLanguagesForm locale={locale} />}
-        />
-      ),
-    },
-    {
-      title: t("personalExperience"),
-      content: (
-        <LocalTabs
-          onChange={onChange}
-          Component={<PersonalExperienceForm locale={locale} />}
-        />
-      ),
-    },
-    {
-      title: t("personalEducation"),
-      content: (
-        <LocalTabs
-          onChange={onChange}
-          Component={<PersonalEducationForm locale={locale} />}
-        />
-      ),
-    },
-    {
-      title: t("personalCourses"),
-      content: (
-        <LocalTabs
-          onChange={onChange}
-          Component={<PersonalCoursesForm locale={locale} />}
-        />
-      ),
-    },
-    {
-      title: t("personalSkills"),
-      content: (
-        <LocalTabs
-          onChange={onChange}
-          Component={<PersonalSkillsForm locale={locale} />}
-        />
-      ),
-    },
-    {
-      title: t("personalTools"),
-      content: (
-        <LocalTabs
-          onChange={onChange}
-          Component={<PersonalToolsForm locale={locale} />}
-        />
-      ),
-    },
-  ];
+  const CREATE_RESUME_STEPS = RESUME_ITEMS.map(({ key, Component }) => ({
+    title: t(`steps.${key}`),
+    content: (
+      <LocalTabs
+        onChange={onChange}
+        Component={<Component locale={locale} />}
+      />
+    ),
+  }));
 
   return (
     <div className="page__container">
