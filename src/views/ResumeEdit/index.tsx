@@ -8,15 +8,9 @@ import Tabs from "@/views/shared/antd/Tabs";
 import LocalTabs from "@/views/shared/LocalTabs";
 import { Title } from "@/views/shared/antd/Typography";
 
-type ResumeEditProps = {
-  activeTab?: string;
-};
-
-const ResumeEdit = ({ activeTab }: ResumeEditProps) => {
+const ResumeEdit = () => {
   const t = useTranslations("ResumeEdit");
-  const [currentTab, setCurrentTab] = useState(
-    activeTab || DEFAULT_RESUME_ITEM
-  );
+  const [currentTab, setCurrentTab] = useState(DEFAULT_RESUME_ITEM);
   const [locale, setLocale] = useState(DEFAULT_LOCALE);
 
   const onChangeTab = (tabKey: string): void => {
