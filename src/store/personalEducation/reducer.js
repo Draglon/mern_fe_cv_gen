@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import createPersonalEducation from "./operations/createPersonalEducation";
 import fetchPersonalEducation from "./operations/fetchPersonalEducation";
+import updatePersonalEducation from "./operations/updatePersonalEducation";
 
 const initialState = {
   data: null,
@@ -34,6 +35,19 @@ export const personalEducationSlice = createSlice({
       state.status = "loaded";
     });
     builder.addCase(fetchPersonalEducation.rejected, (state) => {
+      state.data = null;
+      state.status = "error";
+    });
+
+    builder.addCase(updatePersonalEducation.pending, (state) => {
+      state.data = null;
+      state.status = "loading";
+    });
+    builder.addCase(updatePersonalEducation.fulfilled, (state, action) => {
+      state.data = action.payload;
+      state.status = "loaded";
+    });
+    builder.addCase(updatePersonalEducation.rejected, (state) => {
       state.data = null;
       state.status = "error";
     });

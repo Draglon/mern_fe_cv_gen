@@ -6,7 +6,11 @@ import { MinusCircleOutlined } from "@ant-design/icons";
 
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalEducation from "@/store/personalEducation/operations/createPersonalEducation";
-import { userIdSelector } from "@/store/auth/selectors";
+import updatePersonalEducation from "@/store/personalEducation/operations/updatePersonalEducation";
+import {
+  userIdSelector,
+  personalEducationIdSelector,
+} from "@/store/auth/selectors";
 import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
@@ -14,6 +18,7 @@ import Input from "@/views/shared/antd/Input";
 
 type PersonalEducationFormProps = {
   locale: string;
+  isEdit?: boolean;
 };
 
 type FieldType = {
@@ -26,11 +31,15 @@ type FieldType = {
   }[];
 };
 
-const PersonalEducationForm = ({ locale }: PersonalEducationFormProps) => {
+const PersonalEducationForm = ({
+  locale,
+  isEdit,
+}: PersonalEducationFormProps) => {
   const t = useTranslations("PersonalEducation");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
   const userId = useAppSelector(userIdSelector);
+  const personalEducationId = useAppSelector(personalEducationIdSelector);
   const { control, handleSubmit } = useForm({
     defaultValues: {
       education: [
@@ -55,7 +64,13 @@ const PersonalEducationForm = ({ locale }: PersonalEducationFormProps) => {
       locale,
       userId,
     };
-    const data = await dispatch(createPersonalEducation(params));
+
+    const data =
+      isEdit && personalEducationId
+        ? await dispatch(
+            updatePersonalEducation({ ...params, personalEducationId })
+          )
+        : await dispatch(createPersonalEducation(params));
 
     if (!data.payload) {
       return alert("Не удалось получить данные");

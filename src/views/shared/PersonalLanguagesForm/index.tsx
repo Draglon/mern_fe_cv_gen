@@ -7,7 +7,11 @@ import { MinusCircleOutlined } from "@ant-design/icons";
 import { LANGUAGE_LEVEL } from "@/lib/constants/languages";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalLanguages from "@/store/personalLanguages/operations/createPersonalLanguages";
-import { userIdSelector } from "@/store/auth/selectors";
+import updatePersonalLanguages from "@/store/personalLanguages/operations/updatePersonalLanguages";
+import {
+  userIdSelector,
+  personalLanguagesIdSelector,
+} from "@/store/auth/selectors";
 import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
@@ -16,17 +20,22 @@ import Select from "@/views/shared/antd/Select";
 
 type PersonalLanguagesFormProps = {
   locale: string;
+  isEdit?: boolean;
 };
 
 type FieldType = {
   languages: { language: string; level: string }[];
 };
 
-const PersonalLanguagesForm = ({ locale }: PersonalLanguagesFormProps) => {
+const PersonalLanguagesForm = ({
+  locale,
+  isEdit,
+}: PersonalLanguagesFormProps) => {
   const t = useTranslations("PersonalLanguages");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
   const userId = useAppSelector(userIdSelector);
+  const personalLanguagesId = useAppSelector(personalLanguagesIdSelector);
   const { control, handleSubmit } = useForm({
     defaultValues: {
       languages: [{ language: "", level: "" }],
@@ -43,7 +52,13 @@ const PersonalLanguagesForm = ({ locale }: PersonalLanguagesFormProps) => {
       locale,
       userId,
     };
-    const data = await dispatch(createPersonalLanguages(params));
+
+    const data =
+      isEdit && personalLanguagesId
+        ? await dispatch(
+            updatePersonalLanguages({ ...params, personalLanguagesId })
+          )
+        : await dispatch(createPersonalLanguages(params));
 
     if (!data.payload) {
       return alert("Не удалось получить данные");

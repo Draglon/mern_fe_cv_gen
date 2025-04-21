@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import createPersonalHobbies from "./operations/createPersonalHobbies";
 import fetchPersonalHobbies from "./operations/fetchPersonalHobbies";
+import updatePersonalHobbies from "./operations/updatePersonalHobbies";
 
 const initialState = {
   data: null,
@@ -34,6 +35,19 @@ export const personalHobbiesSlice = createSlice({
       state.status = "loaded";
     });
     builder.addCase(fetchPersonalHobbies.rejected, (state) => {
+      state.data = null;
+      state.status = "error";
+    });
+
+    builder.addCase(updatePersonalHobbies.pending, (state) => {
+      state.data = null;
+      state.status = "loading";
+    });
+    builder.addCase(updatePersonalHobbies.fulfilled, (state, action) => {
+      state.data = action.payload;
+      state.status = "loaded";
+    });
+    builder.addCase(updatePersonalHobbies.rejected, (state) => {
       state.data = null;
       state.status = "error";
     });

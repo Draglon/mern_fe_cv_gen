@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import createPersonalTools from "./operations/createPersonalTools";
 import fetchPersonalTools from "./operations/fetchPersonalTools";
+import updatePersonalTools from "./operations/updatePersonalTools";
 
 const initialState = {
   data: null,
@@ -34,6 +35,19 @@ export const personalToolsSlice = createSlice({
       state.status = "loaded";
     });
     builder.addCase(fetchPersonalTools.rejected, (state) => {
+      state.data = null;
+      state.status = "error";
+    });
+
+    builder.addCase(updatePersonalTools.pending, (state) => {
+      state.data = null;
+      state.status = "loading";
+    });
+    builder.addCase(updatePersonalTools.fulfilled, (state, action) => {
+      state.data = action.payload;
+      state.status = "loaded";
+    });
+    builder.addCase(updatePersonalTools.rejected, (state) => {
       state.data = null;
       state.status = "error";
     });

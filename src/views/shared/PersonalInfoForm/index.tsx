@@ -5,7 +5,8 @@ import { Form } from "antd";
 
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalInfo from "@/store/personalInfo/operations/createPersonalInfo";
-import { userIdSelector } from "@/store/auth/selectors";
+import updatePersonalInfo from "@/store/personalInfo/operations/updatePersonalInfo";
+import { userIdSelector, personalInfoIdSelector } from "@/store/auth/selectors";
 import FormItem from "@/views/shared/antd/FormItem";
 import UploadFile from "@/views/shared/antd/UploadFile";
 import InputField from "@/views/shared/antd/Input";
@@ -47,6 +48,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
   const userId = useAppSelector(userIdSelector);
+  const personalInfoId = useAppSelector(personalInfoIdSelector);
   const { control, handleSubmit } = useForm<FieldType>({
     defaultValues,
     mode: "onChange",
@@ -60,14 +62,15 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
       userUrl: values?.userUrl ? values.userUrl : "",
     };
 
-    const data = isEdit
-      ? console.log("isEdit")
-      : await dispatch(createPersonalInfo(params));
+    const data =
+      isEdit && personalInfoId
+        ? await dispatch(updatePersonalInfo({ ...params, personalInfoId }))
+        : await dispatch(createPersonalInfo(params));
 
     console.log("data: ", data);
 
     if (!data?.payload) {
-      return alert("Не удалось получить данные");
+      return alert("Не удалось обновить данные");
     }
   });
 

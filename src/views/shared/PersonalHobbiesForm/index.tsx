@@ -6,7 +6,11 @@ import { MinusCircleOutlined } from "@ant-design/icons";
 
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalHobbies from "@/store/personalHobbies/operations/createPersonalHobbies";
-import { userIdSelector } from "@/store/auth/selectors";
+import updatePersonalHobbies from "@/store/personalHobbies/operations/updatePersonalHobbies";
+import {
+  userIdSelector,
+  personalHobbiesIdSelector,
+} from "@/store/auth/selectors";
 import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
@@ -14,17 +18,19 @@ import Input from "@/views/shared/antd/Input";
 
 type PersonalHobbiesFormProps = {
   locale: string;
+  isEdit?: boolean;
 };
 
 type FieldType = {
   hobbies: { hobby: string }[];
 };
 
-const PersonalHobbiesForm = ({ locale }: PersonalHobbiesFormProps) => {
+const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesFormProps) => {
   const t = useTranslations("PersonalHobbies");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
   const userId = useAppSelector(userIdSelector);
+  const personalHobbiesId = useAppSelector(personalHobbiesIdSelector);
   const { control, handleSubmit } = useForm<FieldType>({
     defaultValues: {
       hobbies: [{ hobby: "" }],
@@ -42,7 +48,13 @@ const PersonalHobbiesForm = ({ locale }: PersonalHobbiesFormProps) => {
       locale,
       userId,
     };
-    const data = await dispatch(createPersonalHobbies(params));
+
+    const data =
+      isEdit && personalHobbiesId
+        ? await dispatch(
+            updatePersonalHobbies({ ...params, personalHobbiesId })
+          )
+        : await dispatch(createPersonalHobbies(params));
 
     if (!data.payload) {
       return alert("Не удалось получить данные");

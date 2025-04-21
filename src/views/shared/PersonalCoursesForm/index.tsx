@@ -6,7 +6,11 @@ import { MinusCircleOutlined } from "@ant-design/icons";
 
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalCourses from "@/store/personalCourses/operations/createPersonalCourses";
-import { userIdSelector } from "@/store/auth/selectors";
+import updatePersonalCourses from "@/store/personalCourses/operations/updatePersonalCourses";
+import {
+  userIdSelector,
+  personalCoursesIdSelector,
+} from "@/store/auth/selectors";
 import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
@@ -14,6 +18,7 @@ import Input from "@/views/shared/antd/Input";
 
 type PersonalCoursesFormProps = {
   locale: string;
+  isEdit?: boolean;
 };
 
 type FieldType = {
@@ -25,11 +30,12 @@ type FieldType = {
   }[];
 };
 
-const PersonalCoursesForm = ({ locale }: PersonalCoursesFormProps) => {
+const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
   const t = useTranslations("PersonalCourses");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
   const userId = useAppSelector(userIdSelector);
+  const personalCoursesId = useAppSelector(personalCoursesIdSelector);
   const { control, handleSubmit } = useForm({
     defaultValues: {
       courses: [
@@ -53,7 +59,13 @@ const PersonalCoursesForm = ({ locale }: PersonalCoursesFormProps) => {
       locale,
       userId,
     };
-    const data = await dispatch(createPersonalCourses(params));
+
+    const data =
+      isEdit && personalCoursesId
+        ? await dispatch(
+            updatePersonalCourses({ ...params, personalCoursesId })
+          )
+        : await dispatch(createPersonalCourses(params));
 
     if (!data.payload) {
       return alert("Не удалось получить данные");

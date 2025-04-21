@@ -6,7 +6,11 @@ import { MinusCircleOutlined } from "@ant-design/icons";
 
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalSkills from "@/store/personalSkills/operations/createPersonalSkills";
-import { userIdSelector } from "@/store/auth/selectors";
+import updatePersonalSkills from "@/store/personalSkills/operations/updatePersonalSkills";
+import {
+  userIdSelector,
+  personalSkillsIdSelector,
+} from "@/store/auth/selectors";
 import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
@@ -15,6 +19,7 @@ import Checkbox from "@/views/shared/antd/Checkbox";
 
 type PersonalSkillsFormProps = {
   locale: string;
+  isEdit?: boolean;
 };
 
 type FieldType = {
@@ -25,11 +30,12 @@ type FieldType = {
   }[];
 };
 
-const PersonalSkillsForm = ({ locale }: PersonalSkillsFormProps) => {
+const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
   const t = useTranslations("PersonalSkills");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
   const userId = useAppSelector(userIdSelector);
+  const personalSkillsId = useAppSelector(personalSkillsIdSelector);
   const { control, handleSubmit } = useForm({
     defaultValues: {
       skills: [
@@ -52,7 +58,11 @@ const PersonalSkillsForm = ({ locale }: PersonalSkillsFormProps) => {
       locale,
       userId,
     };
-    const data = await dispatch(createPersonalSkills(params));
+
+    const data =
+      isEdit && personalSkillsId
+        ? await dispatch(updatePersonalSkills({ ...params, personalSkillsId }))
+        : await dispatch(createPersonalSkills(params));
 
     if (!data.payload) {
       return alert("Не удалось получить данные");

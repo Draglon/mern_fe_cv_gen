@@ -6,7 +6,11 @@ import { MinusCircleOutlined } from "@ant-design/icons";
 
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalExperience from "@/store/personalExperience/operations/createPersonalExperience";
-import { userIdSelector } from "@/store/auth/selectors";
+import updatePersonalExperience from "@/store/personalExperience/operations/updatePersonalExperience";
+import {
+  userIdSelector,
+  personalExperienceIdSelector,
+} from "@/store/auth/selectors";
 import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
@@ -14,6 +18,7 @@ import Input from "@/views/shared/antd/Input";
 
 type PersonalExperienceFormProps = {
   locale: string;
+  isEdit?: boolean;
 };
 
 type FieldType = {
@@ -30,11 +35,15 @@ type FieldType = {
   }[];
 };
 
-const PersonalExperienceForm = ({ locale }: PersonalExperienceFormProps) => {
+const PersonalExperienceForm = ({
+  locale,
+  isEdit,
+}: PersonalExperienceFormProps) => {
   const t = useTranslations("PersonalExperience");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
   const userId = useAppSelector(userIdSelector);
+  const personalExperienceId = useAppSelector(personalExperienceIdSelector);
   const { control, handleSubmit } = useForm({
     defaultValues: {
       experience: [
@@ -63,7 +72,13 @@ const PersonalExperienceForm = ({ locale }: PersonalExperienceFormProps) => {
       locale,
       userId,
     };
-    const data = await dispatch(createPersonalExperience(params));
+
+    const data =
+      isEdit && personalExperienceId
+        ? await dispatch(
+            updatePersonalExperience({ ...params, personalExperienceId })
+          )
+        : await dispatch(createPersonalExperience(params));
 
     if (!data.payload) {
       return alert("Не удалось получить данные");

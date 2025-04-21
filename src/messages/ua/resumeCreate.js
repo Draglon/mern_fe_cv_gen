@@ -5,14 +5,16 @@ const resumeCreate = {
       "description": "Створити резюме - опис"
     },
     "title": "Створити резюме",
-    "personalInfo": "Персональні дані",
-    "personalHobbies": "Інтереси",
-    "personalLanguages": "Мови",
-    "personalExperience": "Досвід роботи",
-    "personalEducation": "Освіта",
-    "personalCourses": "Курси",
-    "personalSkills": "Навички",
-    "personalTools": "Інструменти",
+    "steps": {
+      "general": "Персональні дані",
+      "hobbies": "Інтереси",
+      "languages": "Мови",
+      "experience": "Досвід роботи",
+      "education": "Освіта",
+      "courses": "Курси",
+      "skills": "Навички",
+      "tools": "Інструменти",
+    },
   },
 };
 

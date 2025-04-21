@@ -8,7 +8,11 @@ import { redirect } from "@/i18n/navigation";
 import { resumeRoute } from "@/lib/routes";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalTools from "@/store/personalTools/operations/createPersonalTools";
-import { userIdSelector } from "@/store/auth/selectors";
+import updatePersonalTools from "@/store/personalTools/operations/updatePersonalTools";
+import {
+  userIdSelector,
+  personalToolsIdSelector,
+} from "@/store/auth/selectors";
 import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
@@ -17,6 +21,7 @@ import Checkbox from "@/views/shared/antd/Checkbox";
 
 type PersonalToolsFormProps = {
   locale: string;
+  isEdit?: boolean;
 };
 
 type FieldType = {
@@ -27,11 +32,12 @@ type FieldType = {
   }[];
 };
 
-const PersonalToolsForm = ({ locale }: PersonalToolsFormProps) => {
+const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
   const t = useTranslations("PersonalTools");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
   const userId = useAppSelector(userIdSelector);
+  const personalToolsId = useAppSelector(personalToolsIdSelector);
   const { control, handleSubmit } = useForm({
     defaultValues: {
       tools: [
@@ -55,7 +61,10 @@ const PersonalToolsForm = ({ locale }: PersonalToolsFormProps) => {
       userId,
     };
 
-    const data = await dispatch(createPersonalTools(params));
+    const data =
+      isEdit && personalToolsId
+        ? await dispatch(updatePersonalTools({ ...params, personalToolsId }))
+        : await dispatch(createPersonalTools(params));
 
     if (!data.payload) {
       return alert("Не удалось получить данные");
