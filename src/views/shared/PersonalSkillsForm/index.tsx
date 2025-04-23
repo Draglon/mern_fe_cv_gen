@@ -3,7 +3,10 @@ import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
+import { isEmpty } from "ramda";
 
+import { Locales } from "@/lib/constants/props/locales";
+import { skillsByLocale } from "@/utils/personalSkills";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalSkills from "@/store/personalSkills/operations/createPersonalSkills";
 import updatePersonalSkills from "@/store/personalSkills/operations/updatePersonalSkills";
@@ -11,6 +14,7 @@ import {
   userIdSelector,
   personalSkillsIdSelector,
 } from "@/store/auth/selectors";
+import { personalSkillsSelector } from "@/store/personalSkills/selectors";
 import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
@@ -36,15 +40,20 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
   const dispatch = useAppDispatch();
   const userId = useAppSelector(userIdSelector);
   const personalSkillsId = useAppSelector(personalSkillsIdSelector);
+  const personalSkills = useAppSelector(personalSkillsSelector);
+  const skills = skillsByLocale(personalSkills, locale as Locales);
+
   const { control, handleSubmit } = useForm({
     defaultValues: {
-      skills: [
-        {
-          skill: "",
-          level: "",
-          visible: true,
-        },
-      ],
+      skills: !isEmpty(skills)
+        ? skills
+        : [
+            {
+              skill: "",
+              level: "",
+              visible: true,
+            },
+          ],
     },
   });
   const { fields, append, remove } = useFieldArray({
@@ -123,6 +132,7 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
               fieldClassName="form__item-field"
               label={t("form.visible.label")}
               size="large"
+              fieldType="checkbox"
               Field={Checkbox}
             />
             {fields.length > 1 && (

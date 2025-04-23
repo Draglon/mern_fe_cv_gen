@@ -93,9 +93,9 @@
 
 .personal-skills {
     &__item {
-    // display: flex;
-    // justify-content: flex-start;
-    // align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     margin-bottom: 2mm;
   }
 
@@ -119,9 +119,26 @@
 
 .personal-tools {
   &__item {
-    // display: flex;
-    // justify-content: flex-start;
-    // align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     margin-bottom: 2mm;
   }
+
+  // &__label {
+  //   width: 50%;
+  // }
+
+  // &__progress {
+  //   background-color: var(--white);
+  //   border: 1px solid var(--grey-light);
+  //   border-radius: 1mm;
+  //   width: 50mm;
+  //   height: 2mm;
+  //   &-value {
+  //     background-color: var(--blue);
+  //     border-radius: 1mm;
+  //     height: 100%;
+  //   }
+  // }
 }

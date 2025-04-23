@@ -3,6 +3,8 @@ import { useLocale, useTranslations } from "next-intl";
 
 import splitText from "@/utils/splitText";
 import { Locale, Locales } from "@/lib/constants/props/locales";
+import { experienceByLocale } from "@/utils/personalExperience";
+
 import { Title, Text, Paragraph } from "@/views/shared/antd/Typography";
 
 type Experience = {
@@ -26,13 +28,11 @@ type ExperiencesProps = {
 const PersonalExperience = ({ personalExperience }: ExperiencesProps) => {
   const t = useTranslations("Template");
   const locale = useLocale();
-  const experienceByLocale = JSON.parse(
-    personalExperience?.experience[locale as Locales] || "[]"
-  );
+  const experience = experienceByLocale(personalExperience, locale as Locales);
 
   return (
     <div className="experience">
-      {experienceByLocale.map((item: Experience, index: number) => (
+      {experience.map((item: Experience, index: number) => (
         <div className="experience__item" key={index}>
           <header className="experience__header">
             <div className="experience__header-item">

@@ -2,14 +2,15 @@
 import { useLocale } from "next-intl";
 
 import { Locale, Locales } from "@/lib/constants/props/locales";
-// import { Title, Text, Paragraph } from "@/views/shared/antd/Typography";
+import { coursesByLocale } from "@/utils/personalCourses";
+import { Title, Text, Paragraph } from "@/views/shared/antd/Typography";
 
-// type Course = {
-//   title: string;
-//   description: string;
-//   startDate: string;
-//   endDate: string;
-// };
+type Course = {
+  course: string;
+  description: string;
+  startDate: string;
+  endDate: string;
+};
 
 type PersonalCoursesProps = {
   personalCourses: {
@@ -19,19 +20,15 @@ type PersonalCoursesProps = {
 
 const PersonalCourses = ({ personalCourses }: PersonalCoursesProps) => {
   const locale = useLocale();
-  const coursesByLocale = JSON.parse(
-    personalCourses?.courses[locale as Locales] || "[]"
-  );
-
-  console.log("coursesByLocale: ", coursesByLocale);
+  const courses = coursesByLocale(personalCourses, locale as Locales);
 
   return (
     <>
-      {/* {courses.map((item: Course) => (
-        <div className="section__item" key={item.title}>
+      {courses.map((item: Course, index: number) => (
+        <div className="section__item" key={index}>
           <header className="section__subheader">
             <Title className="section__subtitle" level={4}>
-              {item.title}
+              {item.course}
             </Title>
             <Text className="section__period" type="secondary" italic>
               {item.startDate} - {item.endDate}
@@ -41,7 +38,7 @@ const PersonalCourses = ({ personalCourses }: PersonalCoursesProps) => {
             {item.description}
           </Paragraph>
         </div>
-      ))} */}
+      ))}
     </>
   );
 };

@@ -3,7 +3,10 @@ import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
+import { isEmpty } from "ramda";
 
+import { Locales } from "@/lib/constants/props/locales";
+import { hobbiesByLocale } from "@/utils/personalHobbies";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalHobbies from "@/store/personalHobbies/operations/createPersonalHobbies";
 import updatePersonalHobbies from "@/store/personalHobbies/operations/updatePersonalHobbies";
@@ -11,6 +14,8 @@ import {
   userIdSelector,
   personalHobbiesIdSelector,
 } from "@/store/auth/selectors";
+import { personalHobbiesSelector } from "@/store/personalHobbies/selectors";
+
 import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
@@ -31,9 +36,12 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesFormProps) => {
   const dispatch = useAppDispatch();
   const userId = useAppSelector(userIdSelector);
   const personalHobbiesId = useAppSelector(personalHobbiesIdSelector);
+  const personalHobbies = useAppSelector(personalHobbiesSelector);
+  const hobbies = hobbiesByLocale(personalHobbies, locale as Locales);
+
   const { control, handleSubmit } = useForm<FieldType>({
     defaultValues: {
-      hobbies: [{ hobby: "" }],
+      hobbies: !isEmpty(hobbies) ? hobbies : [{ hobby: "" }],
     },
     mode: "onChange",
   });

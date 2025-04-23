@@ -1,6 +1,7 @@
 export const isAuthSelector = state => Boolean(state.auth.data);
 export const isLoadingSelector = state => state.auth.status === "loading";
 export const userIdSelector = state => state.auth.data?._id;
+export const userSelector = state => state.auth?.data;
 export const personalInfoIdSelector = state => state.auth.data?.personalInfoId;
 export const personalHobbiesIdSelector = state => state.auth.data?.personalHobbiesId;
 export const personalLanguagesIdSelector = state => state.auth.data?.personalLanguagesId;

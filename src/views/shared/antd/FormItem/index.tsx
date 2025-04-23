@@ -92,6 +92,15 @@ const FormItem = ({
                 {...restProps}
               />
             )}
+            {fieldType === "checkbox" && (
+              <Field
+                className={fieldClassName}
+                onChange={onChange}
+                defaultChecked={value}
+                register={{ ...register }}
+                {...restProps}
+              />
+            )}
           </>
         </Form.Item>
       )}

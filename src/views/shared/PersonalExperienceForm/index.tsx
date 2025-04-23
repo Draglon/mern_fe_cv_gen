@@ -3,7 +3,10 @@ import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
+import { isEmpty } from "ramda";
 
+import { Locales } from "@/lib/constants/props/locales";
+import { experienceByLocale } from "@/utils/personalExperience";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalExperience from "@/store/personalExperience/operations/createPersonalExperience";
 import updatePersonalExperience from "@/store/personalExperience/operations/updatePersonalExperience";
@@ -11,6 +14,8 @@ import {
   userIdSelector,
   personalExperienceIdSelector,
 } from "@/store/auth/selectors";
+import { personalExperienceSelector } from "@/store/personalExperience/selectors";
+
 import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
@@ -44,21 +49,26 @@ const PersonalExperienceForm = ({
   const dispatch = useAppDispatch();
   const userId = useAppSelector(userIdSelector);
   const personalExperienceId = useAppSelector(personalExperienceIdSelector);
+  const personalExperience = useAppSelector(personalExperienceSelector);
+  const experience = experienceByLocale(personalExperience, locale as Locales);
+
   const { control, handleSubmit } = useForm({
     defaultValues: {
-      experience: [
-        {
-          position: "",
-          companyName: "",
-          location: "",
-          place: "",
-          time: "",
-          startDate: "",
-          endDate: "",
-          description: "",
-          skills: "", // need add array
-        },
-      ],
+      experience: !isEmpty(experience)
+        ? experience
+        : [
+            {
+              position: "",
+              companyName: "",
+              location: "",
+              place: "",
+              time: "",
+              startDate: "",
+              endDate: "",
+              description: "",
+              skills: "", // need add array
+            },
+          ],
     },
   });
   const { fields, append, remove } = useFieldArray({

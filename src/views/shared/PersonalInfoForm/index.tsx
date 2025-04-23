@@ -3,10 +3,14 @@ import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { Form } from "antd";
 
+import { Locales } from "@/lib/constants/props/locales";
+import { personalInfoByLocale } from "@/utils/personalInfo";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalInfo from "@/store/personalInfo/operations/createPersonalInfo";
 import updatePersonalInfo from "@/store/personalInfo/operations/updatePersonalInfo";
 import { userIdSelector, personalInfoIdSelector } from "@/store/auth/selectors";
+import { personalInfoSelector } from "@/store/personalInfo/selectors";
+
 import FormItem from "@/views/shared/antd/FormItem";
 import UploadFile from "@/views/shared/antd/UploadFile";
 import InputField from "@/views/shared/antd/Input";
@@ -31,24 +35,15 @@ type FieldType = {
   linkedIn: string;
 };
 
-const defaultValues = {
-  userUrl: [],
-  firstName: "",
-  lastName: "",
-  email: "",
-  about: "",
-  address: "",
-  phoneNumber: "",
-  birthday: "",
-  linkedIn: "",
-};
-
 const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
   const t = useTranslations("PersonalInfo");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
   const userId = useAppSelector(userIdSelector);
   const personalInfoId = useAppSelector(personalInfoIdSelector);
+  const personalInfo = useAppSelector(personalInfoSelector);
+  const defaultValues = personalInfoByLocale(personalInfo, locale as Locales);
+
   const { control, handleSubmit } = useForm<FieldType>({
     defaultValues,
     mode: "onChange",
@@ -66,8 +61,6 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
       isEdit && personalInfoId
         ? await dispatch(updatePersonalInfo({ ...params, personalInfoId }))
         : await dispatch(createPersonalInfo(params));
-
-    console.log("data: ", data);
 
     if (!data?.payload) {
       return alert("Не удалось обновить данные");

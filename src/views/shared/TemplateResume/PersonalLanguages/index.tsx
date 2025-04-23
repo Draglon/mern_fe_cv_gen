@@ -2,6 +2,8 @@
 import { useLocale, useTranslations } from "next-intl";
 
 import { Locale, Locales } from "@/lib/constants/props/locales";
+import { languagesByLocale } from "@/utils/personalLanguages";
+
 import { Text } from "@/views/shared/antd/Typography";
 
 type Language = {
@@ -9,23 +11,21 @@ type Language = {
   level: string;
 };
 
-type Languages = {
-  languages: {
+type LanguagesProps = {
+  personalLanguages: {
     languages: Locale;
   };
 };
 
-const PersonalLanguages = ({ languages }: Languages) => {
+const PersonalLanguages = ({ personalLanguages }: LanguagesProps) => {
   const locale = useLocale();
   const t = useTranslations("Template.personalLanguages");
-  const languagesByLocale = JSON.parse(
-    languages?.languages[locale as Locales] || "[]"
-  );
+  const languages = languagesByLocale(personalLanguages, locale as Locales);
 
   return (
     <div className="personal-languages">
       <ul className="personal-languages__list">
-        {languagesByLocale.map(({ language, level }: Language) => (
+        {languages.map(({ language, level }: Language) => (
           <li className="personal-languages__item" key={language}>
             <Text className="personal-languages__text section__text" strong>
               {language}

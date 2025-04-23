@@ -3,7 +3,10 @@ import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
+import { isEmpty } from "ramda";
 
+import { Locales } from "@/lib/constants/props/locales";
+import { coursesByLocale } from "@/utils/personalCourses";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalCourses from "@/store/personalCourses/operations/createPersonalCourses";
 import updatePersonalCourses from "@/store/personalCourses/operations/updatePersonalCourses";
@@ -11,6 +14,8 @@ import {
   userIdSelector,
   personalCoursesIdSelector,
 } from "@/store/auth/selectors";
+import { personalCoursesSelector } from "@/store/personalCourses/selectors";
+
 import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
@@ -36,16 +41,21 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
   const dispatch = useAppDispatch();
   const userId = useAppSelector(userIdSelector);
   const personalCoursesId = useAppSelector(personalCoursesIdSelector);
+  const personalCourses = useAppSelector(personalCoursesSelector);
+  const courses = coursesByLocale(personalCourses, locale as Locales);
+
   const { control, handleSubmit } = useForm({
     defaultValues: {
-      courses: [
-        {
-          course: "",
-          description: "",
-          startDate: "",
-          endDate: "",
-        },
-      ],
+      courses: !isEmpty(courses)
+        ? courses
+        : [
+            {
+              course: "",
+              description: "",
+              startDate: "",
+              endDate: "",
+            },
+          ],
     },
   });
   const { fields, append, remove } = useFieldArray({

@@ -3,8 +3,11 @@ import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
+import { isEmpty } from "ramda";
 
+import { Locales } from "@/lib/constants/props/locales";
 import { LANGUAGE_LEVEL } from "@/lib/constants/languages";
+import { languagesByLocale } from "@/utils/personalLanguages";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalLanguages from "@/store/personalLanguages/operations/createPersonalLanguages";
 import updatePersonalLanguages from "@/store/personalLanguages/operations/updatePersonalLanguages";
@@ -12,6 +15,8 @@ import {
   userIdSelector,
   personalLanguagesIdSelector,
 } from "@/store/auth/selectors";
+import { personalLanguagesSelector } from "@/store/personalLanguages/selectors";
+
 import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
@@ -36,9 +41,14 @@ const PersonalLanguagesForm = ({
   const dispatch = useAppDispatch();
   const userId = useAppSelector(userIdSelector);
   const personalLanguagesId = useAppSelector(personalLanguagesIdSelector);
+  const personalLanguages = useAppSelector(personalLanguagesSelector);
+  const languages = languagesByLocale(personalLanguages, locale as Locales);
+
   const { control, handleSubmit } = useForm({
     defaultValues: {
-      languages: [{ language: "", level: "" }],
+      languages: !isEmpty(languages)
+        ? languages
+        : [{ language: "", level: "" }],
     },
   });
   const { fields, append, remove } = useFieldArray({

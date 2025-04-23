@@ -3,7 +3,10 @@ import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
+import { isEmpty } from "ramda";
 
+import { Locales } from "@/lib/constants/props/locales";
+import { educationByLocale } from "@/utils/personalEducation";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalEducation from "@/store/personalEducation/operations/createPersonalEducation";
 import updatePersonalEducation from "@/store/personalEducation/operations/updatePersonalEducation";
@@ -11,6 +14,8 @@ import {
   userIdSelector,
   personalEducationIdSelector,
 } from "@/store/auth/selectors";
+import { personalEducationSelector } from "@/store/personalEducation/selectors";
+
 import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
@@ -40,17 +45,22 @@ const PersonalEducationForm = ({
   const dispatch = useAppDispatch();
   const userId = useAppSelector(userIdSelector);
   const personalEducationId = useAppSelector(personalEducationIdSelector);
+  const personalEducation = useAppSelector(personalEducationSelector);
+  const education = educationByLocale(personalEducation, locale as Locales);
+
   const { control, handleSubmit } = useForm({
     defaultValues: {
-      education: [
-        {
-          institute: "",
-          degree: "",
-          specialization: "",
-          startDate: "",
-          endDate: "",
-        },
-      ],
+      education: !isEmpty(education)
+        ? education
+        : [
+            {
+              institute: "",
+              degree: "",
+              specialization: "",
+              startDate: "",
+              endDate: "",
+            },
+          ],
     },
   });
   const { fields, append, remove } = useFieldArray({

@@ -3,12 +3,16 @@ import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
+import { isEmpty } from "ramda";
 
 import { redirect } from "@/i18n/navigation";
 import { resumeRoute } from "@/lib/routes";
+import { Locales } from "@/lib/constants/props/locales";
+import { toolsByLocale } from "@/utils/personalTools";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalTools from "@/store/personalTools/operations/createPersonalTools";
 import updatePersonalTools from "@/store/personalTools/operations/updatePersonalTools";
+import { personalToolsSelector } from "@/store/personalTools/selectors";
 import {
   userIdSelector,
   personalToolsIdSelector,
@@ -38,15 +42,20 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
   const dispatch = useAppDispatch();
   const userId = useAppSelector(userIdSelector);
   const personalToolsId = useAppSelector(personalToolsIdSelector);
+  const personalTools = useAppSelector(personalToolsSelector);
+  const tools = toolsByLocale(personalTools, locale as Locales);
+
   const { control, handleSubmit } = useForm({
     defaultValues: {
-      tools: [
-        {
-          tool: "",
-          level: "",
-          visible: true,
-        },
-      ],
+      tools: !isEmpty(tools)
+        ? tools
+        : [
+            {
+              tool: "",
+              level: "",
+              visible: true,
+            },
+          ],
     },
   });
   const { fields, append, remove } = useFieldArray({
@@ -127,6 +136,7 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
               fieldClassName="form__item-field"
               label={t("form.visible.label")}
               size="large"
+              fieldType="checkbox"
               Field={Checkbox}
             />
             {fields.length > 1 && (

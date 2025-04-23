@@ -57,13 +57,13 @@ const ResumeSidebar = ({ personalInfo }: personalInfoProps) => {
 
       {personalHobbiesData && (
         <Section title={t("personalHobbies.title")} size="small">
-          <PersonalHobbies hobbies={personalHobbiesData} />
+          <PersonalHobbies personalHobbies={personalHobbiesData} />
         </Section>
       )}
 
       {personalLanguagesData && (
         <Section title={t("personalLanguages.title")} size="small">
-          <PersonalLanguages languages={personalLanguagesData} />
+          <PersonalLanguages personalLanguages={personalLanguagesData} />
         </Section>
       )}
     </div>
