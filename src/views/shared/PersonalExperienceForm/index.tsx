@@ -20,6 +20,7 @@ import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
 import Input from "@/views/shared/antd/Input";
+import Select from "@/views/shared/antd/Select";
 
 type PersonalExperienceFormProps = {
   locale: string;
@@ -66,7 +67,7 @@ const PersonalExperienceForm = ({
               startDate: "",
               endDate: "",
               description: "",
-              skills: "", // need add array
+              skills: [],
             },
           ],
     },
@@ -257,8 +258,9 @@ const PersonalExperienceForm = ({
                   message: t("form.skills.error"),
                 },
               ]}
+              mode="tags"
               size="large"
-              Field={Input}
+              Field={Select}
             />
             {fields.length > 1 && (
               <MinusCircleOutlined onClick={() => remove(index)} />

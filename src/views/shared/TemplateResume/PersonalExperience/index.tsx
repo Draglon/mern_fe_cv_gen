@@ -1,5 +1,6 @@
 "use client";
 import { useLocale, useTranslations } from "next-intl";
+import { isEmpty } from "ramda";
 
 import splitText from "@/utils/splitText";
 import { Locale, Locales } from "@/lib/constants/props/locales";
@@ -62,18 +63,20 @@ const PersonalExperience = ({ personalExperience }: ExperiencesProps) => {
               </>
             ))}
           </Paragraph>
-          <div className="skills">
-            <Text className="skills__label" strong>
-              {t("skills")}
-            </Text>
-            {/* <ul className="skills__list">
-              {item.skills.map((skill: string) => (
-                <li className="skills__list-item" key={skill}>
-                  <Text className="skills__list-item-text">{skill}</Text>
-                </li>
-              ))}
-            </ul> */}
-          </div>
+          {!isEmpty(item?.skills) && (
+            <div className="skills">
+              <Text className="skills__label" strong>
+                {t("skills")}
+              </Text>
+              <ul className="skills__list">
+                {item.skills.map((skill: string) => (
+                  <li className="skills__list-item" key={skill}>
+                    <Text className="skills__list-item-text">{skill}</Text>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       ))}
     </div>
