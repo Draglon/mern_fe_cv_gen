@@ -4,9 +4,9 @@ const personalLanguages = {
     "form": {
       "language": {
         "label": "Язык",
-        "placeholder": "Выберите язык",
+        "placeholder": "Введите язык",
         "errors": {
-          "required": "Пожалуйста, выберите язык!"
+          "required": "Пожалуйста, введите язык!"
         }
       },
       "languageLevel": {
