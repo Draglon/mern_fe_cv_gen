@@ -17,15 +17,15 @@ const personalExperience = {
         "placeholder": "Введіть розташування",
         "error": "Будь ласка, введіть розташування!"
       },
-      "place": {
-        "label": "Місце",
-        "placeholder": "Введіть місце",
-        "error": "Будь ласка, введіть місце!"
+      "placeOfWork": {
+        "label": "Місце роботи",
+        "placeholder": "Вкажить місце роботы",
+        "error": "Будь ласка, вкажить місце роботы!"
       },
-      "time": {
-        "label": "Час",
-        "placeholder": "Введіть час",
-        "error": "Будь ласка, введіть час!"
+      "workingTime": {
+        "label": "Час роботи",
+        "placeholder": "Введіть час роботи",
+        "error": "Будь ласка, введіть час роботи!"
       },
       "startDate": {
         "label": "Дата початку",

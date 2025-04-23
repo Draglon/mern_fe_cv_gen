@@ -10,6 +10,7 @@ type ParamsType = {
   education: {
     institute: string;
     degree: string;
+    faculty: string;
     specialization: string;
     startDate: string;
     endDate: string;

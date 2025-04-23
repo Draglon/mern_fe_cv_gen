@@ -11,8 +11,8 @@ type ParamsType = {
     position: string;
     companyName: string;
     location: string;
-    place: string;
-    time: string;
+    placeOfWork: string;
+    workingTime: string;
     startDate: string;
     endDate: string;
     description: string;

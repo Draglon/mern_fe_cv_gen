@@ -17,15 +17,15 @@ const personalExperience = {
         "placeholder": "Input location",
         "error": "Please input your location!"
       },
-      "place": {
-        "label": "Place",
-        "placeholder": "Input place",
-        "error": "Please input your place!"
+      "placeOfWork": {
+        "label": "Place of work",
+        "placeholder": "Select place of work",
+        "error": "Please select your place of work!"
       },
-      "time": {
-        "label": "Time",
-        "placeholder": "Input time",
-        "error": "Please input your time!"
+      "workingTime": {
+        "label": "Working time",
+        "placeholder": "Select working time",
+        "error": "Please select your working time!"
       },
       "startDate": {
         "label": "Start date",
@@ -43,9 +43,9 @@ const personalExperience = {
         "error": "Please input your description!"
       },
       "skills": {
-        "label": "Description",
-        "placeholder": "Input description",
-        "error": "Please input your description!"
+        "label": "Skills",
+        "placeholder": "Select skills",
+        "error": "Please select your skills!"
       },
     },
   },

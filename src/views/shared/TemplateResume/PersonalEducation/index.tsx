@@ -46,7 +46,7 @@ const PersonalEducation = ({ personalEducation }: PersonalEducationProps) => {
             <Text className="section__text" strong>
               {t("faculty")}
             </Text>
-            {/* <Text className="section__text">{item.faculty}</Text> */}
+            <Text className="section__text">{item.faculty}</Text>
           </Paragraph>
           <Paragraph className="section__paragraph">
             <Text className="section__text" strong>

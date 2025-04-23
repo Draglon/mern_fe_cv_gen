@@ -1,10 +1,8 @@
 const navigation = {
   "Navigation": {
-    "navHome": "Головна",
-    "navLogin": "Логін",
-    "navResume": "Резюме", 
-    "navResumeUS": "Резюме US",
-    "navResumeUA": "Резюме UA"
+    "navResume": "Резюме",
+    "navResumeCreate": "Створити",
+    "navResumeEdit": "Редагувати",
   },
 };
 

@@ -47,11 +47,11 @@ const PersonalExperience = ({ personalExperience }: ExperiencesProps) => {
               <Text className="text--blue" strong>
                 {item.companyName} ·{" "}
               </Text>
-              <Text type="secondary">{item.placeOfWork}</Text>
+              <Text type="secondary">{item.workingTime}</Text>
             </Paragraph>
             <Paragraph className="experience__place" italic>
               <Text>{item.location} · </Text>
-              <Text type="secondary">{item.workingTime}</Text>
+              <Text type="secondary">{item.placeOfWork}</Text>
             </Paragraph>
           </header>
           <Paragraph className="experience__info">

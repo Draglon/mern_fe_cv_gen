@@ -31,8 +31,8 @@ type FieldType = {
     position: string;
     companyName: string;
     location: string;
-    place: string;
-    time: string;
+    placeOfWork: string;
+    workingTime: string;
     startDate: string;
     endDate: string;
     description: string;
@@ -61,8 +61,8 @@ const PersonalExperienceForm = ({
               position: "",
               companyName: "",
               location: "",
-              place: "",
-              time: "",
+              placeOfWork: "",
+              workingTime: "",
               startDate: "",
               endDate: "",
               description: "",
@@ -159,34 +159,34 @@ const PersonalExperienceForm = ({
               Field={Input}
             />
             <FormItem
-              name={[index, "place"]}
-              controlName={`experience[${index}].place`}
+              name={[index, "placeOfWork"]}
+              controlName={`experience[${index}].placeOfWork`}
               control={control}
               className="form__item"
               fieldClassName="form__item-field"
-              label={t("form.place.label")}
-              placeholder={t("form.place.placeholder")}
+              label={t("form.placeOfWork.label")}
+              placeholder={t("form.placeOfWork.placeholder")}
               rules={[
                 {
                   required: true,
-                  message: t("form.place.error"),
+                  message: t("form.placeOfWork.error"),
                 },
               ]}
               size="large"
               Field={Input}
             />
             <FormItem
-              name={[index, "time"]}
-              controlName={`experience[${index}].time`}
+              name={[index, "workingTime"]}
+              controlName={`experience[${index}].workingTime`}
               control={control}
               className="form__item"
               fieldClassName="form__item-field"
-              label={t("form.time.label")}
-              placeholder={t("form.time.placeholder")}
+              label={t("form.workingTime.label")}
+              placeholder={t("form.workingTime.placeholder")}
               rules={[
                 {
                   required: true,
-                  message: t("form.time.error"),
+                  message: t("form.workingTime.error"),
                 },
               ]}
               size="large"

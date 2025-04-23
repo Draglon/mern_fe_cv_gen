@@ -30,6 +30,7 @@ type FieldType = {
   education: {
     institute: string;
     degree: string;
+    faculty: string;
     specialization: string;
     startDate: string;
     endDate: string;
@@ -56,6 +57,7 @@ const PersonalEducationForm = ({
             {
               institute: "",
               degree: "",
+              faculty: "",
               specialization: "",
               startDate: "",
               endDate: "",
@@ -128,6 +130,23 @@ const PersonalEducationForm = ({
                 {
                   required: true,
                   message: t("form.degree.error"),
+                },
+              ]}
+              size="large"
+              Field={Input}
+            />
+            <FormItem
+              name={[index, "faculty"]}
+              controlName={`education[${index}].faculty`}
+              control={control}
+              className="form__item"
+              fieldClassName="form__item-field"
+              label={t("form.faculty.label")}
+              placeholder={t("form.faculty.placeholder")}
+              rules={[
+                {
+                  required: true,
+                  message: t("form.faculty.error"),
                 },
               ]}
               size="large"

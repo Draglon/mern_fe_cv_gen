@@ -12,6 +12,11 @@ const personalEducation = {
         "placeholder": "Input degree",
         "error": "Please input your degree!"
       },
+      "faculty": {
+        "label": "Faculty",
+        "placeholder": "Input faculty",
+        "error": "Please input your faculty!"
+      },
       "specialization": {
         "label": "Specialization",
         "placeholder": "Input specialization",
