@@ -6,7 +6,7 @@ import Tabs from "@/views/shared/antd/Tabs";
 import { LOCALES, DEFAULT_LOCALE } from "@/lib/constants/locales";
 
 type LocalTabsProp = {
-  Component: ReactNode;
+  Component?: ReactNode;
   onChange: any;
 };
 

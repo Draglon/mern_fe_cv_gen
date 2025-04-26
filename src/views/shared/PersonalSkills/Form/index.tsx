@@ -44,7 +44,7 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
   const skills = skillsByLocale(personalSkills, locale as Locales);
 
   const { control, handleSubmit } = useForm({
-    defaultValues: {
+    values: {
       skills: !isEmpty(skills)
         ? skills
         : [
@@ -80,7 +80,7 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
 
   return (
     <Form
-      name="create-personal-skills"
+      name={`create-personal-skills-${locale}}`}
       className="form"
       onFinish={onFinish}
       autoComplete="off"
@@ -98,12 +98,12 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
               fieldClassName="form__item-field"
               label={t("form.skill.label")}
               placeholder={t("form.skill.placeholder")}
-              rules={[
-                {
-                  required: true,
-                  message: t("form.skill.error"),
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: t("form.skill.error"),
+              //   },
+              // ]}
               size="large"
               Field={Input}
             />
@@ -115,12 +115,12 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
               fieldClassName="form__item-field"
               label={t("form.level.label")}
               placeholder={t("form.level.placeholder")}
-              rules={[
-                {
-                  required: true,
-                  message: t("form.level.error"),
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: t("form.level.error"),
+              //   },
+              // ]}
               size="large"
               Field={Input}
             />

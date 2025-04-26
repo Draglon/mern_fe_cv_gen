@@ -45,7 +45,7 @@ const PersonalLanguagesForm = ({
   const languages = languagesByLocale(personalLanguages, locale as Locales);
 
   const { control, handleSubmit } = useForm({
-    defaultValues: {
+    values: {
       languages: !isEmpty(languages)
         ? languages
         : [{ language: "", level: "" }],
@@ -77,7 +77,7 @@ const PersonalLanguagesForm = ({
 
   return (
     <Form
-      name="create-personal-languages"
+      name={`create-personal-languages-${locale}}`}
       className="form"
       onFinish={onFinish}
       autoComplete="off"
@@ -95,12 +95,12 @@ const PersonalLanguagesForm = ({
               fieldClassName="form__item-field"
               label={t("form.language.label")}
               placeholder={t("form.language.placeholder")}
-              rules={[
-                {
-                  required: true,
-                  message: t("form.language.errors.required"),
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: t("form.language.errors.required"),
+              //   },
+              // ]}
               size="large"
               Field={Input}
             />
@@ -110,12 +110,12 @@ const PersonalLanguagesForm = ({
               control={control}
               label={t("form.languageLevel.label")}
               placeholder={t("form.languageLevel.placeholder")}
-              rules={[
-                {
-                  required: true,
-                  message: t("form.languageLevel.errors.required"),
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: t("form.languageLevel.errors.required"),
+              //   },
+              // ]}
               Field={Select}
               options={LANGUAGE_LEVEL.map((level) => ({
                 label: t(`form.languageLevel.levelOptions.${level}`),

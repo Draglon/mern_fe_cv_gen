@@ -45,8 +45,8 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
   const personalTools = useAppSelector(personalToolsSelector);
   const tools = toolsByLocale(personalTools, locale as Locales);
 
-  const { control, handleSubmit } = useForm({
-    defaultValues: {
+  const { control, handleSubmit, formState } = useForm({
+    values: {
       tools: !isEmpty(tools)
         ? tools
         : [
@@ -62,6 +62,8 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
     control,
     name: "tools",
   });
+
+  console.log("formState: ", formState);
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
@@ -84,7 +86,7 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
 
   return (
     <Form
-      name="create-personal-tools"
+      name={`create-personal-tools-${locale}}`}
       className="form"
       onFinish={onFinish}
       autoComplete="off"
@@ -102,12 +104,12 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
               fieldClassName="form__item-field"
               label={t("form.tool.label")}
               placeholder={t("form.tool.placeholder")}
-              rules={[
-                {
-                  required: true,
-                  message: t("form.tool.error"),
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: t("form.tool.error"),
+              //   },
+              // ]}
               size="large"
               Field={Input}
             />
@@ -119,12 +121,12 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
               fieldClassName="form__item-field"
               label={t("form.level.label")}
               placeholder={t("form.level.placeholder")}
-              rules={[
-                {
-                  required: true,
-                  message: t("form.level.error"),
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: t("form.level.error"),
+              //   },
+              // ]}
               size="large"
               Field={Input}
             />

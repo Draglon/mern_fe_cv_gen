@@ -40,7 +40,7 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesFormProps) => {
   const hobbies = hobbiesByLocale(personalHobbies, locale as Locales);
 
   const { control, handleSubmit } = useForm<FieldType>({
-    defaultValues: {
+    values: {
       hobbies: !isEmpty(hobbies) ? hobbies : [{ hobby: "" }],
     },
     mode: "onChange",
@@ -71,7 +71,7 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesFormProps) => {
 
   return (
     <Form
-      name="create-personal-hobbies"
+      name={`create-personal-hobbies-${locale}}`}
       className="form form--create-hobbies"
       onFinish={onFinish}
       autoComplete="off"
@@ -94,12 +94,12 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesFormProps) => {
               placeholder={t("form.hobby.placeholder")}
               size="large"
               Field={Input}
-              rules={[
-                {
-                  required: true,
-                  message: t("form.hobby.errors.required"),
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: t("form.hobby.errors.required"),
+              //   },
+              // ]}
             />
             {fields.length > 1 && (
               <MinusCircleOutlined

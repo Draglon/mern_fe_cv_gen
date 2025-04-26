@@ -54,7 +54,7 @@ const PersonalExperienceForm = ({
   const experience = experienceByLocale(personalExperience, locale as Locales);
 
   const { control, handleSubmit } = useForm({
-    defaultValues: {
+    values: {
       experience: !isEmpty(experience)
         ? experience
         : [
@@ -98,7 +98,7 @@ const PersonalExperienceForm = ({
 
   return (
     <Form
-      name="create-personal-experience"
+      name={`create-personal-experience-${locale}}`}
       className="form"
       onFinish={onFinish}
       autoComplete="off"
@@ -116,12 +116,12 @@ const PersonalExperienceForm = ({
               fieldClassName="form__item-field"
               label={t("form.position.label")}
               placeholder={t("form.position.placeholder")}
-              rules={[
-                {
-                  required: true,
-                  message: t("form.position.error"),
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: t("form.position.error"),
+              //   },
+              // ]}
               size="large"
               Field={Input}
             />
@@ -133,12 +133,12 @@ const PersonalExperienceForm = ({
               fieldClassName="form__item-field"
               label={t("form.companyName.label")}
               placeholder={t("form.companyName.placeholder")}
-              rules={[
-                {
-                  required: true,
-                  message: t("form.companyName.error"),
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: t("form.companyName.error"),
+              //   },
+              // ]}
               size="large"
               Field={Input}
             />
@@ -150,12 +150,12 @@ const PersonalExperienceForm = ({
               fieldClassName="form__item-field"
               label={t("form.location.label")}
               placeholder={t("form.location.placeholder")}
-              rules={[
-                {
-                  required: true,
-                  message: t("form.location.error"),
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: t("form.location.error"),
+              //   },
+              // ]}
               size="large"
               Field={Input}
             />
@@ -167,12 +167,12 @@ const PersonalExperienceForm = ({
               fieldClassName="form__item-field"
               label={t("form.placeOfWork.label")}
               placeholder={t("form.placeOfWork.placeholder")}
-              rules={[
-                {
-                  required: true,
-                  message: t("form.placeOfWork.error"),
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: t("form.placeOfWork.error"),
+              //   },
+              // ]}
               size="large"
               Field={Input}
             />
@@ -184,12 +184,12 @@ const PersonalExperienceForm = ({
               fieldClassName="form__item-field"
               label={t("form.workingTime.label")}
               placeholder={t("form.workingTime.placeholder")}
-              rules={[
-                {
-                  required: true,
-                  message: t("form.workingTime.error"),
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: t("form.workingTime.error"),
+              //   },
+              // ]}
               size="large"
               Field={Input}
             />
@@ -201,12 +201,12 @@ const PersonalExperienceForm = ({
               fieldClassName="form__item-field"
               label={t("form.startDate.label")}
               placeholder={t("form.startDate.placeholder")}
-              rules={[
-                {
-                  required: true,
-                  message: t("form.startDate.error"),
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: t("form.startDate.error"),
+              //   },
+              // ]}
               size="large"
               Field={Input}
             />
@@ -218,12 +218,12 @@ const PersonalExperienceForm = ({
               fieldClassName="form__item-field"
               label={t("form.endDate.label")}
               placeholder={t("form.endDate.placeholder")}
-              rules={[
-                {
-                  required: true,
-                  message: t("form.endDate.error"),
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: t("form.endDate.error"),
+              //   },
+              // ]}
               size="large"
               Field={Input}
             />
@@ -235,12 +235,12 @@ const PersonalExperienceForm = ({
               fieldClassName="form__item-field"
               label={t("form.description.label")}
               placeholder={t("form.description.placeholder")}
-              rules={[
-                {
-                  required: true,
-                  message: t("form.description.error"),
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: t("form.description.error"),
+              //   },
+              // ]}
               size="large"
               Field={Input}
             />
@@ -252,12 +252,12 @@ const PersonalExperienceForm = ({
               fieldClassName="form__item-field"
               label={t("form.skills.label")}
               placeholder={t("form.skills.placeholder")}
-              rules={[
-                {
-                  required: true,
-                  message: t("form.skills.error"),
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: t("form.skills.error"),
+              //   },
+              // ]}
               mode="tags"
               size="large"
               Field={Select}

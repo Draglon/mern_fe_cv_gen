@@ -69,7 +69,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
 
   return (
     <Form
-      name="create-personal-info"
+      name={`create-personal-info-${locale}}`}
       className="form"
       onFinish={onFinish}
       autoComplete="off"
@@ -96,16 +96,16 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
               control={control}
               label={t("form.firstName.label")}
               placeholder={t("form.firstName.placeholder")}
-              rules={[
-                {
-                  required: true,
-                  message: t("form.firstName.errors.required"),
-                },
-                {
-                  min: 3,
-                  message: t("form.firstName.errors.min"),
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: t("form.firstName.errors.required"),
+              //   },
+              //   {
+              //     min: 3,
+              //     message: t("form.firstName.errors.min"),
+              //   },
+              // ]}
               Field={InputField}
               size="large"
             />
@@ -116,16 +116,16 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
               control={control}
               label={t("form.lastName.label")}
               placeholder={t("form.lastName.placeholder")}
-              rules={[
-                {
-                  required: true,
-                  message: t("form.lastName.errors.required"),
-                },
-                {
-                  min: 3,
-                  message: t("form.lastName.errors.min"),
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: t("form.lastName.errors.required"),
+              //   },
+              //   {
+              //     min: 3,
+              //     message: t("form.lastName.errors.min"),
+              //   },
+              // ]}
               Field={InputField}
               size="large"
             />
@@ -137,12 +137,12 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
             control={control}
             label={t("form.about.label")}
             placeholder={t("form.about.placeholder")}
-            rules={[
-              {
-                required: true,
-                message: t("form.about.errors.required"),
-              },
-            ]}
+            // rules={[
+            //   {
+            //     required: true,
+            //     message: t("form.about.errors.required"),
+            //   },
+            // ]}
             fieldType="textarea"
             Field={TextArea}
             size="large"
@@ -158,12 +158,12 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
             control={control}
             label={t("form.email.label")}
             placeholder={t("form.email.placeholder")}
-            rules={[
-              {
-                required: true,
-                message: t("form.email.errors.required"),
-              },
-            ]}
+            // rules={[
+            //   {
+            //     required: true,
+            //     message: t("form.email.errors.required"),
+            //   },
+            // ]}
             Field={InputField}
             size="large"
           />
@@ -184,12 +184,12 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
             control={control}
             label={t("form.phoneNumber.label")}
             placeholder={t("form.phoneNumber.placeholder")}
-            rules={[
-              {
-                type: true,
-                message: t("form.phoneNumber.errors.required"),
-              },
-            ]}
+            // rules={[
+            //   {
+            //     type: true,
+            //     message: t("form.phoneNumber.errors.required"),
+            //   },
+            // ]}
             Field={InputField}
             size="large"
           />

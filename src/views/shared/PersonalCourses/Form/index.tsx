@@ -45,7 +45,7 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
   const courses = coursesByLocale(personalCourses, locale as Locales);
 
   const { control, handleSubmit } = useForm({
-    defaultValues: {
+    values: {
       courses: !isEmpty(courses)
         ? courses
         : [
@@ -84,7 +84,7 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
 
   return (
     <Form
-      name="create-personal-courses"
+      name={`create-personal-courses-${locale}}`}
       className="form"
       onFinish={onFinish}
       autoComplete="off"
@@ -102,12 +102,12 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
               fieldClassName="form__item-field"
               label={t("form.course.label")}
               placeholder={t("form.course.placeholder")}
-              rules={[
-                {
-                  required: true,
-                  message: t("form.course.error"),
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: t("form.course.error"),
+              //   },
+              // ]}
               size="large"
               Field={Input}
             />
@@ -119,12 +119,12 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
               fieldClassName="form__item-field"
               label={t("form.description.label")}
               placeholder={t("form.description.placeholder")}
-              rules={[
-                {
-                  required: true,
-                  message: t("form.description.error"),
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: t("form.description.error"),
+              //   },
+              // ]}
               size="large"
               Field={Input}
             />
@@ -136,12 +136,12 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
               fieldClassName="form__item-field"
               label={t("form.startDate.label")}
               placeholder={t("form.startDate.placeholder")}
-              rules={[
-                {
-                  required: true,
-                  message: t("form.startDate.error"),
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: t("form.startDate.error"),
+              //   },
+              // ]}
               size="large"
               Field={Input}
             />
@@ -153,12 +153,12 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
               fieldClassName="form__item-field"
               label={t("form.endDate.label")}
               placeholder={t("form.endDate.placeholder")}
-              rules={[
-                {
-                  required: true,
-                  message: t("form.endDate.error"),
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: t("form.endDate.error"),
+              //   },
+              // ]}
               size="large"
               Field={Input}
             />

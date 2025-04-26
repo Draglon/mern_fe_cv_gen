@@ -50,7 +50,7 @@ const PersonalEducationForm = ({
   const education = educationByLocale(personalEducation, locale as Locales);
 
   const { control, handleSubmit } = useForm({
-    defaultValues: {
+    values: {
       education: !isEmpty(education)
         ? education
         : [
@@ -91,7 +91,7 @@ const PersonalEducationForm = ({
 
   return (
     <Form
-      name="create-personal-education"
+      name={`create-personal-education-${locale}}`}
       className="form"
       onFinish={onFinish}
       autoComplete="off"
@@ -109,12 +109,12 @@ const PersonalEducationForm = ({
               fieldClassName="form__item-field"
               label={t("form.institute.label")}
               placeholder={t("form.institute.placeholder")}
-              rules={[
-                {
-                  required: true,
-                  message: t("form.institute.error"),
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: t("form.institute.error"),
+              //   },
+              // ]}
               size="large"
               Field={Input}
             />
@@ -126,12 +126,12 @@ const PersonalEducationForm = ({
               fieldClassName="form__item-field"
               label={t("form.degree.label")}
               placeholder={t("form.degree.placeholder")}
-              rules={[
-                {
-                  required: true,
-                  message: t("form.degree.error"),
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: t("form.degree.error"),
+              //   },
+              // ]}
               size="large"
               Field={Input}
             />
@@ -143,12 +143,12 @@ const PersonalEducationForm = ({
               fieldClassName="form__item-field"
               label={t("form.faculty.label")}
               placeholder={t("form.faculty.placeholder")}
-              rules={[
-                {
-                  required: true,
-                  message: t("form.faculty.error"),
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: t("form.faculty.error"),
+              //   },
+              // ]}
               size="large"
               Field={Input}
             />
@@ -160,12 +160,12 @@ const PersonalEducationForm = ({
               fieldClassName="form__item-field"
               label={t("form.specialization.label")}
               placeholder={t("form.specialization.placeholder")}
-              rules={[
-                {
-                  required: true,
-                  message: t("form.specialization.error"),
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: t("form.specialization.error"),
+              //   },
+              // ]}
               size="large"
               Field={Input}
             />
@@ -177,12 +177,12 @@ const PersonalEducationForm = ({
               fieldClassName="form__item-field"
               label={t("form.startDate.label")}
               placeholder={t("form.startDate.placeholder")}
-              rules={[
-                {
-                  required: true,
-                  message: t("form.startDate.error"),
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: t("form.startDate.error"),
+              //   },
+              // ]}
               size="large"
               Field={Input}
             />
@@ -194,12 +194,12 @@ const PersonalEducationForm = ({
               fieldClassName="form__item-field"
               label={t("form.endDate.label")}
               placeholder={t("form.endDate.placeholder")}
-              rules={[
-                {
-                  required: true,
-                  message: t("form.endDate.error"),
-                },
-              ]}
+              // rules={[
+              //   {
+              //     required: true,
+              //     message: t("form.endDate.error"),
+              //   },
+              // ]}
               size="large"
               Field={Input}
             />

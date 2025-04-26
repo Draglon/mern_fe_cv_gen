@@ -1,11 +1,11 @@
-import PersonalInfoForm from "@/views/shared/PersonalInfoForm";
-import PersonalHobbiesForm from "@/views/shared/PersonalHobbiesForm";
-import PersonalLanguagesForm from "@/views/shared/PersonalLanguagesForm";
-import PersonalExperienceForm from "@/views/shared/PersonalExperienceForm";
-import PersonalEducationForm from "@/views/shared/PersonalEducationForm";
-import PersonalCoursesForm from "@/views/shared/PersonalCoursesForm";
-import PersonalSkillsForm from "@/views/shared/PersonalSkillsForm";
-import PersonalToolsForm from "@/views/shared/PersonalToolsForm";
+import PersonalInfoForm from "@/views/shared/PersonalInfo";
+import PersonalHobbiesForm from "@/views/shared/PersonalHobbies";
+import PersonalLanguagesForm from "@/views/shared/PersonalLanguages";
+import PersonalExperienceForm from "@/views/shared/PersonalExperience";
+import PersonalEducationForm from "@/views/shared/PersonalEducation";
+import PersonalCoursesForm from "@/views/shared/PersonalCourses";
+import PersonalSkillsForm from "@/views/shared/PersonalSkills";
+import PersonalToolsForm from "@/views/shared/PersonalTools";
 
 export const RESUME_ITEMS = [
   {

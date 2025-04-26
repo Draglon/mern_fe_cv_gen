@@ -13,15 +13,13 @@ import InputField from "@/views/shared/antd/Input";
 import Button from "@/views/shared/antd/Button";
 
 type FieldType = {
-  firstName: string;
-  lastName: string;
+  userName: string;
   email: string;
   password: string;
 };
 
 const defaultValues = {
-  firstName: "",
-  lastName: "",
+  userName: "",
   email: "",
   password: "",
 };
@@ -59,7 +57,7 @@ const Registration = () => {
           </Paragraph>
         </header>
         <Form
-          name="login"
+          name="registration"
           className="form form--small"
           onFinish={onFinish}
           autoComplete="off"
