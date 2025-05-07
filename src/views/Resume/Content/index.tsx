@@ -30,7 +30,7 @@ import PersonalCourses from "@/views/shared/TemplateResume/PersonalCourses";
 import PersonalSkills from "@/views/shared/TemplateResume/PersonalSkills";
 import PersonalTools from "@/views/shared/TemplateResume/PersonalTools";
 
-const ResumeContent = ({ personalInfo }: personalInfoProps) => {
+const ResumeContent = ({ personalInfo, template }: personalInfoProps) => {
   const t = useTranslations("Template");
   const dispatch = useAppDispatch();
   const personalExperienceId = useAppSelector(personalExperienceIdSelector);
@@ -71,7 +71,9 @@ const ResumeContent = ({ personalInfo }: personalInfoProps) => {
 
   return (
     <div className="template__container">
-      {personalInfo && <PersonalInfo personalInfo={personalInfo} />}
+      {personalInfo && (
+        <PersonalInfo personalInfo={personalInfo} template={template} />
+      )}
 
       {personalExperienceData && (
         <Section title={t("personalExperience.title")}>

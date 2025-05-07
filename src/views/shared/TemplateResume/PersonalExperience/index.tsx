@@ -45,13 +45,13 @@ const PersonalExperience = ({ personalExperience }: ExperiencesProps) => {
               </Paragraph>
             </div>
             <Paragraph className="experience__company">
-              <Text className="text--blue" strong>
-                {item.companyName} ·{" "}
-              </Text>
+              <Text strong>{item.companyName}</Text>
+              <Text> · </Text>
               <Text type="secondary">{item.workingTime}</Text>
             </Paragraph>
             <Paragraph className="experience__place" italic>
-              <Text>{item.location} · </Text>
+              <Text>{item.location}</Text>
+              <Text> · </Text>
               <Text type="secondary">{item.placeOfWork}</Text>
             </Paragraph>
           </header>
@@ -71,7 +71,9 @@ const PersonalExperience = ({ personalExperience }: ExperiencesProps) => {
               <ul className="skills__list">
                 {item.skills.map((skill: string) => (
                   <li className="skills__list-item" key={skill}>
-                    <Text className="skills__list-item-text">{skill}</Text>
+                    <Text className="skills__list-item-text" type="secondary">
+                      {skill}
+                    </Text>
                   </li>
                 ))}
               </ul>

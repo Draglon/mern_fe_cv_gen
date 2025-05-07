@@ -45,7 +45,7 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
   const personalTools = useAppSelector(personalToolsSelector);
   const tools = toolsByLocale(personalTools, locale as Locales);
 
-  const { control, handleSubmit, formState } = useForm({
+  const { control, handleSubmit } = useForm({
     values: {
       tools: !isEmpty(tools)
         ? tools
@@ -62,8 +62,6 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
     control,
     name: "tools",
   });
-
-  console.log("formState: ", formState);
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {

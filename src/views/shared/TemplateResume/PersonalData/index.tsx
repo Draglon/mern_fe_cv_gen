@@ -1,26 +1,30 @@
 "use client";
 import { useLocale, useTranslations } from "next-intl";
+import { equals } from "ramda";
 
 import profileName from "@/utils/profileName";
+import { TEMPLATES } from "@/lib/constants/templates";
 import { personalInfoProps } from "@/lib/constants/props/resume";
 import { Locales } from "@/lib/constants/props/locales";
 import { Text, Paragraph } from "@/views/shared/antd/Typography";
 
-const PersonalData = ({ personalInfo }: personalInfoProps) => {
+const PersonalData = ({ personalInfo, template }: personalInfoProps) => {
   const locale = useLocale();
   const t = useTranslations("Template.personalData");
   const { address, phone, email, birthday, linkedIn } = personalInfo;
 
   return (
     <div className="personal-data">
-      <div className="personal-data__item">
-        <Text className="personal-data__text" strong>
-          {t("name")}
-        </Text>
-        <Paragraph className="personal-data__paragraph">
-          {profileName(personalInfo, locale as Locales)}
-        </Paragraph>
-      </div>
+      {equals(template, TEMPLATES.standford) && (
+        <div className="personal-data__item">
+          <Text className="personal-data__text" strong>
+            {t("name")}
+          </Text>
+          <Paragraph className="personal-data__paragraph">
+            {profileName(personalInfo, locale as Locales)}
+          </Paragraph>
+        </div>
+      )}
       {address && address[locale as Locales] && (
         <div className="personal-data__item">
           <Text className="personal-data__text" strong>

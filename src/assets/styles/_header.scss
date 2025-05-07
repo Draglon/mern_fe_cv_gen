@@ -1,7 +1,7 @@
 .page__header {
   background-color: var(--header-bg-color);
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   padding: 14px 15px;
   position: sticky;

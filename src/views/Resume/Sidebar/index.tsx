@@ -1,7 +1,9 @@
 "use client";
 import { useEffect } from "react";
 import { useTranslations } from "next-intl";
+import { equals } from "ramda";
 
+import { TEMPLATES } from "@/lib/constants/templates";
 import { personalInfoProps } from "@/lib/constants/props/resume";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import fetchPersonalHobbies from "@/store/personalHobbies/operations/fetchPersonalHobbies";
@@ -14,12 +16,13 @@ import { personalHobbiesSelector } from "@/store/personalHobbies/selectors";
 import { personalLanguagesSelector } from "@/store/personalLanguages/selectors";
 
 import Section from "@/views/shared/TemplateResume/Section";
+import PersonalFullName from "@/views/shared/TemplateResume/PersonalFullName";
 import PersonalPhoto from "@/views/shared/TemplateResume/PersonalPhoto";
 import PersonalData from "@/views/shared/TemplateResume/PersonalData";
 import PersonalHobbies from "@/views/shared/TemplateResume/PersonalHobbies";
 import PersonalLanguages from "@/views/shared/TemplateResume/PersonalLanguages";
 
-const ResumeSidebar = ({ personalInfo }: personalInfoProps) => {
+const ResumeSidebar = ({ personalInfo, template }: personalInfoProps) => {
   const t = useTranslations("Template");
   const dispatch = useAppDispatch();
   const personalHobbiesId = useAppSelector(personalHobbiesIdSelector);
@@ -38,6 +41,12 @@ const ResumeSidebar = ({ personalInfo }: personalInfoProps) => {
 
   return (
     <div className="template__sidebar">
+      {personalInfo && equals(template, TEMPLATES.edinburgh) && (
+        <Section>
+          <PersonalFullName personalFullName={personalInfo} />
+        </Section>
+      )}
+
       {personalInfo?.userUrl && (
         <Section>
           <PersonalPhoto
@@ -51,7 +60,7 @@ const ResumeSidebar = ({ personalInfo }: personalInfoProps) => {
 
       {personalInfo && (
         <Section title={t("personalData.title")} size="small">
-          <PersonalData personalInfo={personalInfo} />
+          <PersonalData personalInfo={personalInfo} template={template} />
         </Section>
       )}
 

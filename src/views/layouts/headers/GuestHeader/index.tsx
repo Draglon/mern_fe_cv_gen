@@ -1,7 +1,7 @@
 "use client";
 import { useTranslations } from "next-intl";
 
-import Logo from "@/views/shared/Logo";
+// import Logo from "@/views/shared/Logo";
 import NavigationLink from "@/views/shared/NavigationLink";
 import Button from "@/views/shared/antd/Button";
 
@@ -10,7 +10,7 @@ const GuestHeader = () => {
 
   return (
     <header className="page__header">
-      <Logo />
+      {/* <Logo /> */}
       <nav className="header__buttons">
         <NavigationLink className="header__button ml-16" href="/login">
           <Button>{t("logIn")}</Button>

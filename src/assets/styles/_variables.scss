@@ -8,7 +8,10 @@
   --grey-dark: #333;
   --grey-light: #999;
   --grey-lighter: #F5F5F5;
+  --grey-lightest: #E9E9E9;
   --blue: #3e6691;
+  --blue-dark: #444865;
+  --blue-darker: #282C56;
 
   --primary-color: #3F36E1;
   --primary-color-hover: #3F36E1;
@@ -33,31 +36,60 @@
   --button-primary-bg-color-hover: var(--primary-color-hover);
 }
 
-// ----------- Template ------------
+// ----------- Template ----------------------
+$template-bg-color: var(--white);
 $template-width: 21cm; // 797px;
 $template-height: auto; // 29.7cm; // 1127px;
+
+// ----------- Template Standford ------------
 // Template - sidebar
-$template-sidebar-bg-blue: var(--blue);
-$template-sidebar-title-color: var(--white);
-$template-sidebar-text-color: var(--white);
-$template-sidebar-border-color: var(--white);
-$template-sidebar-padding: 5mm;
-$template-sidebar-margin: 5mm;
-$template-sidebar-width: 60mm;
+$template-standford-sidebar-bg-blue: var(--blue);
+$template-standford-sidebar-title-color: var(--white);
+$template-standford-sidebar-text-color: var(--white);
+$template-standford-sidebar-border-color: var(--white);
+$template-standford-sidebar-padding: 5mm;
+$template-standford-sidebar-margin: 5mm;
+$template-standford-sidebar-width: 60mm;
 // Template - container
-$template-container-bg: var(--white);
-$template-container-color: var(--grey);
-$template-container-header-color: var(--grey-dark);
-$template-container-border-color: var(--grey-light);
-$template-container-period-color: var(--grey-light);
-$template-container-hint-color: var(--grey-light);
-$template-container-padding: 10mm;
-$template-container-margin: 5mm;
-$template-container-width: calc(100% - $template-sidebar-width);
-
+$template-standford-container-bg: var(--white);
+$template-standford-container-color: var(--grey);
+$template-standford-container-header-color: var(--grey-dark);
+$template-standford-container-border-color: var(--grey-light);
+$template-standford-container-period-color: var(--grey-light);
+$template-standford-container-hint-color: var(--grey-light);
+$template-standford-container-padding: 10mm;
+$template-standford-container-margin: 5mm;
+$template-standford-container-width: calc(100% - $template-standford-sidebar-width);
 // Personal - photo
-$personal-photo-width: 50mm;
-$personal-photo-height: 50mm;
-
+$personal-standford-photo-width: 50mm;
+$personal-standford-photo-height: 50mm;
 // Personal - info
-$personal-info-border-color: var(--grey-light);
+$personal-standford-info-border-color: var(--grey-light);
+
+// ----------- Template Edinburgh ------------
+// Template - sidebar
+$template-edinburgh-sidebar-bg-color: var(--grey-lightest);
+$template-edinburgh-sidebar-title-color: var(--blue-darker);
+$template-edinburgh-sidebar-text-color: var(--black);
+$template-edinburgh-sidebar-padding: 5mm;
+$template-edinburgh-sidebar-margin: 2mm;
+$template-edinburgh-sidebar-width: 80mm;
+// Template - container
+$template-edinburgh-container-bg: var(--white);
+$template-edinburgh-container-color: var(--grey);
+$template-edinburgh-container-header-color: var(--blue);
+$template-edinburgh-container-border-color: var(--grey-light);
+$template-edinburgh-container-period-color: var(--grey-light);
+$template-edinburgh-container-hint-color: var(--grey-light);
+$template-edinburgh-container-padding: 4mm;
+$template-edinburgh-container-margin: 4mm;
+$template-edinburgh-container-width: calc($template-width - $template-standford-sidebar-width);
+// Personal - fullName
+$personal-edinburgh-fullName-bg-color: var(--blue-dark);
+$personal-edinburgh-fullName-border-color: var(--blue-darker);
+$personal-edinburgh-fullName-color: var(--white);
+// Personal - photo
+$personal-edinburgh-photo-width: 25mm;
+$personal-edinburgh-photo-height: 25mm;
+// Personal - info
+$personal-edinburgh-info-border-color: var(--grey-light);

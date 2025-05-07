@@ -1,0 +1,296 @@
+@use 'variables' as v;
+
+.template--standford {
+  h1, h2 {
+    color: v.$template-standford-container-header-color;
+  }
+  h1 {
+    font-size: 30pt;
+  }
+  h2 {
+    font-size: 20pt;
+  }
+  h3 {
+    font-size: 14pt;
+  }
+  h4 {
+    font-size: 12pt;
+  }
+
+  .section__label,
+  .section__period {
+    font-size: 10.5pt;
+  }
+
+  .section__header {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    padding-bottom: 2mm;
+  }
+
+  .section__item {
+    margin-bottom: 2mm;
+  }
+
+  .section__subheader {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1mm;
+  }
+
+  .template__sidebar {
+    background-color: v.$template-standford-sidebar-bg-blue;
+    flex: 0 0 v.$template-standford-sidebar-width;
+    padding-top: v.$template-standford-sidebar-padding;
+    padding-bottom: v.$template-standford-sidebar-padding;
+    .section {
+      padding-left: v.$template-standford-sidebar-padding;
+      padding-bottom: v.$template-standford-sidebar-padding;
+      .section__header {
+        border-color: v.$template-standford-sidebar-border-color;
+        padding-right: v.$template-standford-sidebar-padding;
+        margin-bottom: v.$template-standford-sidebar-margin;
+      }
+      .section__title {
+        color: v.$template-standford-sidebar-title-color;
+      }
+    }
+  }
+
+  .template__container {
+    background-color: v.$template-standford-container-bg;
+    color: v.$template-standford-container-color;
+    flex: 0 0 v.$template-standford-container-width;
+    padding: v.$template-standford-container-padding;
+    .section {
+      padding-top: v.$template-standford-container-margin;
+      .section__header {
+        border-color: v.$template-standford-container-border-color;
+        margin-bottom: v.$template-standford-container-margin;
+      }
+    }
+  }
+
+  .personal-photo {
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    width: v.$personal-standford-photo-width;
+    height: v.$personal-standford-photo-height;
+    overflow: hidden;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .personal-data {
+    padding-right: 5mm;
+    &__item {
+      margin-bottom: 2.5mm;
+    }
+    &__text, &__paragraph {
+      color: v.$template-standford-sidebar-text-color;
+      font-size: 10.5pt;
+      margin-bottom: 0 !important;
+    }
+    &__paragraph {
+      font-weight: 300;
+    }
+  }
+
+  .personal-interests {
+    padding-right: 5mm;
+    &__item {
+      margin-bottom: 1mm;
+      font-weight: 500;
+    }
+    &__text {
+      color: v.$template-standford-sidebar-text-color;
+      font-size: 10.5pt;
+    }
+  }
+
+  .personal-languages {
+    padding-right: 5mm;
+    &__item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1mm;
+    }
+    &__text {
+      color: v.$template-standford-sidebar-text-color;
+      font-size: 10.5pt;
+      &:last-child {
+        font-weight: 300;
+      }
+    }
+  }
+
+  .personal-info {
+    &__header {
+      border-bottom: 1px solid v.$personal-standford-info-border-color;
+      padding-bottom: 2mm;
+      margin-bottom: 5mm;
+    }
+    &__about {
+      font-size: 10.5pt;
+      margin: 0 !important;
+    }
+  }
+
+  .experience {
+    &__item {
+      padding-top: 5mm;
+      &:first-child {
+        padding-top: 0;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &__header {
+      margin-bottom: 2.5mm;
+    }
+
+    &__header-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    &__title {
+      margin-bottom: 1mm;
+      margin: 0 !important;
+    }
+
+    &__period {
+      font-size: 10.5pt;
+      margin: 0 !important;
+    }
+
+    &__company {
+      font-size: 10.5pt;
+      margin: 0 !important;
+    }
+
+    &__place {
+      font-size: 10.5pt;
+      margin: 0 !important;
+    }
+
+    &__info {
+      font-size: 10.5pt;
+      margin-bottom: 2.5mm !important;
+    }
+  }
+
+  .skills {
+    display: flex;
+    justify-content: baseline;
+    align-items: start;
+    &__label {
+      font-size: 10.5pt;
+      white-space: nowrap;
+    }
+    &__list {
+      &-item {
+        display: inline-block;
+        &:before {
+          content: '·';
+          font-size: 10.5pt;
+          font-weight: 300;
+          margin: 0 1mm;
+        }
+        &:first-child {
+          margin-left: 3mm;
+          &:before {
+            display: none;
+          }
+        }
+        &-text {
+          font-size: 10.5pt;
+          font-weight: 300;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+
+  .personal-skills {
+      &__item {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-bottom: 2mm;
+    }
+
+    // &__label {
+    //   width: 50%;
+    // }
+
+    // &__progress {
+    //   background-color: var(--white);
+    //   border: 1px solid var(--grey-light);
+    //   border-radius: 1mm;
+    //   width: 50mm;
+    //   height: 2mm;
+    //   &-value {
+    //     background-color: var(--blue);
+    //     border-radius: 1mm;
+    //     height: 100%;
+    //   }
+    // }
+  }
+
+  .personal-tools {
+    &__item {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-bottom: 2mm;
+    }
+
+    // &__label {
+    //   width: 50%;
+    // }
+
+    // &__progress {
+    //   background-color: var(--white);
+    //   border: 1px solid var(--grey-light);
+    //   border-radius: 1mm;
+    //   width: 50mm;
+    //   height: 2mm;
+    //   &-value {
+    //     background-color: var(--blue);
+    //     border-radius: 1mm;
+    //     height: 100%;
+    //   }
+    // }
+  }
+}
+
+@media print {
+  .template--standford {
+    .template__sidebar {
+      &:before {
+        background-color: v.$template-standford-sidebar-bg-blue;
+        width: v.$template-standford-sidebar-width;
+      }
+    }
+    .template__container {
+      &:before {
+        background-color: v.$template-standford-container-bg;
+        width: v.$template-standford-container-width;
+      }
+    }
+  }
+}
