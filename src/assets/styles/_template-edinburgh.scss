@@ -113,9 +113,17 @@
   }
 
   .personal-data {
-    padding: 0 5mm 0 15mm;
+    padding: 0 5mm 0 10mm;
     &__item {
+      position: relative;
       margin-bottom: 1mm;
+    }
+    &__icon {
+      position: absolute;
+      top: 1mm;
+      left: -5mm;
+      color: v.$template-edinburgh-sidebar-icon-color;
+      font-size: 10pt;
     }
     &__text, &__paragraph {
       color: v.$template-edinburgh-sidebar-text-color;
@@ -130,8 +138,8 @@
   .personal-interests {
     padding: 0 5mm;
     &__item {
-      margin-bottom: 1mm;
       font-weight: 500;
+      margin-bottom: 1mm;
     }
     &__text {
       color: v.$template-edinburgh-sidebar-text-color;
