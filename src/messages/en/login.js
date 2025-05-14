@@ -11,13 +11,19 @@ const login = {
       "email": {
         "label": "Email",
         "placeholder": "Input email",
-        "error": "Please input your email!"
+        "errors": {
+          "required": "Please input your email!",
+        }
       },
       "password": {
-        "label": "Password",
-        "placeholder": "Input password",
-        "error": "Please input your password!"
-      }
+        "label": "Пароль",
+        "placeholder": "Введите пароль",
+        "errors": {
+          "required": "Пожалуйста, введите пароль!",
+          "minLength": "Длина должна быть не менее 6 символов",
+          "maxLength": "Длина должна быть не более 20 символов"
+        }
+      },
     }
   },
 };

@@ -20,8 +20,6 @@ const PersonalData = ({ personalInfo, template }: personalInfoProps) => {
   const t = useTranslations("Template.personalData");
   const { address, phoneNumber, email, birthday, linkedIn } = personalInfo;
 
-  console.log("personalInfo: ", personalInfo);
-
   return (
     <div className="personal-data">
       {equals(template, TEMPLATES.standford) && (

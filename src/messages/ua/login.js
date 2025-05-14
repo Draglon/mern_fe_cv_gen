@@ -9,14 +9,20 @@ const login = {
     "submitButton": "Увійти",
     "form": {
       "email": {
-        "label": "Email",
-        "placeholder": "Input email",
-        "error": "Please input your email!"
+        "label": "Електронна пошта",
+        "placeholder": "Введіть електронну пошту",
+        "errors": {
+          "required": "Будь ласка, введіть електронну пошту!"
+        }
       },
       "password": {
-        "label": "Password",
-        "placeholder": "Input password",
-        "error": "Please input your password!"
+        "label": "Пароль",
+        "placeholder": "Введіть пароль",
+        "errors": {
+          "required": "Будь ласка, введіть пароль!",
+          "minLength": "Має містити щонайменше 6 символів",
+          "maxLength": "Має містити не більше 20 символів"
+        }
       }
     }
   },

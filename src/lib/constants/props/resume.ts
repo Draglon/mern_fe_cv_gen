@@ -9,7 +9,7 @@ export type personalInfoProps = {
     about?: Locale;
     address?: Locale;
     birthday?: Locale;
-    phone?: Locale;
+    phoneNumber?: Locale;
     email?: Locale;
     linkedIn?: Locale;
   };
@@ -23,7 +23,7 @@ export type personalFullNameProps = {
     about?: Locale;
     address?: Locale;
     birthday?: Locale;
-    phone?: Locale;
+    phoneNumber?: Locale;
     email?: Locale;
     linkedIn?: Locale;
   };
