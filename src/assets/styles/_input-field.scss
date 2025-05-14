@@ -1,0 +1,13 @@
+@use 'variables' as v;
+
+.input-field {
+  &__error {
+    color: var(--input-error);
+    display: block;
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    padding-top: 2px;
+  }
+}
+

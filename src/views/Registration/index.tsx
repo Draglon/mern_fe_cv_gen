@@ -5,11 +5,14 @@ import { Form } from "antd";
 
 import { redirect } from "@/i18n/navigation";
 import { resumeRoute } from "@/lib/routes";
-import { useAppDispatch } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import fetchRegister from "@/store/auth/operations/fetchRegister";
+import { isLoadingSelector } from "@/store/auth/selectors";
+
 import { Title, Paragraph } from "@/views/shared/antd/Typography";
 import FormItem from "@/views/shared/antd/FormItem";
-import InputField from "@/views/shared/antd/Input";
+import InputField from "@/views/shared/InputField";
 import Button from "@/views/shared/antd/Button";
 
 type FieldType = {
@@ -29,10 +32,12 @@ const Registration = () => {
   const tRegistration = useTranslations("Registration");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
-  const { control, handleSubmit } = useForm<FieldType>({
+  const isLoading = useAppSelector(isLoadingSelector);
+  const { control, handleSubmit, formState, register } = useForm<FieldType>({
     defaultValues,
     mode: "onChange",
   });
+  const { errors } = formState;
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const data = await dispatch(fetchRegister(values));
@@ -69,12 +74,10 @@ const Registration = () => {
             control={control}
             label={tRegistration("form.userName.label")}
             placeholder={tRegistration("form.userName.placeholder")}
-            rules={[
-              {
-                required: true,
-                message: tRegistration("form.userName.error"),
-              },
-            ]}
+            register={register("userName", {
+              required: tRegistration("form.userName.errors.required"),
+            })}
+            errors={errors["userName"]}
             Field={InputField}
             size="large"
           />
@@ -85,9 +88,10 @@ const Registration = () => {
             control={control}
             label={tRegistration("form.email.label")}
             placeholder={tRegistration("form.email.placeholder")}
-            rules={[
-              { required: true, message: tRegistration("form.email.error") },
-            ]}
+            register={register("email", {
+              required: tRegistration("form.email.errors.required"),
+            })}
+            errors={errors["email"]}
             Field={InputField}
             size="large"
           />
@@ -98,9 +102,21 @@ const Registration = () => {
             control={control}
             label={tRegistration("form.password.label")}
             placeholder={tRegistration("form.password.placeholder")}
-            rules={[
-              { required: true, message: tRegistration("form.password.error") },
-            ]}
+            register={register("password", {
+              required: {
+                value: true,
+                message: tRegistration("form.password.errors.required"),
+              },
+              minLength: {
+                value: 6,
+                message: tRegistration("form.password.errors.minLength"),
+              },
+              maxLength: {
+                value: 20,
+                message: tRegistration("form.password.errors.maxLength"),
+              },
+            })}
+            errors={errors["password"]}
             Field={InputField}
             size="large"
           />
@@ -111,6 +127,8 @@ const Registration = () => {
               htmlType="submit"
               size="large"
               block
+              disabled={isSubmitDisabled(formState, isLoading)}
+              loading={isLoading}
             >
               {tShared("signUp")}
             </Button>

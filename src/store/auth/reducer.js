@@ -6,7 +6,7 @@ import fetchUser from "./operations/fetchUser";
 
 const initialState = {
   data: null,
-  status: "loading",
+  status: undefined,
 };
 
 export const authSlice = createSlice({

@@ -10,6 +10,7 @@ const Button = ({
   size = "middle",
   htmlType = "button",
   children,
+  disabled,
   ...rest
 }: ButtonProps) => {
   const classNames = clsx(
@@ -29,6 +30,7 @@ const Button = ({
       type={type}
       size={size}
       htmlType={htmlType}
+      disabled={disabled}
       {...rest}
     >
       {children}

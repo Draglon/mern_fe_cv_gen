@@ -4,6 +4,10 @@
   &:hover, &:focus {
     background-color: var(--button-primary-bg-color-hover) !important;
   }
+
+  &:disabled, &:hover:disabled, &:focus:disabled {
+    background-color: var(--button-primary-bg-color-disabled) !important;
+  }
 }
 
 .button--secondary {

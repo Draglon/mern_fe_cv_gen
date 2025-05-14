@@ -12,9 +12,11 @@
   --blue: #3e6691;
   --blue-dark: #444865;
   --blue-darker: #282C56;
+  --red: #ff4d4f;
 
   --primary-color: #3F36E1;
   --primary-color-hover: #3F36E1;
+  --primary-color-disabled: var(--grey-lighter);
 
   // variables
   --background: var(--grey-lighter);
@@ -24,6 +26,8 @@
   --header-bg-color: var(--white);
   --button-primary-bg-color: var(--primary-color);
   --button-primary-bg-color-hover: var(--primary-color-hover);
+  --button-primary-bg-color-disabled: var(--primary-color-disabled);
+  --input-error: var(--red);
 }
 
 .dark {

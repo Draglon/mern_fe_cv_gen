@@ -10,17 +10,25 @@ const signup = {
       "email": {
         "label": "Email",
         "placeholder": "Input email",
-        "error": "Please input your email!"
+        "errors": {
+          "required": "Please input your email!",
+        }
       },
       "password": {
         "label": "Password",
         "placeholder": "Input password",
-        "error": "Please input your password!"
+        "errors": {
+          "required": "Please input your password!",
+          "minLength": "Must be at least 6 characters long",
+          "maxLength": "Must be no more than 20 characters"
+        }
       },
       "userName": {
         "label": "Username",
         "placeholder": "Input username",
-        "error": "Please input your username!"
+        "errors": {
+          "required": "Please input your username!"
+        }
       }
     }
   },

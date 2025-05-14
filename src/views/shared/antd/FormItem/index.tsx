@@ -3,16 +3,6 @@ import clsx from "clsx";
 import { Controller } from "react-hook-form";
 import { Form } from "antd";
 
-// type RulesType = {
-//   required?: boolean;
-//   len?: number;
-//   min?: number;
-//   max?: number;
-//   pattern?: RegExp;
-//   type?: string;
-//   message: string;
-// };
-
 type FormItemType = {
   name: string | any[];
   controlName?: string;
@@ -23,10 +13,10 @@ type FormItemType = {
   fieldClassName?: string;
   label?: string | null;
   placeholder?: string;
-  rules?: any[];
+  register?: any;
+  errors?: any;
   Field?: any;
   fieldType?: string;
-  register?: any;
   mode?: string;
   options?: { label: string; value: string }[];
   children?: React.ReactNode;
@@ -39,11 +29,11 @@ const FormItem = ({
   className,
   fieldClassName,
   label = null,
-  rules,
+  register,
+  errors,
   Field,
   fieldType = "text",
   children,
-  register,
   ...restProps
 }: FormItemType) => {
   return children ? (
@@ -63,46 +53,46 @@ const FormItem = ({
           name={name}
           className={clsx("form__item", className)}
           label={label}
-          rules={rules}
         >
-          <>
-            {fieldType === "text" && (
-              <Field
-                className={fieldClassName}
-                onChange={onChange}
-                value={value}
-                defaultValue={value}
-                register={{ ...register }}
-                {...restProps}
-              />
-            )}
-            {fieldType === "upload" && (
-              <Field
-                className={fieldClassName}
-                onChange={onChange}
-                fileList={value}
-                {...restProps}
-              />
-            )}
-            {fieldType === "textarea" && (
-              <Field
-                className={fieldClassName}
-                onChange={onChange}
-                value={value}
-                defaultValue={value}
-                {...restProps}
-              />
-            )}
-            {fieldType === "checkbox" && (
-              <Field
-                className={fieldClassName}
-                onChange={onChange}
-                defaultChecked={value}
-                register={{ ...register }}
-                {...restProps}
-              />
-            )}
-          </>
+          {fieldType === "text" && (
+            <Field
+              {...register}
+              className={fieldClassName}
+              onChange={onChange}
+              value={value}
+              defaultValue={value}
+              errors={errors}
+              {...restProps}
+            />
+          )}
+          {fieldType === "upload" && (
+            <Field
+              className={fieldClassName}
+              onChange={onChange}
+              fileList={value}
+              errors={errors}
+              {...restProps}
+            />
+          )}
+          {fieldType === "textarea" && (
+            <Field
+              className={fieldClassName}
+              onChange={onChange}
+              value={value}
+              defaultValue={value}
+              errors={errors}
+              {...restProps}
+            />
+          )}
+          {fieldType === "checkbox" && (
+            <Field
+              className={fieldClassName}
+              onChange={onChange}
+              defaultChecked={value}
+              errors={errors}
+              {...restProps}
+            />
+          )}
         </Form.Item>
       )}
     />

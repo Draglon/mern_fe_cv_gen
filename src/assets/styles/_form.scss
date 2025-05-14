@@ -31,6 +31,13 @@
   }
 
   &__item {
+    margin-bottom: 15px;
+
+    &:last-child {
+      margin-top: 30px;
+      margin-bottom: 0;
+    }
+
     .ant-form-item-label > label {
       font-weight: bold;
     }
