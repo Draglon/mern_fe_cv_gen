@@ -6,7 +6,7 @@ import updatePersonalExperience from "./operations/updatePersonalExperience";
 
 const initialState = {
   data: null,
-  status: "loading",
+  status: undefined,
 };
 
 export const personalExperienceSlice = createSlice({

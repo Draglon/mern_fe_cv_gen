@@ -6,7 +6,7 @@ import updatePersonalHobbies from "./operations/updatePersonalHobbies";
 
 const initialState = {
   data: null,
-  status: "loading",
+  status: undefined,
 };
 
 export const personalHobbiesSlice = createSlice({

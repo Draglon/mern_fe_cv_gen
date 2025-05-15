@@ -6,7 +6,7 @@ import updatePersonalSkills from "./operations/updatePersonalSkills";
 
 const initialState = {
   data: null,
-  status: "loading",
+  status: undefined,
 };
 
 export const personalSkillsSlice = createSlice({

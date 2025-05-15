@@ -6,7 +6,7 @@ import updatePersonalEducation from "./operations/updatePersonalEducation";
 
 const initialState = {
   data: null,
-  status: "loading",
+  status: undefined,
 };
 
 export const personalEducationSlice = createSlice({

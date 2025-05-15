@@ -10,7 +10,7 @@ const personalInfo = {
         "placeholder": "Input name",
         "errors": {
           "required": "Please input your name!",
-          "min": "The name must be at least 3 characters long."
+          "minLength": "The name must be at least 3 characters long."
         }
       },
       "lastName": {
@@ -18,7 +18,7 @@ const personalInfo = {
         "placeholder": "Input surname",
         "errors": {
           "required": "Please input your surname!",
-          "min": "The surname must be at least 3 characters long."
+          "minLength": "The surname must be at least 3 characters long."
         }
       },
       "about": {
@@ -45,7 +45,6 @@ const personalInfo = {
         "placeholder": "Input phone number",
         "errors": {
           "pattern": "Please input correct your phone number!",
-          "required": "Please input your phone number!"
         }
       },
       "birthday": {

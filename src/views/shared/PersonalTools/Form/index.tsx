@@ -20,7 +20,7 @@ import {
 import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
-import Input from "@/views/shared/antd/Input";
+import InputField from "@/views/shared/InputField";
 import Checkbox from "@/views/shared/antd/Checkbox";
 
 type PersonalToolsFormProps = {
@@ -45,7 +45,7 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
   const personalTools = useAppSelector(personalToolsSelector);
   const tools = toolsByLocale(personalTools, locale as Locales);
 
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit, register, formState } = useForm({
     values: {
       tools: !isEmpty(tools)
         ? tools
@@ -57,11 +57,13 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
             },
           ],
     },
+    mode: "onChange",
   });
   const { fields, append, remove } = useFieldArray({
     control,
     name: "tools",
   });
+  const { errors } = formState;
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
@@ -96,41 +98,43 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
           <Space key={field.id} align="baseline">
             <FormItem
               name={[index, "tool"]}
-              controlName={`tools[${index}].tool`}
+              controlName={`tools.${index}.tool`}
               control={control}
               className="form__item"
               fieldClassName="form__item-field"
               label={t("form.tool.label")}
               placeholder={t("form.tool.placeholder")}
-              // rules={[
-              //   {
-              //     required: true,
-              //     message: t("form.tool.error"),
-              //   },
-              // ]}
               size="large"
-              Field={Input}
+              Field={InputField}
+              register={register(`tools.${index}.tool`, {
+                required: {
+                  value: true,
+                  message: t("form.tool.errors.required"),
+                },
+              })}
+              errors={errors?.tools?.[index]?.tool}
             />
             <FormItem
               name={[index, "level"]}
-              controlName={`tools[${index}].level`}
+              controlName={`tools.${index}.level`}
               control={control}
               className="form__item"
               fieldClassName="form__item-field"
               label={t("form.level.label")}
               placeholder={t("form.level.placeholder")}
-              // rules={[
-              //   {
-              //     required: true,
-              //     message: t("form.level.error"),
-              //   },
-              // ]}
+              register={register(`tools.${index}.level`, {
+                required: {
+                  value: true,
+                  message: t("form.level.errors.required"),
+                },
+              })}
+              errors={errors?.tools?.[index]?.level}
               size="large"
-              Field={Input}
+              Field={InputField}
             />
             <FormItem
               name={[index, "visible"]}
-              controlName={`tools[${index}].visible`}
+              controlName={`tools.${index}.visible`}
               control={control}
               className="form__item"
               fieldClassName="form__item-field"

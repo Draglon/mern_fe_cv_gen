@@ -5,12 +5,16 @@ const personalSkills = {
       "skill": {
         "label": "Skill",
         "placeholder": "Input skill",
-        "error": "Please input your skill!"
+        "errors": {
+          "required": "Please input your skill!",
+        }
       },
       "level": {
         "label": "Level",
         "placeholder": "Input level",
-        "error": "Please input your level!"
+        "errors": {
+          "required": "Please input your level!",
+        }
       },
       "visible": {
         "label": "Visible"

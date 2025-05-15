@@ -13,8 +13,8 @@ import { personalInfoSelector } from "@/store/personalInfo/selectors";
 
 import FormItem from "@/views/shared/antd/FormItem";
 import UploadFile from "@/views/shared/antd/UploadFile";
-import InputField from "@/views/shared/antd/Input";
-import TextArea from "@/views/shared/antd/TextArea";
+import InputField from "@/views/shared/InputField";
+import TextAreaField from "@/views/shared/TextAreaField";
 import Button from "@/views/shared/antd/Button";
 import Divider from "@/views/shared/antd/Divider";
 
@@ -44,10 +44,11 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
   const personalInfo = useAppSelector(personalInfoSelector);
   const defaultValues = personalInfoByLocale(personalInfo, locale as Locales);
 
-  const { control, handleSubmit } = useForm<FieldType>({
+  const { control, handleSubmit, formState, register } = useForm<FieldType>({
     defaultValues,
     mode: "onChange",
   });
+  const { errors } = formState;
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
@@ -96,16 +97,17 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
               control={control}
               label={t("form.firstName.label")}
               placeholder={t("form.firstName.placeholder")}
-              // rules={[
-              //   {
-              //     required: true,
-              //     message: t("form.firstName.errors.required"),
-              //   },
-              //   {
-              //     min: 3,
-              //     message: t("form.firstName.errors.min"),
-              //   },
-              // ]}
+              register={register("firstName", {
+                required: {
+                  value: true,
+                  message: t("form.firstName.errors.required"),
+                },
+                minLength: {
+                  value: 3,
+                  message: t("form.firstName.errors.minLength"),
+                },
+              })}
+              errors={errors["firstName"]}
               Field={InputField}
               size="large"
             />
@@ -116,16 +118,17 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
               control={control}
               label={t("form.lastName.label")}
               placeholder={t("form.lastName.placeholder")}
-              // rules={[
-              //   {
-              //     required: true,
-              //     message: t("form.lastName.errors.required"),
-              //   },
-              //   {
-              //     min: 3,
-              //     message: t("form.lastName.errors.min"),
-              //   },
-              // ]}
+              register={register("lastName", {
+                required: {
+                  value: true,
+                  message: t("form.lastName.errors.required"),
+                },
+                minLength: {
+                  value: 3,
+                  message: t("form.lastName.errors.minLength"),
+                },
+              })}
+              errors={errors["lastName"]}
               Field={InputField}
               size="large"
             />
@@ -137,14 +140,15 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
             control={control}
             label={t("form.about.label")}
             placeholder={t("form.about.placeholder")}
-            // rules={[
-            //   {
-            //     required: true,
-            //     message: t("form.about.errors.required"),
-            //   },
-            // ]}
+            register={register("about", {
+              required: {
+                value: true,
+                message: t("form.about.errors.required"),
+              },
+            })}
+            errors={errors["about"]}
             fieldType="textarea"
-            Field={TextArea}
+            Field={TextAreaField}
             size="large"
           />
 
@@ -158,12 +162,13 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
             control={control}
             label={t("form.email.label")}
             placeholder={t("form.email.placeholder")}
-            // rules={[
-            //   {
-            //     required: true,
-            //     message: t("form.email.errors.required"),
-            //   },
-            // ]}
+            register={register("email", {
+              required: {
+                value: true,
+                message: t("form.email.errors.required"),
+              },
+            })}
+            errors={errors["email"]}
             Field={InputField}
             size="large"
           />
@@ -184,12 +189,6 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
             control={control}
             label={t("form.phoneNumber.label")}
             placeholder={t("form.phoneNumber.placeholder")}
-            // rules={[
-            //   {
-            //     type: true,
-            //     message: t("form.phoneNumber.errors.required"),
-            //   },
-            // ]}
             Field={InputField}
             size="large"
           />

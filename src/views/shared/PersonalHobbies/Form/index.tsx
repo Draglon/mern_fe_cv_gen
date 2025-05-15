@@ -19,7 +19,7 @@ import { personalHobbiesSelector } from "@/store/personalHobbies/selectors";
 import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
-import Input from "@/views/shared/antd/Input";
+import InputField from "@/views/shared/InputField";
 
 type PersonalHobbiesFormProps = {
   locale: string;
@@ -39,12 +39,13 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesFormProps) => {
   const personalHobbies = useAppSelector(personalHobbiesSelector);
   const hobbies = hobbiesByLocale(personalHobbies, locale as Locales);
 
-  const { control, handleSubmit } = useForm<FieldType>({
+  const { control, handleSubmit, formState, register } = useForm<FieldType>({
     values: {
       hobbies: !isEmpty(hobbies) ? hobbies : [{ hobby: "" }],
     },
     mode: "onChange",
   });
+  const { errors } = formState;
   const { fields, append, remove } = useFieldArray({
     control,
     name: "hobbies",
@@ -86,20 +87,21 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesFormProps) => {
             align="center"
           >
             <FormItem
-              name={field.id}
-              controlName={`hobbies[${index}].hobby`}
+              name={[index, "hobby"]}
+              controlName={`hobbies.${index}.hobby`}
               control={control}
               fieldClassName="form__item-field"
               label={t("form.hobby.label")}
               placeholder={t("form.hobby.placeholder")}
               size="large"
-              Field={Input}
-              // rules={[
-              //   {
-              //     required: true,
-              //     message: t("form.hobby.errors.required"),
-              //   },
-              // ]}
+              Field={InputField}
+              register={register(`hobbies.${index}.hobby`, {
+                required: {
+                  value: true,
+                  message: t("form.hobby.errors.required"),
+                },
+              })}
+              errors={errors?.hobbies?.[index]?.hobby}
             />
             {fields.length > 1 && (
               <MinusCircleOutlined

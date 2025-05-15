@@ -6,7 +6,7 @@ import updatePersonalLanguages from "./operations/updatePersonalLanguages";
 
 const initialState = {
   data: null,
-  status: "loading",
+  status: undefined,
 };
 
 export const personalLanguagesSlice = createSlice({

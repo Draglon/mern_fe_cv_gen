@@ -5,12 +5,16 @@ const personalTools = {
       "tool": {
         "label": "Tool",
         "placeholder": "Input tool",
-        "error": "Please input your tool!"
+        "errors": {
+          "required": "Please input your tool!",
+        }
       },
       "level": {
         "label": "Level",
         "placeholder": "Input level",
-        "error": "Please input your level!"
+        "errors": {
+          "required": "Please input your level!",
+        }
       },
       "visible": {
         "label": "Visible"

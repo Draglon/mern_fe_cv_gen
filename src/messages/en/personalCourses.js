@@ -5,22 +5,30 @@ const personalCourses = {
       "course": {
         "label": "Course name",
         "placeholder": "Input course",
-        "error": "Please input your course!"
+        "errors": {
+          "required": "Please input your course!",
+        }
       },
       "startDate": {
         "label": "Start date",
         "placeholder": "Input start date",
-        "error": "Please input your start date!"
+        "errors": {
+          "required": "Please input your start date!",
+        }
       },
       "endDate": {
         "label": "End date",
         "placeholder": "Input end date",
-        "error": "Please input your end date!"
+        "errors": {
+          "required": "Please input your end date!",
+        }
       },
       "description": {
         "label": "Description",
         "placeholder": "Input description",
-        "error": "Please input your description!"
+        "errors": {
+          "required": "Please input your description!",
+        }
       },
     },
   },

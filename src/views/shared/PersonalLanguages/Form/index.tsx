@@ -20,7 +20,7 @@ import { personalLanguagesSelector } from "@/store/personalLanguages/selectors";
 import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
-import Input from "@/views/shared/antd/Input";
+import InputField from "@/views/shared/InputField";
 import Select from "@/views/shared/antd/Select";
 
 type PersonalLanguagesFormProps = {
@@ -44,13 +44,15 @@ const PersonalLanguagesForm = ({
   const personalLanguages = useAppSelector(personalLanguagesSelector);
   const languages = languagesByLocale(personalLanguages, locale as Locales);
 
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit, formState, register } = useForm({
     values: {
       languages: !isEmpty(languages)
         ? languages
         : [{ language: "", level: "" }],
     },
+    mode: "onChange",
   });
+  const { errors } = formState;
   const { fields, append, remove } = useFieldArray({
     control,
     name: "languages",
@@ -85,49 +87,52 @@ const PersonalLanguagesForm = ({
       preserve
     >
       <FormList name="languages" append={append}>
-        {fields.map((field, index) => (
-          <Space key={field.id} align="baseline">
-            <FormItem
-              name={[index, "language"]}
-              controlName={`languages[${index}].language`}
-              control={control}
-              className="form__item"
-              fieldClassName="form__item-field"
-              label={t("form.language.label")}
-              placeholder={t("form.language.placeholder")}
-              // rules={[
-              //   {
-              //     required: true,
-              //     message: t("form.language.errors.required"),
-              //   },
-              // ]}
-              size="large"
-              Field={Input}
-            />
-            <FormItem
-              name={[index, "level"]}
-              controlName={`languages[${index}].level`}
-              control={control}
-              label={t("form.languageLevel.label")}
-              placeholder={t("form.languageLevel.placeholder")}
-              // rules={[
-              //   {
-              //     required: true,
-              //     message: t("form.languageLevel.errors.required"),
-              //   },
-              // ]}
-              Field={Select}
-              options={LANGUAGE_LEVEL.map((level) => ({
-                label: t(`form.languageLevel.levelOptions.${level}`),
-                value: level,
-              }))}
-              size="large"
-            />
-            {fields.length > 1 && (
-              <MinusCircleOutlined onClick={() => remove(index)} />
-            )}
-          </Space>
-        ))}
+        {fields.map((field, index) => {
+          return (
+            <Space key={field.id} align="baseline">
+              <FormItem
+                name={[index, "language"]}
+                controlName={`languages.${index}.language`}
+                control={control}
+                className="form__item"
+                fieldClassName="form__item-field"
+                label={t("form.language.label")}
+                placeholder={t("form.language.placeholder")}
+                size="large"
+                Field={InputField}
+                register={register(`languages.${index}.language`, {
+                  required: {
+                    value: true,
+                    message: t("form.language.errors.required"),
+                  },
+                })}
+                errors={errors?.languages?.[index]?.language}
+              />
+              <FormItem
+                name={[index, "level"]}
+                controlName={`languages.${index}.level`}
+                control={control}
+                label={t("form.languageLevel.label")}
+                placeholder={t("form.languageLevel.placeholder")}
+                // rules={[
+                //   {
+                //     required: true,
+                //     message: t("form.languageLevel.errors.required"),
+                //   },
+                // ]}
+                Field={Select}
+                options={LANGUAGE_LEVEL.map((level) => ({
+                  label: t(`form.languageLevel.levelOptions.${level}`),
+                  value: level,
+                }))}
+                size="large"
+              />
+              {fields.length > 1 && (
+                <MinusCircleOutlined onClick={() => remove(index)} />
+              )}
+            </Space>
+          );
+        })}
       </FormList>
 
       <FormItem

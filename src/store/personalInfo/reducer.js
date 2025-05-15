@@ -6,7 +6,7 @@ import updatePersonalInfo from "./operations/updatePersonalInfo";
 
 const initialState = {
   data: null,
-  status: "loading",
+  status: undefined,
 };
 
 export const personalInfoSlice = createSlice({

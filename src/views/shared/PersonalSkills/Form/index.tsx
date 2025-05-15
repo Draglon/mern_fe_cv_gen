@@ -18,7 +18,7 @@ import { personalSkillsSelector } from "@/store/personalSkills/selectors";
 import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
-import Input from "@/views/shared/antd/Input";
+import InputField from "@/views/shared/InputField";
 import Checkbox from "@/views/shared/antd/Checkbox";
 
 type PersonalSkillsFormProps = {
@@ -43,7 +43,7 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
   const personalSkills = useAppSelector(personalSkillsSelector);
   const skills = skillsByLocale(personalSkills, locale as Locales);
 
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit, register, formState } = useForm({
     values: {
       skills: !isEmpty(skills)
         ? skills
@@ -55,11 +55,13 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
             },
           ],
     },
+    mode: "onChange",
   });
   const { fields, append, remove } = useFieldArray({
     control,
     name: "skills",
   });
+  const { errors } = formState;
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
@@ -92,41 +94,43 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
           <Space key={field.id} align="baseline">
             <FormItem
               name={[index, "skill"]}
-              controlName={`skills[${index}].skill`}
+              controlName={`skills.${index}.skill`}
               control={control}
               className="form__item"
               fieldClassName="form__item-field"
               label={t("form.skill.label")}
               placeholder={t("form.skill.placeholder")}
-              // rules={[
-              //   {
-              //     required: true,
-              //     message: t("form.skill.error"),
-              //   },
-              // ]}
               size="large"
-              Field={Input}
+              Field={InputField}
+              register={register(`skills.${index}.skill`, {
+                required: {
+                  value: true,
+                  message: t("form.skill.errors.required"),
+                },
+              })}
+              errors={errors?.skills?.[index]?.skill}
             />
             <FormItem
               name={[index, "level"]}
-              controlName={`skills[${index}].level`}
+              controlName={`skills.${index}.level`}
               control={control}
               className="form__item"
               fieldClassName="form__item-field"
               label={t("form.level.label")}
               placeholder={t("form.level.placeholder")}
-              // rules={[
-              //   {
-              //     required: true,
-              //     message: t("form.level.error"),
-              //   },
-              // ]}
               size="large"
-              Field={Input}
+              Field={InputField}
+              register={register(`skills.${index}.level`, {
+                required: {
+                  value: true,
+                  message: t("form.level.errors.required"),
+                },
+              })}
+              errors={errors?.skills?.[index]?.level}
             />
             <FormItem
               name={[index, "visible"]}
-              controlName={`skills[${index}].visible`}
+              controlName={`skills.${index}.visible`}
               control={control}
               className="form__item"
               fieldClassName="form__item-field"

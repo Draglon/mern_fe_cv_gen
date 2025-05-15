@@ -6,7 +6,7 @@ import updatePersonalTools from "./operations/updatePersonalTools";
 
 const initialState = {
   data: null,
-  status: "loading",
+  status: undefined,
 };
 
 export const personalToolsSlice = createSlice({

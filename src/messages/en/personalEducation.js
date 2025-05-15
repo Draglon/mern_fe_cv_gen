@@ -5,32 +5,44 @@ const personalEducation = {
       "institute": {
         "label": "Institute",
         "placeholder": "Input institute",
-        "error": "Please input your institute!"
+        "errors": {
+          "required": "Please input your institute!",
+        }
       },
       "degree": {
         "label": "Degree",
         "placeholder": "Input degree",
-        "error": "Please input your degree!"
+        "errors": {
+          "required": "Please input your degree!",
+        }
       },
       "faculty": {
         "label": "Faculty",
         "placeholder": "Input faculty",
-        "error": "Please input your faculty!"
+        "errors": {
+          "required": "Please input your faculty!",
+        }
       },
       "specialization": {
         "label": "Specialization",
         "placeholder": "Input specialization",
-        "error": "Please input your specialization!"
+        "errors": {
+          "required": "Please input your specialization!",
+        }
       },
       "startDate": {
         "label": "Start date",
         "placeholder": "Input start date",
-        "error": "Please input your start date!"
+        "errors": {
+          "required": "Please input your start date!",
+        }
       },
       "endDate": {
         "label": "End date",
         "placeholder": "Input end date",
-        "error": "Please input your end date!"
+        "errors": {
+          "required": "Please input your end date!",
+        }
       },
     },
   },

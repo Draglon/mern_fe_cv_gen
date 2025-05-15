@@ -6,7 +6,7 @@ import updatePersonalCourses from "./operations/updatePersonalCourses";
 
 const initialState = {
   data: null,
-  status: "loading",
+  status: undefined,
 };
 
 export const personalCoursesSlice = createSlice({
