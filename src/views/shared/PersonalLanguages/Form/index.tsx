@@ -21,7 +21,7 @@ import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
 import InputField from "@/views/shared/InputField";
-import Select from "@/views/shared/antd/Select";
+import SelectField from "@/views/shared/SelectField";
 
 type PersonalLanguagesFormProps = {
   locale: string;
@@ -114,18 +114,19 @@ const PersonalLanguagesForm = ({
                 control={control}
                 label={t("form.languageLevel.label")}
                 placeholder={t("form.languageLevel.placeholder")}
-                // rules={[
-                //   {
-                //     required: true,
-                //     message: t("form.languageLevel.errors.required"),
-                //   },
-                // ]}
-                Field={Select}
+                Field={SelectField}
                 options={LANGUAGE_LEVEL.map((level) => ({
                   label: t(`form.languageLevel.levelOptions.${level}`),
                   value: level,
                 }))}
                 size="large"
+                register={register(`languages.${index}.level`, {
+                  required: {
+                    value: true,
+                    message: t("form.languageLevel.errors.required"),
+                  },
+                })}
+                errors={errors?.languages?.[index]?.level}
               />
               {fields.length > 1 && (
                 <MinusCircleOutlined onClick={() => remove(index)} />
