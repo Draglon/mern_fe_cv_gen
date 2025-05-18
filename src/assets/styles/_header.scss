@@ -1,5 +1,6 @@
 .page__header {
   background-color: var(--header-bg-color);
+  box-sizing: border-box;
   display: flex;
   justify-content: flex-end;
   align-items: center;

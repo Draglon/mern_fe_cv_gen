@@ -30,7 +30,10 @@ import PersonalCourses from "@/views/shared/TemplateResume/PersonalCourses";
 import PersonalSkills from "@/views/shared/TemplateResume/PersonalSkills";
 import PersonalTools from "@/views/shared/TemplateResume/PersonalTools";
 
-const ResumeContent = ({ personalInfo, template }: personalInfoProps) => {
+const ResumeTemplateContent = ({
+  personalInfo,
+  template,
+}: personalInfoProps) => {
   const t = useTranslations("Template");
   const dispatch = useAppDispatch();
   const personalExperienceId = useAppSelector(personalExperienceIdSelector);
@@ -114,4 +117,4 @@ const ResumeContent = ({ personalInfo, template }: personalInfoProps) => {
   );
 };
 
-export default ResumeContent;
+export default ResumeTemplateContent;

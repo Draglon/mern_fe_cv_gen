@@ -22,7 +22,10 @@ import PersonalData from "@/views/shared/TemplateResume/PersonalData";
 import PersonalHobbies from "@/views/shared/TemplateResume/PersonalHobbies";
 import PersonalLanguages from "@/views/shared/TemplateResume/PersonalLanguages";
 
-const ResumeSidebar = ({ personalInfo, template }: personalInfoProps) => {
+const ResumeTemplateSidebar = ({
+  personalInfo,
+  template,
+}: personalInfoProps) => {
   const t = useTranslations("Template");
   const dispatch = useAppDispatch();
   const personalHobbiesId = useAppSelector(personalHobbiesIdSelector);
@@ -79,4 +82,4 @@ const ResumeSidebar = ({ personalInfo, template }: personalInfoProps) => {
   );
 };
 
-export default ResumeSidebar;
+export default ResumeTemplateSidebar;

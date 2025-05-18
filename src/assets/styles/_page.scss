@@ -1,9 +1,12 @@
 .page {
-  min-height: 100vh;
+  height: 100vh;
 }
 
 .page__main {
-  padding: 15px;
+  display: flex;
+  position: relative;
+  height: calc(100vh - 68px);
+  box-sizing: border-box;
 }
 
 .page__container {
@@ -24,4 +27,18 @@
   background-color: var(--white);
   border-radius: 4px;
   padding: 32px;
+}
+
+.page__sidebar {
+  background-color: grey;
+  box-sizing: border-box;
+  flex: 0 0 200px;
+  padding: 20px 15px;
+}
+
+.page__content {
+  box-sizing: border-box;
+  flex: 0 0 calc(100% - 200px);
+  padding: 20px;
+  overflow: scroll;
 }

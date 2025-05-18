@@ -1,0 +1,35 @@
+@use 'variables' as v;
+
+.templates-list {
+
+  &__item {
+    border-radius: 15px;
+    margin-bottom: 15px;
+    overflow: hidden;
+  }
+
+  &__link {
+    display: block;
+    position: relative;
+    background-color: rgba(0,0,0,0);
+    transition: background-color 1s;
+
+    &:hover,
+    &--active{
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(63, 54, 225, 0.1);
+      }
+    }
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+  }
+}

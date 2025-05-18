@@ -1,5 +1,6 @@
 :root {
   // colors
+  --transparent: rgba(255, 255, 255, 0);
   --white: #fff;
   --black: #000;
   --black-bg: #0A0E11;
@@ -22,7 +23,7 @@
   --background: var(--grey-lighter);
   --text-color: var(--black);
   --link-color: var(--blue);
-  --link-color-active: var(--black);
+  --link-color-active: var(--primary-color);
   --header-bg-color: var(--white);
   --button-primary-bg-color: var(--primary-color);
   --button-primary-bg-color-hover: var(--primary-color-hover);
