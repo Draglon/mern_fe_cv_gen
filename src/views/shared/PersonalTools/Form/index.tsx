@@ -86,7 +86,7 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
 
   return (
     <Form
-      name={`create-personal-tools-${locale}}`}
+      name={`create-personal-tools-${locale}`}
       className="form"
       onFinish={onFinish}
       autoComplete="off"

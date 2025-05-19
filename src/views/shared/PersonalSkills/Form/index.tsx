@@ -82,7 +82,7 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
 
   return (
     <Form
-      name={`create-personal-skills-${locale}}`}
+      name={`create-personal-skills-${locale}`}
       className="form"
       onFinish={onFinish}
       autoComplete="off"

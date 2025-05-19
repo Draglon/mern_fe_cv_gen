@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
-import { isEmpty } from "ramda";
+import { isEmpty, path } from "ramda";
 
 import { Locales } from "@/lib/constants/props/locales";
 import { hobbiesByLocale } from "@/utils/personalHobbies";
@@ -72,8 +72,8 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesFormProps) => {
 
   return (
     <Form
-      name={`create-personal-hobbies-${locale}}`}
-      className="form form--create-hobbies"
+      name={`create-personal-hobbies-${locale}`}
+      className="form form--personal-hobbies"
       onFinish={onFinish}
       autoComplete="off"
       layout="vertical"
@@ -87,6 +87,7 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesFormProps) => {
             align="center"
           >
             <FormItem
+              className="form__item--field"
               name={[index, "hobby"]}
               controlName={`hobbies.${index}.hobby`}
               control={control}
@@ -101,7 +102,7 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesFormProps) => {
                   message: t("form.hobby.errors.required"),
                 },
               })}
-              errors={errors?.hobbies?.[index]?.hobby}
+              errors={path(["hobbies", index, "hobby"], errors)}
             />
             {fields.length > 1 && (
               <MinusCircleOutlined
@@ -114,7 +115,7 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesFormProps) => {
       </FormList>
 
       <FormItem
-        className="form__buttons d-flex justify-content-end"
+        className="form__item--buttons d-flex justify-content-end"
         name="buttons"
       >
         <Button

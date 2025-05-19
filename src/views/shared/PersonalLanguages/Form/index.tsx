@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
-import { isEmpty } from "ramda";
+import { isEmpty, path } from "ramda";
 
 import { Locales } from "@/lib/constants/props/locales";
 import { LANGUAGE_LEVEL } from "@/lib/constants/languages";
@@ -42,12 +42,13 @@ const PersonalLanguagesForm = ({
   const userId = useAppSelector(userIdSelector);
   const personalLanguagesId = useAppSelector(personalLanguagesIdSelector);
   const personalLanguages = useAppSelector(personalLanguagesSelector);
-  const languages = languagesByLocale(personalLanguages, locale as Locales);
 
   const { control, handleSubmit, formState, register } = useForm({
     values: {
-      languages: !isEmpty(languages)
-        ? languages
+      languages: !isEmpty(
+        languagesByLocale(personalLanguages, locale as Locales)
+      )
+        ? languagesByLocale(personalLanguages, locale as Locales)
         : [{ language: "", level: "" }],
     },
     mode: "onChange",
@@ -79,8 +80,8 @@ const PersonalLanguagesForm = ({
 
   return (
     <Form
-      name={`create-personal-languages-${locale}}`}
-      className="form"
+      name={`create-personal-languages-${locale}`}
+      className="form form--personal-languages"
       onFinish={onFinish}
       autoComplete="off"
       layout="vertical"
@@ -89,13 +90,16 @@ const PersonalLanguagesForm = ({
       <FormList name="languages" append={append}>
         {fields.map((field, index) => {
           return (
-            <Space key={field.id} align="baseline">
+            <Space
+              key={field.id}
+              align="baseline"
+              className="form__list-space mb-8 w-full"
+            >
               <FormItem
+                className="form__item--field"
                 name={[index, "language"]}
                 controlName={`languages.${index}.language`}
                 control={control}
-                className="form__item"
-                fieldClassName="form__item-field"
                 label={t("form.language.label")}
                 placeholder={t("form.language.placeholder")}
                 size="large"
@@ -106,9 +110,10 @@ const PersonalLanguagesForm = ({
                     message: t("form.language.errors.required"),
                   },
                 })}
-                errors={errors?.languages?.[index]?.language}
+                errors={path(["languages", index, "language"], errors)}
               />
               <FormItem
+                className="form__item--field"
                 name={[index, "level"]}
                 controlName={`languages.${index}.level`}
                 control={control}
@@ -126,7 +131,7 @@ const PersonalLanguagesForm = ({
                     message: t("form.languageLevel.errors.required"),
                   },
                 })}
-                errors={errors?.languages?.[index]?.level}
+                errors={path(["languages", index, "level"], errors)}
               />
               {fields.length > 1 && (
                 <MinusCircleOutlined onClick={() => remove(index)} />
@@ -137,7 +142,7 @@ const PersonalLanguagesForm = ({
       </FormList>
 
       <FormItem
-        className="form__buttons d-flex justify-content-end"
+        className="form__item--buttons d-flex justify-content-end"
         name="buttons"
       >
         <Button

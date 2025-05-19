@@ -1,0 +1,48 @@
+.login {
+  &__header {
+    margin-bottom: 24px;
+    text-align: center;
+  }
+}
+
+.form {
+  margin: 0 auto;
+
+  &--small {
+    max-width: 480px;
+  }
+
+  &__wrapper {
+    gap: 20px;
+  }
+
+  &__item {
+    margin-bottom: 15px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &--buttons {
+      padding-top: 30px;
+    }
+
+    .ant-form-item-label > label {
+      font-weight: bold;
+    }
+  }
+
+  .textarea {
+    min-height: 100px;
+  }
+}
+
+
+@media (min-width: 900px) {
+  .form {
+    .form__row {
+      display: flex;
+      gap: 16px;
+    }
+  }
+}

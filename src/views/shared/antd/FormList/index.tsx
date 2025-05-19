@@ -17,8 +17,8 @@ const FormList = ({ name, append, children }: FormListType) => {
       {() => (
         <>
           {children}
-          <FormItem name="addButton">
-            <Button onClick={() => append()} icon={<PlusOutlined />} block>
+          <FormItem className="form__item--button-add" name="addButton">
+            <Button onClick={() => append()} icon={<PlusOutlined />}>
               Add field
             </Button>
           </FormItem>

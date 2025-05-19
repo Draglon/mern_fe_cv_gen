@@ -29,17 +29,19 @@ const ResumeEdit = () => {
   }));
 
   return (
-    <div className="page__container">
-      <div className="page__block">
-        <header className="text-center mb-32">
-          <Title className="page__title mt-0">{t("title")}</Title>
-        </header>
-        <LocalTabs onChange={onChangeLocale} />
-        <Tabs
-          items={EDIT_RESUME_TABS}
-          defaultActiveKey={currentTab}
-          onChange={onChangeTab}
-        />
+    <div className="page__wrapper">
+      <div className="page__container">
+        <div className="page__block">
+          <header className="text-center mb-32">
+            <Title className="page__title mt-0">{t("title")}</Title>
+          </header>
+          <LocalTabs onChange={onChangeLocale} />
+          <Tabs
+            items={EDIT_RESUME_TABS}
+            defaultActiveKey={currentTab}
+            onChange={onChangeTab}
+          />
+        </div>
       </div>
     </div>
   );

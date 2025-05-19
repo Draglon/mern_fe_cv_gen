@@ -1,26 +1,42 @@
+@use 'variables' as v;
+
 .page {
-  height: 100vh;
+  height: v.$page-height;
 }
 
 .page__main {
   display: flex;
   position: relative;
-  height: calc(100vh - 68px);
-  box-sizing: border-box;
+  height: calc(v.$page-height - v.$page-header-height);
+}
+
+.page__wrapper {
+  display: block;
+  padding: 20px 15px; 
+  overflow-y: auto;
+  width: 100%;
 }
 
 .page__container {
-  max-width: 1200px;
   margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+
+  &--small {
+    max-width: 600px;
+  }
 }
 
-.page__container--small {
-  max-width: 600px;
+.page__sidebar {
+  background-color: v.$page-sidebar-bg-color;
+  flex: 0 0 v.$page-sidebar-width;
+  padding: v.$page-sidebar-padding;
 }
 
-.page__title, .page__subtitle {
-  color: var(--text-color) !important;
-  margin-top: 0;
+.page__content {
+  flex: 0 0 calc(100% - v.$page-sidebar-width);
+  padding: v.$page-content-padding;
+  overflow: scroll;
 }
 
 .page__block {
@@ -29,16 +45,13 @@
   padding: 32px;
 }
 
-.page__sidebar {
-  background-color: grey;
-  box-sizing: border-box;
-  flex: 0 0 200px;
-  padding: 20px 15px;
+.page__title, .page__subtitle {
+  color: var(--text-color) !important;
+  margin-top: 0;
+  font-size: 24px !important;
+  text-align: left;
 }
 
-.page__content {
-  box-sizing: border-box;
-  flex: 0 0 calc(100% - 200px);
-  padding: 20px;
-  overflow: scroll;
+@media (min-width: 900) {
+
 }

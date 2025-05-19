@@ -70,8 +70,8 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
 
   return (
     <Form
-      name={`create-personal-info-${locale}}`}
-      className="form"
+      name={`create-personal-info-${locale}`}
+      className="form form--personal-info"
       onFinish={onFinish}
       autoComplete="off"
       layout="vertical"
@@ -91,7 +91,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
         <div className="form__side-right">
           <div className="form__row">
             <FormItem
-              className="w-half wrap"
+              className="form__item--field"
               name="firstName"
               controlName="firstName"
               control={control}
@@ -112,7 +112,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
               size="large"
             />
             <FormItem
-              className="w-half wrap"
+              className="form__item--field"
               name="lastName"
               controlName="lastName"
               control={control}
@@ -134,7 +134,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
             />
           </div>
           <FormItem
-            className="w-full"
+            className="form__item--field"
             name="about"
             controlName="about"
             control={control}
@@ -155,7 +155,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
           <Divider />
 
           <FormItem
-            className="w-full"
+            className="form__item--field"
             name="email"
             type="email"
             controlName="email"
@@ -173,7 +173,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
             size="large"
           />
           <FormItem
-            className="w-full"
+            className="form__item--field"
             name="address"
             controlName="address"
             control={control}
@@ -183,7 +183,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
             size="large"
           />
           <FormItem
-            className="w-full"
+            className="form__item--field"
             name="phoneNumber"
             controlName="phoneNumber"
             control={control}
@@ -193,7 +193,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
             size="large"
           />
           <FormItem
-            className="w-full"
+            className="form__item--field"
             name="birthday"
             controlName="birthday"
             control={control}
@@ -206,7 +206,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
           <Divider />
 
           <FormItem
-            className="w-full"
+            className="form__item--field"
             name="linkedIn"
             controlName="linkedIn"
             control={control}
@@ -219,7 +219,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
       </div>
 
       <FormItem
-        className="form__buttons d-flex justify-content-end"
+        className="form__item--buttons d-flex justify-content-end"
         name="buttons"
       >
         <Button

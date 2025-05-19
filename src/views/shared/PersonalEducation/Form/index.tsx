@@ -91,7 +91,7 @@ const PersonalEducationForm = ({
 
   return (
     <Form
-      name={`create-personal-education-${locale}}`}
+      name={`create-personal-education-${locale}`}
       className="form"
       onFinish={onFinish}
       autoComplete="off"

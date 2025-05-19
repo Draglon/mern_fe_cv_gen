@@ -1,0 +1,41 @@
+.form--personal-hobbies {
+  .form__list-space {
+    column-gap: 16px;
+    margin-bottom: 16px;
+    width: 100%;
+    .ant-space-item:first-child {
+      width: 100%;
+    }
+
+    .ant-space-item:last-child {
+
+    }
+  }
+
+  .form__item-button-remove {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+  }
+
+  .form__item--button-add {
+    margin: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .form--personal-hobbies {
+    .form__list-space {
+      width: 50%;
+    }
+  }
+}
+
+@media (min-width: 900px) {
+  .form--personal-hobbies {
+    .form__list-space {
+      width: 33%;
+    }
+  }
+}

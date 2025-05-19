@@ -1,0 +1,30 @@
+.form--personal-info {
+  .upload-file {
+    .ant-upload-list-item-container {
+      width: 180px !important;
+      height: 180px !important;
+    }
+  }
+}
+
+@media (min-width: 900px) {
+  .form--personal-info {
+    .form__wrapper {
+      display: flex;
+    }
+
+    .form__row {
+     .form__item {
+        width: 50%;
+      }
+    }
+
+    .form__side-left {
+      flex: 0 0 200px;
+    }
+  
+    .form__side-right {
+      width: 100%;
+    }
+  }
+}

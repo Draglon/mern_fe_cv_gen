@@ -41,6 +41,15 @@
   --button-primary-bg-color-hover: var(--primary-color-hover);
 }
 
+// Page
+$page-height: 100vh;
+$page-header-height: 68px;
+$page-sidebar-width: 200px;
+$page-sidebar-bg-color: var(--grey);
+$page-sidebar-padding: 20px 16px;
+$page-content-padding: 20px 16px;
+$page-wrapper-padding: 20px 16px;
+
 // ----------- Template ----------------------
 $template-bg-color: var(--white);
 $template-width: 21cm; // 797px;

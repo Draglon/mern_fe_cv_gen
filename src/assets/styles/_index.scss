@@ -2,10 +2,14 @@
 @use 'globals';
 @use 'mixins/index';
 
+@use 'forms/form';
+@use 'forms/input-field';
+@use 'forms/personal-info';
+@use 'forms/personal-hobbies';
+@use 'forms/personal-languages';
+
 @use 'page';
 @use 'header';
-@use 'form';
-@use 'input-field';
 @use 'button';
 @use 'dropdown';
 @use 'template';
