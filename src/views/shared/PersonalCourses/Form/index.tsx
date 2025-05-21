@@ -21,6 +21,7 @@ import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
 import InputField from "@/views/shared/InputField";
+import TextAreaField from "@/views/shared/TextAreaField";
 
 type PersonalCoursesFormProps = {
   locale: string;
@@ -128,7 +129,7 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
               })}
               errors={path(["courses", index, "description"], errors)}
               size="large"
-              Field={InputField}
+              Field={TextAreaField}
             />
             <FormItem
               name={[index, "startDate"]}
