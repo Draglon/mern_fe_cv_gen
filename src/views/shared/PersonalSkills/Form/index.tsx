@@ -92,11 +92,7 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
     >
       <FormList name="skills" append={append}>
         {fields.map((field, index) => (
-          <Space
-            key={field.id}
-            align="baseline"
-            className="form__list-space mb-8 w-full"
-          >
+          <Space key={field.id} align="baseline" className="form__list-space">
             <FormItem
               name={[index, "skill"]}
               controlName={`skills.${index}.skill`}
@@ -142,7 +138,10 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
               Field={Checkbox}
             />
             {fields.length > 1 && (
-              <MinusCircleOutlined onClick={() => remove(index)} />
+              <MinusCircleOutlined
+                className="form__item--button-remove"
+                onClick={() => remove(index)}
+              />
             )}
           </Space>
         ))}

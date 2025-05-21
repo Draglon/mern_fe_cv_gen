@@ -109,11 +109,7 @@ const PersonalExperienceForm = ({
     >
       <FormList name="experience" append={append}>
         {fields.map((field, index) => (
-          <Space
-            key={field.id}
-            align="baseline"
-            className="form__list-space mb-8 w-full"
-          >
+          <Space key={field.id} align="baseline" className="form__list-space">
             <FormItem
               name={[index, "position"]}
               controlName={`experience.${index}.position`}
@@ -269,7 +265,10 @@ const PersonalExperienceForm = ({
               Field={SelectField}
             />
             {fields.length > 1 && (
-              <MinusCircleOutlined onClick={() => remove(index)} />
+              <MinusCircleOutlined
+                className="form__item--button-remove"
+                onClick={() => remove(index)}
+              />
             )}
           </Space>
         ))}

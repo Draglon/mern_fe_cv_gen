@@ -17,14 +17,19 @@
   }
 
   &__item {
-    margin-bottom: 15px;
+    margin-bottom: 16px;
 
     &:last-child {
       margin-bottom: 0;
     }
 
+    &--button-remove {
+      color: var(--red);
+    }
+
     &--buttons {
-      padding-top: 30px;
+      text-align: right;
+      width: 100%;
     }
 
     .ant-form-item-label > label {

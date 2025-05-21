@@ -1,33 +1,37 @@
 .form--personal-hobbies {
+  gap: 16px;
+  display: flex;
+  flex-wrap: wrap;
   .form__list-space {
+    position: relative;
+    align-items: flex-start;
     column-gap: 16px;
-    margin-bottom: 16px;
     width: 100%;
-    .ant-space-item:first-child {
-      width: 100%;
+    .ant-space-item {
+      &:nth-child(1) {
+        width: 100%;
+      }
+      &:nth-child(2) {
+        position: absolute;
+        top: 0;
+        right: 0;
+        line-height: 0;
+        width: 14px;
+        height: 14px;
+      }
     }
-
-    .ant-space-item:last-child {
-
-    }
-  }
-
-  .form__item-button-remove {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
   }
 
   .form__item--button-add {
     margin: 0;
+    width: 100%;
   }
 }
 
 @media (min-width: 768px) {
   .form--personal-hobbies {
     .form__list-space {
-      width: 50%;
+      width: 48%;
     }
   }
 }
@@ -35,7 +39,7 @@
 @media (min-width: 900px) {
   .form--personal-hobbies {
     .form__list-space {
-      width: 33%;
+      width: 32%;
     }
   }
 }

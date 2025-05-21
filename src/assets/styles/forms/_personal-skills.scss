@@ -1,25 +1,29 @@
 .form--personal-skills {
+  gap: 16px;
+  display: flex;
+  flex-wrap: wrap;
   .form__list-space {
+    position: relative;
     column-gap: 16px;
     width: 100%;
-    margin-bottom: 16px;
     .ant-space-item {
-      width: 50%;
+      &:nth-child(1),
+      &:nth-child(2) {
+        width: calc(45% - 8px);
+      }
+      &:nth-child(4) {
+        position: absolute;
+        top: 0;
+        right: 0;
+        line-height: 0;
+        width: 14px;
+        height: 14px;
+      }
     }
-
-    .ant-space-item:last-child {
-      width: auto;
-    }
-  }
-
-  .form__item-button-remove {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
   }
 
   .form__item--button-add {
     margin: 0;
+    width: 100%;
   }
 }

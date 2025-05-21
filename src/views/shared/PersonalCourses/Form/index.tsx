@@ -95,11 +95,7 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
     >
       <FormList name="courses" append={append}>
         {fields.map((field, index) => (
-          <Space
-            key={field.id}
-            align="baseline"
-            className="form__list-space mb-8 w-full"
-          >
+          <Space key={field.id} align="baseline" className="form__list-space">
             <FormItem
               name={[index, "course"]}
               controlName={`courses.${index}.course`}
@@ -169,7 +165,10 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
               Field={InputField}
             />
             {fields.length > 1 && (
-              <MinusCircleOutlined onClick={() => remove(index)} />
+              <MinusCircleOutlined
+                className="form__item--button-remove"
+                onClick={() => remove(index)}
+              />
             )}
           </Space>
         ))}

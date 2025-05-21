@@ -91,11 +91,7 @@ const PersonalLanguagesForm = ({
       <FormList name="languages" append={append}>
         {fields.map((field, index) => {
           return (
-            <Space
-              key={field.id}
-              align="baseline"
-              className="form__list-space mb-8 w-full"
-            >
+            <Space key={field.id} align="baseline" className="form__list-space">
               <FormItem
                 className="form__item--field"
                 name={[index, "language"]}
@@ -135,7 +131,10 @@ const PersonalLanguagesForm = ({
                 errors={path(["languages", index, "level"], errors)}
               />
               {fields.length > 1 && (
-                <MinusCircleOutlined onClick={() => remove(index)} />
+                <MinusCircleOutlined
+                  className="form__item--button-remove"
+                  onClick={() => remove(index)}
+                />
               )}
             </Space>
           );
