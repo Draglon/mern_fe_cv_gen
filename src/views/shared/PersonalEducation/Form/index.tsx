@@ -3,9 +3,10 @@ import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
-import { isEmpty } from "ramda";
+import { isEmpty, path } from "ramda";
 
 import { Locales } from "@/lib/constants/props/locales";
+import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import { educationByLocale } from "@/utils/personalEducation";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalEducation from "@/store/personalEducation/operations/createPersonalEducation";
@@ -19,7 +20,7 @@ import { personalEducationSelector } from "@/store/personalEducation/selectors";
 import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
-import Input from "@/views/shared/antd/Input";
+import InputField from "@/views/shared/InputField";
 
 type PersonalEducationFormProps = {
   locale: string;
@@ -49,7 +50,7 @@ const PersonalEducationForm = ({
   const personalEducation = useAppSelector(personalEducationSelector);
   const education = educationByLocale(personalEducation, locale as Locales);
 
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit, register, formState } = useForm({
     values: {
       education: !isEmpty(education)
         ? education
@@ -65,6 +66,7 @@ const PersonalEducationForm = ({
           ],
     },
   });
+  const { errors } = formState;
   const { fields, append, remove } = useFieldArray({
     control,
     name: "education",
@@ -92,7 +94,7 @@ const PersonalEducationForm = ({
   return (
     <Form
       name={`create-personal-education-${locale}`}
-      className="form"
+      className="form form--personal-education"
       onFinish={onFinish}
       autoComplete="off"
       layout="vertical"
@@ -100,108 +102,112 @@ const PersonalEducationForm = ({
     >
       <FormList name="education" append={append}>
         {fields.map((field, index) => (
-          <Space key={field.id} align="baseline">
+          <Space
+            key={field.id}
+            align="baseline"
+            className="form__list-space mb-8 w-full"
+          >
             <FormItem
               name={[index, "institute"]}
-              controlName={`education[${index}].institute`}
+              controlName={`education.${index}.institute`}
               control={control}
-              className="form__item"
-              fieldClassName="form__item-field"
+              className="form__item--field"
               label={t("form.institute.label")}
               placeholder={t("form.institute.placeholder")}
-              // rules={[
-              //   {
-              //     required: true,
-              //     message: t("form.institute.error"),
-              //   },
-              // ]}
+              register={register(`education.${index}.institute`, {
+                required: {
+                  value: true,
+                  message: t("form.institute.errors.required"),
+                },
+              })}
+              errors={path(["education", index, "institute"], errors)}
               size="large"
-              Field={Input}
+              Field={InputField}
             />
             <FormItem
               name={[index, "degree"]}
               controlName={`education[${index}].degree`}
               control={control}
-              className="form__item"
-              fieldClassName="form__item-field"
+              className="form__item--field"
               label={t("form.degree.label")}
               placeholder={t("form.degree.placeholder")}
-              // rules={[
-              //   {
-              //     required: true,
-              //     message: t("form.degree.error"),
-              //   },
-              // ]}
+              register={register(`education.${index}.degree`, {
+                required: {
+                  value: true,
+                  message: t("form.degree.errors.required"),
+                },
+              })}
+              errors={path(["education", index, "degree"], errors)}
               size="large"
-              Field={Input}
+              Field={InputField}
             />
             <FormItem
               name={[index, "faculty"]}
               controlName={`education[${index}].faculty`}
               control={control}
-              className="form__item"
-              fieldClassName="form__item-field"
+              className="form__item--field"
               label={t("form.faculty.label")}
               placeholder={t("form.faculty.placeholder")}
-              // rules={[
-              //   {
-              //     required: true,
-              //     message: t("form.faculty.error"),
-              //   },
-              // ]}
+              register={register(`education.${index}.faculty`, {
+                required: {
+                  value: true,
+                  message: t("form.faculty.errors.required"),
+                },
+              })}
+              errors={path(["education", index, "faculty"], errors)}
               size="large"
-              Field={Input}
+              Field={InputField}
             />
             <FormItem
               name={[index, "specialization"]}
               controlName={`education[${index}].specialization`}
               control={control}
-              className="form__item"
-              fieldClassName="form__item-field"
+              className="form__item--field"
               label={t("form.specialization.label")}
               placeholder={t("form.specialization.placeholder")}
-              // rules={[
-              //   {
-              //     required: true,
-              //     message: t("form.specialization.error"),
-              //   },
-              // ]}
+              register={register(`education.${index}.specialization`, {
+                required: {
+                  value: true,
+                  message: t("form.specialization.errors.required"),
+                },
+              })}
+              errors={path(["education", index, "specialization"], errors)}
               size="large"
-              Field={Input}
+              Field={InputField}
             />
             <FormItem
               name={[index, "startDate"]}
               controlName={`education[${index}].startDate`}
               control={control}
-              className="form__item"
-              fieldClassName="form__item-field"
+              className="form__item--field"
               label={t("form.startDate.label")}
               placeholder={t("form.startDate.placeholder")}
-              // rules={[
-              //   {
-              //     required: true,
-              //     message: t("form.startDate.error"),
-              //   },
-              // ]}
+              register={register(`education.${index}.startDate`, {
+                required: {
+                  value: true,
+                  message: t("form.startDate.errors.required"),
+                },
+              })}
+              errors={path(["education", index, "startDate"], errors)}
               size="large"
-              Field={Input}
+              Field={InputField}
             />
             <FormItem
               name={[index, "endDate"]}
               controlName={`education[${index}].endDate`}
               control={control}
-              className="form__item"
-              fieldClassName="form__item-field"
+              className="form__item--field"
               label={t("form.endDate.label")}
               placeholder={t("form.endDate.placeholder")}
-              // rules={[
-              //   {
-              //     required: true,
-              //     message: t("form.endDate.error"),
-              //   },
-              // ]}
+              register={register(`education.${index}.endDate`, {
+                required: {
+                  value: true,
+                  message: t("form.endDate.errors.required"),
+                },
+              })}
+              errors={path(["education", index, "endDate"], errors)}
               size="large"
-              Field={Input}
+              Field={InputField}
             />
             {fields.length > 1 && (
               <MinusCircleOutlined onClick={() => remove(index)} />
@@ -211,7 +217,7 @@ const PersonalEducationForm = ({
       </FormList>
 
       <FormItem
-        className="form__buttons d-flex justify-content-end"
+        className="form__item--buttons d-flex justify-content-end"
         name="buttons"
       >
         <Button
@@ -219,6 +225,7 @@ const PersonalEducationForm = ({
           type="primary"
           htmlType="submit"
           size="large"
+          disabled={isSubmitDisabled(formState, false)}
         >
           {tShared("save")}
         </Button>

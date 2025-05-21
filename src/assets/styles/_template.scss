@@ -20,7 +20,7 @@
 }
 
 @media print {
-  @page { 
+  @page {
 		margin: 0 !important;
 		padding: 0 !important;
 		position: relative;
@@ -29,14 +29,17 @@
 		zoom: 1.0;
 	}
 
-  .sidebar,
+  .page__sidebar,
   .page__header {
     display: none !important;
   }
 
-  .page__main {
+  .page__main,
+  .page__content {
     margin: 0;
     padding: 0;
+    height: auto;
+    overflow-y: inherit;
   }
 
   .template {

@@ -7,6 +7,11 @@
 @use 'forms/personal-info';
 @use 'forms/personal-hobbies';
 @use 'forms/personal-languages';
+@use 'forms/personal-experience';
+@use 'forms/personal-education';
+@use 'forms/personal-courses';
+@use 'forms/personal-skills';
+@use 'forms/personal-tools';
 
 @use 'page';
 @use 'header';

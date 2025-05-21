@@ -6,6 +6,7 @@ import { MinusCircleOutlined } from "@ant-design/icons";
 import { isEmpty, path } from "ramda";
 
 import { Locales } from "@/lib/constants/props/locales";
+import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import { hobbiesByLocale } from "@/utils/personalHobbies";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalHobbies from "@/store/personalHobbies/operations/createPersonalHobbies";
@@ -123,6 +124,7 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesFormProps) => {
           type="primary"
           htmlType="submit"
           size="large"
+          disabled={isSubmitDisabled(formState, false)}
         >
           {tShared("save")}
         </Button>

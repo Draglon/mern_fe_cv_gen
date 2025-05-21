@@ -6,6 +6,7 @@ import { Form } from "antd";
 import { Locales } from "@/lib/constants/props/locales";
 import { personalInfoByLocale } from "@/utils/personalInfo";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import createPersonalInfo from "@/store/personalInfo/operations/createPersonalInfo";
 import updatePersonalInfo from "@/store/personalInfo/operations/updatePersonalInfo";
 import { userIdSelector, personalInfoIdSelector } from "@/store/auth/selectors";
@@ -227,6 +228,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
           type="primary"
           htmlType="submit"
           size="large"
+          disabled={isSubmitDisabled(formState, false)}
         >
           {tShared("save")}
         </Button>

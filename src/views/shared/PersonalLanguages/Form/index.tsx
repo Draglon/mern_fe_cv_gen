@@ -7,6 +7,7 @@ import { isEmpty, path } from "ramda";
 
 import { Locales } from "@/lib/constants/props/locales";
 import { LANGUAGE_LEVEL } from "@/lib/constants/languages";
+import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import { languagesByLocale } from "@/utils/personalLanguages";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalLanguages from "@/store/personalLanguages/operations/createPersonalLanguages";
@@ -150,6 +151,7 @@ const PersonalLanguagesForm = ({
           type="primary"
           htmlType="submit"
           size="large"
+          disabled={isSubmitDisabled(formState, false)}
         >
           {tShared("save")}
         </Button>

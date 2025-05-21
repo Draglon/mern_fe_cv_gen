@@ -3,11 +3,12 @@ import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
-import { isEmpty } from "ramda";
+import { isEmpty, path } from "ramda";
 
 import { redirect } from "@/i18n/navigation";
 import { resumeRoute } from "@/lib/routes";
 import { Locales } from "@/lib/constants/props/locales";
+import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import { toolsByLocale } from "@/utils/personalTools";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalTools from "@/store/personalTools/operations/createPersonalTools";
@@ -87,7 +88,7 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
   return (
     <Form
       name={`create-personal-tools-${locale}`}
-      className="form"
+      className="form form--personal-tools"
       onFinish={onFinish}
       autoComplete="off"
       layout="vertical"
@@ -95,13 +96,16 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
     >
       <FormList name="tools" append={append}>
         {fields.map((field, index) => (
-          <Space key={field.id} align="baseline">
+          <Space
+            key={field.id}
+            align="baseline"
+            className="form__list-space mb-8 w-full"
+          >
             <FormItem
               name={[index, "tool"]}
               controlName={`tools.${index}.tool`}
               control={control}
-              className="form__item"
-              fieldClassName="form__item-field"
+              className="form__item--field"
               label={t("form.tool.label")}
               placeholder={t("form.tool.placeholder")}
               size="large"
@@ -112,14 +116,13 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
                   message: t("form.tool.errors.required"),
                 },
               })}
-              errors={errors?.tools?.[index]?.tool}
+              errors={path(["tools", index, "tool"], errors)}
             />
             <FormItem
               name={[index, "level"]}
               controlName={`tools.${index}.level`}
               control={control}
-              className="form__item"
-              fieldClassName="form__item-field"
+              className="form__item--field"
               label={t("form.level.label")}
               placeholder={t("form.level.placeholder")}
               register={register(`tools.${index}.level`, {
@@ -128,7 +131,7 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
                   message: t("form.level.errors.required"),
                 },
               })}
-              errors={errors?.tools?.[index]?.level}
+              errors={path(["tools", index, "level"], errors)}
               size="large"
               Field={InputField}
             />
@@ -136,8 +139,7 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
               name={[index, "visible"]}
               controlName={`tools.${index}.visible`}
               control={control}
-              className="form__item"
-              fieldClassName="form__item-field"
+              className="form__item--field"
               label={t("form.visible.label")}
               size="large"
               fieldType="checkbox"
@@ -151,7 +153,7 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
       </FormList>
 
       <FormItem
-        className="form__buttons d-flex justify-content-end"
+        className="form__item--buttons d-flex justify-content-end"
         name="buttons"
       >
         <Button
@@ -159,6 +161,7 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
           type="primary"
           htmlType="submit"
           size="large"
+          disabled={isSubmitDisabled(formState, false)}
         >
           {tShared("save")}
         </Button>

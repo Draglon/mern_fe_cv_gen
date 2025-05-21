@@ -3,9 +3,10 @@ import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
-import { isEmpty } from "ramda";
+import { isEmpty, path } from "ramda";
 
 import { Locales } from "@/lib/constants/props/locales";
+import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import { coursesByLocale } from "@/utils/personalCourses";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalCourses from "@/store/personalCourses/operations/createPersonalCourses";
@@ -19,7 +20,7 @@ import { personalCoursesSelector } from "@/store/personalCourses/selectors";
 import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
-import Input from "@/views/shared/antd/Input";
+import InputField from "@/views/shared/InputField";
 
 type PersonalCoursesFormProps = {
   locale: string;
@@ -44,7 +45,7 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
   const personalCourses = useAppSelector(personalCoursesSelector);
   const courses = coursesByLocale(personalCourses, locale as Locales);
 
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit, register, formState } = useForm({
     values: {
       courses: !isEmpty(courses)
         ? courses
@@ -58,6 +59,7 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
           ],
     },
   });
+  const { errors } = formState;
   const { fields, append, remove } = useFieldArray({
     control,
     name: "courses",
@@ -85,7 +87,7 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
   return (
     <Form
       name={`create-personal-courses-${locale}`}
-      className="form"
+      className="form form--personal-courses"
       onFinish={onFinish}
       autoComplete="off"
       layout="vertical"
@@ -93,74 +95,78 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
     >
       <FormList name="courses" append={append}>
         {fields.map((field, index) => (
-          <Space key={field.id} align="baseline">
+          <Space
+            key={field.id}
+            align="baseline"
+            className="form__list-space mb-8 w-full"
+          >
             <FormItem
               name={[index, "course"]}
-              controlName={`courses[${index}].course`}
+              controlName={`courses.${index}.course`}
               control={control}
-              className="form__item"
-              fieldClassName="form__item-field"
+              className="form__item--field"
               label={t("form.course.label")}
               placeholder={t("form.course.placeholder")}
-              // rules={[
-              //   {
-              //     required: true,
-              //     message: t("form.course.error"),
-              //   },
-              // ]}
+              register={register(`courses.${index}.course`, {
+                required: {
+                  value: true,
+                  message: t("form.course.errors.required"),
+                },
+              })}
+              errors={path(["courses", index, "course"], errors)}
               size="large"
-              Field={Input}
+              Field={InputField}
             />
             <FormItem
               name={[index, "description"]}
-              controlName={`courses[${index}].description`}
+              controlName={`courses.${index}.description`}
               control={control}
-              className="form__item"
-              fieldClassName="form__item-field"
+              className="form__item--field"
               label={t("form.description.label")}
               placeholder={t("form.description.placeholder")}
-              // rules={[
-              //   {
-              //     required: true,
-              //     message: t("form.description.error"),
-              //   },
-              // ]}
+              register={register(`courses.${index}.description`, {
+                required: {
+                  value: true,
+                  message: t("form.description.errors.required"),
+                },
+              })}
+              errors={path(["courses", index, "description"], errors)}
               size="large"
-              Field={Input}
+              Field={InputField}
             />
             <FormItem
               name={[index, "startDate"]}
-              controlName={`courses[${index}].startDate`}
+              controlName={`courses.${index}.startDate`}
               control={control}
-              className="form__item"
-              fieldClassName="form__item-field"
+              className="form__item--field"
               label={t("form.startDate.label")}
               placeholder={t("form.startDate.placeholder")}
-              // rules={[
-              //   {
-              //     required: true,
-              //     message: t("form.startDate.error"),
-              //   },
-              // ]}
+              register={register(`courses.${index}.startDate`, {
+                required: {
+                  value: true,
+                  message: t("form.startDate.errors.required"),
+                },
+              })}
+              errors={path(["courses", index, "startDate"], errors)}
               size="large"
-              Field={Input}
+              Field={InputField}
             />
             <FormItem
               name={[index, "endDate"]}
-              controlName={`courses[${index}].endDate`}
+              controlName={`courses.${index}.endDate`}
               control={control}
-              className="form__item"
-              fieldClassName="form__item-field"
+              className="form__item--field"
               label={t("form.endDate.label")}
               placeholder={t("form.endDate.placeholder")}
-              // rules={[
-              //   {
-              //     required: true,
-              //     message: t("form.endDate.error"),
-              //   },
-              // ]}
+              register={register(`courses.${index}.endDate`, {
+                required: {
+                  value: true,
+                  message: t("form.endDate.errors.required"),
+                },
+              })}
+              errors={path(["courses", index, "endDate"], errors)}
               size="large"
-              Field={Input}
+              Field={InputField}
             />
             {fields.length > 1 && (
               <MinusCircleOutlined onClick={() => remove(index)} />
@@ -170,7 +176,7 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
       </FormList>
 
       <FormItem
-        className="form__buttons d-flex justify-content-end"
+        className="form__item--buttons d-flex justify-content-end"
         name="buttons"
       >
         <Button
@@ -178,6 +184,7 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
           type="primary"
           htmlType="submit"
           size="large"
+          disabled={isSubmitDisabled(formState, false)}
         >
           {tShared("save")}
         </Button>

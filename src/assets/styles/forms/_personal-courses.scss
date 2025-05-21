@@ -1,0 +1,25 @@
+.form--personal-courses {
+  .form__list-space {
+    column-gap: 16px;
+    width: 100%;
+    margin-bottom: 16px;
+    .ant-space-item {
+      width: 50%;
+    }
+
+    .ant-space-item:last-child {
+      width: auto;
+    }
+  }
+
+  .form__item-button-remove {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+  }
+
+  .form__item--button-add {
+    margin: 0;
+  }
+}

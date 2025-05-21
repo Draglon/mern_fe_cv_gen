@@ -3,9 +3,10 @@ import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
-import { isEmpty } from "ramda";
+import { isEmpty, path } from "ramda";
 
 import { Locales } from "@/lib/constants/props/locales";
+import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import { skillsByLocale } from "@/utils/personalSkills";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalSkills from "@/store/personalSkills/operations/createPersonalSkills";
@@ -83,7 +84,7 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
   return (
     <Form
       name={`create-personal-skills-${locale}`}
-      className="form"
+      className="form form--personal-skills"
       onFinish={onFinish}
       autoComplete="off"
       layout="vertical"
@@ -91,13 +92,16 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
     >
       <FormList name="skills" append={append}>
         {fields.map((field, index) => (
-          <Space key={field.id} align="baseline">
+          <Space
+            key={field.id}
+            align="baseline"
+            className="form__list-space mb-8 w-full"
+          >
             <FormItem
               name={[index, "skill"]}
               controlName={`skills.${index}.skill`}
               control={control}
-              className="form__item"
-              fieldClassName="form__item-field"
+              className="form__item--field"
               label={t("form.skill.label")}
               placeholder={t("form.skill.placeholder")}
               size="large"
@@ -108,14 +112,13 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
                   message: t("form.skill.errors.required"),
                 },
               })}
-              errors={errors?.skills?.[index]?.skill}
+              errors={path(["skills", index, "skill"], errors)}
             />
             <FormItem
               name={[index, "level"]}
               controlName={`skills.${index}.level`}
               control={control}
-              className="form__item"
-              fieldClassName="form__item-field"
+              className="form__item--field"
               label={t("form.level.label")}
               placeholder={t("form.level.placeholder")}
               size="large"
@@ -126,14 +129,13 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
                   message: t("form.level.errors.required"),
                 },
               })}
-              errors={errors?.skills?.[index]?.level}
+              errors={path(["skills", index, "level"], errors)}
             />
             <FormItem
               name={[index, "visible"]}
               controlName={`skills.${index}.visible`}
               control={control}
-              className="form__item"
-              fieldClassName="form__item-field"
+              className="form__item--field"
               label={t("form.visible.label")}
               size="large"
               fieldType="checkbox"
@@ -147,7 +149,7 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
       </FormList>
 
       <FormItem
-        className="form__buttons d-flex justify-content-end"
+        className="form__item--buttons d-flex justify-content-end"
         name="buttons"
       >
         <Button
@@ -155,6 +157,7 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
           type="primary"
           htmlType="submit"
           size="large"
+          disabled={isSubmitDisabled(formState, false)}
         >
           {tShared("save")}
         </Button>

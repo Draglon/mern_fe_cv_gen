@@ -42,6 +42,7 @@
   .template__sidebar {
     background-color: v.$template-standford-sidebar-bg-blue;
     flex: 0 0 v.$template-standford-sidebar-width;
+    width: v.$template-standford-sidebar-width;
     padding-top: v.$template-standford-sidebar-padding;
     padding-bottom: v.$template-standford-sidebar-padding;
     .section {
@@ -62,6 +63,7 @@
     background-color: v.$template-standford-container-bg;
     color: v.$template-standford-container-color;
     flex: 0 0 v.$template-standford-container-width;
+    width: v.$template-standford-container-width;
     padding: v.$template-standford-container-padding;
     .section {
       padding-top: v.$template-standford-container-margin;

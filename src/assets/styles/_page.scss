@@ -12,7 +12,7 @@
 
 .page__wrapper {
   display: block;
-  padding: 20px 15px; 
+  padding: v.$page-wrapper-padding; 
   overflow-y: auto;
   width: 100%;
 }
@@ -36,7 +36,7 @@
 .page__content {
   flex: 0 0 calc(100% - v.$page-sidebar-width);
   padding: v.$page-content-padding;
-  overflow: scroll;
+  overflow-y: auto;
 }
 
 .page__block {
