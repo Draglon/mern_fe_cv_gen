@@ -1,7 +1,8 @@
 "use client";
 import { useEffect } from "react";
-import { useTranslations } from "next-intl";
+import { pathOr, path } from "ramda";
 
+import { TEMPLATES_TRANSLATIONS } from "@/lib/constants/templates";
 import { personalInfoProps } from "@/lib/constants/props/resume";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import fetchPersonalExperience from "@/store/personalExperience/operations/fetchPersonalExperience";
@@ -33,8 +34,8 @@ import PersonalTools from "@/views/shared/TemplateResume/PersonalTools";
 const ResumeTemplateContent = ({
   personalInfo,
   template,
+  templateLanguage,
 }: personalInfoProps) => {
-  const t = useTranslations("Template");
   const dispatch = useAppDispatch();
   const personalExperienceId = useAppSelector(personalExperienceIdSelector);
   const personalExperienceData = useAppSelector(personalExperienceSelector);
@@ -75,42 +76,111 @@ const ResumeTemplateContent = ({
   return (
     <div className="template__container">
       {personalInfo && (
-        <PersonalInfo personalInfo={personalInfo} template={template} />
-      )}
-
-      {personalExperienceData && (
-        <Section title={t("personalExperience.title")}>
-          <PersonalExperience personalExperience={personalExperienceData} />
+        <Section
+          title={path(
+            [templateLanguage, "personalInfo", "title"],
+            TEMPLATES_TRANSLATIONS
+          )}
+        >
+          <PersonalInfo
+            personalInfo={personalInfo}
+            template={template}
+            templateLanguage={templateLanguage}
+          />
         </Section>
       )}
 
       {personalExperienceData && (
         <Section
-          title={t("personalEducation.title")}
+          title={pathOr(
+            path(
+              [templateLanguage, "personalExperience", "title"],
+              TEMPLATES_TRANSLATIONS
+            ),
+            ["sectionTitle", templateLanguage],
+            personalExperienceData
+          )}
+        >
+          <PersonalExperience
+            personalExperience={personalExperienceData}
+            templateLanguage={templateLanguage}
+          />
+        </Section>
+      )}
+
+      {personalExperienceData && (
+        <Section
+          title={pathOr(
+            path(
+              [templateLanguage, "personalEducation", "title"],
+              TEMPLATES_TRANSLATIONS
+            ),
+            ["sectionTitle", templateLanguage],
+            personalEducationData
+          )}
           className="section--education"
         >
-          <PersonalEducation personalEducation={personalEducationData} />
+          <PersonalEducation
+            personalEducation={personalEducationData}
+            templateLanguage={templateLanguage}
+          />
         </Section>
       )}
 
       {personalCoursesData && (
         <Section
-          title={t("personalCourses.title")}
+          title={pathOr(
+            path(
+              [templateLanguage, "personalCourses", "title"],
+              TEMPLATES_TRANSLATIONS
+            ),
+            ["sectionTitle", templateLanguage],
+            personalEducationData
+          )}
           className="section--courses"
         >
-          <PersonalCourses personalCourses={personalCoursesData} />
+          <PersonalCourses
+            personalCourses={personalCoursesData}
+            templateLanguage={templateLanguage}
+          />
         </Section>
       )}
 
       {personalSkillsData && (
-        <Section title={t("personalSkills.title")} className="section--skills">
-          <PersonalSkills personalSkills={personalSkillsData} />
+        <Section
+          title={pathOr(
+            path(
+              [templateLanguage, "personalSkills", "title"],
+              TEMPLATES_TRANSLATIONS
+            ),
+            ["sectionTitle", templateLanguage],
+            personalSkillsData
+          )}
+          className="section--skills"
+        >
+          <PersonalSkills
+            personalSkills={personalSkillsData}
+            templateLanguage={templateLanguage}
+          />
         </Section>
       )}
 
       {personalToolsData && (
-        <Section title={t("personalTools.title")} className="section--tools">
-          <PersonalTools personalTools={personalToolsData} />
+        <Section
+          title={pathOr(
+            path(
+              [templateLanguage, "personalTools", "title"],
+              TEMPLATES_TRANSLATIONS
+            ),
+            ["sectionTitle", templateLanguage],
+            personalToolsData
+          )}
+          className="section--tools"
+        >
+          <PersonalTools
+            personalTools={personalToolsData}
+            templateLanguage={templateLanguage}
+          />
         </Section>
       )}
     </div>

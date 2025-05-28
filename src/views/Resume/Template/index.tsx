@@ -11,9 +11,13 @@ import Content from "@/views/Resume/Template/Content";
 
 type ResumeTemplateProps = {
   template: string;
+  templateLanguage: string;
 };
 
-const ResumeTemplate = ({ template }: ResumeTemplateProps) => {
+const ResumeTemplate = ({
+  template,
+  templateLanguage,
+}: ResumeTemplateProps) => {
   const dispatch = useAppDispatch();
   const personalInfoId = useAppSelector(personalInfoIdSelector);
   const personalInfoData = useAppSelector(personalInfoSelector);
@@ -26,8 +30,16 @@ const ResumeTemplate = ({ template }: ResumeTemplateProps) => {
 
   return (
     <div className={`template template--${template}`}>
-      <Sidebar personalInfo={personalInfoData} template={template} />
-      <Content personalInfo={personalInfoData} template={template} />
+      <Sidebar
+        personalInfo={personalInfoData}
+        template={template}
+        templateLanguage={templateLanguage}
+      />
+      <Content
+        personalInfo={personalInfoData}
+        template={template}
+        templateLanguage={templateLanguage}
+      />
     </div>
   );
 };

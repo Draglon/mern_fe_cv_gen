@@ -3,7 +3,7 @@ import Image from "next/image";
 
 type PersonalPhotoProps = {
   src: string;
-  alt: string;
+  alt: any;
   width: number;
   height: number;
 };

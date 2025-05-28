@@ -53,8 +53,10 @@ const Login = () => {
     <div className="page__container page__container--small">
       <div className="page__block login">
         <header className="login__header">
-          <Title className="page__title">{t("title")}</Title>
-          <Paragraph className="page__text">{t("description")}</Paragraph>
+          <Title className="page__title text-center">{t("title")}</Title>
+          <Paragraph className="page__text text-center">
+            {t("description")}
+          </Paragraph>
         </header>
         <Form
           name="login"

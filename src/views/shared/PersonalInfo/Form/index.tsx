@@ -25,6 +25,7 @@ type PersonalInfoFormProps = {
 };
 
 type FieldType = {
+  sectionTitle: string;
   userUrl: any[];
   firstName: string;
   lastName: string;
@@ -78,6 +79,25 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
       layout="vertical"
     >
       <div className="form__wrapper">
+        <div className="w-full">
+          <FormItem
+            className="form__item--field"
+            name="sectionTitle"
+            controlName="sectionTitle"
+            control={control}
+            label={t("form.sectionTitle.label")}
+            placeholder={t("form.sectionTitle.placeholder")}
+            register={register("sectionTitle", {
+              required: {
+                value: true,
+                message: t("form.sectionTitle.errors.required"),
+              },
+            })}
+            errors={errors["sectionTitle"]}
+            Field={InputField}
+            size="large"
+          />
+        </div>
         <div className="form__side-left">
           <FormItem
             name="userUrl"

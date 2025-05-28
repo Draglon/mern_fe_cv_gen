@@ -1,12 +1,11 @@
 "use client";
-import { useLocale } from "next-intl";
-
 import { Locale, Locales } from "@/lib/constants/props/locales";
 import { skillsByLocale } from "@/utils/personalSkills";
 
 import { Text } from "@/views/shared/antd/Typography";
 
 type PersonalSkillsProps = {
+  templateLanguage: string;
   personalSkills: {
     skills: Locale;
   };
@@ -18,9 +17,11 @@ type SkillItemProps = {
   visible: boolean;
 };
 
-const PersonalSkills = ({ personalSkills }: PersonalSkillsProps) => {
-  const locale = useLocale();
-  const skills = skillsByLocale(personalSkills, locale as Locales);
+const PersonalSkills = ({
+  personalSkills,
+  templateLanguage,
+}: PersonalSkillsProps) => {
+  const skills = skillsByLocale(personalSkills, templateLanguage as Locales);
 
   return (
     <div className="personal-skills">

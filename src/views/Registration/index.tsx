@@ -56,8 +56,10 @@ const Registration = () => {
     <div className="page__container page__container--small">
       <div className="page__block login">
         <header className="login__header">
-          <Title className="page__title">{tRegistration("title")}</Title>
-          <Paragraph className="page__text">
+          <Title className="page__title text-center">
+            {tRegistration("title")}
+          </Title>
+          <Paragraph className="page__text text-center">
             {tRegistration("description")}
           </Paragraph>
         </header>

@@ -1,7 +1,7 @@
 "use client";
-import { useLocale, useTranslations } from "next-intl";
-import { isEmpty } from "ramda";
+import { isEmpty, path } from "ramda";
 
+import { TEMPLATES_TRANSLATIONS } from "@/lib/constants/templates";
 import splitText from "@/utils/splitText";
 import { Locale, Locales } from "@/lib/constants/props/locales";
 import { experienceByLocale } from "@/utils/personalExperience";
@@ -21,15 +21,20 @@ type Experience = {
 };
 
 type ExperiencesProps = {
+  templateLanguage: string;
   personalExperience: {
     experience: Locale;
   };
 };
 
-const PersonalExperience = ({ personalExperience }: ExperiencesProps) => {
-  const t = useTranslations("Template");
-  const locale = useLocale();
-  const experience = experienceByLocale(personalExperience, locale as Locales);
+const PersonalExperience = ({
+  personalExperience,
+  templateLanguage,
+}: ExperiencesProps) => {
+  const experience = experienceByLocale(
+    personalExperience,
+    templateLanguage as Locales
+  );
 
   return (
     <div className="experience">
@@ -66,7 +71,7 @@ const PersonalExperience = ({ personalExperience }: ExperiencesProps) => {
           {!isEmpty(item?.skills) && (
             <div className="skills">
               <Text className="skills__label" strong>
-                {t("skills")}
+                {path([templateLanguage, "skills"], TEMPLATES_TRANSLATIONS)}
               </Text>
               <ul className="skills__list">
                 {item.skills.map((skill: string) => (

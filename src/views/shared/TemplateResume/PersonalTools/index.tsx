@@ -1,12 +1,11 @@
 "use client";
-import { useLocale } from "next-intl";
-
 import { Locale, Locales } from "@/lib/constants/props/locales";
 import { toolsByLocale } from "@/utils/personalTools";
 
 import { Text } from "@/views/shared/antd/Typography";
 
 type PersonalToolsProps = {
+  templateLanguage: string;
   personalTools: {
     tools: Locale;
   };
@@ -18,9 +17,11 @@ type ToolItemProps = {
   visible: boolean;
 };
 
-const PersonalTools = ({ personalTools }: PersonalToolsProps) => {
-  const locale = useLocale();
-  const tools = toolsByLocale(personalTools, locale as Locales);
+const PersonalTools = ({
+  personalTools,
+  templateLanguage,
+}: PersonalToolsProps) => {
+  const tools = toolsByLocale(personalTools, templateLanguage as Locales);
 
   return (
     <div className="personal-tools">

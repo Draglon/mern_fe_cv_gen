@@ -7,6 +7,7 @@ import { UPDATE_PERSONAL_INFO } from "../types";
 
 type ParamsType = {
   personalInfoId: string;
+  sectionTitle: string;
   locale: string;
   userId: string;
   userUrl?: string | any[];
@@ -17,7 +18,6 @@ type ParamsType = {
   address?: string;
   phoneNumber?: string;
   birthday?: string;
-  skype?: string;
   linkedIn?: string;
 };
 

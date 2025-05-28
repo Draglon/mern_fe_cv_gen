@@ -1,6 +1,7 @@
 "use client";
-import { useLocale, useTranslations } from "next-intl";
+import { path } from "ramda";
 
+import { TEMPLATES_TRANSLATIONS } from "@/lib/constants/templates";
 import { Locale, Locales } from "@/lib/constants/props/locales";
 import { languagesByLocale } from "@/utils/personalLanguages";
 
@@ -12,15 +13,20 @@ type Language = {
 };
 
 type LanguagesProps = {
+  templateLanguage: string;
   personalLanguages: {
     languages: Locale;
   };
 };
 
-const PersonalLanguages = ({ personalLanguages }: LanguagesProps) => {
-  const locale = useLocale();
-  const t = useTranslations("Template.personalLanguages");
-  const languages = languagesByLocale(personalLanguages, locale as Locales);
+const PersonalLanguages = ({
+  personalLanguages,
+  templateLanguage,
+}: LanguagesProps) => {
+  const languages = languagesByLocale(
+    personalLanguages,
+    templateLanguage as Locales
+  );
 
   return (
     <div className="personal-languages">
@@ -31,7 +37,10 @@ const PersonalLanguages = ({ personalLanguages }: LanguagesProps) => {
               {language}
             </Text>
             <Text className="personal-languages__text section__text">
-              {t(`level.${level}`)}
+              {path(
+                [templateLanguage, "personalLanguages", "level", level],
+                TEMPLATES_TRANSLATIONS
+              )}
             </Text>
           </li>
         ))}

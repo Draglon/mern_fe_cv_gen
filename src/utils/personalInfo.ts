@@ -1,6 +1,7 @@
 import { Locales, Locale } from "@/lib/constants/props/locales";
 
 type PersonalInfoProps = {
+  sectionTitle: Locale;
   userUrl: any,
   firstName: Locale,
   lastName: Locale,
@@ -13,6 +14,7 @@ type PersonalInfoProps = {
 };
 
 export const personalInfoByLocale = (personalInfo: PersonalInfoProps, locale: Locales) => ({
+  sectionTitle: personalInfo?.sectionTitle[locale as Locales] ? personalInfo.sectionTitle[locale as Locales] : "",
   userUrl: personalInfo?.userUrl ? [personalInfo.userUrl] : [],
   firstName: personalInfo?.firstName[locale as Locales] ? personalInfo.firstName[locale as Locales] : "",
   lastName: personalInfo?.lastName[locale as Locales] ? personalInfo.lastName[locale as Locales] : "",

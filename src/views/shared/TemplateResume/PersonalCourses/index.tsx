@@ -1,6 +1,4 @@
 "use client";
-import { useLocale } from "next-intl";
-
 import { Locale, Locales } from "@/lib/constants/props/locales";
 import { coursesByLocale } from "@/utils/personalCourses";
 import { Title, Text, Paragraph } from "@/views/shared/antd/Typography";
@@ -13,14 +11,17 @@ type Course = {
 };
 
 type PersonalCoursesProps = {
+  templateLanguage: string;
   personalCourses: {
     courses: Locale;
   };
 };
 
-const PersonalCourses = ({ personalCourses }: PersonalCoursesProps) => {
-  const locale = useLocale();
-  const courses = coursesByLocale(personalCourses, locale as Locales);
+const PersonalCourses = ({
+  personalCourses,
+  templateLanguage,
+}: PersonalCoursesProps) => {
+  const courses = coursesByLocale(personalCourses, templateLanguage as Locales);
 
   return (
     <>

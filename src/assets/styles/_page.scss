@@ -29,12 +29,18 @@
 
 .page__sidebar {
   background-color: v.$page-sidebar-bg-color;
-  flex: 0 0 v.$page-sidebar-width;
-  padding: v.$page-sidebar-padding;
+  &--left {
+    flex: 0 0 v.$page-sidebar-width;
+    padding: v.$page-sidebar-padding;
+  }
+  &--right {
+    flex: 0 0 v.$page-sidebar-right-width;
+    padding: v.$page-sidebar-padding;
+  }
 }
 
 .page__content {
-  flex: 0 0 calc(100% - v.$page-sidebar-width);
+  flex: 0 0 calc(100% - (v.$page-sidebar-width + v.$page-sidebar-right-width));
   padding: v.$page-content-padding;
   overflow-y: auto;
 }
@@ -49,7 +55,6 @@
   color: var(--text-color) !important;
   margin-top: 0;
   font-size: 24px !important;
-  text-align: left;
 }
 
 @media (min-width: 900) {

@@ -2,6 +2,6 @@ $aligns: left, right, center;
 
 @each $align in $aligns {
   .text-#{$align} {
-    text-align: $align;
+    text-align: $align !important;
   }
 }

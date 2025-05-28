@@ -21,7 +21,7 @@ const personalLanguages = {
           "preIntermediate": "Предварительно-средний (A2)",
           "intermediate": "Средний (B1)",
           "upperIntermediate": "Выше среднего (B2)",
-          "advanced": "Продвнутый (C1)",
+          "advanced": "Продвинутый (C1)",
           "proficiency": "Профессиональный (C2)"
         }
       },

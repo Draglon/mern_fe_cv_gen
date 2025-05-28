@@ -1,6 +1,5 @@
 "use client";
-import { useLocale, useTranslations } from "next-intl";
-import { equals } from "ramda";
+import { equals, path } from "ramda";
 import {
   HomeFilled,
   MailFilled,
@@ -10,14 +9,16 @@ import {
 } from "@ant-design/icons";
 
 import profileName from "@/utils/profileName";
-import { TEMPLATES } from "@/lib/constants/templates";
+import { TEMPLATES, TEMPLATES_TRANSLATIONS } from "@/lib/constants/templates";
 import { personalInfoProps } from "@/lib/constants/props/resume";
 import { Locales } from "@/lib/constants/props/locales";
 import { Text, Paragraph } from "@/views/shared/antd/Typography";
 
-const PersonalData = ({ personalInfo, template }: personalInfoProps) => {
-  const locale = useLocale();
-  const t = useTranslations("Template.personalData");
+const PersonalData = ({
+  personalInfo,
+  template,
+  templateLanguage,
+}: personalInfoProps) => {
   const { address, phoneNumber, email, birthday, linkedIn } = personalInfo;
 
   return (
@@ -25,75 +26,75 @@ const PersonalData = ({ personalInfo, template }: personalInfoProps) => {
       {equals(template, TEMPLATES.standford) && (
         <div className="personal-data__item">
           <Text className="personal-data__text" strong>
-            {t("name")}
+            {path([templateLanguage, "name"], TEMPLATES_TRANSLATIONS)}
           </Text>
           <Paragraph className="personal-data__paragraph">
-            {profileName(personalInfo, locale as Locales)}
+            {profileName(personalInfo, templateLanguage as Locales)}
           </Paragraph>
         </div>
       )}
-      {address && address[locale as Locales] && (
+      {address && address[templateLanguage as Locales] && (
         <div className="personal-data__item">
           {equals(template, TEMPLATES.edinburgh) && (
             <HomeFilled className="personal-data__icon" />
           )}
           <Text className="personal-data__text" strong>
-            {t("address")}
+            {path([templateLanguage, "address"], TEMPLATES_TRANSLATIONS)}
           </Text>
           <Paragraph className="personal-data__paragraph">
-            {address[locale as Locales]}
+            {address[templateLanguage as Locales]}
           </Paragraph>
         </div>
       )}
-      {phoneNumber && phoneNumber[locale as Locales] && (
+      {phoneNumber && phoneNumber[templateLanguage as Locales] && (
         <div className="personal-data__item">
           {equals(template, TEMPLATES.edinburgh) && (
             <PhoneFilled className="personal-data__icon" />
           )}
           <Text className="personal-data__text" strong>
-            {t("phoneNumber")}
+            {path([templateLanguage, "phoneNumber"], TEMPLATES_TRANSLATIONS)}
           </Text>
           <Paragraph className="personal-data__paragraph">
-            {phoneNumber[locale as Locales]}
+            {phoneNumber[templateLanguage as Locales]}
           </Paragraph>
         </div>
       )}
-      {email && email[locale as Locales] && (
+      {email && email[templateLanguage as Locales] && (
         <div className="personal-data__item">
           {equals(template, TEMPLATES.edinburgh) && (
             <MailFilled className="personal-data__icon" />
           )}
           <Text className="personal-data__text" strong>
-            {t("email")}
+            {path([templateLanguage, "email"], TEMPLATES_TRANSLATIONS)}
           </Text>
           <Paragraph className="personal-data__paragraph">
-            {email[locale as Locales]}
+            {email[templateLanguage as Locales]}
           </Paragraph>
         </div>
       )}
-      {birthday && birthday[locale as Locales] && (
+      {birthday && birthday[templateLanguage as Locales] && (
         <div className="personal-data__item">
           {equals(template, TEMPLATES.edinburgh) && (
             <CalendarFilled className="personal-data__icon" />
           )}
           <Text className="personal-data__text" strong>
-            {t("birthday")}
+            {path([templateLanguage, "birthday"], TEMPLATES_TRANSLATIONS)}
           </Text>
           <Paragraph className="personal-data__paragraph">
-            {birthday[locale as Locales]}
+            {birthday[templateLanguage as Locales]}
           </Paragraph>
         </div>
       )}
-      {linkedIn && linkedIn[locale as Locales] && (
+      {linkedIn && linkedIn[templateLanguage as Locales] && (
         <div className="personal-data__item">
           {equals(template, TEMPLATES.edinburgh) && (
             <LinkedinFilled className="personal-data__icon" />
           )}
           <Text className="personal-data__text" strong>
-            {t("linkedin")}
+            {path([templateLanguage, "linkedin"], TEMPLATES_TRANSLATIONS)}
           </Text>
           <Paragraph className="personal-data__paragraph">
-            {linkedIn[locale as Locales]}
+            {linkedIn[templateLanguage as Locales]}
           </Paragraph>
         </div>
       )}

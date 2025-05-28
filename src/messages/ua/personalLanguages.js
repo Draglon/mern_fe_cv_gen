@@ -18,7 +18,7 @@ const personalLanguages = {
         "levelOptions": {
           "native": "Рідний",
           "elementary": "Початковий (A1)",
-          "preIntermediate": "Нижче середнього рівня (A2)",
+          "preIntermediate": "Нижче середнього (A2)",
           "intermediate": "Середній (B1)",
           "upperIntermediate": "Вище середнього (B2)",
           "advanced": "Розширений (C1)",

@@ -2,6 +2,7 @@ import { Locale } from "@/lib/constants/props/locales";
 
 export type personalInfoProps = {
   template: string;
+  templateLanguage: string;
   personalInfo: {
     userUrl?: string;
     firstName: Locale;
@@ -16,6 +17,7 @@ export type personalInfoProps = {
 };
 
 export type personalFullNameProps = {
+  templateLanguage: string;
   personalFullName: {
     userUrl?: string;
     firstName: Locale;

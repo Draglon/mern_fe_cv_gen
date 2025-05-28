@@ -1,6 +1,4 @@
 "use client";
-import { useLocale } from "next-intl";
-
 import { Locale, Locales } from "@/lib/constants/props/locales";
 import { hobbiesByLocale } from "@/utils/personalHobbies";
 import { Text } from "@/views/shared/antd/Typography";
@@ -10,14 +8,17 @@ type HobbyProps = {
 };
 
 type HobbiesProps = {
+  templateLanguage: string;
   personalHobbies: {
     hobbies: Locale;
   };
 };
 
-const PersonalHobbies = ({ personalHobbies }: HobbiesProps) => {
-  const locale = useLocale();
-  const hobbies = hobbiesByLocale(personalHobbies, locale as Locales);
+const PersonalHobbies = ({
+  personalHobbies,
+  templateLanguage,
+}: HobbiesProps) => {
+  const hobbies = hobbiesByLocale(personalHobbies, templateLanguage as Locales);
 
   return (
     <div className="personal-interests">
