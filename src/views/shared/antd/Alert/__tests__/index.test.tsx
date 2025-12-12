@@ -7,7 +7,7 @@ import Alert from "../";
 describe("Alert", () => {
   describe("renders component", () => {
     const defaultProps = {
-      message: "Text message",
+      title: "Text message",
     };
 
     const renderComponent = (props = defaultProps) =>

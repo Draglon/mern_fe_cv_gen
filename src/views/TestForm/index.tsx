@@ -8,7 +8,7 @@ const TestForm = () => {
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data: any) => console.log(data);
 
   console.log(watch("example")); // watch input value by passing the name of it
   console.log("errors: ", errors);
