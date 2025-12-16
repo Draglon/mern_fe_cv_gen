@@ -22,7 +22,7 @@ const ThemeSwitcher = () => {
   };
 
   return (
-    <div className="theme ml-16">
+    <div className="theme">
       <Switch onChange={onChangeTheme} defaultChecked={isDarkTheme} />
     </div>
   );

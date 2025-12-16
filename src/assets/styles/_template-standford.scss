@@ -2,7 +2,7 @@
 
 .template--standford {
   h1, h2 {
-    color: v.$template-standford-container-header-color;
+    color: v.$template-standford-container-header-color !important;
   }
   h1 {
     font-size: 30pt;
@@ -54,14 +54,14 @@
         margin-bottom: v.$template-standford-sidebar-margin;
       }
       .section__title {
-        color: v.$template-standford-sidebar-title-color;
+        color: v.$template-standford-sidebar-title-color !important;
       }
     }
   }
 
   .template__container {
     background-color: v.$template-standford-container-bg;
-    color: v.$template-standford-container-color;
+    color: v.$template-standford-container-color !important;
     flex: 0 0 v.$template-standford-container-width;
     width: v.$template-standford-container-width;
     padding: v.$template-standford-container-padding;
@@ -70,6 +70,9 @@
       .section__header {
         border-color: v.$template-standford-container-border-color;
         margin-bottom: v.$template-standford-container-margin;
+      }
+      .section__label, .section__text {
+        color: v.$template-standford-container-text-color !important;
       }
     }
   }
@@ -98,7 +101,7 @@
       margin-bottom: 2.5mm;
     }
     &__text, &__paragraph {
-      color: v.$template-standford-sidebar-text-color;
+      color: v.$template-standford-sidebar-text-color !important;
       font-size: 10.5pt;
       margin-bottom: 0 !important;
     }
@@ -114,7 +117,7 @@
       font-weight: 500;
     }
     &__text {
-      color: v.$template-standford-sidebar-text-color;
+      color: v.$template-standford-sidebar-text-color !important;
       font-size: 10.5pt;
     }
   }
@@ -128,7 +131,7 @@
       margin-bottom: 1mm;
     }
     &__text {
-      color: v.$template-standford-sidebar-text-color;
+      color: v.$template-standford-sidebar-text-color !important;
       font-size: 10.5pt;
       white-space: nowrap;
       &:last-child {
@@ -181,11 +184,17 @@
     }
 
     &__company {
+      &-label {
+        color: v.$template-standford-container-text-color !important;
+      }
       font-size: 10.5pt;
       margin: 0 !important;
     }
 
     &__place {
+      &-label {
+        color: v.$template-standford-container-text-color !important;
+      }
       font-size: 10.5pt;
       margin: 0 !important;
     }
@@ -201,6 +210,7 @@
     justify-content: baseline;
     align-items: start;
     &__label {
+      color: v.$template-standford-container-text-color !important;
       font-size: 10.5pt;
       white-space: nowrap;
     }
@@ -236,9 +246,9 @@
       margin-bottom: 2mm;
     }
 
-    // &__label {
-    //   width: 50%;
-    // }
+    &__label {
+      color: v.$template-standford-container-text-color !important;
+    }
 
     // &__progress {
     //   background-color: var(--white);
@@ -262,9 +272,9 @@
       margin-bottom: 2mm;
     }
 
-    // &__label {
-    //   width: 50%;
-    // }
+    &__label {
+      color: v.$template-standford-container-text-color !important;
+    }
 
     // &__progress {
     //   background-color: var(--white);

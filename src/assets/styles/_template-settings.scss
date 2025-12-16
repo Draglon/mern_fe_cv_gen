@@ -1,0 +1,22 @@
+.template-settings {
+  &__title, &__text {
+    color: var(--text-color) !important;
+  }
+}
+
+.template-settings__section {
+  &-title {
+    color: var(--text-color) !important;
+  }
+}
+
+.template-settings__section-item {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+
+  &--active {
+    font-weight: bold;
+  }
+}

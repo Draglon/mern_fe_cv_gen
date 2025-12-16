@@ -1,6 +1,11 @@
 "use client";
+import Image from "next/image";
 import clsx from "clsx";
 import { Dispatch, SetStateAction } from "react";
+import { useTranslations } from "next-intl";
+
+import { LOCALES, FLAGS } from "@/lib/constants/locales";
+import { Title, Text } from "@/views/shared/antd/Typography";
 
 type ResumeTemplateCustomizationProps = {
   activeTemplateLanguage: string;
@@ -11,32 +16,40 @@ const ResumeTemplateCustomization = ({
   activeTemplateLanguage,
   setTemplateLanguage,
 }: ResumeTemplateCustomizationProps) => {
+  const t = useTranslations("LocaleSwitcher");
+
   return (
-    <section className="">
-      <section className="">
-        <h3 className="title">Language</h3>
-        <ul className="">
-          <li
-            className={clsx({ active: activeTemplateLanguage === "en" })}
-            onClick={() => setTemplateLanguage("en")}
-            role="button"
-          >
-            English
-          </li>
-          <li
-            className={clsx({ active: activeTemplateLanguage === "ru" })}
-            onClick={() => setTemplateLanguage("ru")}
-            role="button"
-          >
-            Russian
-          </li>
-          <li
-            className={clsx({ active: activeTemplateLanguage === "ua" })}
-            onClick={() => setTemplateLanguage("ua")}
-            role="button"
-          >
-            Ukrainian
-          </li>
+    <section className="template-settings">
+      <Title className="template-settings__title" level={2}>
+        Resume setting
+      </Title>
+      <section className="template-settings__section">
+        <Title className="template-settings__section-title" level={3}>
+          Language
+        </Title>
+        <ul className="template-settings__section-list">
+          {LOCALES.map((locale) => (
+            <li
+              key={locale}
+              className={clsx("template-settings__section-item", {
+                "template-settings__section-item--active":
+                  activeTemplateLanguage === locale,
+              })}
+              onClick={() => setTemplateLanguage(locale)}
+              role="button"
+            >
+              <Image
+                className="mr-8"
+                src={FLAGS[locale]}
+                alt={locale}
+                width="24"
+                height="16"
+              />
+              <Text className="template-settings__text">
+                {t("locale", { locale })}
+              </Text>
+            </li>
+          ))}
         </ul>
       </section>
     </section>

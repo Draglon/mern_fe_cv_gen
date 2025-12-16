@@ -37,3 +37,11 @@ $wraps: row, row-reverse, column, column-reverse;
     flex-wrap: $wrap;
   }
 }
+
+$sizes: 0, 2, 4, 6, 8, 10, 12, 14, 16;
+
+@each $size in $sizes {
+  .gap-#{$size} {
+    gap: $size + px;
+  }
+}

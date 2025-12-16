@@ -42,7 +42,7 @@
         margin-bottom: v.$template-edinburgh-sidebar-margin;
       }
       .section__title {
-        color: v.$template-edinburgh-sidebar-title-color;
+        color: v.$template-edinburgh-sidebar-title-color !important;
         letter-spacing: 1px;
       }
     }
@@ -50,7 +50,7 @@
 
   .template__container {
     background-color: v.$template-edinburgh-container-bg;
-    color: v.$template-edinburgh-container-color;
+    color: v.$template-edinburgh-container-color !important;
     flex: 0 0 v.$template-edinburgh-container-width;
     padding: v.$template-edinburgh-container-padding;
     .section {
@@ -66,9 +66,12 @@
         margin-bottom: 2mm;
       }
       .section__title {
-        color: v.$template-edinburgh-container-header-color;
+        color: v.$template-edinburgh-container-header-color !important;
         font-size: 16pt;
         letter-spacing: 1px;
+      }
+      .section__label, .section__text {
+        color: v.$template-edinburgh-container-text-color !important;
       }
     }
   }
@@ -88,7 +91,7 @@
     }
 
     &__title {
-      color: v.$personal-edinburgh-fullName-color;
+      color: v.$personal-edinburgh-fullName-color !important;
       letter-spacing: 1px;
       text-align: center;
       text-transform: uppercase !important;
@@ -126,11 +129,11 @@
       position: absolute;
       top: 1mm;
       left: -5mm;
-      color: v.$template-edinburgh-sidebar-icon-color;
+      color: v.$template-edinburgh-sidebar-icon-color !important;
       font-size: 10pt;
     }
     &__text, &__paragraph {
-      color: v.$template-edinburgh-sidebar-text-color;
+      color: v.$template-edinburgh-sidebar-text-color !important;
       font-size: 9pt;
       margin-bottom: 0 !important;
     }
@@ -146,7 +149,7 @@
       margin-bottom: 1mm;
     }
     &__text {
-      color: v.$template-edinburgh-sidebar-text-color;
+      color: v.$template-edinburgh-sidebar-text-color !important;
       font-size: 9pt;
     }
   }
@@ -160,7 +163,7 @@
       margin-bottom: 1mm;
     }
     &__text {
-      color: v.$template-edinburgh-sidebar-text-color;
+      color: v.$template-edinburgh-sidebar-text-color !important;
       font-size: 9pt;
       white-space: nowrap;
       &:last-child {
@@ -219,12 +222,15 @@
 
       span {
         &:first-child {
-          color: v.$template-edinburgh-container-header-color;
+          color: v.$template-edinburgh-container-header-color !important;
         }
       }
     }
 
     &__place {
+      &-label {
+        color: v.$template-edinburgh-container-text-color !important;
+      }
       font-size: 8pt;
       margin: 0 !important;
     }
@@ -240,6 +246,7 @@
     justify-content: baseline;
     align-items: start;
     &__label {
+      color: v.$template-edinburgh-container-hint-color !important;
       font-size: 10pt;
       white-space: nowrap;
     }
@@ -277,9 +284,9 @@
       margin-bottom: 1mm;
     }
 
-    // &__label {
-    //   width: 50%;
-    // }
+    &__label {
+      color: v.$template-edinburgh-container-text-color !important;
+    }
 
     // &__progress {
     //   background-color: var(--white);
@@ -303,9 +310,9 @@
       margin-bottom: 1mm;
     }
 
-    // &__label {
-    //   width: 50%;
-    // }
+    &__label {
+      color: v.$template-edinburgh-container-text-color !important;
+    }
 
     // &__progress {
     //   background-color: var(--white);

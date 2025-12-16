@@ -1,10 +1,14 @@
 "use client";
-import { routing } from "@/i18n/routing";
-import { useRouter, usePathname } from "@/i18n/navigation";
+import Image from "next/image";
 import { useTransition } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { Select } from "antd";
 import { useParams } from "next/navigation";
+import { Select } from "antd";
+
+import { FLAGS } from "@/lib/constants/locales";
+import { routing } from "@/i18n/routing";
+import { useRouter, usePathname } from "@/i18n/navigation";
+import { Text } from "@/views/shared/antd/Typography";
 
 const LocaleSwitcherSelect = () => {
   const t = useTranslations("LocaleSwitcher");
@@ -32,8 +36,23 @@ const LocaleSwitcherSelect = () => {
       onChange={onChangeLocation}
     >
       {routing.locales.map((cur: string) => (
-        <Select.Option key={cur} value={cur}>
-          {t("locale", { locale: cur })}
+        <Select.Option
+          key={cur}
+          value={cur}
+          className="locale-switcher__option"
+        >
+          <div className="locale-switcher__option-wrapper">
+            <Image
+              className="locale-switcher__flag"
+              src={FLAGS[cur]}
+              alt={cur}
+              width="24"
+              height="16"
+            />
+            <Text className="locale-switcher__text">
+              {t("locale", { locale: cur })}
+            </Text>
+          </div>
         </Select.Option>
       ))}
     </Select>

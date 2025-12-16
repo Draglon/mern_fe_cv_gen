@@ -29,23 +29,31 @@
   --button-primary-bg-color-hover: var(--primary-color-hover);
   --button-primary-bg-color-disabled: var(--primary-color-disabled);
   --input-error: var(--red);
+  --locale-switcher-bg-color: var(--white);
+  --locale-switcher-bg-color-hover: var(--white_0);
+  --locale-switcher-bg-color-active: var(--white_25);
+  --locale-switcher-color: var(--black);
 }
 
 .dark {
   --background: var(--black-bg);
-  --text-color: var(--black);
+  --text-color: var(--white);
   --link-color: var(--blue);
   --link-color-active: var(--white);
   --header-bg-color: var(--black-light);
   --button-primary-bg-color: var(--primary-color);
   --button-primary-bg-color-hover: var(--primary-color-hover);
+  --locale-switcher-bg-color: var(--white);
+  --locale-switcher-bg-color-hover: var(--white_0);
+  --locale-switcher-bg-color-active: var(--white_25);
+  --locale-switcher-color: var(--black);
 }
 
 // Page
 $page-height: 100vh;
 $page-header-height: 68px;
 $page-sidebar-width: 200px;
-$page-sidebar-right-width: 200px;
+$page-sidebar-right-width: 280px;
 $page-sidebar-bg-color: var(--grey);
 $page-sidebar-padding: 20px 16px;
 $page-content-padding: 20px 16px;
@@ -69,6 +77,7 @@ $template-standford-sidebar-width: 60mm;
 $template-standford-container-bg: var(--white);
 $template-standford-container-color: var(--grey);
 $template-standford-container-header-color: var(--grey-dark);
+$template-standford-container-text-color: var(--black);
 $template-standford-container-border-color: var(--grey-light);
 $template-standford-container-period-color: var(--grey-light);
 $template-standford-container-hint-color: var(--grey-light);
@@ -94,6 +103,7 @@ $template-edinburgh-sidebar-width: 80mm;
 $template-edinburgh-container-bg: var(--white);
 $template-edinburgh-container-color: var(--grey);
 $template-edinburgh-container-header-color: var(--blue);
+$template-edinburgh-container-text-color: var(--black);
 $template-edinburgh-container-border-color: var(--grey-light);
 $template-edinburgh-container-period-color: var(--grey-light);
 $template-edinburgh-container-hint-color: var(--grey-light);

@@ -1,0 +1,48 @@
+.locale-switcher {
+  background-color: var(--locale-switcher-bg-color);
+  font-size: 1em;
+  font-weight: bold;
+  padding: .5em .3em;
+  height: 2em;
+
+  .ant-select-suffix {
+    color: var(--locale-switcher-color) !important;
+  }
+
+  &__option {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  &__option-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: .5em;
+  }
+
+  &__flag {
+    display: inline-block;
+    width: 1.5em;
+    margin-right: .5em;
+  }
+
+  &__text {
+    color: var(--locale-switcher-color) !important;
+  }
+}
+
+.ant-select-dropdown {
+  background-color: var(--locale-switcher-bg-color) !important;
+  border: 1px solid var(--locale-switcher-color);
+
+  .locale-switcher__option {
+    background-color: var(--locale-switcher-bg-color-hover) !important;
+    transition: background-color 0.5s;
+
+    &.ant-select-item-option-active {
+     background-color: var(--locale-switcher-bg-color-active) !important;
+    }
+  }
+}
+

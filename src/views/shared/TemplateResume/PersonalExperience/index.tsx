@@ -50,13 +50,15 @@ const PersonalExperience = ({
               </Paragraph>
             </div>
             <Paragraph className="experience__company">
-              <Text strong>{item.companyName}</Text>
-              <Text> · </Text>
+              <Text className="experience__company-label" strong>
+                {item.companyName}
+              </Text>
+              <Text type="secondary"> · </Text>
               <Text type="secondary">{item.workingTime}</Text>
             </Paragraph>
             <Paragraph className="experience__place" italic>
-              <Text>{item.location}</Text>
-              <Text> · </Text>
+              <Text className="experience__place-label">{item.location}</Text>
+              <Text type="secondary"> · </Text>
               <Text type="secondary">{item.placeOfWork}</Text>
             </Paragraph>
           </header>

@@ -21,3 +21,6 @@
 @use 'template-standford';
 @use 'template-edinburgh';
 @use 'templates';
+
+@use 'locale-switcher';
+@use 'template-settings';
