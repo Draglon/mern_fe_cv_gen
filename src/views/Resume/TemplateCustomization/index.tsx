@@ -16,16 +16,16 @@ const ResumeTemplateCustomization = ({
   activeTemplateLanguage,
   setTemplateLanguage,
 }: ResumeTemplateCustomizationProps) => {
-  const t = useTranslations("LocaleSwitcher");
+  const t = useTranslations("ResumeCustomization");
 
   return (
     <section className="template-settings">
       <Title className="template-settings__title" level={2}>
-        Resume setting
+        {t("title")}
       </Title>
       <section className="template-settings__section">
         <Title className="template-settings__section-title" level={3}>
-          Language
+          {t("locale.title")}
         </Title>
         <ul className="template-settings__section-list">
           {LOCALES.map((locale) => (
@@ -46,7 +46,7 @@ const ResumeTemplateCustomization = ({
                 height="16"
               />
               <Text className="template-settings__text">
-                {t("locale", { locale })}
+                {t("locale.label", { locale })}
               </Text>
             </li>
           ))}

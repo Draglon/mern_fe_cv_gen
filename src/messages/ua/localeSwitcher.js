@@ -1,7 +1,7 @@
 const localeSwitcher = {
   "LocaleSwitcher": {
     "label": "Вибрати мову",
-    "locale": "{locale, select, ru {Російська} ua {Українська} en {Англійська} other {Unknown}}"
+    "locale": "{locale, select, ru {RU} ua {UK} en {EN} other {Невідомо}}"
   },
 };
 

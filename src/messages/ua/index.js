@@ -6,6 +6,7 @@ import settings from "./settings";
 import resume from "./resume";
 import resumeCreate from "./resumeCreate";
 import resumeEdit from "./resumeEdit";
+import resumeCustomization from "./resumeCustomization";
 import personalInfo from "./personalInfo";
 import personalHobbies from "./personalHobbies";
 import personalLanguages from "./personalLanguages";
@@ -29,6 +30,7 @@ export default {
   ...resume,
   ...resumeCreate,
   ...resumeEdit,
+  ...resumeCustomization,
   ...personalInfo,
   ...personalHobbies,
   ...personalLanguages,
