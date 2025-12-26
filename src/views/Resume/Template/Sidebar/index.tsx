@@ -1,18 +1,14 @@
 "use client";
-import { useEffect } from "react";
-import { equals, pathOr, path } from "ramda";
+import { useTranslations } from "next-intl";
+import { equals } from "ramda";
 
-import { TEMPLATES, TEMPLATES_TRANSLATIONS } from "@/lib/constants/templates";
+import { TEMPLATES } from "@/lib/constants/templates";
 import { personalInfoProps } from "@/lib/constants/props/resume";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import fetchPersonalHobbies from "@/store/personalHobbies/operations/fetchPersonalHobbies";
-import fetchPersonalLanguages from "@/store/personalLanguages/operations/fetchPersonalLanguages";
+import { useAppSelector } from "@/store/hooks";
 import {
   personalHobbiesIdSelector,
   personalLanguagesIdSelector,
 } from "@/store/auth/selectors";
-import { personalHobbiesSelector } from "@/store/personalHobbies/selectors";
-import { personalLanguagesSelector } from "@/store/personalLanguages/selectors";
 
 import Section from "@/views/shared/TemplateResume/Section";
 import PersonalFullName from "@/views/shared/TemplateResume/PersonalFullName";
@@ -26,20 +22,9 @@ const ResumeTemplateSidebar = ({
   template,
   templateLanguage,
 }: personalInfoProps) => {
-  const dispatch = useAppDispatch();
+  const t = useTranslations("Template");
   const personalHobbiesId = useAppSelector(personalHobbiesIdSelector);
-  const personalHobbiesData = useAppSelector(personalHobbiesSelector);
   const personalLanguagesId = useAppSelector(personalLanguagesIdSelector);
-  const personalLanguagesData = useAppSelector(personalLanguagesSelector);
-
-  useEffect(() => {
-    if (personalHobbiesId) {
-      dispatch(fetchPersonalHobbies({ id: personalHobbiesId }));
-    }
-    if (personalLanguagesId) {
-      dispatch(fetchPersonalLanguages({ id: personalLanguagesId }));
-    }
-  }, [dispatch, personalHobbiesId, personalLanguagesId]);
 
   return (
     <div className="template__sidebar">
@@ -56,10 +41,7 @@ const ResumeTemplateSidebar = ({
         <Section>
           <PersonalPhoto
             src={personalInfo.userUrl}
-            alt={path(
-              [templateLanguage, "personalPhoto", "alt"],
-              TEMPLATES_TRANSLATIONS
-            )}
+            alt={t("personalPhoto.alt", { locale: templateLanguage })}
             width={170}
             height={170}
           />
@@ -68,14 +50,7 @@ const ResumeTemplateSidebar = ({
 
       {personalInfo && (
         <Section
-          title={pathOr(
-            path(
-              [templateLanguage, "personalData", "title"],
-              TEMPLATES_TRANSLATIONS
-            ),
-            ["sectionTitle", templateLanguage],
-            personalInfo
-          )}
+          title={t("personalData.title", { locale: templateLanguage })}
           size="small"
         >
           <PersonalData
@@ -86,39 +61,25 @@ const ResumeTemplateSidebar = ({
         </Section>
       )}
 
-      {personalHobbiesData && (
+      {personalHobbiesId && (
         <Section
-          title={pathOr(
-            path(
-              [templateLanguage, "personalHobbies", "title"],
-              TEMPLATES_TRANSLATIONS
-            ),
-            ["sectionTitle", templateLanguage],
-            personalHobbiesData
-          )}
+          title={t("personalHobbies.title", { locale: templateLanguage })}
           size="small"
         >
           <PersonalHobbies
-            personalHobbies={personalHobbiesData}
+            personalHobbiesId={personalHobbiesId}
             templateLanguage={templateLanguage}
           />
         </Section>
       )}
 
-      {personalLanguagesData && (
+      {personalLanguagesId && (
         <Section
-          title={pathOr(
-            path(
-              [templateLanguage, "personalLanguages", "title"],
-              TEMPLATES_TRANSLATIONS
-            ),
-            ["sectionTitle", templateLanguage],
-            personalLanguagesData
-          )}
+          title={t("personalHobbies.title", { locale: templateLanguage })}
           size="small"
         >
           <PersonalLanguages
-            personalLanguages={personalLanguagesData}
+            personalLanguagesId={personalLanguagesId}
             templateLanguage={templateLanguage}
           />
         </Section>

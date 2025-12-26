@@ -34,7 +34,9 @@ type FieldType = {
   address: string;
   phoneNumber: string;
   birthday: string;
-  linkedIn: string;
+  linkedIn?: string;
+  telegram?: string;
+  portfolio?: string;
 };
 
 const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
@@ -233,6 +235,26 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
             control={control}
             label={t("form.linkedIn.label")}
             placeholder={t("form.linkedIn.placeholder")}
+            Field={InputField}
+            size="large"
+          />
+          <FormItem
+            className="form__item--field"
+            name="telegram"
+            controlName="telegram"
+            control={control}
+            label={t("form.telegram.label")}
+            placeholder={t("form.telegram.placeholder")}
+            Field={InputField}
+            size="large"
+          />
+          <FormItem
+            className="form__item--field"
+            name="portfolio"
+            controlName="portfolio"
+            control={control}
+            label={t("form.portfolio.label")}
+            placeholder={t("form.portfolio.placeholder")}
             Field={InputField}
             size="large"
           />

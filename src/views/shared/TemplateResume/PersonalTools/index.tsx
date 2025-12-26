@@ -1,14 +1,17 @@
 "use client";
-import { Locale, Locales } from "@/lib/constants/props/locales";
+import { useEffect } from "react";
+
+import { Locales } from "@/lib/constants/props/locales";
 import { toolsByLocale } from "@/utils/personalTools";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import fetchPersonalTools from "@/store/personalTools/operations/fetchPersonalTools";
+import { personalToolsSelector } from "@/store/personalTools/selectors";
 
 import { Text } from "@/views/shared/antd/Typography";
 
 type PersonalToolsProps = {
   templateLanguage: string;
-  personalTools: {
-    tools: Locale;
-  };
+  personalToolsId: string;
 };
 
 type ToolItemProps = {
@@ -18,10 +21,16 @@ type ToolItemProps = {
 };
 
 const PersonalTools = ({
-  personalTools,
+  personalToolsId,
   templateLanguage,
 }: PersonalToolsProps) => {
+  const dispatch = useAppDispatch();
+  const personalTools = useAppSelector(personalToolsSelector);
   const tools = toolsByLocale(personalTools, templateLanguage as Locales);
+
+  useEffect(() => {
+    dispatch(fetchPersonalTools({ id: personalToolsId }));
+  }, [dispatch, personalToolsId]);
 
   return (
     <div className="personal-tools">

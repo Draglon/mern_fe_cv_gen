@@ -1,4 +1,5 @@
 "use client";
+import { useTranslations } from "next-intl";
 import { equals, path } from "ramda";
 import {
   HomeFilled,
@@ -9,7 +10,7 @@ import {
 } from "@ant-design/icons";
 
 import profileName from "@/utils/profileName";
-import { TEMPLATES, TEMPLATES_TRANSLATIONS } from "@/lib/constants/templates";
+import { TEMPLATES } from "@/lib/constants/templates";
 import { personalInfoProps } from "@/lib/constants/props/resume";
 import { Locales } from "@/lib/constants/props/locales";
 import { Text, Paragraph } from "@/views/shared/antd/Typography";
@@ -19,6 +20,7 @@ const PersonalData = ({
   template,
   templateLanguage,
 }: personalInfoProps) => {
+  const t = useTranslations("Template");
   const { address, phoneNumber, email, birthday, linkedIn } = personalInfo;
 
   return (
@@ -26,7 +28,7 @@ const PersonalData = ({
       {equals(template, TEMPLATES.standford) && (
         <div className="personal-data__item">
           <Text className="personal-data__text" strong>
-            {path([templateLanguage, "name"], TEMPLATES_TRANSLATIONS)}
+            {t("name", { locale: templateLanguage })}
           </Text>
           <Paragraph className="personal-data__paragraph">
             {profileName(personalInfo, templateLanguage as Locales)}
@@ -39,7 +41,7 @@ const PersonalData = ({
             <HomeFilled className="personal-data__icon" />
           )}
           <Text className="personal-data__text" strong>
-            {path([templateLanguage, "address"], TEMPLATES_TRANSLATIONS)}
+            {t("personalData.address", { locale: templateLanguage })}
           </Text>
           <Paragraph className="personal-data__paragraph">
             {address[templateLanguage as Locales]}
@@ -52,7 +54,7 @@ const PersonalData = ({
             <PhoneFilled className="personal-data__icon" />
           )}
           <Text className="personal-data__text" strong>
-            {path([templateLanguage, "phoneNumber"], TEMPLATES_TRANSLATIONS)}
+            {t("personalData.phoneNumber", { locale: templateLanguage })}
           </Text>
           <Paragraph className="personal-data__paragraph">
             {phoneNumber[templateLanguage as Locales]}
@@ -65,7 +67,7 @@ const PersonalData = ({
             <MailFilled className="personal-data__icon" />
           )}
           <Text className="personal-data__text" strong>
-            {path([templateLanguage, "email"], TEMPLATES_TRANSLATIONS)}
+            {t("personalData.email", { locale: templateLanguage })}
           </Text>
           <Paragraph className="personal-data__paragraph">
             {email[templateLanguage as Locales]}
@@ -78,7 +80,7 @@ const PersonalData = ({
             <CalendarFilled className="personal-data__icon" />
           )}
           <Text className="personal-data__text" strong>
-            {path([templateLanguage, "birthday"], TEMPLATES_TRANSLATIONS)}
+            {t("personalData.birthday", { locale: templateLanguage })}
           </Text>
           <Paragraph className="personal-data__paragraph">
             {birthday[templateLanguage as Locales]}
@@ -91,7 +93,7 @@ const PersonalData = ({
             <LinkedinFilled className="personal-data__icon" />
           )}
           <Text className="personal-data__text" strong>
-            {path([templateLanguage, "linkedin"], TEMPLATES_TRANSLATIONS)}
+            {t("personalData.linkedIn", { locale: templateLanguage })}
           </Text>
           <Paragraph className="personal-data__paragraph">
             {linkedIn[templateLanguage as Locales]}

@@ -57,7 +57,15 @@ const personalInfo = {
       },
       "linkedIn": {
         "label": "LinkedIn",
-        "placeholder": "Пожалуйста, введите ваш linkedin"
+        "placeholder": "Пожалуйста, введите ваш профиль в linkedIn"
+      },
+      "telegram": {
+        "label": "Telegram",
+        "placeholder": "Пожалуйста, введите ваш telegram идентификатор"
+      },
+      "portfolio": {
+        "label": "Портфолио",
+        "placeholder": "Пожалуйста, введите ваш адрес портфолио"
       },
     },
   },

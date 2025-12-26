@@ -20,11 +20,11 @@ const ResumeTemplateCustomization = ({
 
   return (
     <section className="template-settings">
-      <Title className="template-settings__title" level={2}>
+      <Title className="template-settings__title" level={3}>
         {t("title")}
       </Title>
       <section className="template-settings__section">
-        <Title className="template-settings__section-title" level={3}>
+        <Title className="template-settings__section-title" level={4}>
           {t("locale.title")}
         </Title>
         <ul className="template-settings__section-list">

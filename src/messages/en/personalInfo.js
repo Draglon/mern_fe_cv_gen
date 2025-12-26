@@ -65,6 +65,14 @@ const personalInfo = {
         "label": "LinkedIn",
         "placeholder": "Input linkedin"
       },
+      "telegram": {
+        "label": "Telegram",
+        "placeholder": "Input telegram"
+      },
+      "portfolio": {
+        "label": "Portfolio",
+        "placeholder": "Input portfolio"
+      },
     },
   },
 };

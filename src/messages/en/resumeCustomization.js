@@ -1,6 +1,6 @@
 const resumeCreate = {
   "ResumeCustomization": {
-    "title": "Налаштування резюме",
+    "title": "Customizing resume",
     "locale": {
       "title": "Language",
       "label": "{locale, select, ru {Russian} ua {Ukrainian} en {English} other {Unknown}}"

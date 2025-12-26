@@ -1,6 +1,12 @@
 "use client";
-import { Locale, Locales } from "@/lib/constants/props/locales";
+import { useEffect } from "react";
+
+import { Locales } from "@/lib/constants/props/locales";
 import { coursesByLocale } from "@/utils/personalCourses";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import fetchPersonalCourses from "@/store/personalCourses/operations/fetchPersonalCourses";
+import { personalCoursesSelector } from "@/store/personalCourses/selectors";
+
 import { Title, Text, Paragraph } from "@/views/shared/antd/Typography";
 
 type Course = {
@@ -12,16 +18,20 @@ type Course = {
 
 type PersonalCoursesProps = {
   templateLanguage: string;
-  personalCourses: {
-    courses: Locale;
-  };
+  personalCoursesId: string;
 };
 
 const PersonalCourses = ({
-  personalCourses,
+  personalCoursesId,
   templateLanguage,
 }: PersonalCoursesProps) => {
+  const dispatch = useAppDispatch();
+  const personalCourses = useAppSelector(personalCoursesSelector);
   const courses = coursesByLocale(personalCourses, templateLanguage as Locales);
+
+  useEffect(() => {
+    dispatch(fetchPersonalCourses({ id: personalCoursesId }));
+  }, [dispatch, personalCoursesId]);
 
   return (
     <>

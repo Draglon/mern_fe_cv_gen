@@ -1,10 +1,14 @@
 "use client";
-import { isEmpty, path } from "ramda";
+import { useEffect } from "react";
+import { useTranslations } from "next-intl";
+import { isEmpty } from "ramda";
 
-import { TEMPLATES_TRANSLATIONS } from "@/lib/constants/templates";
+import { Locales } from "@/lib/constants/props/locales";
 import splitText from "@/utils/splitText";
-import { Locale, Locales } from "@/lib/constants/props/locales";
 import { experienceByLocale } from "@/utils/personalExperience";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import fetchPersonalExperience from "@/store/personalExperience/operations/fetchPersonalExperience";
+import { personalExperienceSelector } from "@/store/personalExperience/selectors";
 
 import { Title, Text, Paragraph } from "@/views/shared/antd/Typography";
 
@@ -22,19 +26,24 @@ type Experience = {
 
 type ExperiencesProps = {
   templateLanguage: string;
-  personalExperience: {
-    experience: Locale;
-  };
+  personalExperienceId: string;
 };
 
 const PersonalExperience = ({
-  personalExperience,
+  personalExperienceId,
   templateLanguage,
 }: ExperiencesProps) => {
+  const t = useTranslations("Template");
+  const dispatch = useAppDispatch();
+  const personalExperience = useAppSelector(personalExperienceSelector);
   const experience = experienceByLocale(
     personalExperience,
     templateLanguage as Locales
   );
+
+  useEffect(() => {
+    dispatch(fetchPersonalExperience({ id: personalExperienceId }));
+  }, [dispatch, personalExperienceId]);
 
   return (
     <div className="experience">
@@ -73,7 +82,7 @@ const PersonalExperience = ({
           {!isEmpty(item?.skills) && (
             <div className="skills">
               <Text className="skills__label" strong>
-                {path([templateLanguage, "skills"], TEMPLATES_TRANSLATIONS)}
+                {t("skills", { locale: templateLanguage })}
               </Text>
               <ul className="skills__list">
                 {item.skills.map((skill: string) => (

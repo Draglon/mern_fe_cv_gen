@@ -1,9 +1,12 @@
 "use client";
-import { path } from "ramda";
+import { useEffect } from "react";
+import { useTranslations } from "next-intl";
 
-import { TEMPLATES_TRANSLATIONS } from "@/lib/constants/templates";
-import { Locale, Locales } from "@/lib/constants/props/locales";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { Locales } from "@/lib/constants/props/locales";
 import { languagesByLocale } from "@/utils/personalLanguages";
+import fetchPersonalLanguages from "@/store/personalLanguages/operations/fetchPersonalLanguages";
+import { personalLanguagesSelector } from "@/store/personalLanguages/selectors";
 
 import { Text } from "@/views/shared/antd/Typography";
 
@@ -14,19 +17,24 @@ type Language = {
 
 type LanguagesProps = {
   templateLanguage: string;
-  personalLanguages: {
-    languages: Locale;
-  };
+  personalLanguagesId: string;
 };
 
 const PersonalLanguages = ({
-  personalLanguages,
+  personalLanguagesId,
   templateLanguage,
 }: LanguagesProps) => {
+  const t = useTranslations("Template");
+  const dispatch = useAppDispatch();
+  const personalLanguages = useAppSelector(personalLanguagesSelector);
   const languages = languagesByLocale(
     personalLanguages,
     templateLanguage as Locales
   );
+
+  useEffect(() => {
+    dispatch(fetchPersonalLanguages({ id: personalLanguagesId }));
+  }, [dispatch, personalLanguagesId]);
 
   return (
     <div className="personal-languages">
@@ -37,10 +45,9 @@ const PersonalLanguages = ({
               {language}
             </Text>
             <Text className="personal-languages__text section__text">
-              {path(
-                [templateLanguage, "personalLanguages", "level", level],
-                TEMPLATES_TRANSLATIONS
-              )}
+              {t(`personalLanguages.level.${level}`, {
+                locale: templateLanguage,
+              })}
             </Text>
           </li>
         ))}

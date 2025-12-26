@@ -1,16 +1,18 @@
 "use client";
-import { path } from "ramda";
+import { useEffect } from "react";
+import { useTranslations } from "next-intl";
 
-import { TEMPLATES_TRANSLATIONS } from "@/lib/constants/templates";
-import { Locale, Locales } from "@/lib/constants/props/locales";
+import { Locales } from "@/lib/constants/props/locales";
 import { educationByLocale } from "@/utils/personalEducation";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import fetchPersonalEducation from "@/store/personalEducation/operations/fetchPersonalEducation";
+import { personalEducationSelector } from "@/store/personalEducation/selectors";
+
 import { Title, Text, Paragraph } from "@/views/shared/antd/Typography";
 
 type PersonalEducationProps = {
   templateLanguage: string;
-  personalEducation: {
-    education: Locale;
-  };
+  personalEducationId: string;
 };
 
 type EducationProps = {
@@ -23,13 +25,20 @@ type EducationProps = {
 };
 
 const PersonalEducation = ({
-  personalEducation,
+  personalEducationId,
   templateLanguage,
 }: PersonalEducationProps) => {
+  const t = useTranslations("Template");
+  const dispatch = useAppDispatch();
+  const personalEducation = useAppSelector(personalEducationSelector);
   const education = educationByLocale(
     personalEducation,
     templateLanguage as Locales
   );
+
+  useEffect(() => {
+    dispatch(fetchPersonalEducation({ id: personalEducationId }));
+  }, [dispatch, personalEducationId]);
 
   return (
     <>
@@ -50,13 +59,13 @@ const PersonalEducation = ({
           </Paragraph>
           <Paragraph className="section__paragraph">
             <Text className="section__text" strong>
-              {path([templateLanguage, "faculty"], TEMPLATES_TRANSLATIONS)}
+              {t("faculty", { locale: templateLanguage })}
             </Text>
             <Text className="section__text">{item.faculty}</Text>
           </Paragraph>
           <Paragraph className="section__paragraph">
             <Text className="section__text" strong>
-              {path([templateLanguage, "specialty"], TEMPLATES_TRANSLATIONS)}
+              {t("specialty", { locale: templateLanguage })}
             </Text>
             <Text className="section__text">{item.specialization}</Text>
           </Paragraph>
