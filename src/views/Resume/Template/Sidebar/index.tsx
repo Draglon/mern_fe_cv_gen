@@ -8,6 +8,8 @@ import { useAppSelector } from "@/store/hooks";
 import {
   personalHobbiesIdSelector,
   personalLanguagesIdSelector,
+  personalSkillsIdSelector,
+  personalToolsIdSelector,
 } from "@/store/auth/selectors";
 
 import Section from "@/views/shared/TemplateResume/Section";
@@ -16,6 +18,8 @@ import PersonalPhoto from "@/views/shared/TemplateResume/PersonalPhoto";
 import PersonalData from "@/views/shared/TemplateResume/PersonalData";
 import PersonalHobbies from "@/views/shared/TemplateResume/PersonalHobbies";
 import PersonalLanguages from "@/views/shared/TemplateResume/PersonalLanguages";
+import PersonalSkills from "@/views/shared/TemplateResume/PersonalSkills";
+import PersonalTools from "@/views/shared/TemplateResume/PersonalTools";
 
 const ResumeTemplateSidebar = ({
   personalInfo,
@@ -25,6 +29,8 @@ const ResumeTemplateSidebar = ({
   const t = useTranslations("Template");
   const personalHobbiesId = useAppSelector(personalHobbiesIdSelector);
   const personalLanguagesId = useAppSelector(personalLanguagesIdSelector);
+  const personalSkillsId = useAppSelector(personalSkillsIdSelector);
+  const personalToolsId = useAppSelector(personalToolsIdSelector);
 
   return (
     <div className="template__sidebar">
@@ -80,6 +86,30 @@ const ResumeTemplateSidebar = ({
         >
           <PersonalLanguages
             personalLanguagesId={personalLanguagesId}
+            templateLanguage={templateLanguage}
+          />
+        </Section>
+      )}
+
+      {personalSkillsId && equals(template, TEMPLATES.edinburghPlus) && (
+        <Section
+          title={t("personalSkills.title", { locale: templateLanguage })}
+          className="section--skills"
+        >
+          <PersonalSkills
+            personalSkillsId={personalSkillsId}
+            templateLanguage={templateLanguage}
+          />
+        </Section>
+      )}
+
+      {personalToolsId && equals(template, TEMPLATES.edinburghPlus) && (
+        <Section
+          title={t("personalTools.title", { locale: templateLanguage })}
+          className="section--tools"
+        >
+          <PersonalTools
+            personalToolsId={personalToolsId}
             templateLanguage={templateLanguage}
           />
         </Section>

@@ -1,6 +1,8 @@
 "use client";
 import { useTranslations } from "next-intl";
+import { equals } from "ramda";
 
+import { TEMPLATES } from "@/lib/constants/templates";
 import { personalInfoProps } from "@/lib/constants/props/resume";
 import { useAppSelector } from "@/store/hooks";
 import {
@@ -78,7 +80,7 @@ const ResumeTemplateContent = ({
         </Section>
       )}
 
-      {personalSkillsId && (
+      {personalSkillsId && !equals(template, TEMPLATES.edinburghPlus) && (
         <Section
           title={t("personalSkills.title", { locale: templateLanguage })}
           className="section--skills"
@@ -90,7 +92,7 @@ const ResumeTemplateContent = ({
         </Section>
       )}
 
-      {personalToolsId && (
+      {personalToolsId && !equals(template, TEMPLATES.edinburghPlus) && (
         <Section
           title={t("personalTools.title", { locale: templateLanguage })}
           className="section--tools"
