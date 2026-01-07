@@ -1,8 +1,12 @@
 "use client";
 import { useTranslations } from "next-intl";
-import { equals } from "ramda";
+import { includes } from "ramda";
 
-import { TEMPLATES } from "@/lib/constants/templates";
+import {
+  TEMPLATES_PERSONAL_INFO_FULLNAME,
+  TEMPLATES_SIDEBARS_SKILLS,
+  TEMPLATES_SIDEBARS_TOOLS,
+} from "@/lib/constants/templates";
 import { personalInfoProps } from "@/lib/constants/props/resume";
 import { useAppSelector } from "@/store/hooks";
 import {
@@ -34,7 +38,7 @@ const ResumeTemplateSidebar = ({
 
   return (
     <div className="template__sidebar">
-      {personalInfo && equals(template, TEMPLATES.edinburgh) && (
+      {personalInfo && includes(template, TEMPLATES_PERSONAL_INFO_FULLNAME) && (
         <Section>
           <PersonalFullName
             personalFullName={personalInfo}
@@ -91,10 +95,10 @@ const ResumeTemplateSidebar = ({
         </Section>
       )}
 
-      {personalSkillsId && equals(template, TEMPLATES.edinburghPlus) && (
+      {personalSkillsId && includes(template, TEMPLATES_SIDEBARS_SKILLS) && (
         <Section
           title={t("personalSkills.title", { locale: templateLanguage })}
-          className="section--skills"
+          size="small"
         >
           <PersonalSkills
             personalSkillsId={personalSkillsId}
@@ -103,10 +107,10 @@ const ResumeTemplateSidebar = ({
         </Section>
       )}
 
-      {personalToolsId && equals(template, TEMPLATES.edinburghPlus) && (
+      {personalToolsId && includes(template, TEMPLATES_SIDEBARS_TOOLS) && (
         <Section
           title={t("personalTools.title", { locale: templateLanguage })}
-          className="section--tools"
+          size="small"
         >
           <PersonalTools
             personalToolsId={personalToolsId}

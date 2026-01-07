@@ -1,6 +1,6 @@
 "use client";
 import { useTranslations } from "next-intl";
-import { equals, path } from "ramda";
+import { equals, includes } from "ramda";
 import {
   HomeFilled,
   MailFilled,
@@ -10,7 +10,10 @@ import {
 } from "@ant-design/icons";
 
 import profileName from "@/utils/profileName";
-import { TEMPLATES } from "@/lib/constants/templates";
+import {
+  TEMPLATES,
+  TEMPLATES_PERSONAL_DATA_ICONS,
+} from "@/lib/constants/templates";
 import { personalInfoProps } from "@/lib/constants/props/resume";
 import { Locales } from "@/lib/constants/props/locales";
 import { Text, Paragraph } from "@/views/shared/antd/Typography";
@@ -37,7 +40,7 @@ const PersonalData = ({
       )}
       {address && address[templateLanguage as Locales] && (
         <div className="personal-data__item">
-          {equals(template, TEMPLATES.edinburgh) && (
+          {includes(template, TEMPLATES_PERSONAL_DATA_ICONS) && (
             <HomeFilled className="personal-data__icon" />
           )}
           <Text className="personal-data__text" strong>
@@ -50,7 +53,7 @@ const PersonalData = ({
       )}
       {phoneNumber && phoneNumber[templateLanguage as Locales] && (
         <div className="personal-data__item">
-          {equals(template, TEMPLATES.edinburgh) && (
+          {includes(template, TEMPLATES_PERSONAL_DATA_ICONS) && (
             <PhoneFilled className="personal-data__icon" />
           )}
           <Text className="personal-data__text" strong>
@@ -63,7 +66,7 @@ const PersonalData = ({
       )}
       {email && email[templateLanguage as Locales] && (
         <div className="personal-data__item">
-          {equals(template, TEMPLATES.edinburgh) && (
+          {includes(template, TEMPLATES_PERSONAL_DATA_ICONS) && (
             <MailFilled className="personal-data__icon" />
           )}
           <Text className="personal-data__text" strong>
@@ -76,7 +79,7 @@ const PersonalData = ({
       )}
       {birthday && birthday[templateLanguage as Locales] && (
         <div className="personal-data__item">
-          {equals(template, TEMPLATES.edinburgh) && (
+          {includes(template, TEMPLATES_PERSONAL_DATA_ICONS) && (
             <CalendarFilled className="personal-data__icon" />
           )}
           <Text className="personal-data__text" strong>
@@ -89,7 +92,7 @@ const PersonalData = ({
       )}
       {linkedIn && linkedIn[templateLanguage as Locales] && (
         <div className="personal-data__item">
-          {equals(template, TEMPLATES.edinburgh) && (
+          {includes(template, TEMPLATES_PERSONAL_DATA_ICONS) && (
             <LinkedinFilled className="personal-data__icon" />
           )}
           <Text className="personal-data__text" strong>

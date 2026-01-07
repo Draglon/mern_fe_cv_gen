@@ -17,10 +17,12 @@
 @use 'header';
 @use 'button';
 @use 'dropdown';
-@use 'template';
-@use 'template-standford';
-@use 'template-edinburgh';
-@use 'templates';
-
 @use 'locale-switcher';
+@use 'template';
+@use 'templates';
 @use 'template-settings';
+
+// templates
+@use 'template-edinburgh';
+@use 'template-edinburgh-plus';
+@use 'template-standford';

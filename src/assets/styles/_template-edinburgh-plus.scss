@@ -1,0 +1,328 @@
+@use 'variables' as v;
+
+.template--edinburgh-plus {
+  h2 {
+    font-size: 18pt;
+  }
+  h3 {
+    font-size: 13pt;
+  }
+  h4 {
+    font-size: 12pt;
+  }
+
+  .section__label {
+    font-size: 9pt;
+  }
+
+  .section__period {
+    font-size: 8pt;
+  }
+
+  .section__item {
+    padding-bottom: 1mm;
+  }
+
+  .section__subheader {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1mm;
+  }
+
+  .template__sidebar {
+    background-color: v.$template-edinburgh-sidebar-bg-color;
+    flex: 0 0 v.$template-edinburgh-sidebar-width;
+    overflow: hidden;
+    .section {
+      padding-bottom: v.$template-edinburgh-sidebar-padding;
+      .section__header {
+        padding-left: v.$template-edinburgh-sidebar-padding;
+        padding-right: v.$template-edinburgh-sidebar-padding;
+        margin-bottom: v.$template-edinburgh-sidebar-margin;
+      }
+      .section__title {
+        color: v.$template-edinburgh-sidebar-title-color !important;
+        letter-spacing: 1px;
+      }
+    }
+    .personal-skills, .personal-tools {
+      padding: 0 5mm;
+      margin-bottom: 0;
+      &__label {
+        font-size: 9pt;
+      }
+    }
+  }
+
+  .template__container {
+    background-color: v.$template-edinburgh-container-bg;
+    color: v.$template-edinburgh-container-color !important;
+    flex: 0 0 v.$template-edinburgh-container-width;
+    padding: v.$template-edinburgh-container-padding;
+    .section {
+      border-top: 1px solid grey;
+      padding-top: v.$template-edinburgh-container-padding;
+      margin-bottom: v.$template-edinburgh-container-margin;
+      &:first-child {
+        border: none;
+        padding-top: 0;
+      }
+      .section__header {
+        border-color: v.$template-edinburgh-container-border-color;
+        margin-bottom: 2mm;
+      }
+      .section__title {
+        color: v.$template-edinburgh-container-header-color !important;
+        font-size: 16pt;
+        letter-spacing: 1px;
+      }
+      .section__label, .section__text {
+        color: v.$template-edinburgh-container-text-color !important;
+      }
+    }
+  }
+
+  .personal-fullname {
+    height: 100px;
+
+    &__header {
+      background-color: v.$personal-edinburgh-fullName-bg-color;
+      border-bottom-width: 3mm;
+      border-bottom-style: solid;
+      border-bottom-color: v.$personal-edinburgh-fullName-border-color;
+      border-radius: 0 0 50% 50%;
+      padding: 7mm 5mm;
+      margin: 0 -20mm;
+      min-height: 30mm;
+    }
+
+    &__title {
+      color: v.$personal-edinburgh-fullName-color !important;
+      letter-spacing: 1px;
+      text-align: center;
+      text-transform: uppercase !important;
+    }
+  }
+
+  .personal-photo {
+    border-width: 1mm;
+    border-style: solid;
+    border-color: white;
+    border-radius: 50%;
+    margin: -13mm auto 0;
+    width: v.$personal-edinburgh-photo-width;
+    height: v.$personal-edinburgh-photo-height;
+    position: relative;
+    overflow: hidden;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .personal-data {
+    padding: 0 5mm 0 10mm;
+    &__item {
+      position: relative;
+      margin-bottom: 1mm;
+    }
+    &__icon {
+      position: absolute;
+      top: 1mm;
+      left: -5mm;
+      color: v.$template-edinburgh-sidebar-icon-color !important;
+      font-size: 10pt;
+    }
+    &__text, &__paragraph {
+      color: v.$template-edinburgh-sidebar-text-color !important;
+      font-size: 9pt;
+      margin-bottom: 0 !important;
+    }
+    &__paragraph {
+      font-weight: 300;
+    }
+  }
+
+  .personal-interests {
+    padding: 0 5mm;
+    &__item {
+      font-weight: 500;
+      margin-bottom: 1mm;
+    }
+    &__text {
+      color: v.$template-edinburgh-sidebar-text-color !important;
+      font-size: 9pt;
+    }
+  }
+
+  .personal-languages {
+    padding: 0 5mm;
+    &__item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1mm;
+    }
+    &__text {
+      color: v.$template-edinburgh-sidebar-text-color !important;
+      font-size: 9pt;
+      white-space: nowrap;
+      &:last-child {
+        font-weight: 300;
+      }
+    }
+  }
+
+  .personal-info {
+    margin-bottom: 5mm;
+    &__header {
+      padding-bottom: 2mm;
+      margin-bottom: 5mm;
+    }
+    &__about {
+      font-size: 10.5pt;
+      margin: 0 !important;
+    }
+  }
+
+  .experience {
+    margin-bottom: 5mm;
+    &__item {
+      padding-top: 3mm;
+      &:first-child {
+        padding-top: 0;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &__header {
+      margin-bottom: 2mm;
+    }
+
+    &__header-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    &__title {
+      margin-bottom: 1mm;
+      margin: 0 !important;
+    }
+
+    &__period {
+      font-size: 8pt;
+      margin: 0 !important;
+    }
+
+    &__company {
+      font-size: 9pt;
+      margin: 0 !important;
+
+      span {
+        &:first-child {
+          color: v.$template-edinburgh-container-header-color !important;
+        }
+      }
+    }
+
+    &__place {
+      &-label {
+        color: v.$template-edinburgh-container-text-color !important;
+      }
+      font-size: 8pt;
+      margin: 0 !important;
+    }
+
+    &__info {
+      font-size: 10.5pt;
+      margin-bottom: 2mm !important;
+    }
+  }
+
+  .skills {
+    display: flex;
+    justify-content: baseline;
+    align-items: start;
+    &__label {
+      color: v.$template-edinburgh-container-hint-color !important;
+      font-size: 10pt;
+      white-space: nowrap;
+    }
+    &__list {
+      &-item {
+        display: inline-block;
+        &:before {
+          content: '·';
+          font-size: 9pt;
+          font-weight: 300;
+          margin: 0 1mm;
+        }
+        &:first-child {
+          margin-left: 3mm;
+          &:before {
+            display: none;
+          }
+        }
+        &-text {
+          font-size: 9pt;
+          font-weight: 300;
+          white-space: nowrap;
+          line-height: 1;
+        }
+      }
+    }
+  }
+
+  .personal-skills {
+    margin-bottom: 5mm;
+    &__item {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-bottom: 1mm;
+    }
+
+    &__label {
+      color: v.$template-edinburgh-container-text-color !important;
+    }
+  }
+
+  .personal-tools {
+    &__item {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-bottom: 1mm;
+    }
+
+    &__label {
+      color: v.$template-edinburgh-container-text-color !important;
+    }
+  }
+}
+
+@media print {
+  .template--edinburgh-plus {
+    .template__sidebar {
+      &:before {
+        background-color: v.$template-edinburgh-sidebar-bg-color;
+        width: v.$template-edinburgh-sidebar-width;
+      }
+    }
+    .template__container {
+      &:before {
+        background-color: v.$template-edinburgh-container-bg;
+        width: v.$template-edinburgh-container-width;
+      }
+    }
+  }
+}
