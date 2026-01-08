@@ -1,6 +1,6 @@
 "use client";
 import { useTranslations } from "next-intl";
-import { includes } from "ramda";
+import { includes, pathOr } from "ramda";
 
 import {
   TEMPLATES_PERSONAL_INFO_FULLNAME,
@@ -60,7 +60,11 @@ const ResumeTemplateSidebar = ({
 
       {personalInfo && (
         <Section
-          title={t("personalData.title", { locale: templateLanguage })}
+          title={pathOr(
+            t("personalData.title", { locale: templateLanguage }),
+            ["sectionTitle", templateLanguage],
+            personalInfo
+          )}
           size="small"
         >
           <PersonalData

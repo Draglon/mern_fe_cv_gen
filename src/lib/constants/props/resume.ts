@@ -5,6 +5,7 @@ export type personalInfoProps = {
   templateLanguage: string;
   personalInfo: {
     userUrl?: string;
+    sectionTitle?: string;
     firstName: Locale;
     lastName: Locale;
     about?: Locale;
@@ -13,6 +14,8 @@ export type personalInfoProps = {
     phoneNumber?: Locale;
     email?: Locale;
     linkedIn?: Locale;
+    telegram?: Locale;
+    portfolio?: Locale;
   };
 };
 

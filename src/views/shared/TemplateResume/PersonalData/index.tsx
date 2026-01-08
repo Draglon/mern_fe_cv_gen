@@ -2,11 +2,13 @@
 import { useTranslations } from "next-intl";
 import { equals, includes } from "ramda";
 import {
-  HomeFilled,
-  MailFilled,
-  PhoneFilled,
-  CalendarFilled,
-  LinkedinFilled,
+  HomeOutlined,
+  MailOutlined,
+  PhoneOutlined,
+  CalendarOutlined,
+  LinkedinOutlined,
+  LinkOutlined,
+  SendOutlined,
 } from "@ant-design/icons";
 
 import profileName from "@/utils/profileName";
@@ -24,7 +26,15 @@ const PersonalData = ({
   templateLanguage,
 }: personalInfoProps) => {
   const t = useTranslations("Template");
-  const { address, phoneNumber, email, birthday, linkedIn } = personalInfo;
+  const {
+    address,
+    phoneNumber,
+    email,
+    birthday,
+    linkedIn,
+    telegram,
+    portfolio,
+  } = personalInfo;
 
   return (
     <div className="personal-data">
@@ -38,10 +48,11 @@ const PersonalData = ({
           </Paragraph>
         </div>
       )}
+
       {address && address[templateLanguage as Locales] && (
         <div className="personal-data__item">
           {includes(template, TEMPLATES_PERSONAL_DATA_ICONS) && (
-            <HomeFilled className="personal-data__icon" />
+            <HomeOutlined className="personal-data__icon" />
           )}
           <Text className="personal-data__text" strong>
             {t("personalData.address", { locale: templateLanguage })}
@@ -51,10 +62,11 @@ const PersonalData = ({
           </Paragraph>
         </div>
       )}
+
       {phoneNumber && phoneNumber[templateLanguage as Locales] && (
         <div className="personal-data__item">
           {includes(template, TEMPLATES_PERSONAL_DATA_ICONS) && (
-            <PhoneFilled className="personal-data__icon" />
+            <PhoneOutlined className="personal-data__icon" />
           )}
           <Text className="personal-data__text" strong>
             {t("personalData.phoneNumber", { locale: templateLanguage })}
@@ -64,10 +76,11 @@ const PersonalData = ({
           </Paragraph>
         </div>
       )}
+
       {email && email[templateLanguage as Locales] && (
         <div className="personal-data__item">
           {includes(template, TEMPLATES_PERSONAL_DATA_ICONS) && (
-            <MailFilled className="personal-data__icon" />
+            <MailOutlined className="personal-data__icon" />
           )}
           <Text className="personal-data__text" strong>
             {t("personalData.email", { locale: templateLanguage })}
@@ -77,10 +90,25 @@ const PersonalData = ({
           </Paragraph>
         </div>
       )}
+
+      {telegram && telegram[templateLanguage as Locales] && (
+        <div className="personal-data__item">
+          {includes(template, TEMPLATES_PERSONAL_DATA_ICONS) && (
+            <SendOutlined className="personal-data__icon" />
+          )}
+          <Text className="personal-data__text" strong>
+            {t("personalData.telegram", { locale: templateLanguage })}
+          </Text>
+          <Paragraph className="personal-data__paragraph">
+            {telegram[templateLanguage as Locales]}
+          </Paragraph>
+        </div>
+      )}
+
       {birthday && birthday[templateLanguage as Locales] && (
         <div className="personal-data__item">
           {includes(template, TEMPLATES_PERSONAL_DATA_ICONS) && (
-            <CalendarFilled className="personal-data__icon" />
+            <CalendarOutlined className="personal-data__icon" />
           )}
           <Text className="personal-data__text" strong>
             {t("personalData.birthday", { locale: templateLanguage })}
@@ -90,16 +118,31 @@ const PersonalData = ({
           </Paragraph>
         </div>
       )}
+
       {linkedIn && linkedIn[templateLanguage as Locales] && (
         <div className="personal-data__item">
           {includes(template, TEMPLATES_PERSONAL_DATA_ICONS) && (
-            <LinkedinFilled className="personal-data__icon" />
+            <LinkedinOutlined className="personal-data__icon" />
           )}
           <Text className="personal-data__text" strong>
             {t("personalData.linkedIn", { locale: templateLanguage })}
           </Text>
           <Paragraph className="personal-data__paragraph">
             {linkedIn[templateLanguage as Locales]}
+          </Paragraph>
+        </div>
+      )}
+
+      {portfolio && portfolio[templateLanguage as Locales] && (
+        <div className="personal-data__item">
+          {includes(template, TEMPLATES_PERSONAL_DATA_ICONS) && (
+            <LinkOutlined className="personal-data__icon" />
+          )}
+          <Text className="personal-data__text" strong>
+            {t("personalData.portfolio", { locale: templateLanguage })}
+          </Text>
+          <Paragraph className="personal-data__paragraph">
+            {portfolio[templateLanguage as Locales]}
           </Paragraph>
         </div>
       )}

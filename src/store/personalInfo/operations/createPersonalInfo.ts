@@ -18,6 +18,8 @@ type ParamsType = {
   phoneNumber?: string;
   birthday?: string;
   linkedIn?: string;
+  telegram?: string;
+  portfolio?: string;
 };
 
 

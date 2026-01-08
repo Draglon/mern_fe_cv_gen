@@ -11,6 +11,8 @@ type PersonalInfoProps = {
   phoneNumber: Locale,
   birthday: Locale,
   linkedIn: Locale,
+  telegram: Locale,
+  portfolio: Locale,
 };
 
 export const personalInfoByLocale = (personalInfo: PersonalInfoProps, locale: Locales) => ({
@@ -24,4 +26,6 @@ export const personalInfoByLocale = (personalInfo: PersonalInfoProps, locale: Lo
   phoneNumber: personalInfo?.phoneNumber[locale as Locales] ? personalInfo.phoneNumber[locale as Locales] : "",
   birthday: personalInfo?.birthday[locale as Locales] ? personalInfo.birthday[locale as Locales] : "",
   linkedIn: personalInfo?.linkedIn[locale as Locales] ? personalInfo.linkedIn[locale as Locales] : "",
+  telegram: personalInfo?.telegram[locale as Locales] ? personalInfo.telegram[locale as Locales] : "",
+  portfolio: personalInfo?.portfolio[locale as Locales] ? personalInfo.portfolio[locale as Locales] : "",
 });

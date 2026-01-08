@@ -8,7 +8,7 @@ import Template from "@/views/Resume/Template";
 import TemplateCustomization from "@/views/Resume/TemplateCustomization";
 
 const Resume = () => {
-  const [template, setTemplate] = useState<string>(TEMPLATES.edinburgh);
+  const [template, setTemplate] = useState<string>(TEMPLATES.edinburghPlus);
   const [templateLanguage, setTemplateLanguage] = useState<string>("en");
 
   return (

@@ -217,6 +217,16 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
           />
           <FormItem
             className="form__item--field"
+            name="telegram"
+            controlName="telegram"
+            control={control}
+            label={t("form.telegram.label")}
+            placeholder={t("form.telegram.placeholder")}
+            Field={InputField}
+            size="large"
+          />
+          <FormItem
+            className="form__item--field"
             name="birthday"
             controlName="birthday"
             control={control}
@@ -235,16 +245,6 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
             control={control}
             label={t("form.linkedIn.label")}
             placeholder={t("form.linkedIn.placeholder")}
-            Field={InputField}
-            size="large"
-          />
-          <FormItem
-            className="form__item--field"
-            name="telegram"
-            controlName="telegram"
-            control={control}
-            label={t("form.telegram.label")}
-            placeholder={t("form.telegram.placeholder")}
             Field={InputField}
             size="large"
           />

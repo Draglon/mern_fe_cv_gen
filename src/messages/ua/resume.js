@@ -17,7 +17,9 @@ const resume = {
       "address": "{locale, select, en {Address} ru {Адрес} ua {Адреса} other {Unknown}}",
       "phoneNumber": "{locale, select, en {Phone number} ru {Номер телефона} ua {Номер телефону} other {Unknown}}",
       "email": "{locale, select, en {Email} ru {Email} ua {Email} other {Unknown}}",
-      "linkedIn": "{locale, select, en {LinkedIn} ru {LinkedIn} ua {LinkedIn} other {Unknown}}"
+      "linkedIn": "{locale, select, en {LinkedIn} ru {LinkedIn} ua {LinkedIn} other {Unknown}}",
+      "telegram": "{locale, select, en {Telegram} ru {Telegram} ua {Telegram} other {Unknown}}",
+      "portfolio": "{locale, select, en {Portfolio} ru {Портфолио} ua {Портфоліо} other {Unknown}}"
     },
     "personalHobbies": {
       "title": "{locale, select, en {Hobbies and interests} ru {Интересы} ua {Інтереси} other {Unknown}}"
