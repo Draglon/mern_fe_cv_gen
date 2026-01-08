@@ -1,7 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import authReducer from "./auth";
-import counterReducer from "./counter";
 import modalReducer from "./modal";
 import personalInfoReducer from "./personalInfo";
 import personalHobbiesReducer from "./personalHobbies";
@@ -15,7 +14,6 @@ import personalToolsReducer from "./personalTools";
 export const makeStore = () => configureStore({
   reducer: {
     auth: authReducer,
-    counter: counterReducer,
     modal: modalReducer,
     personalInfo: personalInfoReducer,
     personalHobbies: personalHobbiesReducer,

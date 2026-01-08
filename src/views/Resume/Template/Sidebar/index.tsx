@@ -89,7 +89,7 @@ const ResumeTemplateSidebar = ({
 
       {personalLanguagesId && (
         <Section
-          title={t("personalHobbies.title", { locale: templateLanguage })}
+          title={t("personalLanguages.title", { locale: templateLanguage })}
           size="small"
         >
           <PersonalLanguages
