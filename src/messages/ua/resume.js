@@ -38,6 +38,7 @@ const resume = {
     },
     "personalExperience": {
       "title": "{locale, select, en {Experience} ru {Опыт работы} ua {Досвід роботи} other {Unknown}}",
+      "text": "{locale, select, en {Last {number} places of jobs} ru {Последние {number} места работы} ua {Останні {number} місця роботи} other {Unknown}}",
     },
     "personalEducation": {
       "title": "{locale, select, en {Education} ru {Образование} ua {Освіта} other {Unknown}}",

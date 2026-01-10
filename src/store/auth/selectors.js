@@ -10,4 +10,3 @@ export const personalEducationIdSelector = state => state.auth.data?.personalEdu
 export const personalCoursesIdSelector = state => state.auth.data?.personalCoursesId;
 export const personalSkillsIdSelector = state => state.auth.data?.personalSkillsId;
 export const personalToolsIdSelector = state => state.auth.data?.personalToolsId;
-

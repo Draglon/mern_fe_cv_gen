@@ -15,11 +15,11 @@ import {
 
 import Section from "@/views/shared/TemplateResume/Section";
 import PersonalInfo from "@/views/shared/TemplateResume/PersonalInfo";
-import PersonalExperience from "@/views/shared/TemplateResume/PersonalExperience";
 import PersonalEducation from "@/views/shared/TemplateResume/PersonalEducation";
 import PersonalCourses from "@/views/shared/TemplateResume/PersonalCourses";
 import PersonalSkills from "@/views/shared/TemplateResume/PersonalSkills";
 import PersonalTools from "@/views/shared/TemplateResume/PersonalTools";
+import SectionExperience from "@/views/Resume/Template/Content/SectionExperience";
 
 const ResumeTemplateContent = ({
   personalInfo,
@@ -46,14 +46,10 @@ const ResumeTemplateContent = ({
       )}
 
       {personalExperienceId && (
-        <Section
-          title={t("personalExperience.title", { locale: templateLanguage })}
-        >
-          <PersonalExperience
-            personalExperienceId={personalExperienceId}
-            templateLanguage={templateLanguage}
-          />
-        </Section>
+        <SectionExperience
+          personalExperienceId={personalExperienceId}
+          templateLanguage={templateLanguage}
+        />
       )}
 
       {personalEducationId && (

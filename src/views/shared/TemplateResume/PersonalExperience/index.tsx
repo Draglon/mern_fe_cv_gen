@@ -1,18 +1,13 @@
 "use client";
-import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { isEmpty } from "ramda";
 
-import { Locales } from "@/lib/constants/props/locales";
 import splitText from "@/utils/splitText";
-import { experienceByLocale } from "@/utils/personalExperience";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import fetchPersonalExperience from "@/store/personalExperience/operations/fetchPersonalExperience";
-import { personalExperienceSelector } from "@/store/personalExperience/selectors";
 
 import { Title, Text, Paragraph } from "@/views/shared/antd/Typography";
 
 type Experience = {
+  map: any;
   position: string;
   startDate: string;
   endDate: string;
@@ -24,26 +19,16 @@ type Experience = {
   skills: string[];
 };
 
-type ExperiencesProps = {
+type PersonalExperienceProps = {
+  experience: Experience;
   templateLanguage: string;
-  personalExperienceId: string;
 };
 
 const PersonalExperience = ({
-  personalExperienceId,
+  experience,
   templateLanguage,
-}: ExperiencesProps) => {
+}: PersonalExperienceProps) => {
   const t = useTranslations("Template");
-  const dispatch = useAppDispatch();
-  const personalExperience = useAppSelector(personalExperienceSelector);
-  const experience = experienceByLocale(
-    personalExperience,
-    templateLanguage as Locales
-  );
-
-  useEffect(() => {
-    dispatch(fetchPersonalExperience({ id: personalExperienceId }));
-  }, [dispatch, personalExperienceId]);
 
   return (
     <div className="experience">

@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
-import { isEmpty, path } from "ramda";
+import { isEmpty, path, pathOr } from "ramda";
 
 import { Locales } from "@/lib/constants/props/locales";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
@@ -30,6 +30,8 @@ type PersonalExperienceFormProps = {
 };
 
 type FieldType = {
+  sectionTitle?: string;
+  lastPlacesOfWorks?: number;
   experience: {
     position: string;
     companyName: string;
@@ -57,6 +59,8 @@ const PersonalExperienceForm = ({
 
   const { control, handleSubmit, register, formState } = useForm({
     values: {
+      sectionTitle: pathOr("", ["sectionTitle", locale], personalExperience),
+      lastPlacesOfWorks: pathOr("", ["lastPlacesOfWorks"], personalExperience),
       experience: !isEmpty(experience)
         ? experience
         : [
@@ -108,6 +112,44 @@ const PersonalExperienceForm = ({
       layout="vertical"
       preserve
     >
+      <div className="w-full">
+        <FormItem
+          className="form__item--field"
+          name="sectionTitle"
+          controlName="sectionTitle"
+          control={control}
+          label={t("form.sectionTitle.label")}
+          placeholder={t("form.sectionTitle.placeholder")}
+          register={register("sectionTitle", {
+            required: {
+              value: true,
+              message: t("form.sectionTitle.errors.required"),
+            },
+          })}
+          errors={errors["sectionTitle"]}
+          Field={InputField}
+          size="large"
+        />
+      </div>
+      <div className="w-full">
+        <FormItem
+          className="form__item--field"
+          name="lastPlacesOfWorks"
+          controlName="lastPlacesOfWorks"
+          control={control}
+          label={t("form.lastPlacesOfWorks.label")}
+          placeholder={t("form.lastPlacesOfWorks.placeholder")}
+          register={register("lastPlacesOfWorks", {
+            required: {
+              value: true,
+              message: t("form.lastPlacesOfWorks.errors.required"),
+            },
+          })}
+          errors={errors["lastPlacesOfWorks"]}
+          Field={InputField}
+          size="large"
+        />
+      </div>
       <FormList name="experience" append={append}>
         {fields.map((field, index) => (
           <Space key={field.id} align="baseline" className="form__list-space">

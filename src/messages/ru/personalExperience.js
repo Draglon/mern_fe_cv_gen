@@ -2,6 +2,20 @@ const personalExperience = {
   "PersonalExperience": {
     "title": "Опыт работы",
     "form": {
+      "sectionTitle": {
+        "label": "Section title",
+        "placeholder": "Input section title",
+        "errors": {
+          "required": "Please input your section title!",
+        }
+      },
+      "lastPlacesOfWorks": {
+        "label": "Последние места работы",
+        "placeholder": "Введите число",
+        "errors": {
+          "required": "Пожалуйста, укажите количество мест работы!",
+        }
+      },
       "position": {
         "label": "Должность",
         "placeholder": "Введите вашу должность",

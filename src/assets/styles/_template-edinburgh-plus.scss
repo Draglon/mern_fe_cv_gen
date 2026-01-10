@@ -71,6 +71,9 @@
       .section__header {
         border-color: v.$template-edinburgh-container-border-color;
         margin-bottom: 2mm;
+        .section__text {
+          color: v.$template-edinburgh-container-hint-color !important;
+        }
       }
       .section__title {
         color: v.$template-edinburgh-container-header-color !important;

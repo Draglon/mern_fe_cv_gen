@@ -17,6 +17,12 @@
   .section__text {
     margin: 0;
   }
+
+  .section__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
 }
 
 @media print {
