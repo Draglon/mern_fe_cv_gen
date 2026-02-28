@@ -2,8 +2,15 @@ const personalInfo = {
   "PersonalInfo": {
     "title": "Персональная информация",
     "form": {
+      "sectionTitle": {
+        "label": "Заголовок раздела",
+        "placeholder": "Ввести название раздела",
+        "errors": {
+          "required": "Пожалуйста, введите название вашего раздела!",
+        }
+      },
       "userUrl": {
-        "label": "Фото"
+        "label": "Фотография"
       },
       "firstName": {
         "label": "Имя",

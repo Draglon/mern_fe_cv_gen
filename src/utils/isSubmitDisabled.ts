@@ -1,8 +1,8 @@
 type SubmitDisabledProps = {
-  isValid: boolean;
+  isSubmitting: boolean;
   isDirty: boolean;
 }
 
-const isSubmitDisabled = ({ isValid, isDirty }: SubmitDisabledProps, isLoading: boolean): boolean => !isDirty || !isValid || isLoading;
+const isSubmitDisabled = ({ isSubmitting, isDirty }: SubmitDisabledProps): boolean => isSubmitting || !isDirty;
 
 export default isSubmitDisabled;

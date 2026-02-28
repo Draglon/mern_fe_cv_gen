@@ -113,7 +113,7 @@ const Login = () => {
               htmlType="submit"
               size="large"
               block
-              disabled={isSubmitDisabled(formState, isLoading)}
+              disabled={isSubmitDisabled(formState)}
               loading={isLoading}
             >
               {t("submitButton")}

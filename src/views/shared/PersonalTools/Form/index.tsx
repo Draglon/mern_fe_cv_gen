@@ -160,7 +160,7 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
           type="primary"
           htmlType="submit"
           size="large"
-          disabled={isSubmitDisabled(formState, false)}
+          disabled={isSubmitDisabled(formState)}
         >
           {tShared("save")}
         </Button>

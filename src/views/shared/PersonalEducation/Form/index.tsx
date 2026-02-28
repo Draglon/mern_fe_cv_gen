@@ -224,7 +224,7 @@ const PersonalEducationForm = ({
           type="primary"
           htmlType="submit"
           size="large"
-          disabled={isSubmitDisabled(formState, false)}
+          disabled={isSubmitDisabled(formState)}
         >
           {tShared("save")}
         </Button>

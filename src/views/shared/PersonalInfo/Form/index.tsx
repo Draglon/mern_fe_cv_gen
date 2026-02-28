@@ -3,6 +3,7 @@ import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { Form } from "antd";
 
+import { REGEX_STRING } from "@/lib/constants/regex";
 import { Locales } from "@/lib/constants/props/locales";
 import { personalInfoByLocale } from "@/utils/personalInfo";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
@@ -90,8 +91,8 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
             label={t("form.sectionTitle.label")}
             placeholder={t("form.sectionTitle.placeholder")}
             register={register("sectionTitle", {
-              required: {
-                value: true,
+              pattern: {
+                value: REGEX_STRING,
                 message: t("form.sectionTitle.errors.required"),
               },
             })}
@@ -270,7 +271,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
           type="primary"
           htmlType="submit"
           size="large"
-          disabled={isSubmitDisabled(formState, false)}
+          disabled={isSubmitDisabled(formState)}
         >
           {tShared("save")}
         </Button>

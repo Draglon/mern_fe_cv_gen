@@ -120,7 +120,7 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesFormProps) => {
           type="primary"
           htmlType="submit"
           size="large"
-          disabled={isSubmitDisabled(formState, false)}
+          disabled={isSubmitDisabled(formState)}
         >
           {tShared("save")}
         </Button>

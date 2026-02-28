@@ -129,7 +129,7 @@ const Registration = () => {
               htmlType="submit"
               size="large"
               block
-              disabled={isSubmitDisabled(formState, isLoading)}
+              disabled={isSubmitDisabled(formState)}
               loading={isLoading}
             >
               {tShared("signUp")}

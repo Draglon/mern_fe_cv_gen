@@ -5,6 +5,7 @@ import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
 import { isEmpty, path, pathOr } from "ramda";
 
+import { REGEX_DIGITS, REGEX_STRING } from "@/lib/constants/regex";
 import { Locales } from "@/lib/constants/props/locales";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import { experienceByLocale } from "@/utils/personalExperience";
@@ -31,7 +32,7 @@ type PersonalExperienceFormProps = {
 
 type FieldType = {
   sectionTitle?: string;
-  lastPlacesOfWorks?: number;
+  lastPlacesOfWorks?: number | undefined;
   experience: {
     position: string;
     companyName: string;
@@ -84,6 +85,9 @@ const PersonalExperienceForm = ({
     name: "experience",
   });
 
+  // console.log("errors: ", errors["lastPlacesOfWorks"]);
+  console.log("formState: ", formState);
+
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
       ...values,
@@ -121,8 +125,8 @@ const PersonalExperienceForm = ({
           label={t("form.sectionTitle.label")}
           placeholder={t("form.sectionTitle.placeholder")}
           register={register("sectionTitle", {
-            required: {
-              value: true,
+            pattern: {
+              value: REGEX_STRING,
               message: t("form.sectionTitle.errors.required"),
             },
           })}
@@ -140,8 +144,8 @@ const PersonalExperienceForm = ({
           label={t("form.lastPlacesOfWorks.label")}
           placeholder={t("form.lastPlacesOfWorks.placeholder")}
           register={register("lastPlacesOfWorks", {
-            required: {
-              value: true,
+            pattern: {
+              value: REGEX_DIGITS,
               message: t("form.lastPlacesOfWorks.errors.required"),
             },
           })}
@@ -326,7 +330,7 @@ const PersonalExperienceForm = ({
           type="primary"
           htmlType="submit"
           size="large"
-          disabled={isSubmitDisabled(formState, false)}
+          disabled={isSubmitDisabled(formState)}
         >
           {tShared("save")}
         </Button>
