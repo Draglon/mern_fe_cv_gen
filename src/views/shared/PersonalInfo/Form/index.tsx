@@ -26,7 +26,7 @@ type PersonalInfoFormProps = {
 };
 
 type FieldType = {
-  sectionTitle: string;
+  sectionTitle?: string;
   userUrl: any[];
   firstName: string;
   lastName: string;

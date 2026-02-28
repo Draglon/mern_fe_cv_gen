@@ -6,7 +6,7 @@ import { personalInfoCreateRoute } from "@/lib/apiRoutes";
 import { CREATE_PERSONAL_INFO } from "./../types";
 
 type ParamsType = {
-  sectionTitle: string;
+  sectionTitle?: string;
   locale: string;
   userId: string;
   userUrl?: string | any[];

@@ -16,7 +16,7 @@ const personalLanguages = {
           "required": "Будь ласка, вкажіть свій рівень володіння мовою!"
         },
         "levelOptions": {
-          "native": "Рідний",
+          "native": "Рідна",
           "elementary": "Початковий (A1)",
           "preIntermediate": "Нижче середнього (A2)",
           "intermediate": "Середній (B1)",

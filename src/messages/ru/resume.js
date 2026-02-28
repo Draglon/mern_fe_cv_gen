@@ -27,7 +27,7 @@ const resume = {
     "personalLanguages": {
       "title": "{locale, select, en {Languages} ru {Языки} ua {Мови} other {Unknown}}",
       "level": {
-        "native": "{locale, select, en {Native} ru {Родной} ua {Рідний} other {Unknown}}",
+        "native": "{locale, select, en {Native} ru {Родной} ua {Рідна} other {Unknown}}",
         "elementary": "{locale, select, en {Elementary} ru {Элементарный} ua {Початковий} other {Unknown}}",
         "preIntermediate": "{locale, select, en {Pre-Intermediate} ru {Предварительно-средний} ua {Нижче середнього} other {Unknown}}",
         "intermediate": "{locale, select, en {Intermediate} ru {Средний} ua {Середній} other {Unknown}}",
@@ -47,7 +47,7 @@ const resume = {
       "title": "{locale, select, en {Courses} ru {Курсы} ua {Курси} other {Unknown}}",
     },
     "personalSkills": {
-      "title": "{locale, select, en {Skills} ru {Навыки} ua {Навички} other {Unknown}}",
+      "title": "{locale, select, en {Hard skills} ru {Навыки} ua {Навички} other {Unknown}}",
     },
     "personalTools": {
       "title": "{locale, select, en {Tools} ru {Инструменты} ua {Інструменти} other {Unknown}}",

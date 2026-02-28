@@ -32,7 +32,7 @@ type PersonalExperienceFormProps = {
 
 type FieldType = {
   sectionTitle?: string;
-  lastPlacesOfWorks?: number | undefined;
+  lastPlacesOfWorks?: number | string;
   experience: {
     position: string;
     companyName: string;
@@ -84,9 +84,6 @@ const PersonalExperienceForm = ({
     control,
     name: "experience",
   });
-
-  // console.log("errors: ", errors["lastPlacesOfWorks"]);
-  console.log("formState: ", formState);
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
