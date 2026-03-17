@@ -1,8 +1,10 @@
 "use client";
+import isPresent from "@/utils/isPresent";
 import Input from "@/views/shared/antd/Input";
 import { Text } from "@/views/shared/antd/Typography";
 
 type InputFieldProps = {
+  status?: "error" | "warning" | "success" | "validating" | "";
   errors?: {
     ref: any;
     type: string;
@@ -10,10 +12,10 @@ type InputFieldProps = {
   };
 };
 
-const InputField = ({ errors, ...rest }: InputFieldProps) => {
+const InputField = ({ errors, status, ...rest }: InputFieldProps) => {
   return (
     <div className="input-field">
-      <Input {...rest} />
+      <Input status={isPresent(errors) ? "error" : status} {...rest} />
       {errors?.message && (
         <Text className="input-field__error">{errors?.message}</Text>
       )}

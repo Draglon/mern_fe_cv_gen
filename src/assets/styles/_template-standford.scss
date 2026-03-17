@@ -5,21 +5,21 @@
     color: v.$template-standford-container-header-color !important;
   }
   h1 {
-    font-size: 30pt;
+    font-size: 30pt !important;
   }
   h2 {
-    font-size: 20pt;
+    font-size: 20pt !important;
   }
   h3 {
-    font-size: 14pt;
+    font-size: 14pt !important;
   }
   h4 {
-    font-size: 12pt;
+    font-size: 12pt !important;
   }
 
   .section__label,
   .section__period {
-    font-size: 10.5pt;
+    font-size: 10.5pt !important;
   }
 
   .section__header {
@@ -102,7 +102,7 @@
     }
     &__text, &__paragraph {
       color: v.$template-standford-sidebar-text-color !important;
-      font-size: 10.5pt;
+      font-size: 10.5pt !important;
       margin-bottom: 0 !important;
     }
     &__paragraph {
@@ -118,7 +118,7 @@
     }
     &__text {
       color: v.$template-standford-sidebar-text-color !important;
-      font-size: 10.5pt;
+      font-size: 10.5pt !important;
     }
   }
 
@@ -132,7 +132,7 @@
     }
     &__text {
       color: v.$template-standford-sidebar-text-color !important;
-      font-size: 10.5pt;
+      font-size: 10.5pt !important;
       white-space: nowrap;
       &:last-child {
         font-weight: 300;
@@ -147,7 +147,7 @@
       margin-bottom: 5mm;
     }
     &__about {
-      font-size: 10.5pt;
+      font-size: 10.5pt !important;
       margin: 0 !important;
     }
   }
@@ -179,7 +179,7 @@
     }
 
     &__period {
-      font-size: 10.5pt;
+      font-size: 10.5pt !important;
       margin: 0 !important;
     }
 
@@ -187,7 +187,7 @@
       &-label {
         color: v.$template-standford-container-text-color !important;
       }
-      font-size: 10.5pt;
+      font-size: 10.5pt !important;
       margin: 0 !important;
     }
 
@@ -195,12 +195,12 @@
       &-label {
         color: v.$template-standford-container-text-color !important;
       }
-      font-size: 10.5pt;
+      font-size: 10.5pt !important;
       margin: 0 !important;
     }
 
     &__info {
-      font-size: 10.5pt;
+      font-size: 10.5pt !important;
       margin-bottom: 2.5mm !important;
     }
   }
@@ -211,7 +211,7 @@
     align-items: start;
     &__label {
       color: v.$template-standford-container-text-color !important;
-      font-size: 10.5pt;
+      font-size: 10.5pt !important;
       white-space: nowrap;
     }
     &__list {
@@ -219,7 +219,7 @@
         display: inline-block;
         &:before {
           content: '·';
-          font-size: 10.5pt;
+          font-size: 10.5pt !important;
           font-weight: 300;
           margin: 0 1mm;
         }
@@ -230,7 +230,7 @@
           }
         }
         &-text {
-          font-size: 10.5pt;
+          font-size: 10.5pt !important;
           font-weight: 300;
           white-space: nowrap;
         }
@@ -257,7 +257,7 @@
     //   width: 50mm;
     //   height: 2mm;
     //   &-value {
-    //     background-color: var(--blue);
+    //     background-color: var(--blue-dark);
     //     border-radius: 1mm;
     //     height: 100%;
     //   }
@@ -283,7 +283,7 @@
     //   width: 50mm;
     //   height: 2mm;
     //   &-value {
-    //     background-color: var(--blue);
+    //     background-color: var(--blue-dark);
     //     border-radius: 1mm;
     //     height: 100%;
     //   }

@@ -1,3 +1,13 @@
+.ant-btn-lg {
+  height: var(--button-lg-height) !important;
+}
+.ant-btn-md {
+  height: var(--button-md-height) !important;
+}
+.ant-btn-sm {
+  height: var(--button-sm-height) !important;
+}
+
 .button--primary {
   background-color: var(--button-primary-bg-color);
 

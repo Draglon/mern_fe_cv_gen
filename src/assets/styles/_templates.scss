@@ -1,6 +1,8 @@
 @use 'variables' as v;
 
 .templates-list {
+  margin: 0 auto;
+  width: 180px;
   &__item {
     border-radius: 15px;
     margin-bottom: 15px;

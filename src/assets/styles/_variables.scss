@@ -2,59 +2,150 @@
   // colors
   --transparent: rgba(255, 255, 255, 0);
   --white: #fff;
+
   --black: #000;
   --black-bg: #0A0E11;
   --black-light: #191A20;
+
   --grey: #666;
   --grey-dark: #333;
   --grey-light: #999;
   --grey-lighter: #F5F5F5;
   --grey-lightest: #E9E9E9;
-  --blue: #3e6691;
-  --blue-dark: #444865;
-  --blue-darker: #282C56;
-  --red: #ff4d4f;
 
-  --primary-color: #3F36E1;
-  --primary-color-hover: #3F36E1;
-  --primary-color-disabled: var(--grey-lighter);
+  --blue: #3B82F6;
+  --blue-dark: #3e6691;
+  --blue-darker: #444865;
+  --blue-darkest: #282C56;
+
+  --green: #22C55E;
+
+  --red: #EF4444;
+
+  --orange: #F59E0B;
+
+  --purple-100-light:	#EFE9FF;
+  --purple-200-light:	#D6C8FF;
+  --purple-300-light:	#B39BFF;
+  --purple-400-light:	#9B7BFF;
+  --purple-500-light:	#7B3FF2;
+  --purple-600-light:	#6A35D6;
 
   // variables
-  --background: var(--grey-lighter);
-  --text-color: var(--black);
-  --link-color: var(--blue);
-  --link-color-active: var(--primary-color);
-  --header-bg-color: var(--white);
+  --background: #F8F7FF;
+  --border-color: #E5E5EF;
+  --section-bg-color: var(--white);
+  --text-primary-color: #1A1A1A;
+  --text-secondary-color: #6B6B7A;
+  --primary-color: var(--purple-500-light);
+  --primary-color-hover: var(--purple-600-light);
+  --primary-color-disabled: #A5A5B5;
+  // link
+  --link-default-color:	var(--purple-500-light);
+  --link-hover-color:	var(--purple-600-light);
+  --link-active-color:	#030303;
+  --link-visited-color:	#8F6AFF;
+  --link-disabled-color:	#A5A5B5;
+  // local switcher
+  --locale-switcher-bg-color: var(--white);
+  --locale-switcher-bg-color-hover: var(--white_0);
+  --locale-switcher-bg-color-active: var(--white_25);
+  --locale-switcher-color: var(--black);
+  // header
+  --header-bg-color: var(--section-bg-color);
+  --header-border-color: var(--border-color);
+  --header-padding: 14px 15px;
+  // sidebar
+  --sidebar-bg-color: var(--section-bg-color);
+  --sidebar-border-color: var(--border-color);
+  // status
+  --status-success:	var(--green);
+  --status-warning:	var(--orange);
+  --status-error:	var(--red);
+  --status-info:	var(--blue);
+  // button
   --button-primary-bg-color: var(--primary-color);
   --button-primary-bg-color-hover: var(--primary-color-hover);
   --button-primary-bg-color-disabled: var(--primary-color-disabled);
-  --input-error: var(--red);
-  --locale-switcher-bg-color: var(--white);
-  --locale-switcher-bg-color-hover: var(--white_0);
-  --locale-switcher-bg-color-active: var(--white_25);
-  --locale-switcher-color: var(--black);
+  --button-lg-height: 48px;
+  --button-md-height: 40px;
+  --button-sm-height: 32px;
+  --button-lg-padding: 16px 24px;
+  --button-md-padding: 12px 20px;
+  --button-sm-padding: 8px 16px;
+  // input
+  --input-radius: 8px;
+  --input-font-size: 16px;
+  --input-padding: 0 14px;
+  --input-height-lg: 48px;
+  --input-height-md: 40px;
+  --input-height-sm: 32px;
+  --input-default-bg-color: #F3F2FF;
+  --input-focus-bg-color: var(--white);
+  --input-error-bg-color: #FFF0F0;
+  --input-disabled-bg-color: #F8F7FF;
+  --input-success-bg-color: #F0FFF6;
+  --input-default-border-color: var(--border-color);
+  --input-focus-border-color: var(--purple-500-light);
+  --input-error-border-color: #EF4444;
+  --input-disabled-border-color: var(--border-color);
+  --input-success-border-color: var(--green);
+  --input-color: #1A1A1A;
+  --input-disabled-color: #6B6B7A;
+  --input-placeholder-color: #A8A8B8;
+  --input-placeholder-disabled-color: #C5C5C5;
 }
 
 .dark {
-  --background: var(--black-bg);
-  --text-color: var(--white);
-  --link-color: var(--blue);
-  --link-color-active: var(--white);
-  --header-bg-color: var(--black-light);
-  --button-primary-bg-color: var(--primary-color);
-  --button-primary-bg-color-hover: var(--primary-color-hover);
+  --purple-100-light:	#2B1E5A;
+  --purple-200-light:	#3A2680;
+  --purple-300-light:	#4B2FA8;
+  --purple-400-light:	#6B4EFF;
+  --purple-500-light:	#8C6CFF;
+  --purple-600-light:	#9F86FF;
+
+  --background: #0F0F1A;
+  --border-color: #2A2A40;
+  --section-bg-color: #1A1A2E;
+  --text-primary-color: var(--white);
+  --text-secondary-color: #A8A8B8;
+  --primary-color: var(--purple-500-light);
+  --primary-color-hover: var(--purple-600-light);
+  --primary-color-disabled: #A5A5B5;
+  // link
+  --link-default-color:	#9B7BFF;
+  --link-hover-color:	#B9A4FF;
+  --link-active-color:	#7F63FF;
+  --link-visited-color:	#C7B8FF;
+  --link-disabled-color:	#6A6A80;
+  // local switcher
   --locale-switcher-bg-color: var(--white);
   --locale-switcher-bg-color-hover: var(--white_0);
   --locale-switcher-bg-color-active: var(--white_25);
   --locale-switcher-color: var(--black);
+  // header
+  --header-bg-color: var(--section-bg-color);
+  --header-border-color: var(--border-color);
+  // sidebar
+  --sidebar-bg-color: var(--section-bg-color);
+  --sidebar-border-color: var(--border-color);
+  // button
+  --button-primary-bg-color: var(--primary-color);
+  --button-primary-bg-color-hover: var(--primary-color-hover);
+  // input
+  --input-default-color: var(--border-color);
+  --input-focus-color: va(--purple-500-light);
 }
 
 // Page
 $page-height: 100vh;
 $page-header-height: 68px;
-$page-sidebar-width: 200px;
-$page-sidebar-right-width: 280px;
-$page-sidebar-bg-color: var(--grey);
+$page-sidebar-left-width: 240px;
+$page-sidebar-left-collapsed-width: 72px;
+$page-sidebar-right-width: 240px;
+$page-sidebar-right-collapsed-width: 72px;
+$page-sidebar-bg-color: var(--sidebar-bg-color);
+$page-sidebar-border-color: var(--sidebar-border-color);
 $page-sidebar-padding: 20px 16px;
 $page-content-padding: 20px 16px;
 $page-wrapper-padding: 20px 16px;
@@ -66,7 +157,7 @@ $template-height: auto; // 29.7cm; // 1127px;
 
 // ----------- Template Standford ------------
 // Template - sidebar
-$template-standford-sidebar-bg-blue: var(--blue);
+$template-standford-sidebar-bg-blue: var(--blue-dark);
 $template-standford-sidebar-title-color: var(--white);
 $template-standford-sidebar-text-color: var(--white);
 $template-standford-sidebar-border-color: var(--white);
@@ -93,8 +184,8 @@ $personal-standford-info-border-color: var(--grey-light);
 // ----------- Template Edinburgh ------------
 // Template - sidebar
 $template-edinburgh-sidebar-bg-color: var(--grey-lightest);
-$template-edinburgh-sidebar-title-color: var(--blue-darker);
-$template-edinburgh-sidebar-icon-color: var(--blue-darker);
+$template-edinburgh-sidebar-title-color: var(--blue-darkest);
+$template-edinburgh-sidebar-icon-color: var(--blue-darkest);
 $template-edinburgh-sidebar-text-color: var(--black);
 $template-edinburgh-sidebar-padding: 5mm;
 $template-edinburgh-sidebar-margin: 2mm;
@@ -102,7 +193,7 @@ $template-edinburgh-sidebar-width: 80mm;
 // Template - container
 $template-edinburgh-container-bg: var(--white);
 $template-edinburgh-container-color: var(--grey);
-$template-edinburgh-container-header-color: var(--blue);
+$template-edinburgh-container-header-color: var(--blue-dark);
 $template-edinburgh-container-text-color: var(--black);
 $template-edinburgh-container-border-color: var(--grey-light);
 $template-edinburgh-container-period-color: var(--grey-light);
@@ -111,8 +202,8 @@ $template-edinburgh-container-padding: 4mm;
 $template-edinburgh-container-margin: 4mm;
 $template-edinburgh-container-width: calc($template-width - $template-standford-sidebar-width);
 // Personal - fullName
-$personal-edinburgh-fullName-bg-color: var(--blue-dark);
-$personal-edinburgh-fullName-border-color: var(--blue-darker);
+$personal-edinburgh-fullName-bg-color: var(--blue-darker);
+$personal-edinburgh-fullName-border-color: var(--blue-darkest);
 $personal-edinburgh-fullName-color: var(--white);
 // Personal - photo
 $personal-edinburgh-photo-width: 25mm;

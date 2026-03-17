@@ -1,18 +1,25 @@
 .page__header {
   background-color: var(--header-bg-color);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--header-border-color);
   display: flex;
   align-items: center;
-  padding: 14px 15px;
+  padding: var(--header-padding);
   position: sticky;
   top: 0;
   z-index: 100;
 }
 
 .nav__link {
-  color: var(--link-color);
+  color: var(--link-default-color);
   margin-right: 15px;
+  text-decoration: none;
+  transition: color .3s;
+  &:hover {
+    color: var(--link-hover-color);
+  }
   &.active {
-    color: var(--link-color-active);
+    color: var(--link-active-color);
     cursor: default;
   }
 }

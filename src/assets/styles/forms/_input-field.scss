@@ -1,6 +1,65 @@
 .input-field {
+  .ant-input {
+    background-color: var(--input-default-bg-color);
+    border: 1px solid var(--input-default-border-color);
+    border-radius: var(--input-radius);
+    color: var(--input-color);
+    font-size: var(--input-font-size);
+    padding: var(--input-padding) !important;
+    line-height: 1 !important;
+    &:focus {
+      background-color: var(--input-focus-bg-color);
+      border: 1px solid var(--input-focus-border-color);
+    }
+    &.ant-input-disabled {
+      background-color: var(--input-disabled-bg-color);
+      border: 1px solid var(--input-disabled-border-color);
+      color: var(--input-disabled-color);
+    }
+    &.ant-input-status-error {
+      background-color: var(--input-error-bg-color);
+      border: 1px solid var(--input-error-border-color);
+      color: var(--input-error-color);
+    }
+    &.ant-input-lg {
+      height: var(--input-height-lg);
+    }
+    &.ant-input-md {
+      height: var(--input-height-md);
+    }
+    &.ant-input-sm {
+      height: var(--input-height-sm);
+    }
+  }
+
+  .ant-input-password {
+    background-color: var(--input-default-bg-color);
+    border: 1px solid var(--input-default-border-color);
+    padding: 0 7px 0 0;
+    border-radius: var(--input-radius);
+    .ant-input {
+      border-radius: var(--input-radius);
+      border: 0 !important;
+      &:focus {
+        background-color: var(--input-focus-bg-color);
+      }
+    }
+    &.ant-input-status-error {
+      background-color: var(--input-error-bg-color);
+      border: 1px solid var(--input-error-border-color) !important;
+    }
+    &:has(.ant-input.ant-input-disabled) {
+      background-color: var(--input-disabled-bg-color);
+      border: 1px solid var(--input-disabled-border-color);
+    }
+    &:has(.ant-input:focus) {
+      background-color: var(--input-focus-bg-color);
+      border: 1px solid var(--input-focus-border-color);
+    }
+  }
+
   &__error {
-    color: var(--input-error);
+    color: var(--input-error-border-color);
     display: block;
     font-family: Roboto, sans-serif;
     font-size: 14px;

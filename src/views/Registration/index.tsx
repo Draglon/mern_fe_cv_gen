@@ -54,7 +54,7 @@ const Registration = () => {
 
   return (
     <div className="page__container page__container--small">
-      <div className="page__block login">
+      <div className="page__block signup">
         <header className="login__header">
           <Title className="page__title text-center">
             {tRegistration("title")}

@@ -1,0 +1,11 @@
+.avatar {
+  background-color: var(--section-bg-color);
+  color: var(--primary-color);
+  cursor: pointer;
+  border: 1px solid var(--primary-color);
+  transition: all .3s;
+  &:hover {
+    color: var(--primary-color-hover);
+    border: 1px solid var(--primary-color-hover);
+  }
+}
