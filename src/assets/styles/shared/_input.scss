@@ -1,0 +1,45 @@
+.ant-input {
+  background-color: var(--input-default-bg-color);
+  border: 1px solid var(--input-default-border-color);
+  border-radius: var(--input-radius);
+  color: var(--input-color) !important;
+  font-family: var(--text-primary-font-family);
+  font-size: var(--input-font-size);
+  padding: var(--input-padding) !important;
+  line-height: var(--input-line-height) !important;
+  height: var(--input-height-md);
+  &:focus, &:hover {
+    background-color: var(--input-focus-bg-color) !important;
+    border: 1px solid var(--input-focus-border-color) !important;
+  }
+  &::placeholder {
+    color: var(--input-placeholder-color);
+    font-family: var(--text-primary-font-family);
+  }
+  &.ant-input-disabled {
+    background-color: var(--input-disabled-bg-color);
+    border: 1px solid var(--input-disabled-border-color);
+    color: var(--input-disabled-color);
+  }
+  &.ant-input-status-success {
+    background-color: var(--input-success-bg-color);
+    border: 1px solid var(--input-success-border-color);
+  }
+  &.ant-input-status-error {
+    background-color: var(--input-error-bg-color) !important;
+    border: 1px solid var(--input-error-border-color) !important;
+    color: var(--input-error-color);
+  }
+
+  &.ant-input-lg {
+    height: var(--input-height-lg);
+  }
+  &.ant-input-sm {
+    height: var(--input-height-sm);
+  }
+
+  &.textarea {
+    padding: var(--textarea-padding) !important;
+    min-height: var(--textarea-min-height);
+  }
+}

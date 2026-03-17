@@ -1,8 +1,10 @@
 "use client";
+import isPresent from "@/utils/isPresent";
 import Select from "@/views/shared/antd/Select";
 import { Text } from "@/views/shared/antd/Typography";
 
 type SelectFieldProps = {
+  status?: "error" | "warning" | "success" | "validating" | "";
   errors?: {
     ref: any;
     type: string;
@@ -10,10 +12,10 @@ type SelectFieldProps = {
   };
 };
 
-const SelectField = ({ errors, ...rest }: SelectFieldProps) => {
+const SelectField = ({ errors, status, ...rest }: SelectFieldProps) => {
   return (
     <div className="input-field">
-      <Select {...rest} />
+      <Select status={isPresent(errors) ? "error" : status} {...rest} />
       {errors?.message && (
         <Text className="input-field__error">{errors?.message}</Text>
       )}

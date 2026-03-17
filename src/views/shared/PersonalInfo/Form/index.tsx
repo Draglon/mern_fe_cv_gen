@@ -82,7 +82,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
       layout="vertical"
     >
       <div className="form__wrapper">
-        <div className="w-full">
+        <div className="w-full mb-32">
           <FormItem
             className="form__item--field"
             name="sectionTitle"
@@ -100,6 +100,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
             Field={InputField}
             size="large"
           />
+          <Divider />
         </div>
         <div className="form__side-left">
           <FormItem
@@ -111,8 +112,6 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
             Field={UploadFile}
             size="large"
           />
-        </div>
-        <div className="form__side-right">
           <div className="form__row">
             <FormItem
               className="form__item--field"
@@ -175,9 +174,9 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
             Field={TextAreaField}
             size="large"
           />
-
+        </div>
+        <div className="form__side-right">
           <Divider />
-
           <FormItem
             className="form__item--field"
             name="email"

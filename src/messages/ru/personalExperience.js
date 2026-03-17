@@ -3,10 +3,10 @@ const personalExperience = {
     "title": "Опыт работы",
     "form": {
       "sectionTitle": {
-        "label": "Section title",
-        "placeholder": "Input section title",
+        "label": "Заголовок раздела",
+        "placeholder": "Введите заголовок раздела",
         "errors": {
-          "required": "Please input your section title!",
+          "required": "Пожалуйста, введите название вашего раздела!",
         }
       },
       "lastPlacesOfWorks": {

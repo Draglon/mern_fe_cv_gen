@@ -7,7 +7,6 @@ const Button = ({
   className,
   color = "primary",
   type = "primary",
-  size = "middle",
   htmlType = "button",
   children,
   disabled,
@@ -28,7 +27,6 @@ const Button = ({
       className={classNames}
       color={color}
       type={type}
-      size={size}
       htmlType={htmlType}
       disabled={disabled}
       {...rest}

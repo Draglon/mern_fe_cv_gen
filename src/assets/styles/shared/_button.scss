@@ -1,18 +1,33 @@
-.ant-btn-lg {
-  height: var(--button-lg-height) !important;
-}
-.ant-btn-md {
+// button size
+.ant-btn {
+  font-family: var(--text-primary-font-family) !important;
+  font-size: var(--button-md-font-size) !important;
+  padding: var(--button-md-padding) !important;
   height: var(--button-md-height) !important;
-}
-.ant-btn-sm {
-  height: var(--button-sm-height) !important;
+  &.ant-btn-sm {
+    font-size: var(--button-sm-font-size) !important;
+    padding: var(--button-sm-padding) !important;
+    height: var(--button-sm-height) !important;
+  }
+  &.ant-btn-lg {
+    font-size: var(--button-lg-font-size) !important;
+    padding: var(--button-lg-padding) !important;
+    height: var(--button-lg-height) !important;
+  }
 }
 
+// button primary
 .button--primary {
   background-color: var(--button-primary-bg-color);
+  border: var(--button-primary-border) !important;
+  color: var(--button-primary-color) !important;
 
   &:hover, &:focus {
     background-color: var(--button-primary-bg-color-hover) !important;
+  }
+
+  &:active {
+    background-color: var(--button-primary-bg-color-active) !important;
   }
 
   &:disabled, &:hover:disabled, &:focus:disabled {
@@ -20,6 +35,7 @@
   }
 }
 
+// button secondary
 .button--secondary {
   background-color: var(--button-secondary-bg-color);
 
@@ -28,6 +44,7 @@
   }
 }
 
+// button warning
 .button--warning {
   background-color: var(--button-warning-bg-color);
 
@@ -36,6 +53,7 @@
   }
 }
 
+// button danger
 .button--danger {
   background-color: var(--button-danger-bg-color);
 

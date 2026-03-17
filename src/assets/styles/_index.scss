@@ -2,6 +2,24 @@
 @use 'globals';
 @use 'mixins/index';
 
+// shared
+@use 'shared/avatar';
+@use 'shared/button';
+@use 'shared/divider';
+@use 'shared/dropdown';
+@use 'shared/locale-switcher';
+@use 'shared/input';
+@use 'shared/input-password';
+@use 'shared/select';
+
+// main
+@use 'page';
+@use 'header';
+@use 'template';
+@use 'templates';
+@use 'template-settings';
+
+// forms
 @use 'forms/form';
 @use 'forms/input-field';
 @use 'forms/personal-info';
@@ -12,16 +30,6 @@
 @use 'forms/personal-courses';
 @use 'forms/personal-skills';
 @use 'forms/personal-tools';
-
-@use 'page';
-@use 'header';
-@use 'button';
-@use 'dropdown';
-@use 'avatar';
-@use 'locale-switcher';
-@use 'template';
-@use 'templates';
-@use 'template-settings';
 
 // templates
 @use 'template-edinburgh';
