@@ -21,7 +21,7 @@ const FormList = ({ name, append, children }: FormListType) => {
             <Button
               onClick={() => append()}
               icon={<PlusOutlined />}
-              // size="small"
+              size="small"
             >
               Add field
             </Button>

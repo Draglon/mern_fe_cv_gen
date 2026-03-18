@@ -9,11 +9,14 @@
     .ant-space-item {
       &:nth-child(1),
       &:nth-child(2) {
-        width: calc(45% - 8px);
+        width: calc(50% - 50px);
+      }
+      &:nth-child(3) {
+        width: 100px;
       }
       &:nth-child(4) {
         position: absolute;
-        top: 0;
+        top: 5px;
         right: 0;
         line-height: 0;
         width: 14px;

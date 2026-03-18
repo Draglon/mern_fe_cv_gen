@@ -22,6 +22,7 @@ import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
 import InputField from "@/views/shared/InputField";
 import TextAreaField from "@/views/shared/TextAreaField";
+import Divider from "@/views/shared/antd/Divider";
 
 type PersonalCoursesFormProps = {
   locale: string;
@@ -96,82 +97,85 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
     >
       <FormList name="courses" append={append}>
         {fields.map((field, index) => (
-          <Space key={field.id} align="baseline" className="form__list-space">
-            <FormItem
-              name={[index, "course"]}
-              controlName={`courses.${index}.course`}
-              control={control}
-              className="form__item--field"
-              label={t("form.course.label")}
-              placeholder={t("form.course.placeholder")}
-              register={register(`courses.${index}.course`, {
-                required: {
-                  value: true,
-                  message: t("form.course.errors.required"),
-                },
-              })}
-              errors={path(["courses", index, "course"], errors)}
-              size="large"
-              Field={InputField}
-            />
-            <FormItem
-              name={[index, "description"]}
-              controlName={`courses.${index}.description`}
-              control={control}
-              className="form__item--field"
-              label={t("form.description.label")}
-              placeholder={t("form.description.placeholder")}
-              register={register(`courses.${index}.description`, {
-                required: {
-                  value: true,
-                  message: t("form.description.errors.required"),
-                },
-              })}
-              errors={path(["courses", index, "description"], errors)}
-              size="large"
-              Field={TextAreaField}
-            />
-            <FormItem
-              name={[index, "startDate"]}
-              controlName={`courses.${index}.startDate`}
-              control={control}
-              className="form__item--field"
-              label={t("form.startDate.label")}
-              placeholder={t("form.startDate.placeholder")}
-              register={register(`courses.${index}.startDate`, {
-                required: {
-                  value: true,
-                  message: t("form.startDate.errors.required"),
-                },
-              })}
-              errors={path(["courses", index, "startDate"], errors)}
-              size="large"
-              Field={InputField}
-            />
-            <FormItem
-              name={[index, "endDate"]}
-              controlName={`courses.${index}.endDate`}
-              control={control}
-              className="form__item--field"
-              label={t("form.endDate.label")}
-              placeholder={t("form.endDate.placeholder")}
-              register={register(`courses.${index}.endDate`, {
-                required: {
-                  value: true,
-                  message: t("form.endDate.errors.required"),
-                },
-              })}
-              errors={path(["courses", index, "endDate"], errors)}
-              size="large"
-              Field={InputField}
-            />
-            {fields.length > 1 && (
-              <MinusCircleOutlined
-                className="form__item--button-remove"
-                onClick={() => remove(index)}
+          <>
+            <Space key={field.id} align="baseline" className="form__list-space">
+              <FormItem
+                name={[index, "course"]}
+                controlName={`courses.${index}.course`}
+                control={control}
+                className="form__item--field"
+                label={t("form.course.label")}
+                placeholder={t("form.course.placeholder")}
+                register={register(`courses.${index}.course`, {
+                  required: {
+                    value: true,
+                    message: t("form.course.errors.required"),
+                  },
+                })}
+                errors={path(["courses", index, "course"], errors)}
+                size="large"
+                Field={InputField}
               />
-            )}
-          </Space>
+              <FormItem
+                name={[index, "description"]}
+                controlName={`courses.${index}.description`}
+                control={control}
+                className="form__item--field"
+                label={t("form.description.label")}
+                placeholder={t("form.description.placeholder")}
+                register={register(`courses.${index}.description`, {
+                  required: {
+                    value: true,
+                    message: t("form.description.errors.required"),
+                  },
+                })}
+                errors={path(["courses", index, "description"], errors)}
+                size="large"
+                Field={TextAreaField}
+              />
+              <FormItem
+                name={[index, "startDate"]}
+                controlName={`courses.${index}.startDate`}
+                control={control}
+                className="form__item--field"
+                label={t("form.startDate.label")}
+                placeholder={t("form.startDate.placeholder")}
+                register={register(`courses.${index}.startDate`, {
+                  required: {
+                    value: true,
+                    message: t("form.startDate.errors.required"),
+                  },
+                })}
+                errors={path(["courses", index, "startDate"], errors)}
+                size="large"
+                Field={InputField}
+              />
+              <FormItem
+                name={[index, "endDate"]}
+                controlName={`courses.${index}.endDate`}
+                control={control}
+                className="form__item--field"
+                label={t("form.endDate.label")}
+                placeholder={t("form.endDate.placeholder")}
+                register={register(`courses.${index}.endDate`, {
+                  required: {
+                    value: true,
+                    message: t("form.endDate.errors.required"),
+                  },
+                })}
+                errors={path(["courses", index, "endDate"], errors)}
+                size="large"
+                Field={InputField}
+              />
+              {fields.length > 1 && (
+                <MinusCircleOutlined
+                  className="form__item--button-remove"
+                  onClick={() => remove(index)}
+                />
+              )}
+            </Space>
+            <Divider />
+          </>
         ))}
       </FormList>
 
