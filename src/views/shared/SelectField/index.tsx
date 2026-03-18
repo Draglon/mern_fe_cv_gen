@@ -4,7 +4,7 @@ import Select from "@/views/shared/antd/Select";
 import { Text } from "@/views/shared/antd/Typography";
 
 type SelectFieldProps = {
-  status?: "error" | "warning" | "success" | "validating" | "";
+  status?: "error" | "warning" | "success" | "validating";
   errors?: {
     ref: any;
     type: string;

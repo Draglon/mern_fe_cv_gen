@@ -4,7 +4,7 @@ import Input from "@/views/shared/antd/Input";
 import { Text } from "@/views/shared/antd/Typography";
 
 type InputFieldProps = {
-  status?: "error" | "warning" | "success" | "validating" | "";
+  status?: "error" | "warning" | "success" | "validating";
   errors?: {
     ref: any;
     type: string;
