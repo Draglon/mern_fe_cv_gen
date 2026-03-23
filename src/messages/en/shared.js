@@ -12,6 +12,7 @@ const shared = {
     "previous": "Previous",
     "add": "Add",
     "save": "Save",
+    "addField": "Add fields",
   },
 };
 

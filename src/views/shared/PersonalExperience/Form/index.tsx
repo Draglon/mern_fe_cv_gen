@@ -6,6 +6,7 @@ import { MinusCircleOutlined } from "@ant-design/icons";
 import { isEmpty, path, pathOr } from "ramda";
 
 import { REGEX_DIGITS, REGEX_STRING } from "@/lib/constants/regex";
+import { RESUME_EXPERIENCE_DEFAULT_VALUES } from "@/lib/constants/resumeExperience";
 import { Locales } from "@/lib/constants/props/locales";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import { experienceByLocale } from "@/utils/personalExperience";
@@ -65,23 +66,11 @@ const PersonalExperienceForm = ({
       lastPlacesOfWorks: pathOr("", ["lastPlacesOfWorks"], personalExperience),
       experience: !isEmpty(experience)
         ? experience
-        : [
-            {
-              position: "",
-              companyName: "",
-              location: "",
-              placeOfWork: "",
-              workingTime: "",
-              startDate: "",
-              endDate: "",
-              description: "",
-              skills: [],
-            },
-          ],
+        : [RESUME_EXPERIENCE_DEFAULT_VALUES],
     },
   });
   const { errors } = formState;
-  const { fields, append, remove } = useFieldArray({
+  const { fields, prepend, remove } = useFieldArray({
     control,
     name: "experience",
   });
@@ -151,9 +140,15 @@ const PersonalExperienceForm = ({
         />
         <Divider />
       </div>
-      <FormList name="experience" append={append}>
+      <FormList
+        name="experience"
+        prepend={prepend}
+        isPrepend
+        fieldValues={RESUME_EXPERIENCE_DEFAULT_VALUES}
+      >
         {fields.map((field, index) => (
           <>
+            <Divider />
             <Space key={field.id} align="baseline" className="form__list-space">
               <FormItem
                 name={[index, "position"]}
@@ -316,7 +311,6 @@ const PersonalExperienceForm = ({
                 />
               )}
             </Space>
-            <Divider />
           </>
         ))}
       </FormList>
