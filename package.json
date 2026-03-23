@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint .",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "test:cypress": "start-server-and-test start http://localhost:3000 cypress",
+    "coverage": "jest --coverage --no-cache"
   },
   "dependencies": {
     "next": "16.0.10",
