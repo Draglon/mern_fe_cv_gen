@@ -11,10 +11,14 @@ const GuestHeader = () => {
     <header className="page__header justify-content-flex-end">
       <nav className="header__buttons">
         <NavigationLink className="header__button ml-16" href="/login">
-          <Button>{t("logIn")}</Button>
+          <Button dataTestId="btnLogIn" dataCy="btn-log-in">
+            {t("logIn")}
+          </Button>
         </NavigationLink>
         <NavigationLink className="header__button ml-16" href="/registration">
-          <Button>{t("signUp")}</Button>
+          <Button dataTestId="btnSignUp" dataCy="btn-sign-up">
+            {t("signUp")}
+          </Button>
         </NavigationLink>
       </nav>
     </header>

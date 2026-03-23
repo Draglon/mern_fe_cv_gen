@@ -10,8 +10,10 @@ const Button = ({
   htmlType = "button",
   children,
   disabled,
+  dataTestId,
+  dataCy,
   ...rest
-}: ButtonProps) => {
+}: ButtonProps & { dataTestId?: string; dataCy?: string }) => {
   const classNames = clsx(
     "button",
     {
@@ -29,6 +31,8 @@ const Button = ({
       type={type}
       htmlType={htmlType}
       disabled={disabled}
+      data-testid={dataTestId}
+      data-cy={dataCy}
       {...rest}
     >
       {children}
