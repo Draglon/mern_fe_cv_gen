@@ -12,7 +12,7 @@ type FormListType = {
   append?: any;
   isPrepend?: boolean;
   children: React.ReactNode;
-  fieldValues: any;
+  fieldValues?: any;
 };
 
 const FormList = ({

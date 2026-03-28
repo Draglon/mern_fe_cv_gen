@@ -1,5 +1,6 @@
 "use client";
 import { useTranslations } from "next-intl";
+import { formatPhoneNumberIntl } from "react-phone-number-input";
 import { equals, includes } from "ramda";
 import {
   HomeOutlined,
@@ -72,7 +73,9 @@ const PersonalData = ({
             {t("personalData.phoneNumber", { locale: templateLanguage })}
           </Text>
           <Paragraph className="personal-data__paragraph">
-            {phoneNumber[templateLanguage as Locales]}
+            {formatPhoneNumberIntl(
+              phoneNumber[templateLanguage as Locales] as string
+            )}
           </Paragraph>
         </div>
       )}

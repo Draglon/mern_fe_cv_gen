@@ -138,7 +138,6 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
               className="form__item--field"
               label={t("form.visible.label")}
               size="large"
-              fieldType="checkbox"
               Field={Checkbox}
             />
             {fields.length > 1 && (

@@ -10,7 +10,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cypress": "start-server-and-test start http://localhost:3000 cypress",
-    "coverage": "jest --coverage --no-cache",
+    "test:coverage": "jest --coverage --no-cache",
     "cypress": "cypress open",
     "cypress:run": "cypress run"
   },
@@ -36,6 +36,7 @@
     "antd": "^6.1.0",
     "antd-img-crop": "^4.27.0",
     "axios": "^1.13.2",
+    "baseline-browser-mapping": "^2.10.11",
     "clsx": "^2.1.1",
     "cypress": "^15.11.0",
     "eslint": "^9.39.2",

@@ -10,6 +10,7 @@ const TextArea = ({ className, rootClassName, ...rest }: TextAreaProps) => {
     <TextArea
       className={clsx("textarea", className)}
       rootClassName={clsx("textarea__root", rootClassName)}
+      data-testid="text-area"
       {...rest}
     />
   );

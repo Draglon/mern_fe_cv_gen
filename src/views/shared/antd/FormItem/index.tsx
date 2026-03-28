@@ -7,17 +7,14 @@ type FormItemType = {
   name: string | any[];
   controlName?: string;
   control?: any;
+  className?: string;
+  label?: string | null;
+  Field?: any;
+  mode?: string;
   type?: string;
   size?: string;
-  className?: string;
-  fieldClassName?: string;
-  label?: string | null;
   placeholder?: string;
   register?: any;
-  errors?: any;
-  Field?: any;
-  fieldType?: string;
-  mode?: string;
   options?: { label: string; value: string }[];
   children?: React.ReactNode;
 };
@@ -27,15 +24,11 @@ const FormItem = ({
   controlName,
   control,
   className,
-  fieldClassName,
   label = null,
-  register,
-  errors,
   Field,
-  fieldType = "text",
   children,
   ...restProps
-}: FormItemType) => {
+}: FormItemType & { defaultCountry?: string }) => {
   return children ? (
     <Form.Item
       name={name}
@@ -48,51 +41,13 @@ const FormItem = ({
     <Controller
       name={controlName || ""}
       control={control}
-      render={({ field: { onChange, value } }) => (
+      render={({ field }) => (
         <Form.Item
           name={name}
           className={clsx("form__item", className)}
           label={label}
         >
-          {fieldType === "text" && (
-            <Field
-              {...register}
-              className={fieldClassName}
-              onChange={onChange}
-              value={value}
-              defaultValue={value}
-              errors={errors}
-              {...restProps}
-            />
-          )}
-          {fieldType === "upload" && (
-            <Field
-              className={fieldClassName}
-              onChange={onChange}
-              fileList={value}
-              errors={errors}
-              {...restProps}
-            />
-          )}
-          {fieldType === "textarea" && (
-            <Field
-              className={fieldClassName}
-              onChange={onChange}
-              value={value}
-              defaultValue={value}
-              errors={errors}
-              {...restProps}
-            />
-          )}
-          {fieldType === "checkbox" && (
-            <Field
-              className={fieldClassName}
-              onChange={onChange}
-              defaultChecked={value}
-              errors={errors}
-              {...restProps}
-            />
-          )}
+          <Field {...restProps} {...field} defaultValue={field.value} />
         </Form.Item>
       )}
     />

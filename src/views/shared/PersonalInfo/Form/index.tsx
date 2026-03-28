@@ -14,9 +14,10 @@ import { userIdSelector, personalInfoIdSelector } from "@/store/auth/selectors";
 import { personalInfoSelector } from "@/store/personalInfo/selectors";
 
 import FormItem from "@/views/shared/antd/FormItem";
-import UploadFile from "@/views/shared/antd/UploadFile";
 import InputField from "@/views/shared/InputField";
 import TextAreaField from "@/views/shared/TextAreaField";
+import UploadFileField from "@/views/shared/UploadFileField";
+import PhoneNumberField from "@/views/shared/PhoneNumberField";
 import Button from "@/views/shared/antd/Button";
 import Divider from "@/views/shared/antd/Divider";
 
@@ -108,8 +109,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
             controlName="userUrl"
             control={control}
             label={t("form.userUrl.label")}
-            fieldType="upload"
-            Field={UploadFile}
+            Field={UploadFileField}
             size="large"
           />
           <div className="form__row">
@@ -170,7 +170,6 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
               },
             })}
             errors={errors["about"]}
-            fieldType="textarea"
             Field={TextAreaField}
             size="large"
           />
@@ -212,8 +211,9 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
             control={control}
             label={t("form.phoneNumber.label")}
             placeholder={t("form.phoneNumber.placeholder")}
-            Field={InputField}
+            Field={PhoneNumberField}
             size="large"
+            defaultCountry="UA"
           />
           <FormItem
             className="form__item--field"
