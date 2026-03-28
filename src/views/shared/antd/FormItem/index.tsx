@@ -15,6 +15,7 @@ type FormItemType = {
   size?: string;
   placeholder?: string;
   register?: any;
+  errors?: any;
   options?: { label: string; value: string }[];
   children?: React.ReactNode;
 };
