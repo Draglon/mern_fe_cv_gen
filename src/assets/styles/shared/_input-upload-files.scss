@@ -1,0 +1,18 @@
+.ant-upload-wrapper {
+  .ant-upload-list {
+    &.ant-upload-list-picture-circle {
+
+    }
+
+    .ant-upload-list-item {
+      &.ant-upload-list-item-error {
+
+      }
+    }
+  }
+  .ant-upload-list-item-actions {
+    & > a {
+      display: none;
+    }
+  }
+}

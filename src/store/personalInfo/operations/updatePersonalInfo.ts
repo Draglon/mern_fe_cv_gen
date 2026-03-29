@@ -23,11 +23,10 @@ type ParamsType = {
   portfolio?: string;
 };
 
-
-const createPersonalInfoOperation = createAsyncThunk(
+const updatePersonalInfoOperation = createAsyncThunk(
   UPDATE_PERSONAL_INFO,
   async (params: ParamsType) => {
-    const userUrl = params?.userUrl ? await getBase64(params.userUrl[0]) : ""; 
+    const userUrl = params?.userUrl ? await getBase64(params.userUrl[0]) : "";
 
     try {
       const { data } = await axios.patch(personalInfoRoute(params.personalInfoId), { ...params, userUrl });
@@ -38,4 +37,4 @@ const createPersonalInfoOperation = createAsyncThunk(
   },
 );
 
-export default createPersonalInfoOperation;
+export default updatePersonalInfoOperation;
