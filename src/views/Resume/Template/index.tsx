@@ -1,17 +1,17 @@
 "use client";
 import { useEffect } from "react";
 
+import { Locales } from "@/lib/constants/props/locales";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import fetchPersonalInfo from "@/store/personalInfo/operations/fetchPersonalInfo";
-import { personalInfoIdSelector } from "@/store/auth/selectors";
-import { personalInfoSelector } from "@/store/personalInfo/selectors";
+import fetchResume from "@/store/resume/operations/fetchResume";
+import { userIdSelector } from "@/store/auth/selectors";
 
 import Sidebar from "@/views/Resume/Template/Sidebar";
 import Content from "@/views/Resume/Template/Content";
 
 type ResumeTemplateProps = {
   template: string;
-  templateLanguage: string;
+  templateLanguage: Locales;
 };
 
 const ResumeTemplate = ({
@@ -19,27 +19,18 @@ const ResumeTemplate = ({
   templateLanguage,
 }: ResumeTemplateProps) => {
   const dispatch = useAppDispatch();
-  const personalInfoId = useAppSelector(personalInfoIdSelector);
-  const personalInfoData = useAppSelector(personalInfoSelector);
+  const userId = useAppSelector(userIdSelector);
 
   useEffect(() => {
-    if (personalInfoId) {
-      dispatch(fetchPersonalInfo({ id: personalInfoId }));
+    if (userId) {
+      dispatch(fetchResume({ userId }));
     }
-  }, [dispatch, personalInfoId]);
+  }, [dispatch, userId]);
 
   return (
     <div className={`template template--${template}`}>
-      <Sidebar
-        personalInfo={personalInfoData}
-        template={template}
-        templateLanguage={templateLanguage}
-      />
-      <Content
-        personalInfo={personalInfoData}
-        template={template}
-        templateLanguage={templateLanguage}
-      />
+      <Sidebar template={template} templateLanguage={templateLanguage} />
+      <Content template={template} templateLanguage={templateLanguage} />
     </div>
   );
 };

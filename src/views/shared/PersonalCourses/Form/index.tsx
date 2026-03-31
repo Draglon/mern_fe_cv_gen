@@ -25,7 +25,7 @@ import TextAreaField from "@/views/shared/TextAreaField";
 import Divider from "@/views/shared/antd/Divider";
 
 type PersonalCoursesFormProps = {
-  locale: string;
+  locale: Locales;
   isEdit?: boolean;
 };
 
@@ -45,7 +45,7 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
   const userId = useAppSelector(userIdSelector);
   const personalCoursesId = useAppSelector(personalCoursesIdSelector);
   const personalCourses = useAppSelector(personalCoursesSelector);
-  const courses = coursesByLocale(personalCourses, locale as Locales);
+  const courses = coursesByLocale(personalCourses, locale);
 
   const { control, handleSubmit, register, formState } = useForm({
     values: {

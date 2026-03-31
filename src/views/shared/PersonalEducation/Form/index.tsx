@@ -24,7 +24,7 @@ import InputField from "@/views/shared/InputField";
 import Divider from "@/views/shared/antd/Divider";
 
 type PersonalEducationFormProps = {
-  locale: string;
+  locale: Locales;
   isEdit?: boolean;
 };
 
@@ -49,7 +49,7 @@ const PersonalEducationForm = ({
   const userId = useAppSelector(userIdSelector);
   const personalEducationId = useAppSelector(personalEducationIdSelector);
   const personalEducation = useAppSelector(personalEducationSelector);
-  const education = educationByLocale(personalEducation, locale as Locales);
+  const education = educationByLocale(personalEducation, locale);
 
   const { control, handleSubmit, register, formState } = useForm({
     values: {

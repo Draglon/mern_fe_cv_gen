@@ -2,7 +2,7 @@ import { Locales, Locale } from "@/lib/constants/props/locales";
 
 type PersonalInfoProps = {
   sectionTitle: Locale;
-  userUrl: any,
+  userUrl?: string,
   firstName: Locale,
   lastName: Locale,
   email: Locale,
@@ -16,16 +16,16 @@ type PersonalInfoProps = {
 };
 
 export const personalInfoByLocale = (personalInfo: PersonalInfoProps, locale: Locales) => ({
-  sectionTitle: personalInfo?.sectionTitle[locale as Locales] ? personalInfo.sectionTitle[locale as Locales] : "",
+  sectionTitle: personalInfo?.sectionTitle[locale] ? personalInfo.sectionTitle[locale] : "",
   userUrl: personalInfo?.userUrl ? [personalInfo.userUrl] : [],
-  firstName: personalInfo?.firstName[locale as Locales] ? personalInfo.firstName[locale as Locales] : "",
-  lastName: personalInfo?.lastName[locale as Locales] ? personalInfo.lastName[locale as Locales] : "",
-  email: personalInfo?.email[locale as Locales] ? personalInfo.email[locale as Locales] : "",
-  about: personalInfo?.about[locale as Locales] ? personalInfo.about[locale as Locales] : "",
-  address: personalInfo?.address[locale as Locales] ? personalInfo.address[locale as Locales] : "",
-  phoneNumber: personalInfo?.phoneNumber[locale as Locales] ? personalInfo.phoneNumber[locale as Locales] : "",
-  birthday: personalInfo?.birthday[locale as Locales] ? personalInfo.birthday[locale as Locales] : "",
-  linkedIn: personalInfo?.linkedIn[locale as Locales] ? personalInfo.linkedIn[locale as Locales] : "",
-  telegram: personalInfo?.telegram[locale as Locales] ? personalInfo.telegram[locale as Locales] : "",
-  portfolio: personalInfo?.portfolio[locale as Locales] ? personalInfo.portfolio[locale as Locales] : "",
+  firstName: personalInfo?.firstName[locale] ? personalInfo.firstName[locale] : "",
+  lastName: personalInfo?.lastName[locale] ? personalInfo.lastName[locale] : "",
+  email: personalInfo?.email[locale] ? personalInfo.email[locale] : "",
+  about: personalInfo?.about[locale] ? personalInfo.about[locale] : "",
+  address: personalInfo?.address[locale] ? personalInfo.address[locale] : "",
+  phoneNumber: personalInfo?.phoneNumber[locale] ? personalInfo.phoneNumber[locale] : "",
+  birthday: personalInfo?.birthday[locale] ? personalInfo.birthday[locale] : "",
+  linkedIn: personalInfo?.linkedIn[locale] ? personalInfo.linkedIn[locale] : "",
+  telegram: personalInfo?.telegram[locale] ? personalInfo.telegram[locale] : "",
+  portfolio: personalInfo?.portfolio[locale] ? personalInfo.portfolio[locale] : "",
 });

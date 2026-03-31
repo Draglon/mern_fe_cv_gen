@@ -1,7 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { createWrapper } from 'next-redux-wrapper';
 
 import authReducer from "./auth";
 import modalReducer from "./modal";
+import resumeReducer from "./resume";
 import personalInfoReducer from "./personalInfo";
 import personalHobbiesReducer from "./personalHobbies";
 import personalLanguagesReducer from "./personalLanguages";
@@ -15,6 +17,7 @@ export const makeStore = () => configureStore({
   reducer: {
     auth: authReducer,
     modal: modalReducer,
+    resume: resumeReducer,
     personalInfo: personalInfoReducer,
     personalHobbies: personalHobbiesReducer,
     personalLanguages: personalLanguagesReducer,
@@ -24,6 +27,7 @@ export const makeStore = () => configureStore({
     personalSkills: personalSkillsReducer,
     personalTools: personalToolsReducer,
   },
+  devTools: process.env.NODE_ENV !== 'production',
 });
 
 // Infer the type of makeStore
@@ -31,3 +35,5 @@ export type AppStore = ReturnType<typeof makeStore>
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<AppStore["getState"]>
 export type AppDispatch = AppStore["dispatch"]
+
+export default createWrapper<AppStore>(makeStore);

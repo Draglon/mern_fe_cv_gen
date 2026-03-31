@@ -1,19 +1,10 @@
 "use client";
-import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 
-import { Locales } from "@/lib/constants/props/locales";
+import { Locales, Locale } from "@/lib/constants/props/locales";
 import { educationByLocale } from "@/utils/personalEducation";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import fetchPersonalEducation from "@/store/personalEducation/operations/fetchPersonalEducation";
-import { personalEducationSelector } from "@/store/personalEducation/selectors";
 
 import { Title, Text, Paragraph } from "@/views/shared/antd/Typography";
-
-type PersonalEducationProps = {
-  templateLanguage: string;
-  personalEducationId: string;
-};
 
 type EducationProps = {
   degree: string;
@@ -24,21 +15,19 @@ type EducationProps = {
   endDate: string;
 };
 
+type PersonalEducationProps = {
+  templateLanguage: Locales;
+  personalEducation: {
+    education: Locale;
+  };
+};
+
 const PersonalEducation = ({
-  personalEducationId,
   templateLanguage,
+  personalEducation,
 }: PersonalEducationProps) => {
   const t = useTranslations("Template");
-  const dispatch = useAppDispatch();
-  const personalEducation = useAppSelector(personalEducationSelector);
-  const education = educationByLocale(
-    personalEducation,
-    templateLanguage as Locales
-  );
-
-  useEffect(() => {
-    dispatch(fetchPersonalEducation({ id: personalEducationId }));
-  }, [dispatch, personalEducationId]);
+  const education = educationByLocale(personalEducation, templateLanguage);
 
   return (
     <>

@@ -1,12 +1,8 @@
 "use client";
-import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { Locales } from "@/lib/constants/props/locales";
+import { Locales, Locale } from "@/lib/constants/props/locales";
 import { languagesByLocale } from "@/utils/personalLanguages";
-import fetchPersonalLanguages from "@/store/personalLanguages/operations/fetchPersonalLanguages";
-import { personalLanguagesSelector } from "@/store/personalLanguages/selectors";
 
 import { Text } from "@/views/shared/antd/Typography";
 
@@ -16,25 +12,18 @@ type Language = {
 };
 
 type LanguagesProps = {
-  templateLanguage: string;
-  personalLanguagesId: string;
+  templateLanguage: Locales;
+  personalLanguages: {
+    languages: Locale;
+  };
 };
 
 const PersonalLanguages = ({
-  personalLanguagesId,
   templateLanguage,
+  personalLanguages,
 }: LanguagesProps) => {
   const t = useTranslations("Template");
-  const dispatch = useAppDispatch();
-  const personalLanguages = useAppSelector(personalLanguagesSelector);
-  const languages = languagesByLocale(
-    personalLanguages,
-    templateLanguage as Locales
-  );
-
-  useEffect(() => {
-    dispatch(fetchPersonalLanguages({ id: personalLanguagesId }));
-  }, [dispatch, personalLanguagesId]);
+  const languages = languagesByLocale(personalLanguages, templateLanguage);
 
   return (
     <div className="personal-languages">

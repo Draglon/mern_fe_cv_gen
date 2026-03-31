@@ -1,18 +1,8 @@
 "use client";
-import { useEffect } from "react";
-
-import { Locales } from "@/lib/constants/props/locales";
+import { Locales, Locale } from "@/lib/constants/props/locales";
 import { skillsByLocale } from "@/utils/personalSkills";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import fetchPersonalSkills from "@/store/personalSkills/operations/fetchPersonalSkills";
-import { personalSkillsSelector } from "@/store/personalSkills/selectors";
 
 import { Text } from "@/views/shared/antd/Typography";
-
-type PersonalSkillsProps = {
-  templateLanguage: string;
-  personalSkillsId: string;
-};
 
 type SkillItemProps = {
   skill: string;
@@ -20,17 +10,18 @@ type SkillItemProps = {
   visible: boolean;
 };
 
-const PersonalSkills = ({
-  personalSkillsId,
-  templateLanguage,
-}: PersonalSkillsProps) => {
-  const dispatch = useAppDispatch();
-  const personalSkills = useAppSelector(personalSkillsSelector);
-  const skills = skillsByLocale(personalSkills, templateLanguage as Locales);
+type PersonalSkillsProps = {
+  templateLanguage: Locales;
+  personalSkills: {
+    skills: Locale;
+  };
+};
 
-  useEffect(() => {
-    dispatch(fetchPersonalSkills({ id: personalSkillsId }));
-  }, [dispatch, personalSkillsId]);
+const PersonalSkills = ({
+  templateLanguage,
+  personalSkills,
+}: PersonalSkillsProps) => {
+  const skills = skillsByLocale(personalSkills, templateLanguage);
 
   return (
     <div className="personal-skills">

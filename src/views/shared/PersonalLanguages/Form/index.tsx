@@ -25,7 +25,7 @@ import InputField from "@/views/shared/InputField";
 import SelectField from "@/views/shared/SelectField";
 
 type PersonalLanguagesFormProps = {
-  locale: string;
+  locale: Locales;
   isEdit?: boolean;
 };
 
@@ -46,10 +46,8 @@ const PersonalLanguagesForm = ({
 
   const { control, handleSubmit, formState, register } = useForm({
     values: {
-      languages: !isEmpty(
-        languagesByLocale(personalLanguages, locale as Locales)
-      )
-        ? languagesByLocale(personalLanguages, locale as Locales)
+      languages: !isEmpty(languagesByLocale(personalLanguages, locale))
+        ? languagesByLocale(personalLanguages, locale)
         : [{ language: "", level: "" }],
     },
     mode: "onChange",

@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import { ReactNode, useState } from "react";
 import { RemoveScroll } from "react-remove-scroll";
 
 import stopPropagation from "@/utils/stopPropagation";

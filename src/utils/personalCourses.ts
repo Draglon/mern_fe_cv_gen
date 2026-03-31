@@ -5,5 +5,5 @@ type PersonalCoursesProps = {
 };
 
 export const coursesByLocale = (personalCourses: PersonalCoursesProps, locale: Locales) => JSON.parse(
-  personalCourses?.courses[locale as Locales] || "[]"
+  personalCourses?.courses[locale] || "[]"
 );

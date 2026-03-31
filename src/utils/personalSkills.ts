@@ -5,5 +5,5 @@ type PersonalSkillsProps = {
 };
 
 export const skillsByLocale = (personalSkills: PersonalSkillsProps, locale: Locales) => JSON.parse(
-  personalSkills?.skills[locale as Locales] || "[]"
+  personalSkills?.skills[locale] || "[]"
 );

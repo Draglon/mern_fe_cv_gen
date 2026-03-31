@@ -4,7 +4,6 @@ import { equals } from "ramda";
 import profileName from "@/utils/profileName";
 import { TEMPLATES } from "@/lib/constants/templates";
 import { personalInfoProps } from "@/lib/constants/props/resume";
-import { Locales } from "@/lib/constants/props/locales";
 import { Title, Paragraph } from "@/views/shared/antd/Typography";
 
 const PersonalInfo = ({
@@ -19,13 +18,13 @@ const PersonalInfo = ({
       {equals(template, TEMPLATES.standford) && (
         <header className="personal-info__header">
           <Title className="personal-info__fullname" level={1}>
-            {profileName(personalInfo, templateLanguage as Locales)}
+            {profileName(personalInfo, templateLanguage)}
           </Title>
         </header>
       )}
-      {about && about[templateLanguage as Locales] && (
+      {about && about[templateLanguage] && (
         <Paragraph className="personal-info__about">
-          {about[templateLanguage as Locales]}
+          {about[templateLanguage]}
         </Paragraph>
       )}
     </section>

@@ -2,19 +2,14 @@
 import { useTranslations } from "next-intl";
 import { includes, pathOr } from "ramda";
 
+import { Locales } from "@/lib/constants/props/locales";
 import {
   TEMPLATES_PERSONAL_INFO_FULLNAME,
   TEMPLATES_SIDEBARS_SKILLS,
   TEMPLATES_SIDEBARS_TOOLS,
 } from "@/lib/constants/templates";
-import { personalInfoProps } from "@/lib/constants/props/resume";
 import { useAppSelector } from "@/store/hooks";
-import {
-  personalHobbiesIdSelector,
-  personalLanguagesIdSelector,
-  personalSkillsIdSelector,
-  personalToolsIdSelector,
-} from "@/store/auth/selectors";
+import { resumeSelector } from "@/store/resume/selectors";
 
 import Section from "@/views/shared/TemplateResume/Section";
 import PersonalFullName from "@/views/shared/TemplateResume/PersonalFullName";
@@ -25,32 +20,34 @@ import PersonalLanguages from "@/views/shared/TemplateResume/PersonalLanguages";
 import PersonalSkills from "@/views/shared/TemplateResume/PersonalSkills";
 import PersonalTools from "@/views/shared/TemplateResume/PersonalTools";
 
+type ResumeTemplateSidebarProps = {
+  template: string;
+  templateLanguage: Locales;
+};
+
 const ResumeTemplateSidebar = ({
-  personalInfo,
   template,
   templateLanguage,
-}: personalInfoProps) => {
+}: ResumeTemplateSidebarProps) => {
   const t = useTranslations("Template");
-  const personalHobbiesId = useAppSelector(personalHobbiesIdSelector);
-  const personalLanguagesId = useAppSelector(personalLanguagesIdSelector);
-  const personalSkillsId = useAppSelector(personalSkillsIdSelector);
-  const personalToolsId = useAppSelector(personalToolsIdSelector);
+  const resume = useAppSelector(resumeSelector);
 
   return (
     <div className="template__sidebar">
-      {personalInfo && includes(template, TEMPLATES_PERSONAL_INFO_FULLNAME) && (
-        <Section>
-          <PersonalFullName
-            personalFullName={personalInfo}
-            templateLanguage={templateLanguage}
-          />
-        </Section>
-      )}
+      {resume?.personalInfo &&
+        includes(template, TEMPLATES_PERSONAL_INFO_FULLNAME) && (
+          <Section>
+            <PersonalFullName
+              personalFullName={resume.personalInfo}
+              templateLanguage={templateLanguage}
+            />
+          </Section>
+        )}
 
-      {personalInfo?.userUrl && (
+      {resume?.personalInfo?.userUrl && (
         <Section>
           <PersonalPhoto
-            src={personalInfo.userUrl}
+            src={resume.personalInfo.userUrl}
             alt={t("personalPhoto.alt", { locale: templateLanguage })}
             width={170}
             height={170}
@@ -58,70 +55,72 @@ const ResumeTemplateSidebar = ({
         </Section>
       )}
 
-      {personalInfo && (
+      {resume?.personalInfo && (
         <Section
           title={pathOr(
             t("personalData.title", { locale: templateLanguage }),
             ["sectionTitle", templateLanguage],
-            personalInfo
+            resume.personalInfo
           )}
           size="small"
         >
           <PersonalData
-            personalInfo={personalInfo}
+            personalInfo={resume.personalInfo}
             template={template}
             templateLanguage={templateLanguage}
           />
         </Section>
       )}
 
-      {personalHobbiesId && (
+      {resume?.personalHobbies && (
         <Section
           title={t("personalHobbies.title", { locale: templateLanguage })}
           size="small"
         >
           <PersonalHobbies
-            personalHobbiesId={personalHobbiesId}
+            personalHobbies={resume.personalHobbies}
             templateLanguage={templateLanguage}
           />
         </Section>
       )}
 
-      {personalLanguagesId && (
+      {resume?.personalLanguages && (
         <Section
           title={t("personalLanguages.title", { locale: templateLanguage })}
           size="small"
         >
           <PersonalLanguages
-            personalLanguagesId={personalLanguagesId}
+            personalLanguages={resume.personalLanguages}
             templateLanguage={templateLanguage}
           />
         </Section>
       )}
 
-      {personalSkillsId && includes(template, TEMPLATES_SIDEBARS_SKILLS) && (
-        <Section
-          title={t("personalSkills.title", { locale: templateLanguage })}
-          size="small"
-        >
-          <PersonalSkills
-            personalSkillsId={personalSkillsId}
-            templateLanguage={templateLanguage}
-          />
-        </Section>
-      )}
+      {resume?.personalSkills &&
+        includes(template, TEMPLATES_SIDEBARS_SKILLS) && (
+          <Section
+            title={t("personalSkills.title", { locale: templateLanguage })}
+            size="small"
+          >
+            <PersonalSkills
+              personalSkills={resume.personalSkills}
+              templateLanguage={templateLanguage}
+            />
+          </Section>
+        )}
 
-      {personalToolsId && includes(template, TEMPLATES_SIDEBARS_TOOLS) && (
-        <Section
-          title={t("personalTools.title", { locale: templateLanguage })}
-          size="small"
-        >
-          <PersonalTools
-            personalToolsId={personalToolsId}
-            templateLanguage={templateLanguage}
-          />
-        </Section>
-      )}
+      {resume?.personalTools &&
+        includes(template, TEMPLATES_SIDEBARS_TOOLS) && (
+          <Section
+            title={t("personalTools.title", { locale: templateLanguage })}
+            size="small"
+          >
+            <PersonalTools
+              personalTools={resume.personalTools}
+              templateLanguage={templateLanguage}
+            />
+          </Section>
+        )}
     </div>
   );
 };

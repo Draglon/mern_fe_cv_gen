@@ -3,6 +3,8 @@ export const authLoginRoute = "/auth/login";
 export const authRegistrationRoute = "/auth/register";
 export const authUserRoute = "/auth/user";
 // ---Resume---
+export const resumeRoute = (userId: string) => `/resume/${userId}`;
+// ---Personal---
 export const personalInfoCreateRoute = "/personal_info";
 export const personalInfoRoute = (id: string) => `/personal_info/${id}`;
 export const personalHobbiesCreateRoute = "/personal_hobbies";

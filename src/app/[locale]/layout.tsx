@@ -43,20 +43,20 @@ export default async function RootLayout({ children, params }: Props) {
   }
 
   return (
-    <StoreProvider>
-      <html
-        lang={locale}
-        className={clsx(roboto.className)}
-        suppressHydrationWarning
-      >
-        <body>
+    <html
+      lang={locale}
+      className={clsx(roboto.className)}
+      suppressHydrationWarning
+    >
+      <body>
+        <StoreProvider>
           <Providers>
             <NextIntlClientProvider messages={messages}>
               {children}
             </NextIntlClientProvider>
           </Providers>
-        </body>
-      </html>
-    </StoreProvider>
+        </StoreProvider>
+      </body>
+    </html>
   );
 }

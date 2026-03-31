@@ -7,8 +7,8 @@
       height: 24px;
       &:after {
         inset-inline-start: 30%;
-        width: 20px / 14 * 5;
-        height: 20px / 14 * 8;
+        width: calc(20px / 14 * 5);
+        height: calc(20px / 14 * 8);
       }
     }
   }

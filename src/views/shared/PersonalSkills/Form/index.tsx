@@ -23,7 +23,7 @@ import InputField from "@/views/shared/InputField";
 import Checkbox from "@/views/shared/antd/Checkbox";
 
 type PersonalSkillsFormProps = {
-  locale: string;
+  locale: Locales;
   isEdit?: boolean;
 };
 
@@ -42,7 +42,7 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
   const userId = useAppSelector(userIdSelector);
   const personalSkillsId = useAppSelector(personalSkillsIdSelector);
   const personalSkills = useAppSelector(personalSkillsSelector);
-  const skills = skillsByLocale(personalSkills, locale as Locales);
+  const skills = skillsByLocale(personalSkills, locale);
 
   const { control, handleSubmit, register, formState } = useForm({
     values: {

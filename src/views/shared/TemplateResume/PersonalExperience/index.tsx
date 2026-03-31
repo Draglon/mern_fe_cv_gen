@@ -3,6 +3,7 @@ import { useTranslations } from "next-intl";
 import { isEmpty } from "ramda";
 
 import splitText from "@/utils/splitText";
+import { Locales } from "@/lib/constants/props/locales";
 
 import { Title, Text, Paragraph } from "@/views/shared/antd/Typography";
 
@@ -21,7 +22,7 @@ type Experience = {
 
 type PersonalExperienceProps = {
   experience: Experience;
-  templateLanguage: string;
+  templateLanguage: Locales;
 };
 
 const PersonalExperience = ({

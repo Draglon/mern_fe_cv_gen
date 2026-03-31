@@ -28,7 +28,7 @@ import SelectField from "@/views/shared/SelectField";
 import Divider from "@/views/shared/antd/Divider";
 
 type PersonalExperienceFormProps = {
-  locale: string;
+  locale: Locales;
   isEdit?: boolean;
 };
 
@@ -58,7 +58,7 @@ const PersonalExperienceForm = ({
   const userId = useAppSelector(userIdSelector);
   const personalExperienceId = useAppSelector(personalExperienceIdSelector);
   const personalExperience = useAppSelector(personalExperienceSelector);
-  const experience = experienceByLocale(personalExperience, locale as Locales);
+  const experience = experienceByLocale(personalExperience, locale);
 
   const { control, handleSubmit, register, formState } = useForm({
     values: {

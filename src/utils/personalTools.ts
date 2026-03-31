@@ -5,5 +5,5 @@ type PersonalToolsProps = {
 };
 
 export const toolsByLocale = (personalTools: PersonalToolsProps, locale: Locales) => JSON.parse(
-  personalTools?.tools[locale as Locales] || "[]"
+  personalTools?.tools[locale] || "[]"
 );

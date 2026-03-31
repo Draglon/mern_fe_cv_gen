@@ -4,11 +4,11 @@ import { Provider } from "react-redux";
 
 import { makeStore, AppStore } from "./store";
 
-export default function StoreProvider({
-  children,
-}: {
+type StoreProviderProps = {
   children: React.ReactNode;
-}) {
+};
+
+export default function StoreProvider({ children }: StoreProviderProps) {
   const storeRef = useRef<AppStore | null>(null);
   // eslint-disable-next-line react-hooks/refs
   if (!storeRef.current) {

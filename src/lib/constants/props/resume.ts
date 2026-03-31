@@ -1,8 +1,8 @@
-import { Locale } from "@/lib/constants/props/locales";
+import { Locales, Locale } from "@/lib/constants/props/locales";
 
 export type personalInfoProps = {
   template: string;
-  templateLanguage: string;
+  templateLanguage: Locales;
   personalInfo: {
     userUrl?: string;
     sectionTitle?: string;
@@ -20,7 +20,7 @@ export type personalInfoProps = {
 };
 
 export type personalFullNameProps = {
-  templateLanguage: string;
+  templateLanguage: Locales;
   personalFullName: {
     userUrl?: string;
     firstName: Locale;

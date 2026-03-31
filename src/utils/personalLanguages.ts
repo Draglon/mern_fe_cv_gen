@@ -5,5 +5,5 @@ type PersonalLanguagesProps = {
 };
 
 export const languagesByLocale = (personalLanguages: PersonalLanguagesProps, locale: Locales) => JSON.parse(
-  personalLanguages?.languages[locale as Locales] || "[]"
+  personalLanguages?.languages[locale] || "[]"
 );

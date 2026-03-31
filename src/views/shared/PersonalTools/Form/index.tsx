@@ -25,7 +25,7 @@ import InputField from "@/views/shared/InputField";
 import Checkbox from "@/views/shared/antd/Checkbox";
 
 type PersonalToolsFormProps = {
-  locale: string;
+  locale: Locales;
   isEdit?: boolean;
 };
 
@@ -44,7 +44,7 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
   const userId = useAppSelector(userIdSelector);
   const personalToolsId = useAppSelector(personalToolsIdSelector);
   const personalTools = useAppSelector(personalToolsSelector);
-  const tools = toolsByLocale(personalTools, locale as Locales);
+  const tools = toolsByLocale(personalTools, locale);
 
   const { control, handleSubmit, register, formState } = useForm({
     values: {

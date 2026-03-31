@@ -2,16 +2,10 @@
 import { useTranslations } from "next-intl";
 import { equals } from "ramda";
 
+import { Locales } from "@/lib/constants/props/locales";
 import { TEMPLATES } from "@/lib/constants/templates";
-import { personalInfoProps } from "@/lib/constants/props/resume";
 import { useAppSelector } from "@/store/hooks";
-import {
-  personalExperienceIdSelector,
-  personalEducationIdSelector,
-  personalCoursesIdSelector,
-  personalSkillsIdSelector,
-  personalToolsIdSelector,
-} from "@/store/auth/selectors";
+import { resumeSelector } from "@/store/resume/selectors";
 
 import Section from "@/views/shared/TemplateResume/Section";
 import PersonalInfo from "@/views/shared/TemplateResume/PersonalInfo";
@@ -21,80 +15,82 @@ import PersonalSkills from "@/views/shared/TemplateResume/PersonalSkills";
 import PersonalTools from "@/views/shared/TemplateResume/PersonalTools";
 import SectionExperience from "@/views/Resume/Template/Content/SectionExperience";
 
+type ResumeTemplateContentProps = {
+  template: string;
+  templateLanguage: Locales;
+};
+
 const ResumeTemplateContent = ({
-  personalInfo,
   template,
   templateLanguage,
-}: personalInfoProps) => {
+}: ResumeTemplateContentProps) => {
   const t = useTranslations("Template");
-  const personalExperienceId = useAppSelector(personalExperienceIdSelector);
-  const personalEducationId = useAppSelector(personalEducationIdSelector);
-  const personalCoursesId = useAppSelector(personalCoursesIdSelector);
-  const personalSkillsId = useAppSelector(personalSkillsIdSelector);
-  const personalToolsId = useAppSelector(personalToolsIdSelector);
+  const resume = useAppSelector(resumeSelector);
+
+  console.log("resume: ", resume);
 
   return (
     <div className="template__container">
-      {personalInfo && (
+      {resume?.personalInfo && (
         <Section title={t("personalInfo.title", { locale: templateLanguage })}>
           <PersonalInfo
-            personalInfo={personalInfo}
+            personalInfo={resume.personalInfo}
             template={template}
             templateLanguage={templateLanguage}
           />
         </Section>
       )}
 
-      {personalExperienceId && (
+      {resume?.personalExperience && (
         <SectionExperience
-          personalExperienceId={personalExperienceId}
+          personalExperience={resume.personalExperience}
           templateLanguage={templateLanguage}
         />
       )}
 
-      {personalEducationId && (
+      {resume?.personalEducation && (
         <Section
           title={t("personalEducation.title", { locale: templateLanguage })}
           className="section--education"
         >
           <PersonalEducation
-            personalEducationId={personalEducationId}
+            personalEducation={resume.personalEducation}
             templateLanguage={templateLanguage}
           />
         </Section>
       )}
 
-      {personalCoursesId && (
+      {resume?.personalCourses && (
         <Section
           title={t("personalCourses.title", { locale: templateLanguage })}
           className="section--courses"
         >
           <PersonalCourses
-            personalCoursesId={personalCoursesId}
+            personalCourses={resume.personalCourses}
             templateLanguage={templateLanguage}
           />
         </Section>
       )}
 
-      {personalSkillsId && !equals(template, TEMPLATES.edinburghPlus) && (
+      {resume?.personalSkills && !equals(template, TEMPLATES.edinburghPlus) && (
         <Section
           title={t("personalSkills.title", { locale: templateLanguage })}
           className="section--skills"
         >
           <PersonalSkills
-            personalSkillsId={personalSkillsId}
+            personalSkills={resume.personalSkills}
             templateLanguage={templateLanguage}
           />
         </Section>
       )}
 
-      {personalToolsId && !equals(template, TEMPLATES.edinburghPlus) && (
+      {resume?.personalTools && !equals(template, TEMPLATES.edinburghPlus) && (
         <Section
           title={t("personalTools.title", { locale: templateLanguage })}
           className="section--tools"
         >
           <PersonalTools
-            personalToolsId={personalToolsId}
+            personalTools={resume.personalTools}
             templateLanguage={templateLanguage}
           />
         </Section>

@@ -1,11 +1,6 @@
 "use client";
-import { useEffect } from "react";
-
-import { Locales } from "@/lib/constants/props/locales";
+import { Locales, Locale } from "@/lib/constants/props/locales";
 import { hobbiesByLocale } from "@/utils/personalHobbies";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import fetchPersonalHobbies from "@/store/personalHobbies/operations/fetchPersonalHobbies";
-import { personalHobbiesSelector } from "@/store/personalHobbies/selectors";
 
 import { Text } from "@/views/shared/antd/Typography";
 
@@ -14,21 +9,17 @@ type HobbyProps = {
 };
 
 type HobbiesProps = {
-  templateLanguage: string;
-  personalHobbiesId: string;
+  templateLanguage: Locales;
+  personalHobbies: {
+    hobbies: Locale;
+  };
 };
 
 const PersonalHobbies = ({
-  personalHobbiesId,
   templateLanguage,
+  personalHobbies,
 }: HobbiesProps) => {
-  const dispatch = useAppDispatch();
-  const personalHobbies = useAppSelector(personalHobbiesSelector);
-  const hobbies = hobbiesByLocale(personalHobbies, templateLanguage as Locales);
-
-  useEffect(() => {
-    dispatch(fetchPersonalHobbies({ id: personalHobbiesId }));
-  }, [dispatch, personalHobbiesId]);
+  const hobbies = hobbiesByLocale(personalHobbies, templateLanguage);
 
   return (
     <div className="personal-interests">

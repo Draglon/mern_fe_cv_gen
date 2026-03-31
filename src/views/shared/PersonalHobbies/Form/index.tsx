@@ -23,7 +23,7 @@ import Button from "@/views/shared/antd/Button";
 import InputField from "@/views/shared/InputField";
 
 type PersonalHobbiesFormProps = {
-  locale: string;
+  locale: Locales;
   isEdit?: boolean;
 };
 
@@ -38,7 +38,7 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesFormProps) => {
   const userId = useAppSelector(userIdSelector);
   const personalHobbiesId = useAppSelector(personalHobbiesIdSelector);
   const personalHobbies = useAppSelector(personalHobbiesSelector);
-  const hobbies = hobbiesByLocale(personalHobbies, locale as Locales);
+  const hobbies = hobbiesByLocale(personalHobbies, locale);
 
   const { control, handleSubmit, formState, register } = useForm<FieldType>({
     values: {

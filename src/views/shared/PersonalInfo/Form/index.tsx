@@ -22,7 +22,7 @@ import Button from "@/views/shared/antd/Button";
 import Divider from "@/views/shared/antd/Divider";
 
 type PersonalInfoFormProps = {
-  locale: string;
+  locale: Locales;
   isEdit?: boolean;
 };
 
@@ -48,7 +48,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
   const userId = useAppSelector(userIdSelector);
   const personalInfoId = useAppSelector(personalInfoIdSelector);
   const personalInfo = useAppSelector(personalInfoSelector);
-  const defaultValues = personalInfoByLocale(personalInfo, locale as Locales);
+  const defaultValues = personalInfoByLocale(personalInfo, locale);
 
   const { control, handleSubmit, formState, register } = useForm<FieldType>({
     defaultValues,

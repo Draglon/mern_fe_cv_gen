@@ -5,5 +5,5 @@ type PersonalHobbiesProps = {
 };
 
 export const hobbiesByLocale = (personalHobbies: PersonalHobbiesProps, locale: Locales) => JSON.parse(
-  personalHobbies?.hobbies[locale as Locales] || "[]"
+  personalHobbies?.hobbies[locale] || "[]"
 );
