@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 
 import { Title } from "@/views/shared/antd/Typography";
 
-const Home = () => {
+const Settings = () => {
   const t = useTranslations("Settings");
 
   return (
@@ -17,4 +17,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Settings;

@@ -13,6 +13,7 @@ const shared = {
     "add": "Add",
     "save": "Save",
     "addField": "Add fields",
+    "liveCoding": "Live coding",
   },
 };
 

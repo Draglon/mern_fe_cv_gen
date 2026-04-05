@@ -19,6 +19,7 @@ import navigation from "./navigation";
 import localeSwitcher from "./localeSwitcher";
 import localeTabs from "./localeTabs";
 import shared from "./shared";
+import liveCoding from "./liveCoding";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
@@ -43,4 +44,5 @@ export default {
   ...localeSwitcher,
   ...localeTabs,
   ...shared,
+  ...liveCoding,
 };

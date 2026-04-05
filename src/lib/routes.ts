@@ -11,3 +11,6 @@ export const resumeEditRoute = "/resume_edit";
 // ---User---
 export const profileRoute = "/profile";
 export const settingsRoute = "/settings";
+
+// Live Coding
+export const liveCodingRoute = "/live_coding";
