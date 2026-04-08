@@ -7,14 +7,13 @@ type UploadFileFieldProps = {
   defaultValue: Array<UploadFileProps>;
   status?: "error" | "warning" | "success" | "validating";
   errors?: {
-    ref: any;
     type: string;
     message: string;
   };
 };
 
 const UploadFileField = ({
-  defaultValue,
+  defaultValue = [],
   errors,
   status,
   ...rest

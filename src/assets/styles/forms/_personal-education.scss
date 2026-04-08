@@ -3,6 +3,8 @@
   flex-wrap: wrap;
   gap: 16px;
   .form__list-space {
+    border-bottom: 1px solid var(--divider-bg-color);
+    padding: 20px 0;
     position: relative;
     flex-wrap: wrap;
     column-gap: 16px;
@@ -22,7 +24,7 @@
       }
       &:nth-child(7) {
         position: absolute;
-        top: 5px;
+        top: 25px;
         right: 0;
         line-height: 0;
         width: 14px;

@@ -1,6 +1,6 @@
-import React, { ReactNode } from "react";
-import { LinkProps } from "next/link";
 import clsx from "clsx";
+import { ReactNode } from "react";
+import { LinkProps } from "next/link";
 
 import { Link } from "@/i18n/navigation";
 import Button from "@/views/shared/antd/Button";

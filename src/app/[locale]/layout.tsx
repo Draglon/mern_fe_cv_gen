@@ -4,6 +4,7 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { getMessages, getTranslations } from "next-intl/server";
 
+import { Locales } from "@/lib/constants/props/locales";
 import { routing } from "@/i18n/routing";
 import StoreProvider from "@/store/StoreProvider";
 import "@/app/styles.scss";
@@ -18,7 +19,7 @@ const roboto = Roboto({
 
 type Props = {
   children: React.ReactNode;
-  params: Promise<any> | undefined;
+  params: Promise<{ locale: Locales }>;
 };
 
 export const generateStaticParams = () => {

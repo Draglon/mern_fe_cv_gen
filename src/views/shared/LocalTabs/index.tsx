@@ -7,7 +7,7 @@ import { LOCALES, DEFAULT_LOCALE } from "@/lib/constants/locales";
 
 type LocalTabsProp = {
   Component?: ReactNode;
-  onChange: any;
+  onChange: () => string;
 };
 
 const LocalTabs = ({ Component, onChange }: LocalTabsProp) => {

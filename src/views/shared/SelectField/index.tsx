@@ -6,7 +6,6 @@ import { Text } from "@/views/shared/antd/Typography";
 type SelectFieldProps = {
   status?: "error" | "warning" | "success" | "validating";
   errors?: {
-    ref: any;
     type: string;
     message: string;
   };

@@ -1,22 +1,23 @@
 "use client";
 import clsx from "clsx";
-import { Controller } from "react-hook-form";
+import { Controller, Control, FieldError } from "react-hook-form";
 import { Form } from "antd";
 
 type FormItemType = {
   name: string | any[];
   controlName?: string;
-  control?: any;
+  control?: Control<any>;
   className?: string;
-  label?: string | null;
-  Field?: any;
+  label?: string;
   mode?: string;
   type?: string;
   size?: string;
+  defaultCountry?: string;
   placeholder?: string;
+  errors?: FieldError;
   register?: any;
-  errors?: any;
   options?: { label: string; value: string }[];
+  Field?: any;
   children?: React.ReactNode;
 };
 
@@ -25,11 +26,11 @@ const FormItem = ({
   controlName,
   control,
   className,
-  label = null,
+  label,
   Field,
   children,
   ...restProps
-}: FormItemType & { defaultCountry?: string }) => {
+}: FormItemType) => {
   return children ? (
     <Form.Item
       name={name}

@@ -6,7 +6,7 @@ export const LOCALES = ["en", "ua", "ru"];
 
 export const DEFAULT_LOCALE = "en";
 
-export const FLAGS: any = {
+export const FLAGS: unknown = {
   ru: ruFlag,
   ua: uaFlag,
   en: ukFlag,

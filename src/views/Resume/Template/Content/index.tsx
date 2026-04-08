@@ -27,8 +27,6 @@ const ResumeTemplateContent = ({
   const t = useTranslations("Template");
   const resume = useAppSelector(resumeSelector);
 
-  console.log("resume: ", resume);
-
   return (
     <div className="template__container">
       {resume?.personalInfo && (

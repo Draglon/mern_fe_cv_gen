@@ -1,6 +1,7 @@
 "use client";
 import { useEffect } from "react";
 
+import { Locales } from "@/lib/constants/props/locales";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import fetchPersonalEducation from "@/store/personalEducation/operations/fetchPersonalEducation";
 import { isLoadingSelector } from "@/store/personalEducation/selectors";
@@ -9,7 +10,7 @@ import { personalEducationIdSelector } from "@/store/auth/selectors";
 import PersonalEducationForm from "@/views/shared/PersonalEducation/Form";
 
 type PersonalEducationProps = {
-  locale: string;
+  locale: Locales;
   isEdit?: boolean;
 };
 

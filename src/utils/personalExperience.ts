@@ -1,6 +1,7 @@
 import { Locales, Locale } from "@/lib/constants/props/locales";
 
 type PersonalExperienceProps = {
+  sectionTitle: Locale;
   experience: Locale;
 };
 

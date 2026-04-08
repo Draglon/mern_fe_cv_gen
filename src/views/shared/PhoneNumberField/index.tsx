@@ -1,26 +1,25 @@
 "use client";
 import clsx from "clsx";
-import PhoneInput from "react-phone-number-input";
+import PhoneInput, { formatPhoneNumberIntl } from "react-phone-number-input";
 import flags from "react-phone-number-input/flags";
-import type { Country } from "react-phone-number-input";
+import type { Country, Value } from "react-phone-number-input";
 
 import isPresent from "@/utils/isPresent";
 import { Text } from "@/views/shared/antd/Typography";
 
 type PhoneNumberFieldProps = {
-  defaultValue?: string;
-  onChange: any;
+  defaultValue?: string | Value;
   defaultCountry?: Country;
   status?: "error" | "warning" | "success" | "validating";
   errors?: {
-    ref: any;
     type: string;
     message: string;
   };
+  onChange: () => string;
 };
 
 const PhoneNumberField = ({
-  defaultValue,
+  defaultValue = "",
   defaultCountry,
   errors,
   status,
@@ -35,7 +34,7 @@ const PhoneNumberField = ({
     <div className="input-field">
       <PhoneInput
         className={classNames}
-        value={defaultValue}
+        value={formatPhoneNumberIntl(defaultValue).replaceAll(" ", "")}
         flags={flags}
         defaultCountry={defaultCountry}
         onChange={onChange}

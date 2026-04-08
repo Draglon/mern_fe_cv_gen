@@ -4,7 +4,7 @@ import { Title, Text } from "@/views/shared/antd/Typography";
 
 type Props = {
   children: React.ReactNode;
-  title?: string | any;
+  title?: string;
   text?: string;
   className?: string;
   size?: string;

@@ -7,12 +7,7 @@ import {
 import { useTranslations, useLocale } from "next-intl";
 
 import { redirect } from "@/i18n/navigation";
-import {
-  homeRoute,
-  profileRoute,
-  settingsRoute,
-  liveCodingRoute,
-} from "@/lib/routes";
+import { homeRoute, profileRoute, settingsRoute } from "@/lib/routes";
 import { useAppDispatch } from "@/store/hooks";
 import { logout as logoutAction } from "@/store/auth/actions";
 import Avatar from "@/views/shared/antd/Avatar";
@@ -55,14 +50,6 @@ const UserDropdownMenu = () => {
               isNextLink
             >
               {t("settings")}
-            </DropdownMenuItem>
-          ),
-        },
-        {
-          key: "2",
-          label: (
-            <DropdownMenuItem href={liveCodingRoute} isNextLink>
-              {t("liveCoding")}
             </DropdownMenuItem>
           ),
         },

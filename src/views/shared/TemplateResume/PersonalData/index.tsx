@@ -41,7 +41,7 @@ const PersonalData = ({
       {equals(template, TEMPLATES.standford) && (
         <div className="personal-data__item">
           <Text className="personal-data__text" strong>
-            {t("name", { locale: templateLanguage })}
+            {t("personalData.name", { locale: templateLanguage })}
           </Text>
           <Paragraph className="personal-data__paragraph">
             {profileName(personalInfo, templateLanguage)}

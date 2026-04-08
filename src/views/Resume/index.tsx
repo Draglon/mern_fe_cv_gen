@@ -2,14 +2,14 @@
 import { useState } from "react";
 
 import { TEMPLATES } from "@/lib/constants/templates";
-
+import { Locales } from "@/lib/constants/props/locales";
 import TemplatesList from "@/views/Resume/TemplatesList";
 import Template from "@/views/Resume/Template";
 import TemplateCustomization from "@/views/Resume/TemplateCustomization";
 
 const Resume = () => {
   const [template, setTemplate] = useState<string>(TEMPLATES.edinburghPlus);
-  const [templateLanguage, setTemplateLanguage] = useState<string>("en");
+  const [templateLanguage, setTemplateLanguage] = useState<Locales>("en");
 
   return (
     <>

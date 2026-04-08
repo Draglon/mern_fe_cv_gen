@@ -21,7 +21,6 @@ import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
 import InputField from "@/views/shared/InputField";
-import Divider from "@/views/shared/antd/Divider";
 
 type PersonalEducationFormProps = {
   locale: Locales;
@@ -103,119 +102,116 @@ const PersonalEducationForm = ({
     >
       <FormList name="education" append={append}>
         {fields.map((field, index) => (
-          <>
-            <Space key={field.id} align="baseline" className="form__list-space">
-              <FormItem
-                name={[index, "institute"]}
-                controlName={`education.${index}.institute`}
-                control={control}
-                className="form__item--field"
-                label={t("form.institute.label")}
-                placeholder={t("form.institute.placeholder")}
-                register={register(`education.${index}.institute`, {
-                  required: {
-                    value: true,
-                    message: t("form.institute.errors.required"),
-                  },
-                })}
-                errors={path(["education", index, "institute"], errors)}
-                size="large"
-                Field={InputField}
+          <Space key={field.id} align="baseline" className="form__list-space">
+            <FormItem
+              name={[index, "institute"]}
+              controlName={`education.${index}.institute`}
+              control={control}
+              className="form__item--field"
+              label={t("form.institute.label")}
+              placeholder={t("form.institute.placeholder")}
+              register={register(`education.${index}.institute`, {
+                required: {
+                  value: true,
+                  message: t("form.institute.errors.required"),
+                },
+              })}
+              errors={path(["education", index, "institute"], errors)}
+              size="large"
+              Field={InputField}
+            />
+            <FormItem
+              name={[index, "degree"]}
+              controlName={`education[${index}].degree`}
+              control={control}
+              className="form__item--field"
+              label={t("form.degree.label")}
+              placeholder={t("form.degree.placeholder")}
+              register={register(`education.${index}.degree`, {
+                required: {
+                  value: true,
+                  message: t("form.degree.errors.required"),
+                },
+              })}
+              errors={path(["education", index, "degree"], errors)}
+              size="large"
+              Field={InputField}
+            />
+            <FormItem
+              name={[index, "faculty"]}
+              controlName={`education[${index}].faculty`}
+              control={control}
+              className="form__item--field"
+              label={t("form.faculty.label")}
+              placeholder={t("form.faculty.placeholder")}
+              register={register(`education.${index}.faculty`, {
+                required: {
+                  value: true,
+                  message: t("form.faculty.errors.required"),
+                },
+              })}
+              errors={path(["education", index, "faculty"], errors)}
+              size="large"
+              Field={InputField}
+            />
+            <FormItem
+              name={[index, "specialization"]}
+              controlName={`education[${index}].specialization`}
+              control={control}
+              className="form__item--field"
+              label={t("form.specialization.label")}
+              placeholder={t("form.specialization.placeholder")}
+              register={register(`education.${index}.specialization`, {
+                required: {
+                  value: true,
+                  message: t("form.specialization.errors.required"),
+                },
+              })}
+              errors={path(["education", index, "specialization"], errors)}
+              size="large"
+              Field={InputField}
+            />
+            <FormItem
+              name={[index, "startDate"]}
+              controlName={`education[${index}].startDate`}
+              control={control}
+              className="form__item--field"
+              label={t("form.startDate.label")}
+              placeholder={t("form.startDate.placeholder")}
+              register={register(`education.${index}.startDate`, {
+                required: {
+                  value: true,
+                  message: t("form.startDate.errors.required"),
+                },
+              })}
+              errors={path(["education", index, "startDate"], errors)}
+              size="large"
+              Field={InputField}
+            />
+            <FormItem
+              name={[index, "endDate"]}
+              controlName={`education[${index}].endDate`}
+              control={control}
+              className="form__item--field"
+              label={t("form.endDate.label")}
+              placeholder={t("form.endDate.placeholder")}
+              register={register(`education.${index}.endDate`, {
+                required: {
+                  value: true,
+                  message: t("form.endDate.errors.required"),
+                },
+              })}
+              errors={path(["education", index, "endDate"], errors)}
+              size="large"
+              Field={InputField}
+            />
+            {fields.length > 1 && (
+              <MinusCircleOutlined
+                className="form__item--button-remove"
+                onClick={() => remove(index)}
               />
-              <FormItem
-                name={[index, "degree"]}
-                controlName={`education[${index}].degree`}
-                control={control}
-                className="form__item--field"
-                label={t("form.degree.label")}
-                placeholder={t("form.degree.placeholder")}
-                register={register(`education.${index}.degree`, {
-                  required: {
-                    value: true,
-                    message: t("form.degree.errors.required"),
-                  },
-                })}
-                errors={path(["education", index, "degree"], errors)}
-                size="large"
-                Field={InputField}
-              />
-              <FormItem
-                name={[index, "faculty"]}
-                controlName={`education[${index}].faculty`}
-                control={control}
-                className="form__item--field"
-                label={t("form.faculty.label")}
-                placeholder={t("form.faculty.placeholder")}
-                register={register(`education.${index}.faculty`, {
-                  required: {
-                    value: true,
-                    message: t("form.faculty.errors.required"),
-                  },
-                })}
-                errors={path(["education", index, "faculty"], errors)}
-                size="large"
-                Field={InputField}
-              />
-              <FormItem
-                name={[index, "specialization"]}
-                controlName={`education[${index}].specialization`}
-                control={control}
-                className="form__item--field"
-                label={t("form.specialization.label")}
-                placeholder={t("form.specialization.placeholder")}
-                register={register(`education.${index}.specialization`, {
-                  required: {
-                    value: true,
-                    message: t("form.specialization.errors.required"),
-                  },
-                })}
-                errors={path(["education", index, "specialization"], errors)}
-                size="large"
-                Field={InputField}
-              />
-              <FormItem
-                name={[index, "startDate"]}
-                controlName={`education[${index}].startDate`}
-                control={control}
-                className="form__item--field"
-                label={t("form.startDate.label")}
-                placeholder={t("form.startDate.placeholder")}
-                register={register(`education.${index}.startDate`, {
-                  required: {
-                    value: true,
-                    message: t("form.startDate.errors.required"),
-                  },
-                })}
-                errors={path(["education", index, "startDate"], errors)}
-                size="large"
-                Field={InputField}
-              />
-              <FormItem
-                name={[index, "endDate"]}
-                controlName={`education[${index}].endDate`}
-                control={control}
-                className="form__item--field"
-                label={t("form.endDate.label")}
-                placeholder={t("form.endDate.placeholder")}
-                register={register(`education.${index}.endDate`, {
-                  required: {
-                    value: true,
-                    message: t("form.endDate.errors.required"),
-                  },
-                })}
-                errors={path(["education", index, "endDate"], errors)}
-                size="large"
-                Field={InputField}
-              />
-              {fields.length > 1 && (
-                <MinusCircleOutlined
-                  className="form__item--button-remove"
-                  onClick={() => remove(index)}
-                />
-              )}
-            </Space>
-            <Divider />
-          </>
+            )}
+          </Space>
         ))}
       </FormList>
 

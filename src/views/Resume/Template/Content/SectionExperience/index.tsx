@@ -2,7 +2,7 @@
 import { useTranslations } from "next-intl";
 import { pathOr } from "ramda";
 
-import { Locales } from "@/lib/constants/props/locales";
+import { Locales, Locale } from "@/lib/constants/props/locales";
 import { experienceByLocale } from "@/utils/personalExperience";
 
 import Section from "@/views/shared/TemplateResume/Section";
@@ -10,7 +10,10 @@ import PersonalExperience from "@/views/shared/TemplateResume/PersonalExperience
 
 type sectionExperienceProps = {
   templateLanguage: Locales;
-  personalExperience: any;
+  personalExperience: {
+    sectionTitle: Locale;
+    experience: Locale;
+  };
 };
 
 const SectionExperience = ({

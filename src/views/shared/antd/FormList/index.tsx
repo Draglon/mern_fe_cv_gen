@@ -10,16 +10,14 @@ type FormListType = {
   name: string;
   prepend?: any;
   append?: any;
-  isPrepend?: boolean;
-  children: React.ReactNode;
   fieldValues?: any;
+  children: React.ReactNode;
 };
 
 const FormList = ({
   name,
   append,
   prepend,
-  isPrepend,
   fieldValues,
   children,
 }: FormListType) => {
@@ -37,7 +35,7 @@ const FormList = ({
     <Form.List name={name}>
       {(_, { add }) => (
         <>
-          {isPrepend && (
+          {prepend && (
             <FormItem className="form__item--button-add" name="addButton">
               <Button
                 onClick={onPrepend(add)}
@@ -49,7 +47,7 @@ const FormList = ({
             </FormItem>
           )}
           {children}
-          {!isPrepend && (
+          {append && (
             <FormItem className="form__item--button-add" name="addButton">
               <Button onClick={onAppend} icon={<PlusOutlined />} size="small">
                 {tShared("addField")}

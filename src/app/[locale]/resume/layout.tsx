@@ -1,8 +1,10 @@
 import { getTranslations } from "next-intl/server";
 
+import { Locales } from "@/lib/constants/props/locales";
+
 type Props = {
   children: React.ReactNode;
-  params: Promise<any> | undefined;
+  params: Promise<{ locale: Locales }>;
 };
 
 export async function generateMetadata({ params }: Props) {

@@ -60,7 +60,7 @@ const PersonalExperienceForm = ({
   const personalExperience = useAppSelector(personalExperienceSelector);
   const experience = experienceByLocale(personalExperience, locale);
 
-  const { control, handleSubmit, register, formState } = useForm({
+  const { control, handleSubmit, register, formState } = useForm<FieldType>({
     values: {
       sectionTitle: pathOr("", ["sectionTitle", locale], personalExperience),
       lastPlacesOfWorks: pathOr("", ["lastPlacesOfWorks"], personalExperience),
@@ -143,175 +143,171 @@ const PersonalExperienceForm = ({
       <FormList
         name="experience"
         prepend={prepend}
-        isPrepend
         fieldValues={RESUME_EXPERIENCE_DEFAULT_VALUES}
       >
         {fields.map((field, index) => (
-          <>
-            <Divider />
-            <Space key={field.id} align="baseline" className="form__list-space">
-              <FormItem
-                name={[index, "position"]}
-                controlName={`experience.${index}.position`}
-                control={control}
-                className="form__item--field"
-                label={t("form.position.label")}
-                placeholder={t("form.position.placeholder")}
-                register={register(`experience.${index}.position`, {
-                  required: {
-                    value: true,
-                    message: t("form.position.errors.required"),
-                  },
-                })}
-                errors={path(["experience", index, "position"], errors)}
-                size="large"
-                Field={InputField}
+          <Space key={field.id} align="baseline" className="form__list-space">
+            <FormItem
+              name={[index, "position"]}
+              controlName={`experience.${index}.position`}
+              control={control}
+              className="form__item--field"
+              label={t("form.position.label")}
+              placeholder={t("form.position.placeholder")}
+              register={register(`experience.${index}.position`, {
+                required: {
+                  value: true,
+                  message: t("form.position.errors.required"),
+                },
+              })}
+              errors={path(["experience", index, "position"], errors)}
+              size="large"
+              Field={InputField}
+            />
+            <FormItem
+              name={[index, "companyName"]}
+              controlName={`experience.${index}.companyName`}
+              control={control}
+              className="form__item--field"
+              label={t("form.companyName.label")}
+              placeholder={t("form.companyName.placeholder")}
+              register={register(`experience.${index}.companyName`, {
+                required: {
+                  value: true,
+                  message: t("form.companyName.errors.required"),
+                },
+              })}
+              errors={path(["experience", index, "companyName"], errors)}
+              size="large"
+              Field={InputField}
+            />
+            <FormItem
+              name={[index, "location"]}
+              controlName={`experience[${index}].location`}
+              control={control}
+              className="form__item--field"
+              label={t("form.location.label")}
+              placeholder={t("form.location.placeholder")}
+              register={register(`experience.${index}.location`, {
+                required: {
+                  value: true,
+                  message: t("form.location.errors.required"),
+                },
+              })}
+              errors={path(["experience", index, "location"], errors)}
+              size="large"
+              Field={InputField}
+            />
+            <FormItem
+              name={[index, "placeOfWork"]}
+              controlName={`experience[${index}].placeOfWork`}
+              control={control}
+              className="form__item--field"
+              label={t("form.placeOfWork.label")}
+              placeholder={t("form.placeOfWork.placeholder")}
+              register={register(`experience.${index}.placeOfWork`, {
+                required: {
+                  value: true,
+                  message: t("form.placeOfWork.errors.required"),
+                },
+              })}
+              errors={path(["experience", index, "placeOfWork"], errors)}
+              size="large"
+              Field={InputField}
+            />
+            <FormItem
+              name={[index, "workingTime"]}
+              controlName={`experience[${index}].workingTime`}
+              control={control}
+              className="form__item--field"
+              label={t("form.workingTime.label")}
+              placeholder={t("form.workingTime.placeholder")}
+              register={register(`experience.${index}.workingTime`, {
+                required: {
+                  value: true,
+                  message: t("form.workingTime.errors.required"),
+                },
+              })}
+              errors={path(["experience", index, "workingTime"], errors)}
+              size="large"
+              Field={InputField}
+            />
+            <FormItem
+              name={[index, "startDate"]}
+              controlName={`experience[${index}].startDate`}
+              control={control}
+              className="form__item--field"
+              label={t("form.startDate.label")}
+              placeholder={t("form.startDate.placeholder")}
+              register={register(`experience.${index}.startDate`, {
+                required: {
+                  value: true,
+                  message: t("form.startDate.errors.required"),
+                },
+              })}
+              errors={path(["experience", index, "startDate"], errors)}
+              size="large"
+              Field={InputField}
+            />
+            <FormItem
+              name={[index, "endDate"]}
+              controlName={`experience[${index}].endDate`}
+              control={control}
+              className="form__item--field"
+              label={t("form.endDate.label")}
+              placeholder={t("form.endDate.placeholder")}
+              register={register(`experience.${index}.endDate`, {
+                required: {
+                  value: true,
+                  message: t("form.endDate.errors.required"),
+                },
+              })}
+              errors={path(["experience", index, "endDate"], errors)}
+              size="large"
+              Field={InputField}
+            />
+            <FormItem
+              name={[index, "description"]}
+              controlName={`experience[${index}].description`}
+              control={control}
+              className="form__item--field"
+              label={t("form.description.label")}
+              placeholder={t("form.description.placeholder")}
+              register={register(`experience.${index}.description`, {
+                required: {
+                  value: true,
+                  message: t("form.description.errors.required"),
+                },
+              })}
+              errors={path(["experience", index, "description"], errors)}
+              size="large"
+              Field={TextAreaField}
+            />
+            <FormItem
+              name={[index, "skills"]}
+              controlName={`experience[${index}].skills`}
+              control={control}
+              className="form__item--field"
+              label={t("form.skills.label")}
+              placeholder={t("form.skills.placeholder")}
+              register={register(`experience.${index}.skills`, {
+                required: {
+                  value: true,
+                  message: t("form.skills.errors.required"),
+                },
+              })}
+              errors={path(["experience", index, "skills"], errors)}
+              mode="tags"
+              size="large"
+              Field={SelectField}
+            />
+            {fields.length > 1 && (
+              <MinusCircleOutlined
+                className="form__item--button-remove"
+                onClick={() => remove(index)}
               />
-              <FormItem
-                name={[index, "companyName"]}
-                controlName={`experience.${index}.companyName`}
-                control={control}
-                className="form__item--field"
-                label={t("form.companyName.label")}
-                placeholder={t("form.companyName.placeholder")}
-                register={register(`experience.${index}.companyName`, {
-                  required: {
-                    value: true,
-                    message: t("form.companyName.errors.required"),
-                  },
-                })}
-                errors={path(["experience", index, "companyName"], errors)}
-                size="large"
-                Field={InputField}
-              />
-              <FormItem
-                name={[index, "location"]}
-                controlName={`experience[${index}].location`}
-                control={control}
-                className="form__item--field"
-                label={t("form.location.label")}
-                placeholder={t("form.location.placeholder")}
-                register={register(`experience.${index}.location`, {
-                  required: {
-                    value: true,
-                    message: t("form.location.errors.required"),
-                  },
-                })}
-                errors={path(["experience", index, "location"], errors)}
-                size="large"
-                Field={InputField}
-              />
-              <FormItem
-                name={[index, "placeOfWork"]}
-                controlName={`experience[${index}].placeOfWork`}
-                control={control}
-                className="form__item--field"
-                label={t("form.placeOfWork.label")}
-                placeholder={t("form.placeOfWork.placeholder")}
-                register={register(`experience.${index}.placeOfWork`, {
-                  required: {
-                    value: true,
-                    message: t("form.placeOfWork.errors.required"),
-                  },
-                })}
-                errors={path(["experience", index, "placeOfWork"], errors)}
-                size="large"
-                Field={InputField}
-              />
-              <FormItem
-                name={[index, "workingTime"]}
-                controlName={`experience[${index}].workingTime`}
-                control={control}
-                className="form__item--field"
-                label={t("form.workingTime.label")}
-                placeholder={t("form.workingTime.placeholder")}
-                register={register(`experience.${index}.workingTime`, {
-                  required: {
-                    value: true,
-                    message: t("form.workingTime.errors.required"),
-                  },
-                })}
-                errors={path(["experience", index, "workingTime"], errors)}
-                size="large"
-                Field={InputField}
-              />
-              <FormItem
-                name={[index, "startDate"]}
-                controlName={`experience[${index}].startDate`}
-                control={control}
-                className="form__item--field"
-                label={t("form.startDate.label")}
-                placeholder={t("form.startDate.placeholder")}
-                register={register(`experience.${index}.startDate`, {
-                  required: {
-                    value: true,
-                    message: t("form.startDate.errors.required"),
-                  },
-                })}
-                errors={path(["experience", index, "startDate"], errors)}
-                size="large"
-                Field={InputField}
-              />
-              <FormItem
-                name={[index, "endDate"]}
-                controlName={`experience[${index}].endDate`}
-                control={control}
-                className="form__item--field"
-                label={t("form.endDate.label")}
-                placeholder={t("form.endDate.placeholder")}
-                register={register(`experience.${index}.endDate`, {
-                  required: {
-                    value: true,
-                    message: t("form.endDate.errors.required"),
-                  },
-                })}
-                errors={path(["experience", index, "endDate"], errors)}
-                size="large"
-                Field={InputField}
-              />
-              <FormItem
-                name={[index, "description"]}
-                controlName={`experience[${index}].description`}
-                control={control}
-                className="form__item--field"
-                label={t("form.description.label")}
-                placeholder={t("form.description.placeholder")}
-                register={register(`experience.${index}.description`, {
-                  required: {
-                    value: true,
-                    message: t("form.description.errors.required"),
-                  },
-                })}
-                errors={path(["experience", index, "description"], errors)}
-                size="large"
-                Field={TextAreaField}
-              />
-              <FormItem
-                name={[index, "skills"]}
-                controlName={`experience[${index}].skills`}
-                control={control}
-                className="form__item--field"
-                label={t("form.skills.label")}
-                placeholder={t("form.skills.placeholder")}
-                register={register(`experience.${index}.skills`, {
-                  required: {
-                    value: true,
-                    message: t("form.skills.errors.required"),
-                  },
-                })}
-                errors={path(["experience", index, "skills"], errors)}
-                mode="tags"
-                size="large"
-                Field={SelectField}
-              />
-              {fields.length > 1 && (
-                <MinusCircleOutlined
-                  className="form__item--button-remove"
-                  onClick={() => remove(index)}
-                />
-              )}
-            </Space>
-          </>
+            )}
+          </Space>
         ))}
       </FormList>
 

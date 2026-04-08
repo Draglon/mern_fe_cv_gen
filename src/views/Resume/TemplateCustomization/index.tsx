@@ -4,12 +4,13 @@ import clsx from "clsx";
 import { Dispatch, SetStateAction } from "react";
 import { useTranslations } from "next-intl";
 
+import { Locales } from "@/lib/constants/props/locales";
 import { LOCALES, FLAGS } from "@/lib/constants/locales";
 import { Title, Text } from "@/views/shared/antd/Typography";
 
 type ResumeTemplateCustomizationProps = {
   activeTemplateLanguage: string;
-  setTemplateLanguage: Dispatch<SetStateAction<string>>;
+  setTemplateLanguage: Dispatch<SetStateAction<Locales>>;
 };
 
 const ResumeTemplateCustomization = ({
@@ -35,7 +36,7 @@ const ResumeTemplateCustomization = ({
                 "template-settings__section-item--active":
                   activeTemplateLanguage === locale,
               })}
-              onClick={() => setTemplateLanguage(locale)}
+              onClick={() => setTemplateLanguage(locale as Locales)}
               role="button"
             >
               <Image

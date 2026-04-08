@@ -34,7 +34,7 @@ const DropdownMenu = ({
   return (
     <RemoveScroll enabled={visible}>
       <Dropdown
-        menu={{ items: items as any }}
+        menu={{ items } as itemProps}
         onOpenChange={onVisibleChange}
         open={visible}
         {...restProps}

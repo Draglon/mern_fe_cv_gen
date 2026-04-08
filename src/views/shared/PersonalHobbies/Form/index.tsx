@@ -88,7 +88,6 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesFormProps) => {
               name={[index, "hobby"]}
               controlName={`hobbies.${index}.hobby`}
               control={control}
-              fieldClassName="form__item-field"
               label={t("form.hobby.label")}
               placeholder={t("form.hobby.placeholder")}
               size="large"

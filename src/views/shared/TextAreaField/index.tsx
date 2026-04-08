@@ -6,7 +6,6 @@ import { Text } from "@/views/shared/antd/Typography";
 type TextAreaFieldProps = {
   status?: "error" | "warning" | "success" | "validating";
   errors?: {
-    ref: any;
     type: string;
     message: string;
   };

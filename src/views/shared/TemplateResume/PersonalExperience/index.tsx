@@ -8,7 +8,6 @@ import { Locales } from "@/lib/constants/props/locales";
 import { Title, Text, Paragraph } from "@/views/shared/antd/Typography";
 
 type Experience = {
-  map: any;
   position: string;
   startDate: string;
   endDate: string;
@@ -21,7 +20,7 @@ type Experience = {
 };
 
 type PersonalExperienceProps = {
-  experience: Experience;
+  experience: Experience[];
   templateLanguage: Locales;
 };
 
