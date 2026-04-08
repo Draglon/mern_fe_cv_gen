@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 import { Select } from "antd";
 
+import { Locales } from "@/lib/constants/props/locales";
 import { FLAGS } from "@/lib/constants/locales";
 import { routing } from "@/i18n/routing";
 import { useRouter, usePathname } from "@/i18n/navigation";
@@ -44,7 +45,7 @@ const LocaleSwitcherSelect = () => {
           <div className="locale-switcher__option-wrapper">
             <Image
               className="locale-switcher__flag"
-              src={FLAGS[cur]}
+              src={FLAGS[cur as Locales]}
               alt={cur}
               width="24"
               height="16"

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { inc, dec } from "ramda";
 import { useTranslations } from "next-intl";
 
+import { Locales } from "@/lib/constants/props/locales";
 import { DEFAULT_LOCALE } from "@/lib/constants/locales";
 import { RESUME_ITEMS } from "@/lib/constants/resume";
 import Button from "@/views/shared/antd/Button";
@@ -13,8 +14,8 @@ import LocalTabs from "@/views/shared/LocalTabs";
 const ResumeCreate = () => {
   const t = useTranslations("ResumeCreate");
   const tShared = useTranslations("shared");
-  const [current, setCurrent] = useState(0);
-  const [locale, setLocale] = useState(DEFAULT_LOCALE);
+  const [current, setCurrent] = useState<number>(0);
+  const [locale, setLocale] = useState<Locales>(DEFAULT_LOCALE);
 
   const onNext = (): void => {
     setCurrent(inc(current));
@@ -25,7 +26,7 @@ const ResumeCreate = () => {
   };
 
   const onChange = (locale: string): void => {
-    setLocale(locale);
+    setLocale(locale as Locales);
   };
 
   const CREATE_RESUME_STEPS = RESUME_ITEMS.map(({ key, Component }) => ({
@@ -46,7 +47,7 @@ const ResumeCreate = () => {
         </header>
         <Steps
           steps={CREATE_RESUME_STEPS}
-          direction="vertical"
+          orientation="vertical"
           current={current}
         />
         <footer className="text-right">

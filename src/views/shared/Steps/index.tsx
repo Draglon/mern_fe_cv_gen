@@ -10,7 +10,7 @@ type StepsProps = {
   steps: { title: string; content: ReactNode }[];
   current?: number;
   withButtons?: boolean;
-  direction?: "horizontal" | "vertical";
+  orientation?: "horizontal" | "vertical";
   onNext?: () => void;
   onPrev?: () => void;
 };
@@ -19,16 +19,16 @@ const StepsComponent = ({
   steps,
   current = 0,
   withButtons = false,
-  direction = "horizontal",
+  orientation = "horizontal",
   onNext,
   onPrev,
 }: StepsProps) => {
-  const isVertical = equals(direction, "vertical");
+  const isVertical = equals(orientation, "vertical");
 
   return (
     <div className={clsx("steps", { "d-flex": isVertical })}>
       <div className={clsx("steps__steps", { "w-quarter": isVertical })}>
-        <Steps steps={steps} current={current} direction={direction} />
+        <Steps steps={steps} current={current} orientation={orientation} />
       </div>
       <div
         className={clsx("steps__content", { "w-three-quarters": isVertical })}

@@ -1,6 +1,7 @@
 "use client";
 import { useEffect } from "react";
 
+import { Locales } from "@/lib/constants/props/locales";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import fetchPersonalLanguages from "@/store/personalLanguages/operations/fetchPersonalLanguages";
 import { isLoadingSelector } from "@/store/personalLanguages/selectors";
@@ -9,7 +10,7 @@ import { personalLanguagesIdSelector } from "@/store/auth/selectors";
 import PersonalLanguagesForm from "@/views/shared/PersonalLanguages/Form";
 
 type PersonalLanguagesProps = {
-  locale: string;
+  locale: Locales;
   isEdit?: boolean;
 };
 

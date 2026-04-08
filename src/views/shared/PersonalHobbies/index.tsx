@@ -1,6 +1,7 @@
 "use client";
 import { useEffect } from "react";
 
+import { Locales } from "@/lib/constants/props/locales";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import fetchPersonalHobbies from "@/store/personalHobbies/operations/fetchPersonalHobbies";
 import { isLoadingSelector } from "@/store/personalHobbies/selectors";
@@ -9,7 +10,7 @@ import { personalHobbiesIdSelector } from "@/store/auth/selectors";
 import PersonalHobbiesForm from "@/views/shared/PersonalHobbies/Form";
 
 type PersonalHobbiesProps = {
-  locale: string;
+  locale: Locales;
   isEdit?: boolean;
 };
 

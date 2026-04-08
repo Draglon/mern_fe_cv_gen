@@ -122,7 +122,7 @@ const Registration = () => {
             Field={InputField}
             size="large"
           />
-          <FormItem name="buttons" label={null}>
+          <FormItem name="buttons">
             <Button
               className="form__button"
               type="primary"

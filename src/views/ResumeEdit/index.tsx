@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 
+import { Locales } from "@/lib/constants/props/locales";
 import { DEFAULT_LOCALE } from "@/lib/constants/locales";
 import { RESUME_ITEMS, DEFAULT_RESUME_ITEM } from "@/lib/constants/resume";
 
@@ -25,7 +26,7 @@ const ResumeEdit = () => {
   const EDIT_RESUME_TABS = RESUME_ITEMS.map(({ key, Component }) => ({
     key: key,
     label: t(`tabs.${key}`),
-    children: <Component locale={locale} isEdit />,
+    children: <Component locale={locale as Locales} isEdit />,
   }));
 
   return (

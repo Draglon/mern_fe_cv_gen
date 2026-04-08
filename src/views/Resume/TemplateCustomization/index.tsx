@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { Dispatch, SetStateAction } from "react";
 import { useTranslations } from "next-intl";
 
-import { Locales } from "@/lib/constants/props/locales";
+import { Locales, Locale } from "@/lib/constants/props/locales";
 import { LOCALES, FLAGS } from "@/lib/constants/locales";
 import { Title, Text } from "@/views/shared/antd/Typography";
 
@@ -41,7 +41,7 @@ const ResumeTemplateCustomization = ({
             >
               <Image
                 className="mr-8"
-                src={FLAGS[locale]}
+                src={FLAGS[locale as Locales]}
                 alt={locale}
                 width="24"
                 height="16"
