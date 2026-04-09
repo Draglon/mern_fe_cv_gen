@@ -2,6 +2,13 @@ const personalTools = {
   "PersonalTools": {
     "title": "Инструменты",
     "form": {
+      "sectionTitle": {
+        "label": "Заголовок раздела",
+        "placeholder": "Ввести название раздела",
+        "errors": {
+          "required": "Пожалуйста, введите название вашего раздела!",
+        }
+      },
       "tool": {
         "label": "Инструмент",
         "placeholder": "Введите Инструмент",

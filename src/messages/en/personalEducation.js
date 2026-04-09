@@ -2,6 +2,13 @@ const personalEducation = {
   "PersonalEducation": {
     "title": "Education",
     "form": {
+      "sectionTitle": {
+        "label": "Section title",
+        "placeholder": "Input section title",
+        "errors": {
+          "required": "Please input your section title!",
+        }
+      },
       "institute": {
         "label": "Institute",
         "placeholder": "Input institute",

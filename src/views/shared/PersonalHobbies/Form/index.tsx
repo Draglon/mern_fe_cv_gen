@@ -3,9 +3,10 @@ import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
-import { isEmpty, path } from "ramda";
+import { isEmpty, path, pathOr } from "ramda";
 
 import { Locales } from "@/lib/constants/props/locales";
+import { REGEX_STRING } from "@/lib/constants/regex";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import { hobbiesByLocale } from "@/utils/personalHobbies";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
@@ -21,6 +22,7 @@ import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
 import InputField from "@/views/shared/InputField";
+import Divider from "@/views/shared/antd/Divider";
 
 type PersonalHobbiesFormProps = {
   locale: Locales;
@@ -28,6 +30,7 @@ type PersonalHobbiesFormProps = {
 };
 
 type FieldType = {
+  sectionTitle?: string;
   hobbies: { hobby: string }[];
 };
 
@@ -42,6 +45,7 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesFormProps) => {
 
   const { control, handleSubmit, formState, register } = useForm<FieldType>({
     values: {
+      sectionTitle: pathOr("", ["sectionTitle", locale], personalHobbies),
       hobbies: !isEmpty(hobbies) ? hobbies : [{ hobby: "" }],
     },
     mode: "onChange",
@@ -80,6 +84,26 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesFormProps) => {
       layout="vertical"
       preserve
     >
+      <div className="w-full mb-32">
+        <FormItem
+          className="form__item--field"
+          name="sectionTitle"
+          controlName="sectionTitle"
+          control={control}
+          label={t("form.sectionTitle.label")}
+          placeholder={t("form.sectionTitle.placeholder")}
+          register={register("sectionTitle", {
+            pattern: {
+              value: REGEX_STRING,
+              message: t("form.sectionTitle.errors.required"),
+            },
+          })}
+          errors={errors["sectionTitle"]}
+          Field={InputField}
+          size="large"
+        />
+        <Divider />
+      </div>
       <FormList name="hobbies" append={append}>
         {fields.map((field, index) => (
           <Space key={field.id} align="baseline" className="form__list-space">

@@ -3,11 +3,12 @@ import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
-import { isEmpty, path } from "ramda";
+import { isEmpty, path, pathOr } from "ramda";
 
 import { redirect } from "@/i18n/navigation";
 import { resumeRoute } from "@/lib/routes";
 import { Locales } from "@/lib/constants/props/locales";
+import { REGEX_STRING } from "@/lib/constants/regex";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import { toolsByLocale } from "@/utils/personalTools";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
@@ -23,6 +24,7 @@ import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
 import InputField from "@/views/shared/InputField";
 import Checkbox from "@/views/shared/antd/Checkbox";
+import Divider from "@/views/shared/antd/Divider";
 
 type PersonalToolsFormProps = {
   locale: Locales;
@@ -30,6 +32,7 @@ type PersonalToolsFormProps = {
 };
 
 type FieldType = {
+  sectionTitle?: string;
   tools: {
     tool: string;
     level: string;
@@ -48,6 +51,7 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
 
   const { control, handleSubmit, register, formState } = useForm({
     values: {
+      sectionTitle: pathOr("", ["sectionTitle", locale], personalTools),
       tools: !isEmpty(tools)
         ? tools
         : [
@@ -94,6 +98,26 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
       layout="vertical"
       preserve
     >
+      <div className="w-full mb-32">
+        <FormItem
+          className="form__item--field"
+          name="sectionTitle"
+          controlName="sectionTitle"
+          control={control}
+          label={t("form.sectionTitle.label")}
+          placeholder={t("form.sectionTitle.placeholder")}
+          register={register("sectionTitle", {
+            pattern: {
+              value: REGEX_STRING,
+              message: t("form.sectionTitle.errors.required"),
+            },
+          })}
+          errors={errors["sectionTitle"]}
+          Field={InputField}
+          size="large"
+        />
+        <Divider />
+      </div>
       <FormList name="tools" append={append}>
         {fields.map((field, index) => (
           <Space key={field.id} align="baseline" className="form__list-space">

@@ -3,9 +3,10 @@ import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
-import { isEmpty, path } from "ramda";
+import { isEmpty, path, pathOr } from "ramda";
 
 import { Locales } from "@/lib/constants/props/locales";
+import { REGEX_STRING } from "@/lib/constants/regex";
 import { LANGUAGE_LEVEL } from "@/lib/constants/languages";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import { languagesByLocale } from "@/utils/personalLanguages";
@@ -23,6 +24,7 @@ import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
 import InputField from "@/views/shared/InputField";
 import SelectField from "@/views/shared/SelectField";
+import Divider from "@/views/shared/antd/Divider";
 
 type PersonalLanguagesFormProps = {
   locale: Locales;
@@ -30,6 +32,7 @@ type PersonalLanguagesFormProps = {
 };
 
 type FieldType = {
+  sectionTitle?: string;
   languages: { language: string; level: string }[];
 };
 
@@ -46,6 +49,7 @@ const PersonalLanguagesForm = ({
 
   const { control, handleSubmit, formState, register } = useForm({
     values: {
+      sectionTitle: pathOr("", ["sectionTitle", locale], personalLanguages),
       languages: !isEmpty(languagesByLocale(personalLanguages, locale))
         ? languagesByLocale(personalLanguages, locale)
         : [{ language: "", level: "" }],
@@ -86,6 +90,26 @@ const PersonalLanguagesForm = ({
       layout="vertical"
       preserve
     >
+      <div className="w-full mb-32">
+        <FormItem
+          className="form__item--field"
+          name="sectionTitle"
+          controlName="sectionTitle"
+          control={control}
+          label={t("form.sectionTitle.label")}
+          placeholder={t("form.sectionTitle.placeholder")}
+          register={register("sectionTitle", {
+            pattern: {
+              value: REGEX_STRING,
+              message: t("form.sectionTitle.errors.required"),
+            },
+          })}
+          errors={errors["sectionTitle"]}
+          Field={InputField}
+          size="large"
+        />
+        <Divider />
+      </div>
       <FormList name="languages" append={append}>
         {fields.map((field, index) => {
           return (

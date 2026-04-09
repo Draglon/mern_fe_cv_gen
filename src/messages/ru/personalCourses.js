@@ -2,6 +2,13 @@ const personalCourses = {
   "PersonalCourses": {
     "title": "Курсы",
     "form": {
+      "sectionTitle": {
+        "label": "Заголовок раздела",
+        "placeholder": "Ввести название раздела",
+        "errors": {
+          "required": "Пожалуйста, введите название вашего раздела!",
+        }
+      },
       "course": {
         "label": "Название курса",
         "placeholder": "Введите курс",

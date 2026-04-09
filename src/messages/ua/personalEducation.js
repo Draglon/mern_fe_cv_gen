@@ -2,6 +2,13 @@ const personalEducation = {
   "PersonalEducation": {
     "title": "Освіта",
     "form": {
+      "sectionTitle": {
+        "label": "Назва розділу",
+        "placeholder": "Ввести назву розділу",
+        "errors": {
+          "required": "Будь ласка, введіть назву вашого розділу!",
+        }
+      },
       "institute": {
         "label": "Інститут",
         "placeholder": "Введіть інститут",

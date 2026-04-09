@@ -2,6 +2,13 @@ const personalLanguages = {
   "PersonalLanguages": {
     "title": "Languages",
     "form": {
+      "sectionTitle": {
+        "label": "Section title",
+        "placeholder": "Input section title",
+        "errors": {
+          "required": "Please input your section title!",
+        }
+      },
       "language": {
         "label": "Language",
         "placeholder": "Input language",

@@ -1,6 +1,7 @@
 import { Locales, Locale } from "@/lib/constants/props/locales";
 
 type PersonalToolsProps = {
+  sectionTitle?: string;
   tools: Locale;
 };
 

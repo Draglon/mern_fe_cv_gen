@@ -2,6 +2,13 @@ const personalSkills = {
   "PersonalSkills": {
     "title": "Навички",
     "form": {
+      "sectionTitle": {
+        "label": "Назва розділу",
+        "placeholder": "Ввести назву розділу",
+        "errors": {
+          "required": "Будь ласка, введіть назву вашого розділу!",
+        }
+      },
       "skill": {
         "label": "Майстерність",
         "placeholder": "Вкажіть свою Майстерність",

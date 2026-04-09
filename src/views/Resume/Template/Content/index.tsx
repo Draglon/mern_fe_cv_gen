@@ -1,6 +1,6 @@
 "use client";
 import { useTranslations } from "next-intl";
-import { equals } from "ramda";
+import { equals, pathOr } from "ramda";
 
 import { Locales } from "@/lib/constants/props/locales";
 import { TEMPLATES } from "@/lib/constants/templates";
@@ -48,7 +48,11 @@ const ResumeTemplateContent = ({
 
       {resume?.personalEducation && (
         <Section
-          title={t("personalEducation.title", { locale: templateLanguage })}
+          title={pathOr(
+            t("personalEducation.title", { locale: templateLanguage }),
+            ["sectionTitle", templateLanguage],
+            resume.personalEducation
+          )}
           className="section--education"
         >
           <PersonalEducation
@@ -60,7 +64,11 @@ const ResumeTemplateContent = ({
 
       {resume?.personalCourses && (
         <Section
-          title={t("personalCourses.title", { locale: templateLanguage })}
+          title={pathOr(
+            t("personalCourses.title", { locale: templateLanguage }),
+            ["sectionTitle", templateLanguage],
+            resume.personalCourses
+          )}
           className="section--courses"
         >
           <PersonalCourses
@@ -72,7 +80,11 @@ const ResumeTemplateContent = ({
 
       {resume?.personalSkills && !equals(template, TEMPLATES.edinburghPlus) && (
         <Section
-          title={t("personalSkills.title", { locale: templateLanguage })}
+          title={pathOr(
+            t("personalSkills.title", { locale: templateLanguage }),
+            ["sectionTitle", templateLanguage],
+            resume.personalSkills
+          )}
           className="section--skills"
         >
           <PersonalSkills
@@ -84,7 +96,11 @@ const ResumeTemplateContent = ({
 
       {resume?.personalTools && !equals(template, TEMPLATES.edinburghPlus) && (
         <Section
-          title={t("personalTools.title", { locale: templateLanguage })}
+          title={pathOr(
+            t("personalTools.title", { locale: templateLanguage }),
+            ["sectionTitle", templateLanguage],
+            resume.personalTools
+          )}
           className="section--tools"
         >
           <PersonalTools

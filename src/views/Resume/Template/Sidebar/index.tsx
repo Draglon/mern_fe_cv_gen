@@ -74,7 +74,11 @@ const ResumeTemplateSidebar = ({
 
       {resume?.personalHobbies && (
         <Section
-          title={t("personalHobbies.title", { locale: templateLanguage })}
+          title={pathOr(
+            t("personalHobbies.title", { locale: templateLanguage }),
+            ["sectionTitle", templateLanguage],
+            resume.personalHobbies
+          )}
           size="small"
         >
           <PersonalHobbies
@@ -86,7 +90,11 @@ const ResumeTemplateSidebar = ({
 
       {resume?.personalLanguages && (
         <Section
-          title={t("personalLanguages.title", { locale: templateLanguage })}
+          title={pathOr(
+            t("personalLanguages.title", { locale: templateLanguage }),
+            ["sectionTitle", templateLanguage],
+            resume.personalLanguages
+          )}
           size="small"
         >
           <PersonalLanguages
@@ -99,7 +107,11 @@ const ResumeTemplateSidebar = ({
       {resume?.personalSkills &&
         includes(template, TEMPLATES_SIDEBARS_SKILLS) && (
           <Section
-            title={t("personalSkills.title", { locale: templateLanguage })}
+            title={pathOr(
+              t("personalSkills.title", { locale: templateLanguage }),
+              ["sectionTitle", templateLanguage],
+              resume.personalSkills
+            )}
             size="small"
           >
             <PersonalSkills
@@ -112,7 +124,11 @@ const ResumeTemplateSidebar = ({
       {resume?.personalTools &&
         includes(template, TEMPLATES_SIDEBARS_TOOLS) && (
           <Section
-            title={t("personalTools.title", { locale: templateLanguage })}
+            title={pathOr(
+              t("personalTools.title", { locale: templateLanguage }),
+              ["sectionTitle", templateLanguage],
+              resume.personalTools
+            )}
             size="small"
           >
             <PersonalTools

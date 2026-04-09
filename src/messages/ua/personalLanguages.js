@@ -2,6 +2,13 @@ const personalLanguages = {
   "PersonalLanguages": {
     "title": "Мови",
     "form": {
+      "sectionTitle": {
+        "label": "Назва розділу",
+        "placeholder": "Ввести назву розділу",
+        "errors": {
+          "required": "Будь ласка, введіть назву вашого розділу!",
+        }
+      },
       "language": {
         "label": "Мова",
         "placeholder": "Введіть мову",

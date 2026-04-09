@@ -1,6 +1,7 @@
 import { Locales, Locale } from "@/lib/constants/props/locales";
 
 type PersonalLanguagesProps = {
+  sectionTitle?: string;
   languages: Locale;
 };
 
