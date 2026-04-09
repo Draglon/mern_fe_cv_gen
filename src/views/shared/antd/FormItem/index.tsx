@@ -2,6 +2,7 @@
 import clsx from "clsx";
 import { Controller, Control, FieldError } from "react-hook-form";
 import { Form } from "antd";
+import type { FormItemProps } from "antd";
 
 type FormItemType = {
   name: string | any[];
@@ -30,7 +31,7 @@ const FormItem = ({
   Field,
   children,
   ...restProps
-}: FormItemType) => {
+}: FormItemProps & FormItemType) => {
   return children ? (
     <Form.Item
       name={name}

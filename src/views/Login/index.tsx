@@ -1,7 +1,6 @@
 "use client";
 import { useTranslations, useLocale } from "next-intl";
 import { useForm } from "react-hook-form";
-import { Form } from "antd";
 
 import { redirect } from "@/i18n/navigation";
 import { resumeRoute } from "@/lib/routes";
@@ -11,6 +10,7 @@ import fetchAuth from "@/store/auth/operations/fetchAuth";
 import { isLoadingSelector } from "@/store/auth/selectors";
 
 import { Title, Paragraph } from "@/views/shared/antd/Typography";
+import Form from "@/views/shared/antd/Form";
 import FormItem from "@/views/shared/antd/FormItem";
 import InputField from "@/views/shared/InputField";
 import Button from "@/views/shared/antd/Button";
@@ -60,7 +60,7 @@ const Login = () => {
         </header>
         <Form
           name="login"
-          className="form form--small"
+          className="form--small"
           onFinish={onFinish}
           autoComplete="off"
           layout="vertical"
@@ -106,7 +106,7 @@ const Login = () => {
             size="large"
           />
 
-          <Form.Item label={null} className="form__item">
+          <FormItem name="buttons">
             <Button
               className="form__button"
               type="primary"
@@ -118,7 +118,7 @@ const Login = () => {
             >
               {t("submitButton")}
             </Button>
-          </Form.Item>
+          </FormItem>
         </Form>
       </div>
     </div>

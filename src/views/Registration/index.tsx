@@ -1,7 +1,6 @@
 "use client";
 import { useTranslations, useLocale } from "next-intl";
 import { useForm } from "react-hook-form";
-import { Form } from "antd";
 
 import { redirect } from "@/i18n/navigation";
 import { resumeRoute } from "@/lib/routes";
@@ -11,6 +10,7 @@ import fetchRegister from "@/store/auth/operations/fetchRegister";
 import { isLoadingSelector } from "@/store/auth/selectors";
 
 import { Title, Paragraph } from "@/views/shared/antd/Typography";
+import Form from "@/views/shared/antd/Form";
 import FormItem from "@/views/shared/antd/FormItem";
 import InputField from "@/views/shared/InputField";
 import Button from "@/views/shared/antd/Button";
@@ -65,7 +65,7 @@ const Registration = () => {
         </header>
         <Form
           name="registration"
-          className="form form--small"
+          className="form--small"
           onFinish={onFinish}
           autoComplete="off"
           layout="vertical"
