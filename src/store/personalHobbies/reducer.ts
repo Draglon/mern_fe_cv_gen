@@ -1,10 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+import { Locales } from "@/lib/constants/props/locales";
 import createPersonalHobbies from "./operations/createPersonalHobbies";
 import fetchPersonalHobbies from "./operations/fetchPersonalHobbies";
 import updatePersonalHobbies from "./operations/updatePersonalHobbies";
 
-const initialState = {
+interface IPersonalHobbiesState {
+  data: {
+    sectionTitle?: Locales;
+    hobbies?: Locales;
+    _id: string;
+    userId: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null;
+  status?: string;
+}
+
+const initialState: IPersonalHobbiesState = {
   data: null,
   status: undefined,
 };
@@ -12,6 +25,7 @@ const initialState = {
 export const personalHobbiesSlice = createSlice({
   name: "personalHobbies",
   initialState,
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(createPersonalHobbies.pending, (state) => {
       state.data = null;

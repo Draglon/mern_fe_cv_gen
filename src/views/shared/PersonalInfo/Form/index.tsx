@@ -48,7 +48,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
   const userId = useAppSelector(userIdSelector);
   const personalInfoId = useAppSelector(personalInfoIdSelector);
   const personalInfo = useAppSelector(personalInfoSelector);
-  const defaultValues = personalInfoByLocale(personalInfo, locale);
+  const defaultValues = personalInfoByLocale(personalInfo as any, locale);
 
   const { control, handleSubmit, formState, register } = useForm<FieldType>({
     defaultValues,

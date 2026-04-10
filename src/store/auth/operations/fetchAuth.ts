@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import axios from "@/lib/axios.js";
+import axios from "@/lib/axios";
 import { authLoginRoute } from "@/lib/apiRoutes";
 import { FETCH_LOGIN } from "./../types";
 

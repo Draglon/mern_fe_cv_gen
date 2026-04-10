@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { Dispatch, SetStateAction } from "react";
 import { useTranslations } from "next-intl";
 
-import { Locales, Locale } from "@/lib/constants/props/locales";
+import { Locales } from "@/lib/constants/props/locales";
 import { LOCALES, FLAGS } from "@/lib/constants/locales";
 import { Title, Text } from "@/views/shared/antd/Typography";
 

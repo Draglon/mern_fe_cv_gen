@@ -47,7 +47,7 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
   const userId = useAppSelector(userIdSelector);
   const personalToolsId = useAppSelector(personalToolsIdSelector);
   const personalTools = useAppSelector(personalToolsSelector);
-  const tools = toolsByLocale(personalTools, locale);
+  const tools = toolsByLocale(personalTools as any, locale);
 
   const { control, handleSubmit, register, formState } = useForm({
     values: {

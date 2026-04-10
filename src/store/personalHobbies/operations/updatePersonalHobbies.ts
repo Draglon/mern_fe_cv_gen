@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import axios from "@/lib/axios.js";
+import axios from "@/lib/axios";
 import { personalHobbiesRoute } from "@/lib/apiRoutes";
 import { UPDATE_PERSONAL_HOBBIES } from "../types";
 

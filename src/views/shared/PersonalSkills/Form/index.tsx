@@ -45,7 +45,7 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
   const userId = useAppSelector(userIdSelector);
   const personalSkillsId = useAppSelector(personalSkillsIdSelector);
   const personalSkills = useAppSelector(personalSkillsSelector);
-  const skills = skillsByLocale(personalSkills, locale);
+  const skills = skillsByLocale(personalSkills as any, locale);
 
   const { control, handleSubmit, register, formState } = useForm({
     values: {

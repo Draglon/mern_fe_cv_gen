@@ -30,7 +30,7 @@ const ResumeTemplateSidebar = ({
   templateLanguage,
 }: ResumeTemplateSidebarProps) => {
   const t = useTranslations("Template");
-  const resume = useAppSelector(resumeSelector);
+  const resume: any = useAppSelector(resumeSelector);
 
   return (
     <div className="template__sidebar">

@@ -30,14 +30,16 @@ type PersonalCoursesFormProps = {
   isEdit?: boolean;
 };
 
+type Course = {
+  course: string;
+  description: string;
+  startDate: string;
+  endDate: string;
+};
+
 type FieldType = {
   sectionTitle?: string;
-  courses: {
-    course: string;
-    description: string;
-    startDate: string;
-    endDate: string;
-  }[];
+  courses: Course[];
 };
 
 const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
@@ -47,7 +49,7 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
   const userId = useAppSelector(userIdSelector);
   const personalCoursesId = useAppSelector(personalCoursesIdSelector);
   const personalCourses = useAppSelector(personalCoursesSelector);
-  const courses = coursesByLocale(personalCourses, locale);
+  const courses = coursesByLocale(personalCourses as any, locale);
 
   const { control, handleSubmit, register, formState } = useForm({
     values: {

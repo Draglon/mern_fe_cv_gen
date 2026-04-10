@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import axios from "@/lib/axios.js";
+import axios from "@/lib/axios";
 import { personalLanguagesCreateRoute } from "@/lib/apiRoutes";
 import { CREATE_PERSONAL_LANGUAGES } from "./../types";
 

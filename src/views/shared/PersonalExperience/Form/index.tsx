@@ -58,7 +58,7 @@ const PersonalExperienceForm = ({
   const userId = useAppSelector(userIdSelector);
   const personalExperienceId = useAppSelector(personalExperienceIdSelector);
   const personalExperience = useAppSelector(personalExperienceSelector);
-  const experience = experienceByLocale(personalExperience, locale);
+  const experience = experienceByLocale(personalExperience as any, locale);
 
   const { control, handleSubmit, register, formState } = useForm<FieldType>({
     values: {

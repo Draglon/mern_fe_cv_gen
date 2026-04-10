@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import getBase64 from "@/utils/getBase64";
-import axios from "@/lib/axios.js";
+import axios from "@/lib/axios";
 import { personalInfoRoute } from "@/lib/apiRoutes";
 import { UPDATE_PERSONAL_INFO } from "../types";
 

@@ -4,7 +4,27 @@ import fetchAuth from "./operations/fetchAuth";
 import fetchRegister from "./operations/fetchRegister";
 import fetchUser from "./operations/fetchUser";
 
-const initialState = {
+interface IAuthState {
+  data: {
+    _id: string;
+    avatarUrl: string | null;
+    userName: string;
+    email: string;
+    personalInfoId: string | null;
+    personalHobbiesId: string | null;
+    personalLanguagesId: string | null;
+    personalExperienceId: string | null;
+    personalEducationId: string | null;
+    personalCoursesId: string | null;
+    personalSkillsId: string | null;
+    personalToolsId: string | null;
+    createdAt?: string;
+    updatedAt?: string;
+  } | null;
+  status?: string;
+}
+
+const initialState: IAuthState = {
   data: null,
   status: undefined,
 };

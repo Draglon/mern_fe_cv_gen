@@ -51,7 +51,7 @@ const PersonalEducationForm = ({
   const userId = useAppSelector(userIdSelector);
   const personalEducationId = useAppSelector(personalEducationIdSelector);
   const personalEducation = useAppSelector(personalEducationSelector);
-  const education = educationByLocale(personalEducation, locale);
+  const education = educationByLocale(personalEducation as any, locale);
 
   const { control, handleSubmit, register, formState } = useForm({
     values: {

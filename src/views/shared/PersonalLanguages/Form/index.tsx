@@ -50,8 +50,8 @@ const PersonalLanguagesForm = ({
   const { control, handleSubmit, formState, register } = useForm({
     values: {
       sectionTitle: pathOr("", ["sectionTitle", locale], personalLanguages),
-      languages: !isEmpty(languagesByLocale(personalLanguages, locale))
-        ? languagesByLocale(personalLanguages, locale)
+      languages: !isEmpty(languagesByLocale(personalLanguages as any, locale))
+        ? languagesByLocale(personalLanguages as any, locale)
         : [{ language: "", level: "" }],
     },
     mode: "onChange",

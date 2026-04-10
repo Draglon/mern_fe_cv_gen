@@ -2,7 +2,21 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import fetchResume from "./operations/fetchResume";
 
-const initialState = {
+interface IResumeState {
+  data?: {
+    personalInfo: any;
+    personalHobbies: any;
+    personalLanguages: any;
+    personalExperience: any;
+    personalEducation: any;
+    personalCourses: any;
+    personalSkills: any;
+    personalTools: any;
+  } | null;
+  status?: string;
+}
+
+const initialState: IResumeState = {
   data: null,
   status: undefined,
 };
@@ -10,6 +24,7 @@ const initialState = {
 export const resumeSlice = createSlice({
   name: "resume",
   initialState,
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchResume.pending, (state) => {
       state.data = null;
