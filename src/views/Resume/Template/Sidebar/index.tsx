@@ -2,12 +2,12 @@
 import { useTranslations } from "next-intl";
 import { includes, pathOr } from "ramda";
 
-import { Locales } from "@/lib/constants/props/locales";
 import {
   TEMPLATES_PERSONAL_INFO_FULLNAME,
   TEMPLATES_SIDEBARS_SKILLS,
   TEMPLATES_SIDEBARS_TOOLS,
 } from "@/lib/constants/templates";
+import { ResumeProps, TemplateProps } from "@/lib/constants/props/resume";
 import { useAppSelector } from "@/store/hooks";
 import { resumeSelector } from "@/store/resume/selectors";
 
@@ -20,17 +20,12 @@ import PersonalLanguages from "@/views/shared/TemplateResume/PersonalLanguages";
 import PersonalSkills from "@/views/shared/TemplateResume/PersonalSkills";
 import PersonalTools from "@/views/shared/TemplateResume/PersonalTools";
 
-type ResumeTemplateSidebarProps = {
-  template: string;
-  templateLanguage: Locales;
-};
-
 const ResumeTemplateSidebar = ({
   template,
   templateLanguage,
-}: ResumeTemplateSidebarProps) => {
+}: TemplateProps) => {
   const t = useTranslations("Template");
-  const resume: any = useAppSelector(resumeSelector);
+  const resume: ResumeProps = useAppSelector(resumeSelector) as ResumeProps;
 
   return (
     <div className="template__sidebar">
@@ -38,7 +33,7 @@ const ResumeTemplateSidebar = ({
         includes(template, TEMPLATES_PERSONAL_INFO_FULLNAME) && (
           <Section>
             <PersonalFullName
-              personalFullName={resume.personalInfo}
+              personalInfo={resume.personalInfo}
               templateLanguage={templateLanguage}
             />
           </Section>

@@ -1,5 +1,6 @@
 "use client";
-import { Locales, Locale } from "@/lib/constants/props/locales";
+import { Locales } from "@/lib/constants/props/locales";
+import { PersonalHobbiesProps } from "@/lib/constants/props/resume";
 import { hobbiesByLocale } from "@/utils/personalHobbies";
 
 import { Text } from "@/views/shared/antd/Typography";
@@ -10,9 +11,7 @@ type HobbyProps = {
 
 type HobbiesProps = {
   templateLanguage: Locales;
-  personalHobbies: {
-    hobbies: Locale;
-  };
+  personalHobbies: PersonalHobbiesProps;
 };
 
 const PersonalHobbies = ({

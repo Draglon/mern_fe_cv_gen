@@ -1,5 +1,6 @@
 "use client";
-import { Locales, Locale } from "@/lib/constants/props/locales";
+import { Locales } from "@/lib/constants/props/locales";
+import { PersonalToolsProps } from "@/lib/constants/props/resume";
 import { toolsByLocale } from "@/utils/personalTools";
 
 import { Text } from "@/views/shared/antd/Typography";
@@ -10,35 +11,31 @@ type ToolItemProps = {
   visible: boolean;
 };
 
-type PersonalToolsProps = {
+type ToolsProps = {
   templateLanguage: Locales;
-  personalTools: {
-    tools: Locale;
-  };
+  personalTools: PersonalToolsProps;
 };
 
-const PersonalTools = ({
-  templateLanguage,
-  personalTools,
-}: PersonalToolsProps) => {
+const PersonalTools = ({ templateLanguage, personalTools }: ToolsProps) => {
   const tools = toolsByLocale(personalTools, templateLanguage);
 
   return (
     <div className="personal-tools">
-      {tools.map(({ tool, level, visible }: ToolItemProps, index: number) =>
-        visible ? (
-          <div className="personal-tools__item" key={index}>
-            <Text className="personal-tools__label" strong>
-              {tool}
-            </Text>
-            <div className="personal-tools__progress">
-              <div
-                className="personal-tools__progress-value"
-                style={{ width: `${level}%` }}
-              />
+      {tools.map(
+        ({ tool, level, visible }: ToolItemProps, index: number) =>
+          visible && (
+            <div className="personal-tools__item" key={index}>
+              <Text className="personal-tools__label" strong>
+                {tool}
+              </Text>
+              <div className="personal-tools__progress">
+                <div
+                  className="personal-tools__progress-value"
+                  style={{ width: `${level}%` }}
+                />
+              </div>
             </div>
-          </div>
-        ) : null
+          )
       )}
     </div>
   );

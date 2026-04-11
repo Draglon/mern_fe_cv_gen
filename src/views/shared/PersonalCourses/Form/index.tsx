@@ -6,6 +6,7 @@ import { MinusCircleOutlined } from "@ant-design/icons";
 import { isEmpty, path, pathOr } from "ramda";
 
 import { Locales } from "@/lib/constants/props/locales";
+import { PersonalCoursesProps } from "@/lib/constants/props/resume";
 import { REGEX_STRING } from "@/lib/constants/regex";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import { coursesByLocale } from "@/utils/personalCourses";
@@ -46,10 +47,12 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
   const t = useTranslations("PersonalCourses");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
-  const userId = useAppSelector(userIdSelector);
-  const personalCoursesId = useAppSelector(personalCoursesIdSelector);
-  const personalCourses = useAppSelector(personalCoursesSelector);
-  const courses = coursesByLocale(personalCourses as any, locale);
+  const userId = useAppSelector(userIdSelector) as string;
+  const personalCoursesId = useAppSelector(personalCoursesIdSelector) as string;
+  const personalCourses = useAppSelector(
+    personalCoursesSelector
+  ) as PersonalCoursesProps;
+  const courses = coursesByLocale(personalCourses, locale);
 
   const { control, handleSubmit, register, formState } = useForm({
     values: {

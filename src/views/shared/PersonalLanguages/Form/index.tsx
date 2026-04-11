@@ -6,6 +6,7 @@ import { MinusCircleOutlined } from "@ant-design/icons";
 import { isEmpty, path, pathOr } from "ramda";
 
 import { Locales } from "@/lib/constants/props/locales";
+import { PersonalLanguagesProps } from "@/lib/constants/props/resume";
 import { REGEX_STRING } from "@/lib/constants/regex";
 import { LANGUAGE_LEVEL } from "@/lib/constants/languages";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
@@ -45,13 +46,15 @@ const PersonalLanguagesForm = ({
   const dispatch = useAppDispatch();
   const userId = useAppSelector(userIdSelector);
   const personalLanguagesId = useAppSelector(personalLanguagesIdSelector);
-  const personalLanguages = useAppSelector(personalLanguagesSelector);
+  const personalLanguages = useAppSelector(
+    personalLanguagesSelector
+  ) as PersonalLanguagesProps;
 
   const { control, handleSubmit, formState, register } = useForm({
     values: {
       sectionTitle: pathOr("", ["sectionTitle", locale], personalLanguages),
-      languages: !isEmpty(languagesByLocale(personalLanguages as any, locale))
-        ? languagesByLocale(personalLanguages as any, locale)
+      languages: !isEmpty(languagesByLocale(personalLanguages, locale))
+        ? languagesByLocale(personalLanguages, locale)
         : [{ language: "", level: "" }],
     },
     mode: "onChange",

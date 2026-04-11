@@ -3,14 +3,14 @@ import { equals } from "ramda";
 
 import profileName from "@/utils/profileName";
 import { TEMPLATES } from "@/lib/constants/templates";
-import { personalInfoProps } from "@/lib/constants/props/resume";
+import { PersonalInfoProps, TemplateProps } from "@/lib/constants/props/resume";
 import { Title, Paragraph } from "@/views/shared/antd/Typography";
 
 const PersonalInfo = ({
-  personalInfo,
   template,
   templateLanguage,
-}: personalInfoProps) => {
+  personalInfo,
+}: TemplateProps & { personalInfo: PersonalInfoProps }) => {
   const { about } = personalInfo;
 
   return (

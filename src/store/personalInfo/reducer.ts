@@ -1,18 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { Locales } from "@/lib/constants/props/locales";
+import { PersonalInfoProps } from "@/lib/constants/props/resume";
 import createPersonalInfo from "./operations/createPersonalInfo";
 import fetchPersonalInfo from "./operations/fetchPersonalInfo";
 import updatePersonalInfo from "./operations/updatePersonalInfo";
 
 interface IPersonalInfoState {
-  data: {
-    sectionTitle?: Locales;
-    _id: string;
-    userId: string;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
+  data: PersonalInfoProps | null;
   status?: string;
 }
 

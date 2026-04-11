@@ -5,6 +5,7 @@ import { Form } from "antd";
 
 import { REGEX_STRING } from "@/lib/constants/regex";
 import { Locales } from "@/lib/constants/props/locales";
+import { PersonalInfoProps } from "@/lib/constants/props/resume";
 import { personalInfoByLocale } from "@/utils/personalInfo";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
@@ -28,7 +29,7 @@ type PersonalInfoFormProps = {
 
 type FieldType = {
   sectionTitle?: string;
-  userUrl: any[];
+  userUrl?: string[];
   firstName: string;
   lastName: string;
   email: string;
@@ -45,10 +46,12 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
   const t = useTranslations("PersonalInfo");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
-  const userId = useAppSelector(userIdSelector);
-  const personalInfoId = useAppSelector(personalInfoIdSelector);
-  const personalInfo = useAppSelector(personalInfoSelector);
-  const defaultValues = personalInfoByLocale(personalInfo as any, locale);
+  const userId = useAppSelector(userIdSelector) as string;
+  const personalInfoId = useAppSelector(personalInfoIdSelector) as string;
+  const personalInfo = useAppSelector(
+    personalInfoSelector
+  ) as PersonalInfoProps;
+  const defaultValues = personalInfoByLocale(personalInfo, locale);
 
   const { control, handleSubmit, formState, register } = useForm<FieldType>({
     defaultValues,

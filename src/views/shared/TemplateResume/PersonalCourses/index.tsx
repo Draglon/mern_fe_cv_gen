@@ -1,5 +1,6 @@
 "use client";
-import { Locales, Locale } from "@/lib/constants/props/locales";
+import { Locales } from "@/lib/constants/props/locales";
+import { PersonalCoursesProps } from "@/lib/constants/props/resume";
 import { coursesByLocale } from "@/utils/personalCourses";
 
 import { Title, Text, Paragraph } from "@/views/shared/antd/Typography";
@@ -11,17 +12,15 @@ type Course = {
   endDate: string;
 };
 
-type PersonalCoursesProps = {
+type CoursesProps = {
   templateLanguage: Locales;
-  personalCourses: {
-    courses: Locale;
-  };
+  personalCourses: PersonalCoursesProps;
 };
 
 const PersonalCourses = ({
   templateLanguage,
   personalCourses,
-}: PersonalCoursesProps) => {
+}: CoursesProps) => {
   const courses = coursesByLocale(personalCourses, templateLanguage);
 
   return (

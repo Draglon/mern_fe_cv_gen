@@ -1,18 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+import { ResumeProps } from "@/lib/constants/props/resume";
+
 import fetchResume from "./operations/fetchResume";
 
 interface IResumeState {
-  data?: {
-    personalInfo: any;
-    personalHobbies: any;
-    personalLanguages: any;
-    personalExperience: any;
-    personalEducation: any;
-    personalCourses: any;
-    personalSkills: any;
-    personalTools: any;
-  } | null;
+  data: ResumeProps | null;
   status?: string;
 }
 

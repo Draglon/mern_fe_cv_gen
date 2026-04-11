@@ -17,14 +17,14 @@ import {
   TEMPLATES,
   TEMPLATES_PERSONAL_DATA_ICONS,
 } from "@/lib/constants/templates";
-import { personalInfoProps } from "@/lib/constants/props/resume";
+import { PersonalInfoProps, TemplateProps } from "@/lib/constants/props/resume";
 import { Text, Paragraph } from "@/views/shared/antd/Typography";
 
 const PersonalData = ({
-  personalInfo,
   template,
   templateLanguage,
-}: personalInfoProps) => {
+  personalInfo,
+}: TemplateProps & { personalInfo: PersonalInfoProps }) => {
   const t = useTranslations("Template");
   const {
     address,

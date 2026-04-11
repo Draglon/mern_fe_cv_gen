@@ -6,6 +6,7 @@ import { MinusCircleOutlined } from "@ant-design/icons";
 import { isEmpty, path, pathOr } from "ramda";
 
 import { Locales } from "@/lib/constants/props/locales";
+import { PersonalHobbiesProps } from "@/lib/constants/props/resume";
 import { REGEX_STRING } from "@/lib/constants/regex";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import { hobbiesByLocale } from "@/utils/personalHobbies";
@@ -38,10 +39,12 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesFormProps) => {
   const t = useTranslations("PersonalHobbies");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
-  const userId = useAppSelector(userIdSelector);
-  const personalHobbiesId = useAppSelector(personalHobbiesIdSelector);
-  const personalHobbies = useAppSelector(personalHobbiesSelector);
-  const hobbies = hobbiesByLocale(personalHobbies as any, locale);
+  const userId = useAppSelector(userIdSelector) as string;
+  const personalHobbiesId = useAppSelector(personalHobbiesIdSelector) as string;
+  const personalHobbies = useAppSelector(
+    personalHobbiesSelector
+  ) as PersonalHobbiesProps;
+  const hobbies = hobbiesByLocale(personalHobbies, locale);
 
   const { control, handleSubmit, formState, register } = useForm<FieldType>({
     values: {

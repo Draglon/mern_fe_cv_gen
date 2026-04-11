@@ -8,6 +8,7 @@ import { isEmpty, path, pathOr } from "ramda";
 import { REGEX_DIGITS, REGEX_STRING } from "@/lib/constants/regex";
 import { RESUME_EXPERIENCE_DEFAULT_VALUES } from "@/lib/constants/resumeExperience";
 import { Locales } from "@/lib/constants/props/locales";
+import { PersonalExperienceProps } from "@/lib/constants/props/resume";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import { experienceByLocale } from "@/utils/personalExperience";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
@@ -55,10 +56,14 @@ const PersonalExperienceForm = ({
   const t = useTranslations("PersonalExperience");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
-  const userId = useAppSelector(userIdSelector);
-  const personalExperienceId = useAppSelector(personalExperienceIdSelector);
-  const personalExperience = useAppSelector(personalExperienceSelector);
-  const experience = experienceByLocale(personalExperience as any, locale);
+  const userId = useAppSelector(userIdSelector) as string;
+  const personalExperienceId = useAppSelector(
+    personalExperienceIdSelector
+  ) as string;
+  const personalExperience = useAppSelector(
+    personalExperienceSelector
+  ) as PersonalExperienceProps;
+  const experience = experienceByLocale(personalExperience, locale);
 
   const { control, handleSubmit, register, formState } = useForm<FieldType>({
     values: {

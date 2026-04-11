@@ -1,7 +1,7 @@
 "use client";
 import { useEffect } from "react";
 
-import { Locales } from "@/lib/constants/props/locales";
+import { TemplateProps } from "@/lib/constants/props/resume";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import fetchResume from "@/store/resume/operations/fetchResume";
 import { userIdSelector } from "@/store/auth/selectors";
@@ -9,17 +9,9 @@ import { userIdSelector } from "@/store/auth/selectors";
 import Sidebar from "@/views/Resume/Template/Sidebar";
 import Content from "@/views/Resume/Template/Content";
 
-type ResumeTemplateProps = {
-  template: string;
-  templateLanguage: Locales;
-};
-
-const ResumeTemplate = ({
-  template,
-  templateLanguage,
-}: ResumeTemplateProps) => {
+const ResumeTemplate = ({ template, templateLanguage }: TemplateProps) => {
   const dispatch = useAppDispatch();
-  const userId = useAppSelector(userIdSelector);
+  const userId: string = useAppSelector(userIdSelector);
 
   useEffect(() => {
     if (userId) {

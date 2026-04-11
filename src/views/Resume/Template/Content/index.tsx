@@ -2,7 +2,7 @@
 import { useTranslations } from "next-intl";
 import { equals, pathOr } from "ramda";
 
-import { Locales } from "@/lib/constants/props/locales";
+import { ResumeProps, TemplateProps } from "@/lib/constants/props/resume";
 import { TEMPLATES } from "@/lib/constants/templates";
 import { useAppSelector } from "@/store/hooks";
 import { resumeSelector } from "@/store/resume/selectors";
@@ -15,17 +15,12 @@ import PersonalSkills from "@/views/shared/TemplateResume/PersonalSkills";
 import PersonalTools from "@/views/shared/TemplateResume/PersonalTools";
 import SectionExperience from "@/views/Resume/Template/Content/SectionExperience";
 
-type ResumeTemplateContentProps = {
-  template: string;
-  templateLanguage: Locales;
-};
-
 const ResumeTemplateContent = ({
   template,
   templateLanguage,
-}: ResumeTemplateContentProps) => {
+}: TemplateProps) => {
   const t = useTranslations("Template");
-  const resume: any = useAppSelector(resumeSelector);
+  const resume = useAppSelector(resumeSelector) as ResumeProps;
 
   return (
     <div className="template__container">

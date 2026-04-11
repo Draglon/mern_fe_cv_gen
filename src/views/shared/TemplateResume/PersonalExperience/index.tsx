@@ -19,15 +19,15 @@ type Experience = {
   skills: string[];
 };
 
-type PersonalExperienceProps = {
-  experience: Experience[];
+type ExperiencesProps = {
   templateLanguage: Locales;
+  experience: Experience[];
 };
 
 const PersonalExperience = ({
   experience,
   templateLanguage,
-}: PersonalExperienceProps) => {
+}: ExperiencesProps) => {
   const t = useTranslations("Template");
 
   return (

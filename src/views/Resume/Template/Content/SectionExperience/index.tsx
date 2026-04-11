@@ -2,24 +2,22 @@
 import { useTranslations } from "next-intl";
 import { pathOr } from "ramda";
 
-import { Locales, Locale } from "@/lib/constants/props/locales";
+import { Locales } from "@/lib/constants/props/locales";
+import { PersonalExperienceProps } from "@/lib/constants/props/resume";
 import { experienceByLocale } from "@/utils/personalExperience";
 
 import Section from "@/views/shared/TemplateResume/Section";
 import PersonalExperience from "@/views/shared/TemplateResume/PersonalExperience";
 
-type sectionExperienceProps = {
+type SectionExperienceProps = {
   templateLanguage: Locales;
-  personalExperience: {
-    sectionTitle: Locale;
-    experience: Locale;
-  };
+  personalExperience: PersonalExperienceProps;
 };
 
 const SectionExperience = ({
   personalExperience,
   templateLanguage,
-}: sectionExperienceProps) => {
+}: SectionExperienceProps) => {
   const t = useTranslations("Template");
   const experience = experienceByLocale(personalExperience, templateLanguage);
   const lastPlacesOfWorks = pathOr(

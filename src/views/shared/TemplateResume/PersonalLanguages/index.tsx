@@ -1,7 +1,8 @@
 "use client";
 import { useTranslations } from "next-intl";
 
-import { Locales, Locale } from "@/lib/constants/props/locales";
+import { Locales } from "@/lib/constants/props/locales";
+import { PersonalLanguagesProps } from "@/lib/constants/props/resume";
 import { languagesByLocale } from "@/utils/personalLanguages";
 
 import { Text } from "@/views/shared/antd/Typography";
@@ -13,9 +14,7 @@ type Language = {
 
 type LanguagesProps = {
   templateLanguage: Locales;
-  personalLanguages: {
-    languages: Locale;
-  };
+  personalLanguages: PersonalLanguagesProps;
 };
 
 const PersonalLanguages = ({

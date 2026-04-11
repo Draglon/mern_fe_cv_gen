@@ -1,5 +1,6 @@
 "use client";
-import { Locales, Locale } from "@/lib/constants/props/locales";
+import { Locales } from "@/lib/constants/props/locales";
+import { PersonalSkillsProps } from "@/lib/constants/props/resume";
 import { skillsByLocale } from "@/utils/personalSkills";
 
 import { Text } from "@/views/shared/antd/Typography";
@@ -10,17 +11,12 @@ type SkillItemProps = {
   visible: boolean;
 };
 
-type PersonalSkillsProps = {
+type SkillsProps = {
   templateLanguage: Locales;
-  personalSkills: {
-    skills: Locale;
-  };
+  personalSkills: PersonalSkillsProps;
 };
 
-const PersonalSkills = ({
-  templateLanguage,
-  personalSkills,
-}: PersonalSkillsProps) => {
+const PersonalSkills = ({ templateLanguage, personalSkills }: SkillsProps) => {
   const skills = skillsByLocale(personalSkills, templateLanguage);
 
   return (

@@ -8,6 +8,7 @@ import { isEmpty, path, pathOr } from "ramda";
 import { redirect } from "@/i18n/navigation";
 import { resumeRoute } from "@/lib/routes";
 import { Locales } from "@/lib/constants/props/locales";
+import { PersonalToolsProps } from "@/lib/constants/props/resume";
 import { REGEX_STRING } from "@/lib/constants/regex";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import { toolsByLocale } from "@/utils/personalTools";
@@ -44,10 +45,12 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
   const t = useTranslations("PersonalTools");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
-  const userId = useAppSelector(userIdSelector);
-  const personalToolsId = useAppSelector(personalToolsIdSelector);
-  const personalTools = useAppSelector(personalToolsSelector);
-  const tools = toolsByLocale(personalTools as any, locale);
+  const userId = useAppSelector(userIdSelector) as string;
+  const personalToolsId = useAppSelector(personalToolsIdSelector) as string;
+  const personalTools = useAppSelector(
+    personalToolsSelector
+  ) as PersonalToolsProps;
+  const tools = toolsByLocale(personalTools, locale);
 
   const { control, handleSubmit, register, formState } = useForm({
     values: {

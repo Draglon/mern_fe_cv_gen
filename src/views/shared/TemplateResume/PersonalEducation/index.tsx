@@ -1,7 +1,8 @@
 "use client";
 import { useTranslations } from "next-intl";
 
-import { Locales, Locale } from "@/lib/constants/props/locales";
+import { Locales } from "@/lib/constants/props/locales";
+import { PersonalEducationProps } from "@/lib/constants/props/resume";
 import { educationByLocale } from "@/utils/personalEducation";
 
 import { Title, Text, Paragraph } from "@/views/shared/antd/Typography";
@@ -15,17 +16,15 @@ type EducationProps = {
   endDate: string;
 };
 
-type PersonalEducationProps = {
+type EducationsProps = {
   templateLanguage: Locales;
-  personalEducation: {
-    education: Locale;
-  };
+  personalEducation: PersonalEducationProps;
 };
 
 const PersonalEducation = ({
   templateLanguage,
   personalEducation,
-}: PersonalEducationProps) => {
+}: EducationsProps) => {
   const t = useTranslations("Template");
   const education = educationByLocale(personalEducation, templateLanguage);
 
