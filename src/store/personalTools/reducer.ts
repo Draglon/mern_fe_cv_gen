@@ -1,19 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { Locales } from "@/lib/constants/props/locales";
+import { PersonalToolsProps } from "@/lib/constants/props/resume";
 import createPersonalTools from "./operations/createPersonalTools";
 import fetchPersonalTools from "./operations/fetchPersonalTools";
 import updatePersonalTools from "./operations/updatePersonalTools";
 
 interface IPersonalToolsState {
-  data: {
-    sectionTitle?: Locales;
-    tools?: Locales;
-    _id: string;
-    userId: string;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
+  data: PersonalToolsProps | null;
   status?: string;
 }
 

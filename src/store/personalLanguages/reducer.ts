@@ -1,19 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { Locales } from "@/lib/constants/props/locales";
+import { PersonalLanguagesProps } from "@/lib/constants/props/resume";
 import createPersonalLanguages from "./operations/createPersonalLanguages";
 import fetchPersonalLanguages from "./operations/fetchPersonalLanguages";
 import updatePersonalLanguages from "./operations/updatePersonalLanguages";
 
 interface IPersonalLanguagesState {
-  data: {
-    sectionTitle?: Locales;
-    languages?: Locales;
-    _id: string;
-    userId: string;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
+  data: PersonalLanguagesProps | null;
   status?: string;
 }
 

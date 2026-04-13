@@ -1,6 +1,6 @@
 "use client";
 import { useTranslations } from "next-intl";
-import { includes, pathOr } from "ramda";
+import { isEmpty, includes, pathOr } from "ramda";
 
 import {
   TEMPLATES_PERSONAL_INFO_FULLNAME,
@@ -8,8 +8,6 @@ import {
   TEMPLATES_SIDEBARS_TOOLS,
 } from "@/lib/constants/templates";
 import { ResumeProps, TemplateProps } from "@/lib/constants/props/resume";
-import { useAppSelector } from "@/store/hooks";
-import { resumeSelector } from "@/store/resume/selectors";
 
 import Section from "@/views/shared/TemplateResume/Section";
 import PersonalFullName from "@/views/shared/TemplateResume/PersonalFullName";
@@ -23,13 +21,13 @@ import PersonalTools from "@/views/shared/TemplateResume/PersonalTools";
 const ResumeTemplateSidebar = ({
   template,
   templateLanguage,
-}: TemplateProps) => {
+  resume,
+}: TemplateProps & { resume: ResumeProps }) => {
   const t = useTranslations("Template");
-  const resume: ResumeProps = useAppSelector(resumeSelector) as ResumeProps;
 
   return (
     <div className="template__sidebar">
-      {resume?.personalInfo &&
+      {!isEmpty(resume?.personalInfo) &&
         includes(template, TEMPLATES_PERSONAL_INFO_FULLNAME) && (
           <Section>
             <PersonalFullName
@@ -39,7 +37,7 @@ const ResumeTemplateSidebar = ({
           </Section>
         )}
 
-      {resume?.personalInfo?.userUrl && (
+      {!isEmpty(resume?.personalInfo?.userUrl) && (
         <Section>
           <PersonalPhoto
             src={resume.personalInfo.userUrl}
@@ -50,7 +48,7 @@ const ResumeTemplateSidebar = ({
         </Section>
       )}
 
-      {resume?.personalInfo && (
+      {!isEmpty(resume?.personalInfo) && (
         <Section
           title={pathOr(
             t("personalData.title", { locale: templateLanguage }),
@@ -67,7 +65,7 @@ const ResumeTemplateSidebar = ({
         </Section>
       )}
 
-      {resume?.personalHobbies && (
+      {!isEmpty(resume?.personalHobbies) && (
         <Section
           title={pathOr(
             t("personalHobbies.title", { locale: templateLanguage }),
@@ -83,7 +81,7 @@ const ResumeTemplateSidebar = ({
         </Section>
       )}
 
-      {resume?.personalLanguages && (
+      {!isEmpty(resume?.personalLanguages) && (
         <Section
           title={pathOr(
             t("personalLanguages.title", { locale: templateLanguage }),
@@ -99,7 +97,7 @@ const ResumeTemplateSidebar = ({
         </Section>
       )}
 
-      {resume?.personalSkills &&
+      {!isEmpty(resume?.personalSkills) &&
         includes(template, TEMPLATES_SIDEBARS_SKILLS) && (
           <Section
             title={pathOr(
@@ -116,7 +114,7 @@ const ResumeTemplateSidebar = ({
           </Section>
         )}
 
-      {resume?.personalTools &&
+      {!isEmpty(resume?.personalTools) &&
         includes(template, TEMPLATES_SIDEBARS_TOOLS) && (
           <Section
             title={pathOr(

@@ -1,11 +1,9 @@
 "use client";
 import { useTranslations } from "next-intl";
-import { equals, pathOr } from "ramda";
+import { isEmpty, equals, pathOr } from "ramda";
 
 import { ResumeProps, TemplateProps } from "@/lib/constants/props/resume";
 import { TEMPLATES } from "@/lib/constants/templates";
-import { useAppSelector } from "@/store/hooks";
-import { resumeSelector } from "@/store/resume/selectors";
 
 import Section from "@/views/shared/TemplateResume/Section";
 import PersonalInfo from "@/views/shared/TemplateResume/PersonalInfo";
@@ -18,13 +16,13 @@ import SectionExperience from "@/views/Resume/Template/Content/SectionExperience
 const ResumeTemplateContent = ({
   template,
   templateLanguage,
-}: TemplateProps) => {
+  resume,
+}: TemplateProps & { resume: ResumeProps }) => {
   const t = useTranslations("Template");
-  const resume = useAppSelector(resumeSelector) as ResumeProps;
 
   return (
     <div className="template__container">
-      {resume?.personalInfo && (
+      {!isEmpty(resume?.personalInfo) && (
         <Section title={t("personalInfo.title", { locale: templateLanguage })}>
           <PersonalInfo
             personalInfo={resume.personalInfo}
@@ -34,14 +32,14 @@ const ResumeTemplateContent = ({
         </Section>
       )}
 
-      {resume?.personalExperience && (
+      {!isEmpty(resume?.personalExperience) && (
         <SectionExperience
           personalExperience={resume.personalExperience}
           templateLanguage={templateLanguage}
         />
       )}
 
-      {resume?.personalEducation && (
+      {!isEmpty(resume?.personalEducation) && (
         <Section
           title={pathOr(
             t("personalEducation.title", { locale: templateLanguage }),
@@ -57,7 +55,7 @@ const ResumeTemplateContent = ({
         </Section>
       )}
 
-      {resume?.personalCourses && (
+      {!isEmpty(resume?.personalCourses) && (
         <Section
           title={pathOr(
             t("personalCourses.title", { locale: templateLanguage }),
@@ -73,37 +71,39 @@ const ResumeTemplateContent = ({
         </Section>
       )}
 
-      {resume?.personalSkills && !equals(template, TEMPLATES.edinburghPlus) && (
-        <Section
-          title={pathOr(
-            t("personalSkills.title", { locale: templateLanguage }),
-            ["sectionTitle", templateLanguage],
-            resume.personalSkills
-          )}
-          className="section--skills"
-        >
-          <PersonalSkills
-            personalSkills={resume.personalSkills}
-            templateLanguage={templateLanguage}
-          />
-        </Section>
-      )}
+      {!isEmpty(resume?.personalSkills) &&
+        !equals(template, TEMPLATES.edinburghPlus) && (
+          <Section
+            title={pathOr(
+              t("personalSkills.title", { locale: templateLanguage }),
+              ["sectionTitle", templateLanguage],
+              resume.personalSkills
+            )}
+            className="section--skills"
+          >
+            <PersonalSkills
+              personalSkills={resume.personalSkills}
+              templateLanguage={templateLanguage}
+            />
+          </Section>
+        )}
 
-      {resume?.personalTools && !equals(template, TEMPLATES.edinburghPlus) && (
-        <Section
-          title={pathOr(
-            t("personalTools.title", { locale: templateLanguage }),
-            ["sectionTitle", templateLanguage],
-            resume.personalTools
-          )}
-          className="section--tools"
-        >
-          <PersonalTools
-            personalTools={resume.personalTools}
-            templateLanguage={templateLanguage}
-          />
-        </Section>
-      )}
+      {!isEmpty(resume?.personalTools) &&
+        !equals(template, TEMPLATES.edinburghPlus) && (
+          <Section
+            title={pathOr(
+              t("personalTools.title", { locale: templateLanguage }),
+              ["sectionTitle", templateLanguage],
+              resume.personalTools
+            )}
+            className="section--tools"
+          >
+            <PersonalTools
+              personalTools={resume.personalTools}
+              templateLanguage={templateLanguage}
+            />
+          </Section>
+        )}
     </div>
   );
 };

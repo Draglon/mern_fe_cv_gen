@@ -1,10 +1,12 @@
 "use client";
 import { useEffect } from "react";
 
-import { TemplateProps } from "@/lib/constants/props/resume";
+import { TemplateProps, ResumeProps } from "@/lib/constants/props/resume";
+import isDeepEmpty from "@/utils/isDeepEmpty";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import fetchResume from "@/store/resume/operations/fetchResume";
 import { userIdSelector } from "@/store/auth/selectors";
+import { resumeSelector } from "@/store/resume/selectors";
 
 import Sidebar from "@/views/Resume/Template/Sidebar";
 import Content from "@/views/Resume/Template/Content";
@@ -12,6 +14,7 @@ import Content from "@/views/Resume/Template/Content";
 const ResumeTemplate = ({ template, templateLanguage }: TemplateProps) => {
   const dispatch = useAppDispatch();
   const userId: string = useAppSelector(userIdSelector);
+  const resume = useAppSelector(resumeSelector) as ResumeProps;
 
   useEffect(() => {
     if (userId) {
@@ -21,8 +24,20 @@ const ResumeTemplate = ({ template, templateLanguage }: TemplateProps) => {
 
   return (
     <div className={`template template--${template}`}>
-      <Sidebar template={template} templateLanguage={templateLanguage} />
-      <Content template={template} templateLanguage={templateLanguage} />
+      {!isDeepEmpty(resume) && (
+        <>
+          <Sidebar
+            template={template}
+            templateLanguage={templateLanguage}
+            resume={resume}
+          />
+          <Content
+            template={template}
+            templateLanguage={templateLanguage}
+            resume={resume}
+          />
+        </>
+      )}
     </div>
   );
 };

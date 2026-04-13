@@ -44,7 +44,12 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesFormProps) => {
   const personalHobbies = useAppSelector(
     personalHobbiesSelector
   ) as PersonalHobbiesProps;
-  const hobbies = hobbiesByLocale(personalHobbies, locale);
+
+  console.log("personalHobbies: ", personalHobbies);
+
+  const hobbies = isEmpty(personalHobbies)
+    ? hobbiesByLocale(personalHobbies, locale)
+    : [];
 
   const { control, handleSubmit, formState, register } = useForm<FieldType>({
     values: {

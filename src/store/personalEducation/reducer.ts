@@ -1,19 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { Locales } from "@/lib/constants/props/locales";
+import { PersonalEducationProps } from "@/lib/constants/props/resume";
 import createPersonalEducation from "./operations/createPersonalEducation";
 import fetchPersonalEducation from "./operations/fetchPersonalEducation";
 import updatePersonalEducation from "./operations/updatePersonalEducation";
 
 interface IPersonalEducationState {
-  data: {
-    sectionTitle?: Locales;
-    education?: Locales;
-    _id: string;
-    userId: string;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
+  data: PersonalEducationProps | null;
   status?: string;
 }
 

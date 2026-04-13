@@ -1,19 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { Locales } from "@/lib/constants/props/locales";
+import { PersonalHobbiesProps } from "@/lib/constants/props/resume";
 import createPersonalHobbies from "./operations/createPersonalHobbies";
 import fetchPersonalHobbies from "./operations/fetchPersonalHobbies";
 import updatePersonalHobbies from "./operations/updatePersonalHobbies";
 
 interface IPersonalHobbiesState {
-  data: {
-    sectionTitle?: Locales;
-    hobbies?: Locales;
-    _id: string;
-    userId: string;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
+  data: PersonalHobbiesProps | null;
   status?: string;
 }
 

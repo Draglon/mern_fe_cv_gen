@@ -1,19 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { Locales } from "@/lib/constants/props/locales";
+import { PersonalExperienceProps } from "@/lib/constants/props/resume";
 import createPersonalExperience from "./operations/createPersonalExperience";
 import fetchPersonalExperience from "./operations/fetchPersonalExperience";
 import updatePersonalExperience from "./operations/updatePersonalExperience";
 
 interface IPersonalExperienceState {
-  data: {
-    sectionTitle?: Locales;
-    experience?: Locales;
-    _id: string;
-    userId: string;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
+  data: PersonalExperienceProps | null;
   status?: string;
 }
 
