@@ -9,6 +9,7 @@ import { Locales } from "@/lib/constants/props/locales";
 import { FLAGS } from "@/lib/constants/locales";
 import { routing } from "@/i18n/routing";
 import { useRouter, usePathname } from "@/i18n/navigation";
+
 import { Text } from "@/views/shared/antd/Typography";
 
 const LocaleSwitcherSelect = () => {

@@ -3,10 +3,16 @@ import clsx from "clsx";
 import { Select as AntdSelect } from "antd";
 import type { SelectProps } from "antd";
 
-const Select = ({ rootClassName, options = [], ...rest }: SelectProps) => {
+const Select = ({
+  className,
+  rootClassName,
+  options = [],
+  ...rest
+}: SelectProps) => {
   return (
     <AntdSelect
-      rootClassName={clsx("select", rootClassName)}
+      className={clsx("select", className)}
+      rootClassName={clsx("select-dropdown", rootClassName)}
       options={options}
       {...rest}
     />

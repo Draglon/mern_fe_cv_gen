@@ -124,6 +124,7 @@
   --select-height-sm: 32px;
   --select-line-height: 1.4;
   --select-default-bg-color: var(--purple-100-light);
+  --select-selected-bg-color: var(--purple-200-light);
   --select-focus-bg-color: var(--purple-200-light);
   --select-error-bg-color: #FFF0F0;
   --select-disabled-bg-color: var(--purple-200-light);
@@ -220,6 +221,7 @@
   // select
   --select-default-bg-color: #0F0F1A;
   --select-focus-bg-color: #0F0F1A;
+  --select-selected-bg-color: var(--purple-100-dark);
   --select-error-bg-color: #330A0A;
   --select-disabled-bg-color: var(--purple-200-dark);
   --select-success-bg-color: #1B2A1B;
