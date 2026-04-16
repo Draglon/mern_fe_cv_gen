@@ -13,7 +13,7 @@ const Alert = ({ className, type, ...rest }: AlertProps) => {
     "alert--info": type === ALERT_KINDS.info,
   });
 
-  return <AntdAlert className={alertClassNames} {...rest} />;
+  return <AntdAlert className={alertClassNames} type={type} {...rest} />;
 };
 
 export default Alert;

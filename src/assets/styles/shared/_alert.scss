@@ -1,0 +1,52 @@
+.ant-alert {
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.4;
+  border: 1px solid transparent;
+  // info
+  &.ant-alert-info {
+    background-color: var(--alert-info-bg-color);
+    border-color: var(--alert-info-border-color);
+    .ant-alert-section {
+      .ant-alert-title {
+        color: var(--alert-info-color);
+      }
+    }
+  }
+  // success
+  &.ant-alert-success {
+    background-color: var(--alert-success-bg-color);
+    border-color: var(--alert-success-border-color);
+    .ant-alert-section {
+      .ant-alert-title {
+        color: var(--alert-success-color);
+      }
+    }
+  }
+  // warning
+  &.ant-alert-warning {
+    background-color: var(--alert-warning-bg-color);
+    border-color: var(--alert-warning-border-color);
+    .ant-alert-section {
+      .ant-alert-title {
+        color: var(--alert-warning-color);
+      }
+    }
+  }
+  // error
+  &.ant-alert-error {
+    background-color: var(--alert-error-bg-color);
+    border-color: var(--alert-error-border-color);
+    .ant-alert-section {
+      .ant-alert-title {
+        color: var(--alert-error-color);
+      }
+    }
+  }
+  .ant-alert-section {
+    .ant-alert-title {
+      text-align: left;
+    }
+  }
+}

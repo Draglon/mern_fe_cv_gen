@@ -164,6 +164,19 @@
   --checkbox-bg-color-checked: var(--purple-500-light);
   --checkbox-bg-color-checked-hover: var(--purple-600-light);
   --checkbox-bg-color-disabled: var(--purple-200-light);
+  // Alert
+  --alert-info-bg-color: var(--purple-100-light);
+  --alert-info-border-color: var(--purple-300-light);
+  --alert-info-color: var(--purple-600-light);
+  --alert-success-bg-color: rgba(34, 197, 94, 0.1);
+  --alert-success-border-color: rgba(34, 197, 94, 0.3);
+  --alert-success-color: var(--green-light-theme);
+  --alert-warning-bg-color: rgba(245, 158, 11, 0.1);
+  --alert-warning-border-color: rgba(245, 158, 11, 0.3);
+  --alert-warning-color: var(--orange);
+  --alert-error-bg-color: rgba(239, 68, 68, 0.1);
+  --alert-error-border-color: rgba(239, 68, 68, 0.3);
+  --alert-error-color: var(--red-light-theme);
 }
 
 .dark {
@@ -259,6 +272,19 @@
   --tabs-text-color: var(--text-primary-color);
   --tabs-text-color-hover: var(--purple-500-dark);
   --tabs-text-color-active: var(--purple-600-dark);
+  // Alert
+  --alert-info-bg-color: var(--purple-100-dark);
+  --alert-info-border-color: var(--purple-300-dark);
+  --alert-info-color: var(--purple-500-dark);
+  --alert-success-bg-color: rgba(52, 211, 153, 0.1);
+  --alert-success-border-color: rgba(52, 211, 153, 0.3);
+  --alert-success-color: var(--green-dark-theme);
+  --alert-warning-bg-color: rgba(245, 158, 11, 0.15);
+  --alert-warning-border-color: rgba(245, 158, 11, 0.4);
+  --alert-warning-color: var(--orange);
+  --alert-error-bg-color: rgba(248, 113, 113, 0.1);
+  --alert-error-border-color: rgba(248, 113, 113, 0.3);
+  --alert-error-color: var(--red-light-theme);
 }
 
 // Page
