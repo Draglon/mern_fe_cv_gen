@@ -2,8 +2,15 @@
 import { useTranslations, useLocale } from "next-intl";
 import { useForm } from "react-hook-form";
 
-import { redirect } from "@/i18n/navigation";
-import { resumeRoute } from "@/lib/routes";
+import { useRouter } from "@/i18n/navigation";
+import {
+  MAX_EMAIL_LENGTH,
+  MIN_PASSWORD_LENGTH,
+  MAX_PASSWORD_LENGTH,
+} from "@/lib/constants";
+import { REGEX_EMAIL } from "@/lib/constants/regex";
+import { FieldType } from "@/lib/constants/props/login";
+import { LOGIN_DEFAULT_VALUES } from "@/lib/constants/login";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import fetchAuth from "@/store/auth/operations/fetchAuth";
@@ -15,38 +22,21 @@ import FormItem from "@/views/shared/antd/FormItem";
 import InputField from "@/views/shared/InputField";
 import Button from "@/views/shared/antd/Button";
 
-type FieldType = {
-  email?: string;
-  password?: string;
-};
-
-const defaultValues = {
-  email: "",
-  password: "",
-};
-
 const Login = () => {
   const t = useTranslations("Login");
   const locale = useLocale();
+  const router = useRouter();
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(isLoadingSelector);
   const { control, handleSubmit, formState, register } = useForm<FieldType>({
-    defaultValues,
+    defaultValues: LOGIN_DEFAULT_VALUES,
     mode: "onChange",
   });
   const { errors } = formState;
 
   const onFinish = handleSubmit(async (values: FieldType) => {
-    const data = await dispatch(fetchAuth(values));
-
-    if (!data.payload) {
-      return alert("Не удалось авторизоваться");
-    }
-
-    if ("token" in data.payload) {
-      localStorage.setItem("token", data.payload.token);
-      redirect({ href: resumeRoute, locale });
-    }
+    const params = { values, router, locale };
+    await dispatch(fetchAuth(params));
   });
 
   return (
@@ -74,6 +64,16 @@ const Login = () => {
             placeholder={t("form.email.placeholder")}
             register={register("email", {
               required: t("form.email.errors.required"),
+              pattern: {
+                value: REGEX_EMAIL,
+                message: t("form.email.errors.pattern"),
+              },
+              maxLength: {
+                value: MAX_EMAIL_LENGTH,
+                message: t("form.email.errors.maxLength", {
+                  maxLength: MAX_EMAIL_LENGTH,
+                }),
+              },
             })}
             errors={errors["email"]}
             Field={InputField}
@@ -93,12 +93,16 @@ const Login = () => {
                 message: t("form.password.errors.required"),
               },
               minLength: {
-                value: 6,
-                message: t("form.password.errors.minLength"),
+                value: MIN_PASSWORD_LENGTH,
+                message: t("form.password.errors.minLength", {
+                  minLength: MIN_PASSWORD_LENGTH,
+                }),
               },
               maxLength: {
-                value: 20,
-                message: t("form.password.errors.maxLength"),
+                value: MAX_PASSWORD_LENGTH,
+                message: t("form.password.errors.maxLength", {
+                  maxLength: MAX_PASSWORD_LENGTH,
+                }),
               },
             })}
             errors={errors["password"]}

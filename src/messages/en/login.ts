@@ -13,15 +13,17 @@ const login = {
         "placeholder": "Input email",
         "errors": {
           "required": "Please input your email!",
+          "maxLength": "The length must be no more than {maxLength} characters!",
+          "pattern": "Invalid email address! (For example: example@mail.com)",
         }
       },
       "password": {
-        "label": "Пароль",
-        "placeholder": "Введите пароль",
+        "label": "Password",
+        "placeholder": "Enter your password",
         "errors": {
-          "required": "Пожалуйста, введите пароль!",
-          "minLength": "Длина должна быть не менее 6 символов",
-          "maxLength": "Длина должна быть не более 20 символов"
+          "required": "Please enter your password!",
+          "minLength": "The length must be at least {minLength} characters!",
+          "maxLength": "The length must be no more than {maxLength} characters!"
         }
       },
     }

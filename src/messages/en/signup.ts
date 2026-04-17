@@ -12,6 +12,9 @@ const signup = {
         "placeholder": "Input email",
         "errors": {
           "required": "Please input your email!",
+          "maxLength": "Must be no more than {maxLength} characters!",
+          "pattern": "Invalid email address! (For example: example@mail.com)",
+          "alreadyExists": "Email already exists!",
         }
       },
       "password": {
@@ -19,15 +22,18 @@ const signup = {
         "placeholder": "Input password",
         "errors": {
           "required": "Please input your password!",
-          "minLength": "Must be at least 6 characters long",
-          "maxLength": "Must be no more than 20 characters"
+          "minLength": "Must be at least {minLength} characters!",
+          "maxLength": "Must be no more than {maxLength} characters!",
         }
       },
       "userName": {
         "label": "Username",
         "placeholder": "Input username",
         "errors": {
-          "required": "Please input your username!"
+          "required": "Please input your username!",
+          "pattern": "Incorrect nickname format! (A nickname can consist of Latin letters, numbers or _)",
+          "minLength": "Must be at least {minLength} characters!",
+          "maxLength": "Must be no more than {maxLength} characters!",
         }
       }
     }
