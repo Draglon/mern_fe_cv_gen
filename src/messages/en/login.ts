@@ -7,6 +7,11 @@ const login = {
     "title": "Log in",
     "description": "To log in, enter your email address and password",
     "submitButton": "Log in",
+    "alert": {
+      "errors": {
+        "invalidEmailOrPassword": "Invalid email or password!",
+      },
+    },
     "form": {
       "email": {
         "label": "Email",
