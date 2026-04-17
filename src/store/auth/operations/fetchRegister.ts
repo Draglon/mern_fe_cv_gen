@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import axios from "@/lib/axios";
-import { resumeRoute } from "@/lib/routes";
+import { loginRoute } from "@/lib/routes";
 import { authRegistrationRoute } from "@/lib/apiRoutes";
 import { isErrorStatusUnauthorized } from "@/utils/getErrorStatus";
 import { FETCH_REGISTER } from "./../types";
@@ -23,14 +23,13 @@ type ParamsType = {
 const fetchRegistrationOperation = createAsyncThunk(
   FETCH_REGISTER,
   async (params: ParamsType) => {
-    const { form: { setError }, router, locale, t } = params;
+    const { values, form: { setError }, router, locale, t } = params;
 
     try {
-      const { data } = await axios.post(authRegistrationRoute, params);
+      const { data } = await axios.post(authRegistrationRoute, values);
 
       if ("token" in data) {
-        localStorage.setItem("token", data.token);
-        router.push(resumeRoute, { locale });
+        router.push(loginRoute, { locale });
       }
 
       return data;
