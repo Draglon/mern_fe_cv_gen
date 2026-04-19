@@ -18,6 +18,7 @@ import personalTools from "./personalTools";
 import navigation from "./navigation";
 import localeSwitcher from "./localeSwitcher";
 import localeTabs from "./localeTabs";
+import stubs from "./stubs";
 import shared from "./shared";
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -42,5 +43,6 @@ export default {
   ...navigation,
   ...localeSwitcher,
   ...localeTabs,
+  ...stubs,
   ...shared,
 };
