@@ -31,7 +31,7 @@ const signup = {
         "placeholder": "Input username",
         "errors": {
           "required": "Please input your username!",
-          "pattern": "Incorrect nickname format! (A nickname can consist of Latin letters, numbers or _)",
+          "pattern": "Incorrect username format! (A username can consist of Latin letters, numbers or _)",
           "minLength": "Must be at least {minLength} characters!",
           "maxLength": "Must be no more than {maxLength} characters!",
         }

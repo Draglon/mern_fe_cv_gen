@@ -11,6 +11,7 @@ export const userSelector = createSelector(getState, path(["auth", "data"]));
 export const userErrorSelector = createSelector(getState, path(["auth", "error"]));
 
 export const userIdSelector = createSelector(userSelector, prop("_id"));
+export const userNameSelector = createSelector(userSelector, prop("userName"));
 export const personalInfoIdSelector = createSelector(userSelector, prop("personalInfoId"));
 export const personalHobbiesIdSelector = createSelector(userSelector, prop("personalHobbiesId"));
 export const personalLanguagesIdSelector = createSelector(userSelector, prop("personalLanguagesId"));

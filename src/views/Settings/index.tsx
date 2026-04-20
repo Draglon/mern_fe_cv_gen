@@ -1,24 +1,18 @@
 "use client";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 
-import { redirect } from "@/i18n/navigation";
-import { homeRoute } from "@/lib/routes";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import removeAccount from "@/store/settings/operations/removeAccount";
-import { userIdSelector } from "@/store/auth/selectors";
+import { useAppDispatch } from "@/store/hooks";
+import { showModal as showModalAction } from "@/store/modal/actions";
 
 import { Title } from "@/views/shared/antd/Typography";
 import Button from "@/views/shared/antd/Button";
 
 const Settings = () => {
-  const t = useTranslations("Settings");
-  const locale = useLocale();
   const dispatch = useAppDispatch();
-  const userId = useAppSelector(userIdSelector);
+  const t = useTranslations("Settings");
 
   const onRemoveAccount = () => {
-    dispatch(removeAccount({ userId }));
-    redirect({ href: homeRoute, locale });
+    dispatch(showModalAction({ modalType: "REMOVE_ACCOUNT_MODAL" }));
   };
 
   return (
