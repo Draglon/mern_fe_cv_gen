@@ -14,7 +14,6 @@ const Logout = () => {
 
   const onLogout = () => {
     dispatch(logoutAction());
-    localStorage.removeItem("token");
     redirect({ href: homeRoute, locale });
   };
 

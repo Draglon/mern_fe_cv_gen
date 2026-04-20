@@ -18,7 +18,12 @@ const initialState: IPersonalToolsState = {
 export const personalToolsSlice = createSlice({
   name: "personalTools",
   initialState,
-  reducers: {},
+  reducers: {
+    resetPersonalTools: state => {
+      state.data = initialState.data;
+      state.status = initialState.status;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(createPersonalTools.pending, (state) => {
       state.data = null;

@@ -22,7 +22,7 @@ type ParamsType = {
 
 const fetchRegistrationOperation = createAsyncThunk(
   FETCH_REGISTER,
-  async (params: ParamsType) => {
+  async (params: ParamsType, { rejectWithValue }) => {
     const { values, form: { setError }, router, locale, t } = params;
 
     try {
@@ -33,7 +33,7 @@ const fetchRegistrationOperation = createAsyncThunk(
       }
 
       return data;
-    } catch (error) {
+    } catch (error: any) {
       console.log("error: ", error);
       if (isErrorStatusUnauthorized(error)) {
         setError("email", {
@@ -41,7 +41,7 @@ const fetchRegistrationOperation = createAsyncThunk(
           message: t("form.email.errors.alreadyExists"),
         });
       }
-      return error;
+      return rejectWithValue(error);
     }
   },
 );

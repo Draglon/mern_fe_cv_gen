@@ -1,8 +1,9 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { createWrapper } from 'next-redux-wrapper';
 
 import authReducer from "./auth";
 import modalReducer from "./modal";
+import settingsReducer from "./settings";
 import resumeReducer from "./resume";
 import personalInfoReducer from "./personalInfo";
 import personalHobbiesReducer from "./personalHobbies";
@@ -13,20 +14,35 @@ import personalCoursesReducer from "./personalCourses";
 import personalSkillsReducer from "./personalSkills";
 import personalToolsReducer from "./personalTools";
 
+const appReducer = combineReducers({
+  auth: authReducer,
+  modal: modalReducer,
+  settings: settingsReducer,
+  resume: resumeReducer,
+  personalInfo: personalInfoReducer,
+  personalHobbies: personalHobbiesReducer,
+  personalLanguages: personalLanguagesReducer,
+  personalExperience: personalExperienceReducer,
+  personalEducation: personalEducationReducer,
+  personalCourses: personalCoursesReducer,
+  personalSkills: personalSkillsReducer,
+  personalTools: personalToolsReducer,
+});
+
+const rootReducer = (state: any, action: any) => {
+  if (action.type === 'auth/logout' || action.type === 'settings/REMOVE_ACCOUNT') {
+    state = undefined;
+  }
+
+  return appReducer(state, action);
+};
+
+export const store = configureStore({
+  reducer: rootReducer,
+});
+
 export const makeStore = () => configureStore({
-  reducer: {
-    auth: authReducer,
-    modal: modalReducer,
-    resume: resumeReducer,
-    personalInfo: personalInfoReducer,
-    personalHobbies: personalHobbiesReducer,
-    personalLanguages: personalLanguagesReducer,
-    personalExperience: personalExperienceReducer,
-    personalEducation: personalEducationReducer,
-    personalCourses: personalCoursesReducer,
-    personalSkills: personalSkillsReducer,
-    personalTools: personalToolsReducer,
-  },
+  reducer: rootReducer,
   devTools: process.env.NODE_ENV !== 'production',
 });
 

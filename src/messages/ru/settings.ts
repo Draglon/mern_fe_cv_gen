@@ -4,7 +4,11 @@ const settings = {
       "title": "Настройки",
       "description": "Настройки - описание"
     },
-    "title": "Настройки"
+    "title": "Настройки",
+    "removeAccount": {
+      "title": "Удалить аккаунт",
+      "button": "Удалить аккаунт",
+    }
   },
 };
 

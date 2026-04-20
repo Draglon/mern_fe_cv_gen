@@ -8,6 +8,7 @@ const getState = (state: RootState) => state;
 export const isLoadingSelector = createSelector(getState, (state: RootState) => state.auth.status === "loading");
 export const isAuthSelector = createSelector(getState, (state: RootState) => Boolean(state.auth.data));
 export const userSelector = createSelector(getState, path(["auth", "data"]));
+export const userErrorSelector = createSelector(getState, path(["auth", "error"]));
 
 export const userIdSelector = createSelector(userSelector, prop("_id"));
 export const personalInfoIdSelector = createSelector(userSelector, prop("personalInfoId"));

@@ -18,7 +18,12 @@ const initialState: IPersonalEducationState = {
 export const personalEducationSlice = createSlice({
   name: "personalEducation",
   initialState,
-  reducers: {},
+  reducers: {
+    resetPersonalEducation: state => {
+      state.data = initialState.data;
+      state.status = initialState.status;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(createPersonalEducation.pending, (state) => {
       state.data = null;

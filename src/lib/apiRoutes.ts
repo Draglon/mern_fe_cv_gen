@@ -2,6 +2,8 @@
 export const authLoginRoute = "/auth/login";
 export const authRegistrationRoute = "/auth/register";
 export const authUserRoute = "/auth/user";
+// ---Settings---
+export const usersRoute = (userId: string) => `/users/${userId}`;
 // ---Resume---
 export const resumeRoute = (userId: string) => `/resume/${userId}`;
 // ---Personal---

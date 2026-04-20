@@ -13,9 +13,12 @@ import { FieldType } from "@/lib/constants/props/login";
 import { LOGIN_DEFAULT_VALUES } from "@/lib/constants/login";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
-import { isErrorStatusUnauthorized } from "@/utils/getErrorStatus";
+import {
+  isErrorStatusUnauthorized,
+  isErrorStatusNotFound,
+} from "@/utils/getErrorStatus";
 import fetchAuth from "@/store/auth/operations/fetchAuth";
-import { userSelector, isLoadingSelector } from "@/store/auth/selectors";
+import { userErrorSelector, isLoadingSelector } from "@/store/auth/selectors";
 
 import { Title, Paragraph } from "@/views/shared/antd/Typography";
 import Form from "@/views/shared/antd/Form";
@@ -29,7 +32,7 @@ const Login = () => {
   const locale = useLocale();
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const user = useAppSelector(userSelector);
+  const userError = useAppSelector(userErrorSelector);
   const isLoading = useAppSelector(isLoadingSelector);
   const { control, handleSubmit, formState, register } = useForm<FieldType>({
     defaultValues: LOGIN_DEFAULT_VALUES,
@@ -50,7 +53,8 @@ const Login = () => {
           <Paragraph className="page__text text-center">
             {t("description")}
           </Paragraph>
-          {isErrorStatusUnauthorized(user) && (
+          {(isErrorStatusUnauthorized(userError) ||
+            isErrorStatusNotFound(userError)) && (
             <Alert
               type="error"
               title={t("alert.errors.invalidEmailOrPassword")}

@@ -18,7 +18,12 @@ const initialState: IPersonalExperienceState = {
 export const personalExperienceSlice = createSlice({
   name: "personalExperience",
   initialState,
-  reducers: {},
+  reducers: {
+    resetPersonalExperience: state => {
+      state.data = initialState.data;
+      state.status = initialState.status;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(createPersonalExperience.pending, (state) => {
       state.data = null;

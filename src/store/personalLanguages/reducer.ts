@@ -18,7 +18,12 @@ const initialState: IPersonalLanguagesState = {
 export const personalLanguagesSlice = createSlice({
   name: "personalLanguages",
   initialState,
-  reducers: {},
+  reducers: {
+    resetPersonalLanguages: state => {
+      state.data = initialState.data;
+      state.status = initialState.status;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(createPersonalLanguages.pending, (state) => {
       state.data = null;

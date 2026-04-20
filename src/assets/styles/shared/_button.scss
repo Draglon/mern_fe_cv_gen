@@ -55,7 +55,7 @@
 
 // button danger
 .button--danger {
-  background-color: var(--button-danger-bg-color);
+  background-color: var(--button-danger-bg-color) !important;
 
   &:hover, &:focus {
     background-color: var(--button-danger-bg-color-hover) !important;

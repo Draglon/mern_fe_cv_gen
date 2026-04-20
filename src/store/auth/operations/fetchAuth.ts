@@ -16,7 +16,7 @@ type ParamsType = {
 
 const fetchAuthOperation = createAsyncThunk(
   FETCH_LOGIN,
-  async (params: ParamsType) => {
+  async (params: ParamsType, { rejectWithValue }) => {
     const { values, router, locale } = params;
     try {
       const { data } = await axios.post(authLoginRoute, values);
@@ -27,9 +27,9 @@ const fetchAuthOperation = createAsyncThunk(
       }
 
       return data;
-    } catch (error) {
+    } catch (error: any) {
       console.log("error: ", error);
-      return error;
+      return rejectWithValue(error);
     }
   },
 );
