@@ -1,9 +1,9 @@
 import ConfirmModal from "@/views/shared/ConfirmModal";
-import RemoveAccountModal from "@/views/Settings/RemoveAccountModal";
+import DeleteAccountModal from "@/views/Settings/DeleteAccountModal";
 
 const MODAL_COMPONENTS: any = {
   CONFIRM_MODAL: ConfirmModal,
-  REMOVE_ACCOUNT_MODAL: RemoveAccountModal,
+  DELETE_ACCOUNT_MODAL: DeleteAccountModal,
 };
 
 export default MODAL_COMPONENTS;

@@ -1,5 +1,5 @@
-import removeAccount from "./removeAccount";
+import deleteAccount from "./deleteAccount";
 
-const settingsOperations = [removeAccount];
+const settingsOperations = [deleteAccount];
 
 export default settingsOperations;

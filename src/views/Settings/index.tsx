@@ -11,8 +11,8 @@ const Settings = () => {
   const dispatch = useAppDispatch();
   const t = useTranslations("Settings");
 
-  const onRemoveAccount = () => {
-    dispatch(showModalAction({ modalType: "REMOVE_ACCOUNT_MODAL" }));
+  const onDeleteAccount = () => {
+    dispatch(showModalAction({ modalType: "DELETE_ACCOUNT_MODAL" }));
   };
 
   return (
@@ -20,26 +20,29 @@ const Settings = () => {
       <div className="page__block mb-32">
         <header className="mb-32">
           <Title className="page__title mt-0">{t("title")}</Title>
-        </header>
-      </div>
-
-      <div className="page__block">
-        <div className="mb-24">
-          <Title className="page__title mt-0" level={3}>
-            {t("removeAccount.title")}
+          <Title className="page__subtitle" level={4}>
+            {t("subTitle")}
           </Title>
-        </div>
-        <div>
-          <Button
-            size="large"
-            color="danger"
-            type="primary"
-            onClick={onRemoveAccount}
-            dataTestId="btnRemoveAccount"
-            dataCy="btn-remove-account"
-          >
-            {t("removeAccount.button")}
-          </Button>
+        </header>
+
+        <div className="mb-32">
+          <div className="mb-24">
+            <Title className="page__title mt-0" level={3}>
+              {t("deleteAccount.title")}
+            </Title>
+          </div>
+          <div>
+            <Button
+              size="large"
+              color="danger"
+              type="primary"
+              onClick={onDeleteAccount}
+              dataTestId="btnDeleteAccount"
+              dataCy="btn-delete-account"
+            >
+              {t("deleteAccount.button")}
+            </Button>
+          </div>
         </div>
       </div>
     </div>

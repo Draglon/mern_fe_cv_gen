@@ -5,14 +5,15 @@ const settings = {
       "description": "Settings - description"
     },
     "title": "Settings",
-    "removeAccount": {
-      "title": "Remove account",
-      "button": "Remove account",
+    "subTitle": "Manage your account preferences",
+    "deleteAccount": {
+      "title": "Delete account",
+      "button": "Delete account",
       "modal": {
-        "title": "Remove account",
+        "title": "Delete account",
         "form": {
           "userName": {
-            "label": "Username",
+            "label": 'Write your "username" to confirm account deletion',
             "placeholder": "Input username",
             "errors": {
               "required": "Please input your username!",
@@ -24,7 +25,7 @@ const settings = {
           "alert": {
             "error": "User name is not correct!",
           },
-          "submitButton": "Remove account",
+          "submitButton": "Delete account",
         },
       },
     },

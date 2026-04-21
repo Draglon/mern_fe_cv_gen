@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import removeAccount from "./operations/removeAccount";
+import deleteAccount from "./operations/deleteAccount";
 
 interface ISettingsState {
   status?: string;
@@ -17,15 +17,15 @@ export const settingsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(removeAccount.pending, (state) => {
+    builder.addCase(deleteAccount.pending, (state) => {
       state.status = "loading";
       state.error = null;
     });
-    builder.addCase(removeAccount.fulfilled, (state) => {
+    builder.addCase(deleteAccount.fulfilled, (state) => {
       state.status = "loaded";
       state.error = null;
     });
-    builder.addCase(removeAccount.rejected, (state, action) => {
+    builder.addCase(deleteAccount.rejected, (state, action) => {
       state.status = "error";
       state.error = action.payload;
     });

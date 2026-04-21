@@ -12,7 +12,7 @@ import {
 } from "@/utils/getErrorStatus";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { hideModal as hideModalAction } from "@/store/modal/actions";
-import removeAccount from "@/store/settings/operations/removeAccount";
+import deleteAccount from "@/store/settings/operations/deleteAccount";
 import { userIdSelector } from "@/store/auth/selectors";
 import {
   isLoadingSelector,
@@ -30,7 +30,7 @@ export type FieldType = {
   userName: string;
 };
 
-const RemoveAccountModal = () => {
+const DeleteAccountModal = () => {
   const dispatch = useAppDispatch();
   const t = useTranslations("Settings");
   const locale = useLocale();
@@ -47,7 +47,7 @@ const RemoveAccountModal = () => {
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = { userId, values, router, locale };
-    await dispatch(removeAccount(params));
+    await dispatch(deleteAccount(params));
   });
 
   const onCloseModal = () => {
@@ -57,7 +57,7 @@ const RemoveAccountModal = () => {
   return (
     <Modal
       className="modal"
-      title={t("removeAccount.modal.title")}
+      title={t("deleteAccount.modal.title")}
       onCancel={onCloseModal}
       footer={null}
     >
@@ -66,11 +66,11 @@ const RemoveAccountModal = () => {
         <Alert
           className="mb-16"
           type="error"
-          title={t("removeAccount.modal.form.alert.error")}
+          title={t("deleteAccount.modal.form.alert.error")}
         />
       )}
       <Form
-        name="removeAccount"
+        name="deleteAccount"
         className="form--small"
         onFinish={onFinish}
         autoComplete="off"
@@ -80,23 +80,23 @@ const RemoveAccountModal = () => {
           name="userName"
           controlName="userName"
           control={control}
-          label={t("removeAccount.modal.form.userName.label")}
-          placeholder={t("removeAccount.modal.form.userName.placeholder")}
+          label={t("deleteAccount.modal.form.userName.label")}
+          placeholder={t("deleteAccount.modal.form.userName.placeholder")}
           register={register("userName", {
-            required: t("removeAccount.modal.form.userName.errors.required"),
+            required: t("deleteAccount.modal.form.userName.errors.required"),
             pattern: {
               value: REGEX_NICK_NAME,
-              message: t("removeAccount.modal.form.userName.errors.pattern"),
+              message: t("deleteAccount.modal.form.userName.errors.pattern"),
             },
             minLength: {
               value: MIN_NIKE_NAME_LENGTH,
-              message: t("removeAccount.modal.form.userName.errors.minLength", {
+              message: t("deleteAccount.modal.form.userName.errors.minLength", {
                 minLength: MIN_NIKE_NAME_LENGTH,
               }),
             },
             maxLength: {
               value: MAX_NIKE_NAME_LENGTH,
-              message: t("removeAccount.modal.form.userName.errors.maxLength", {
+              message: t("deleteAccount.modal.form.userName.errors.maxLength", {
                 maxLength: MAX_NIKE_NAME_LENGTH,
               }),
             },
@@ -112,11 +112,11 @@ const RemoveAccountModal = () => {
             color="danger"
             type="primary"
             htmlType="submit"
-            size="middle"
+            size="large"
             disabled={isSubmitDisabled(formState)}
             loading={isLoading}
           >
-            {t("removeAccount.modal.form.submitButton")}
+            {t("deleteAccount.modal.form.submitButton")}
           </Button>
         </FormItem>
       </Form>
@@ -124,4 +124,4 @@ const RemoveAccountModal = () => {
   );
 };
 
-export default RemoveAccountModal;
+export default DeleteAccountModal;

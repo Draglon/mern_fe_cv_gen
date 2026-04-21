@@ -30,7 +30,7 @@ const appReducer = combineReducers({
 });
 
 const rootReducer = (state: any, action: any) => {
-  if (action.type === 'auth/logout' || action.type === 'settings/REMOVE_ACCOUNT') {
+  if (action.type === 'auth/logout') {
     state = undefined;
   }
 
