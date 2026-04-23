@@ -1,5 +1,6 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { createWrapper } from 'next-redux-wrapper';
+import { combineReducers, configureStore, UnknownAction } from '@reduxjs/toolkit';
+import { persistReducer } from 'redux-persist';
+import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
 
 import authReducer from "./auth";
 import modalReducer from "./modal";
@@ -13,6 +14,31 @@ import personalEducationReducer from "./personalEducation";
 import personalCoursesReducer from "./personalCourses";
 import personalSkillsReducer from "./personalSkills";
 import personalToolsReducer from "./personalTools";
+
+const createNoopStorage = () => {
+  return {
+    getItem() {
+      return Promise.resolve(null);
+    },
+    setItem(_key: string, value: string) {
+      return Promise.resolve(value);
+    },
+    removeItem() {
+      return Promise.resolve();
+    },
+  };
+};
+
+const storage =
+  typeof window !== 'undefined'
+    ? createWebStorage('local')
+    : createNoopStorage();
+
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['auth'],
+};
 
 const appReducer = combineReducers({
   auth: authReducer,
@@ -29,7 +55,7 @@ const appReducer = combineReducers({
   personalTools: personalToolsReducer,
 });
 
-const rootReducer = (state: any, action: any) => {
+const rootReducer = (state: ReturnType<typeof appReducer> | undefined, action: UnknownAction) => {
   if (action.type === 'auth/logout') {
     state = undefined;
   }
@@ -37,12 +63,10 @@ const rootReducer = (state: any, action: any) => {
   return appReducer(state, action);
 };
 
-export const store = configureStore({
-  reducer: rootReducer,
-});
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const makeStore = () => configureStore({
-  reducer: rootReducer,
+  reducer: persistedReducer,
   devTools: process.env.NODE_ENV !== 'production',
 });
 
@@ -51,5 +75,3 @@ export type AppStore = ReturnType<typeof makeStore>
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<AppStore["getState"]>
 export type AppDispatch = AppStore["dispatch"]
-
-export default createWrapper<AppStore>(makeStore);

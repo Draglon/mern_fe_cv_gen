@@ -1,6 +1,9 @@
+/* eslint-disable react-hooks/refs */
 "use client";
 import { useRef } from "react";
 import { Provider } from "react-redux";
+import { persistStore, Persistor } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
 
 import { makeStore, AppStore } from "./store";
 
@@ -10,12 +13,18 @@ type StoreProviderProps = {
 
 export default function StoreProvider({ children }: StoreProviderProps) {
   const storeRef = useRef<AppStore | null>(null);
-  // eslint-disable-next-line react-hooks/refs
+  const persistorRef = useRef<Persistor | null>(null);
+
   if (!storeRef.current) {
-    // Create the store instance the first time this renders
     storeRef.current = makeStore();
+    persistorRef.current = persistStore(storeRef.current);
   }
 
-  // eslint-disable-next-line react-hooks/refs
-  return <Provider store={storeRef.current}>{children}</Provider>;
+  return (
+    <Provider store={storeRef.current}>
+      <PersistGate loading={null} persistor={persistorRef.current!}>
+        {children}
+      </PersistGate>
+    </Provider>
+  );
 }

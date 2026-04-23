@@ -14,7 +14,10 @@ const UserLayout = ({ children }: Props) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchUser());
+    const token = localStorage.getItem("token");
+    if (token) {
+      dispatch(fetchUser());
+    }
   }, [dispatch]);
 
   return (
