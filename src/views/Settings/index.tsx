@@ -7,6 +7,7 @@ import { showModal as showModalAction } from "@/store/modal/actions";
 import { Title } from "@/views/shared/antd/Typography";
 import Button from "@/views/shared/antd/Button";
 
+import ChangeEmail from "./ChangeEmail";
 import ChangePassword from "./ChangePassword";
 
 const Settings = () => {
@@ -27,6 +28,7 @@ const Settings = () => {
           </Title>
         </header>
 
+        <ChangeEmail />
         <ChangePassword />
 
         <div className="mb-32">

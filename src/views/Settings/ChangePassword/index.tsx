@@ -21,7 +21,7 @@ type FieldType = {
   confirmPassword: string;
 };
 
-const Settings = () => {
+const ChangePassword = () => {
   const dispatch = useAppDispatch();
   const t = useTranslations("Settings");
   const { control, handleSubmit, formState, register, setError } =
@@ -61,7 +61,7 @@ const Settings = () => {
         </Title>
       </header>
       <Form
-        name="login"
+        name="changePassword"
         className="form--small"
         onFinish={onFinish}
         autoComplete="off"
@@ -199,4 +199,4 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+export default ChangePassword;

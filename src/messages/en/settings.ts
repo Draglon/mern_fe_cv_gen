@@ -6,6 +6,35 @@ const settings = {
     },
     "title": "Settings",
     "subTitle": "Manage your account preferences",
+    "changeEmail": {
+      "title": "Change email",
+      "button": "Change email",
+      "form": {
+        "email": {
+          "label": "New email",
+          "placeholder": "Input email",
+          "errors": {
+            "required": "Please input your email!",
+            "maxLength": "Must be no more than {maxLength} characters!",
+            "pattern": "Invalid email address! (For example: example@mail.com)",
+            "alreadyExists": "Email already exists!",
+          }
+        },
+        "password": {
+          "label": "Current password",
+          "placeholder": "Input password",
+          "errors": {
+            "required": "Please input your password!",
+            "minLength": "Must be at least {minLength} characters!",
+            "maxLength": "Must be no more than {maxLength} characters!",
+            "uppercase": "Must contain at least one uppercase letter!",
+            "number": "Must contain at least one number!",
+            "currentPassword": "Incorrect current password",
+          }
+        },
+        "submitButton": "Change email",
+      }
+    },
     "changePassword": {
       "title": "Change password",
       "button": "Change password",

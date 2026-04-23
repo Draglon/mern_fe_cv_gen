@@ -3,24 +3,10 @@ import { createSlice } from "@reduxjs/toolkit";
 import fetchAuth from "./operations/fetchAuth";
 import fetchRegister from "./operations/fetchRegister";
 import fetchUser from "./operations/fetchUser";
+import updateUserEmail from "./operations/updateUserEmail";
 
 interface IAuthState {
-  data: {
-    _id: string;
-    avatarUrl: string | null;
-    userName: string;
-    email: string;
-    personalInfoId: string | null;
-    personalHobbiesId: string | null;
-    personalLanguagesId: string | null;
-    personalExperienceId: string | null;
-    personalEducationId: string | null;
-    personalCoursesId: string | null;
-    personalSkillsId: string | null;
-    personalToolsId: string | null;
-    createdAt?: string;
-    updatedAt?: string;
-  } | null;
+  data: any | null;
   status?: string;
   error: any,
 }
@@ -86,6 +72,20 @@ export const authSlice = createSlice({
     });
     builder.addCase(fetchUser.rejected, (state, action) => {
       state.data = null;
+      state.status = "error";
+      state.error = action.payload;
+    });
+
+    builder.addCase(updateUserEmail.pending, (state) => {
+      state.status = "loading";
+      state.error = null;
+    });
+    builder.addCase(updateUserEmail.fulfilled, (state, action) => {
+      state.data = { ...state.data, email: action.payload.email };
+      state.status = "loaded";
+      state.error = null;
+    });
+    builder.addCase(updateUserEmail.rejected, (state, action) => {
       state.status = "error";
       state.error = action.payload;
     });

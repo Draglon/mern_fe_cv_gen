@@ -23,20 +23,14 @@ const updateUserPasswordOperation = createAsyncThunk(
   async (params: ParamsType, { getState, rejectWithValue }) => {
     const state = getState() as RootState;
     const userId = userIdSelector(state);
-    const {
-      values,
-      form: { setError },
-      tSettings,
-    } = params;
+    const { values, form, tSettings } = params;
 
     try {
-      const { data } = await axios.patch(usersPasswordRoute(userId), values);
-
-      return data;
+      await axios.patch(usersPasswordRoute(userId), values);
     } catch (error: unknown) {
       console.log("error: ", error);
       if (isErrorStatusIncorrectData(error)) {
-        setError("currentPassword", {
+        form.setError("currentPassword", {
           type: "manual",
           message: tSettings("changePassword.form.password.errors.currentPassword"),
         });
