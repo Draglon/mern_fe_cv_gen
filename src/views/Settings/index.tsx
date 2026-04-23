@@ -7,6 +7,8 @@ import { showModal as showModalAction } from "@/store/modal/actions";
 import { Title } from "@/views/shared/antd/Typography";
 import Button from "@/views/shared/antd/Button";
 
+import ChangePassword from "./ChangePassword";
+
 const Settings = () => {
   const dispatch = useAppDispatch();
   const t = useTranslations("Settings");
@@ -24,6 +26,8 @@ const Settings = () => {
             {t("subTitle")}
           </Title>
         </header>
+
+        <ChangePassword />
 
         <div className="mb-32">
           <div className="mb-24">

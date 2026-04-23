@@ -27,7 +27,7 @@ const fetchAuthOperation = createAsyncThunk(
       }
 
       return data;
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.log("error: ", error);
       return rejectWithValue(error);
     }

@@ -2,16 +2,18 @@ import { path } from 'ramda';
 
 import { HTTP_STATUSES } from '@/lib/constants';
 
-export const errorStatus = (error: any) => path(['response', 'status'], error);
+export const errorStatus = (error: unknown) => path(['response', 'status'], error);
 
-export const isErrorStatusUnauthorized = (error: any) => errorStatus(error) === HTTP_STATUSES.unauthorized
+export const isErrorStatusIncorrectData = (error: unknown) => errorStatus(error) === HTTP_STATUSES.incorrectData;
 
-export const isErrorStatusForbidden = (error: any) => errorStatus(error) === HTTP_STATUSES.forbidden
+export const isErrorStatusUnauthorized = (error: unknown) => errorStatus(error) === HTTP_STATUSES.unauthorized;
 
-export const isErrorStatusNotFound = (error: any) => errorStatus(error) === HTTP_STATUSES.notFound
+export const isErrorStatusForbidden = (error: unknown) => errorStatus(error) === HTTP_STATUSES.forbidden;
 
-export const isErrorStatusGone = (error: any) => errorStatus(error) === HTTP_STATUSES.gone
+export const isErrorStatusNotFound = (error: unknown) => errorStatus(error) === HTTP_STATUSES.notFound;
 
-export const isErrorStatusUnprocessableEntity = (error: any) => errorStatus(error) === HTTP_STATUSES.unprocessableEntity
+export const isErrorStatusGone = (error: unknown) => errorStatus(error) === HTTP_STATUSES.gone;
 
-export const isErrorTooManyRequests = (error: any) => errorStatus(error) === HTTP_STATUSES.tooManyRequests
+export const isErrorStatusUnprocessableEntity = (error: unknown) => errorStatus(error) === HTTP_STATUSES.unprocessableEntity;
+
+export const isErrorTooManyRequests = (error: unknown) => errorStatus(error) === HTTP_STATUSES.tooManyRequests;

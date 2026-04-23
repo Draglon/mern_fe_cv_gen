@@ -8,7 +8,11 @@ import {
   MIN_PASSWORD_LENGTH,
   MAX_PASSWORD_LENGTH,
 } from "@/lib/constants";
-import { REGEX_EMAIL } from "@/lib/constants/regex";
+import {
+  REGEX_EMAIL,
+  REGEX_HAS_LETTERS,
+  REGEX_HAS_DIGITS,
+} from "@/lib/constants/regex";
 import { FieldType } from "@/lib/constants/props/login";
 import { LOGIN_DEFAULT_VALUES } from "@/lib/constants/login";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
@@ -116,6 +120,14 @@ const Login = () => {
                 message: t("form.password.errors.maxLength", {
                   maxLength: MAX_PASSWORD_LENGTH,
                 }),
+              },
+              validate: {
+                hasUppercase: (value: string) =>
+                  REGEX_HAS_LETTERS.test(value) ||
+                  t("form.password.errors.uppercase"),
+                hasNumber: (value: string) =>
+                  REGEX_HAS_DIGITS.test(value) ||
+                  t("form.password.errors.number"),
               },
             })}
             errors={errors["password"]}

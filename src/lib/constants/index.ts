@@ -14,6 +14,7 @@ export const MIN_PASSWORD_LENGTH = 6;
 export const MAX_PHONE_NUMBER_LENGTH = 15;
 
 export const HTTP_STATUSES = {
+  incorrectData: 400,
   unauthorized: 401,
   forbidden: 403,
   notFound: 404,

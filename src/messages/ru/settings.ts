@@ -6,6 +6,30 @@ const settings = {
     },
     "title": "Настройки",
     "subTitle": "Управление настройками аккаунта.",
+    "changePassword": {
+      "title": "Изменить пароль",
+      "button": "Изменить пароль",
+      "form": {
+        "password": {
+          "label": {
+            "currentPassword": "Текущий пароль",
+            "newPassword": "Новый пароль",
+            "confirmPassword": "Подтвердите пароль",
+          },
+          "placeholder": "Введите пароль",
+          "errors": {
+            "required": "Пожалуйста, введите пароль!",
+            "minLength": "Длина должна быть не менее {minLength} символов!",
+            "maxLength": "Длина должна быть не более {maxLength} символов!",
+            "uppercase": "Должен содержать как минимум одну заглавную букву!",
+            "number": "Должен содержать хотя бы одну цифру!",
+            "currentPassword": "Неверный текущий пароль",
+            "confirmPassword": "Пароли не совпадают",
+          }
+        },
+        "submitButton": "Изменить пароль",
+      }
+    },
     "deleteAccount": {
       "title": "Удалить аккаунт",
       "button": "Удалить аккаунт",

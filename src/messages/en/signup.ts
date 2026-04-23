@@ -24,6 +24,8 @@ const signup = {
           "required": "Please input your password!",
           "minLength": "Must be at least {minLength} characters!",
           "maxLength": "Must be no more than {maxLength} characters!",
+          "uppercase": "Must contain at least one uppercase letter!",
+          "number": "Must contain at least one number!",
         }
       },
       "userName": {

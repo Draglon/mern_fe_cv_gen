@@ -28,7 +28,9 @@ const login = {
         "errors": {
           "required": "Please enter your password!",
           "minLength": "The length must be at least {minLength} characters!",
-          "maxLength": "The length must be no more than {maxLength} characters!"
+          "maxLength": "The length must be no more than {maxLength} characters!",
+          "uppercase": "Must contain at least one uppercase letter!",
+          "number": "Must contain at least one number!",
         }
       },
     }

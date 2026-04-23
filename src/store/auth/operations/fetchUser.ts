@@ -10,7 +10,7 @@ const fetchUserOperation = createAsyncThunk(
     try {
       const { data } = await axios.get(authUserRoute, {});
       return data;
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.log("error: ", error);
       return rejectWithValue(error);
     }

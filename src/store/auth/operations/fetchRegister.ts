@@ -33,7 +33,7 @@ const fetchRegistrationOperation = createAsyncThunk(
       }
 
       return data;
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.log("error: ", error);
       if (isErrorStatusUnauthorized(error)) {
         setError("email", {

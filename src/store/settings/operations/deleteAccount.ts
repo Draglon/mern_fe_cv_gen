@@ -26,7 +26,7 @@ const deleteAccountOperation = createAsyncThunk(
       dispatch(hideModal());
       dispatch(logout());
       router.push(homeRoute, { locale });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.log("error: ", error);
       return rejectWithValue(error);
     }

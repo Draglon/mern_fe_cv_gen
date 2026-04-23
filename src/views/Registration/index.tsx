@@ -10,7 +10,12 @@ import {
   MIN_NIKE_NAME_LENGTH,
   MAX_NIKE_NAME_LENGTH,
 } from "@/lib/constants";
-import { REGEX_EMAIL, REGEX_NICK_NAME } from "@/lib/constants/regex";
+import {
+  REGEX_EMAIL,
+  REGEX_NICK_NAME,
+  REGEX_HAS_LETTERS,
+  REGEX_HAS_DIGITS,
+} from "@/lib/constants/regex";
 import { FieldType } from "@/lib/constants/props/signup";
 import { SIGNUP_DEFAULT_VALUES } from "@/lib/constants/signup";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
@@ -143,6 +148,14 @@ const Registration = () => {
                 message: tRegistration("form.password.errors.maxLength", {
                   maxLength: MAX_PASSWORD_LENGTH,
                 }),
+              },
+              validate: {
+                hasUppercase: (value: string) =>
+                  REGEX_HAS_LETTERS.test(value) ||
+                  tRegistration("form.password.errors.uppercase"),
+                hasNumber: (value: string) =>
+                  REGEX_HAS_DIGITS.test(value) ||
+                  tRegistration("form.password.errors.number"),
               },
             })}
             errors={errors["password"]}
