@@ -17,12 +17,13 @@ import { FieldType } from "@/lib/constants/props/login";
 import { LOGIN_DEFAULT_VALUES } from "@/lib/constants/login";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
+import isSubmitLoading from "@/utils/isSubmitLoading";
 import {
   isErrorStatusUnauthorized,
   isErrorStatusNotFound,
 } from "@/utils/getErrorStatus";
 import fetchAuth from "@/store/auth/operations/fetchAuth";
-import { userErrorSelector, isLoadingSelector } from "@/store/auth/selectors";
+import { userErrorSelector } from "@/store/auth/selectors";
 
 import { Title, Paragraph } from "@/views/shared/antd/Typography";
 import Form from "@/views/shared/antd/Form";
@@ -37,7 +38,6 @@ const Login = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const userError = useAppSelector(userErrorSelector);
-  const isLoading = useAppSelector(isLoadingSelector);
   const { control, handleSubmit, formState, register } = useForm<FieldType>({
     defaultValues: LOGIN_DEFAULT_VALUES,
     mode: "onChange",
@@ -143,7 +143,7 @@ const Login = () => {
               size="large"
               block
               disabled={isSubmitDisabled(formState)}
-              loading={isLoading}
+              loading={isSubmitLoading(formState)}
             >
               {t("submitButton")}
             </Button>

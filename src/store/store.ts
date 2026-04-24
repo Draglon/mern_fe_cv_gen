@@ -1,5 +1,14 @@
 import { combineReducers, configureStore, UnknownAction } from '@reduxjs/toolkit';
-import { persistReducer } from 'redux-persist';
+import {
+  persistReducer,
+  PersistConfig,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
 import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
 
 import authReducer from "./auth";
@@ -34,7 +43,7 @@ const storage =
     ? createWebStorage('local')
     : createNoopStorage();
 
-const persistConfig = {
+const persistConfig: PersistConfig<ReturnType<typeof appReducer>> = {
   key: 'root',
   storage,
   whitelist: ['auth'],
@@ -68,6 +77,19 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 export const makeStore = () => configureStore({
   reducer: persistedReducer,
   devTools: process.env.NODE_ENV !== 'production',
+      middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        serializableCheck: {
+          ignoredActions: [
+            FLUSH,
+            REHYDRATE,
+            PAUSE,
+            PERSIST,
+            PURGE,
+            REGISTER,
+          ],
+        },
+      }),
 });
 
 // Infer the type of makeStore

@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { persistStore, Persistor } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 
+import { setPersistor } from "./storeInstance";
 import { makeStore, AppStore } from "./store";
 
 type StoreProviderProps = {
@@ -18,6 +19,7 @@ export default function StoreProvider({ children }: StoreProviderProps) {
   if (!storeRef.current) {
     storeRef.current = makeStore();
     persistorRef.current = persistStore(storeRef.current);
+    setPersistor(persistorRef.current);
   }
 
   return (

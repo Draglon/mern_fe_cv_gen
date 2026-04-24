@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+import { getPersistor } from '@/store/storeInstance';
 import fetchAuth from "./operations/fetchAuth";
 import fetchRegister from "./operations/fetchRegister";
 import fetchUser from "./operations/fetchUser";
+import updateUserProfile from "./operations/updateUserProfile";
 import updateUserEmail from "./operations/updateUserEmail";
 
 interface IAuthState {
@@ -25,11 +27,11 @@ export const authSlice = createSlice({
       state.data = initialState.data;
       state.status = initialState.status;
       localStorage.removeItem("token");
+      getPersistor().purge();
     },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchAuth.pending, (state) => {
-      state.data = null;
       state.status = "loading";
       state.error = null;
     });
@@ -39,13 +41,11 @@ export const authSlice = createSlice({
       state.error = null;
     });
     builder.addCase(fetchAuth.rejected, (state, action) => {
-      state.data = null;
       state.status = "error";
       state.error = action.payload;
     });
 
     builder.addCase(fetchRegister.pending, (state) => {
-      state.data = null;
       state.status = "loading";
       state.error = null;
     });
@@ -55,13 +55,11 @@ export const authSlice = createSlice({
       state.error = null;
     });
     builder.addCase(fetchRegister.rejected, (state, action) => {
-      state.data = null;
       state.status = "error";
       state.error = action.payload;
     });
 
     builder.addCase(fetchUser.pending, (state) => {
-      state.data = null;
       state.status = "loading";
       state.error = null;
     });
@@ -71,7 +69,26 @@ export const authSlice = createSlice({
       state.error = null;
     });
     builder.addCase(fetchUser.rejected, (state, action) => {
-      state.data = null;
+      state.status = "error";
+      state.error = action.payload;
+    });
+
+    builder.addCase(updateUserProfile.pending, (state) => {
+      state.status = "loading";
+      state.error = null;
+    });
+    builder.addCase(updateUserProfile.fulfilled, (state, action) => {
+      state.data = {
+        ...state.data,
+        avatarUrl: action.payload.avatarUrl,
+        firstName: action.payload.firstName,
+        lastName: action.payload.lastName,
+        userName: action.payload.userName,
+      };
+      state.status = "loaded";
+      state.error = null;
+    });
+    builder.addCase(updateUserProfile.rejected, (state, action) => {
       state.status = "error";
       state.error = action.payload;
     });
@@ -81,7 +98,10 @@ export const authSlice = createSlice({
       state.error = null;
     });
     builder.addCase(updateUserEmail.fulfilled, (state, action) => {
-      state.data = { ...state.data, email: action.payload.email };
+      state.data = {
+        ...state.data,
+        email: action.payload.email,
+      };
       state.status = "loaded";
       state.error = null;
     });

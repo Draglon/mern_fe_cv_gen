@@ -18,10 +18,10 @@ import {
 } from "@/lib/constants/regex";
 import { FieldType } from "@/lib/constants/props/signup";
 import { SIGNUP_DEFAULT_VALUES } from "@/lib/constants/signup";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { useAppDispatch } from "@/store/hooks";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
+import isSubmitLoading from "@/utils/isSubmitLoading";
 import fetchRegister from "@/store/auth/operations/fetchRegister";
-import { isLoadingSelector } from "@/store/auth/selectors";
 
 import { Title, Paragraph } from "@/views/shared/antd/Typography";
 import Form from "@/views/shared/antd/Form";
@@ -35,7 +35,6 @@ const Registration = () => {
   const tRegistration = useTranslations("Registration");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
-  const isLoading = useAppSelector(isLoadingSelector);
   const { control, handleSubmit, formState, register, setError } =
     useForm<FieldType>({
       defaultValues: SIGNUP_DEFAULT_VALUES,
@@ -170,7 +169,7 @@ const Registration = () => {
               size="large"
               block
               disabled={isSubmitDisabled(formState)}
-              loading={isLoading}
+              loading={isSubmitLoading(formState)}
             >
               {tShared("signUp")}
             </Button>
