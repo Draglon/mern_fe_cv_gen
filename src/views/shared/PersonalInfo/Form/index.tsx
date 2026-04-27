@@ -6,6 +6,7 @@ import { Form } from "antd";
 import { REGEX_STRING } from "@/lib/constants/regex";
 import { Locales } from "@/lib/constants/props/locales";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { normalizeUrl } from "@/utils/normalizeUrl";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
 import createPersonalInfo from "@/store/personalInfo/operations/createPersonalInfo";
@@ -54,10 +55,11 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
   const { errors } = formState;
 
   const onFinish = handleSubmit(async (values: FieldType) => {
+    const userUrl = await normalizeUrl(values.userUrl);
     const params = {
       values: {
         ...values,
-        userUrl: values?.userUrl || "",
+        userUrl,
       },
       locale,
     };

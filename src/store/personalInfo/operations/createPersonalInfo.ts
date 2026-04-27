@@ -1,5 +1,4 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import type { UploadFile } from "antd/es/upload/interface";
 
 import axios from "@/lib/axios";
 import { personalInfoCreateRoute } from "@/lib/apiRoutes";
@@ -11,7 +10,7 @@ import { RootState } from '../../store';
 type ParamsType = {
   values: {
     sectionTitle?: string;
-    userUrl?: UploadFile[];
+    userUrl?: string;
     firstName: string;
     lastName: string;
     aboutMe: string;
