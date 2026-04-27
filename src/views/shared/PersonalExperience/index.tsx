@@ -5,7 +5,6 @@ import { Locales } from "@/lib/constants/props/locales";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import fetchPersonalExperience from "@/store/personalExperience/operations/fetchPersonalExperience";
 import { isLoadingSelector } from "@/store/personalExperience/selectors";
-import { personalExperienceIdSelector } from "@/store/auth/selectors";
 
 import PersonalExperienceForm from "@/views/shared/PersonalExperience/Form";
 
@@ -17,13 +16,12 @@ type PersonalExperienceProps = {
 const PersonalExperience = ({ locale, isEdit }: PersonalExperienceProps) => {
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(isLoadingSelector);
-  const personalExperienceId = useAppSelector(personalExperienceIdSelector);
 
   useEffect(() => {
-    if (personalExperienceId) {
-      dispatch(fetchPersonalExperience({ id: personalExperienceId }));
+    if (locale) {
+      dispatch(fetchPersonalExperience());
     }
-  }, [dispatch, personalExperienceId]);
+  }, [dispatch, locale]);
 
   return isLoading ? (
     <>Loading</>

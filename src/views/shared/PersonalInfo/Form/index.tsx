@@ -5,14 +5,12 @@ import { Form } from "antd";
 
 import { REGEX_STRING } from "@/lib/constants/regex";
 import { Locales } from "@/lib/constants/props/locales";
-import { PersonalInfoProps } from "@/lib/constants/props/resume";
-import { personalInfoByLocale } from "@/utils/personalInfo";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
+import isSubmitLoading from "@/utils/isSubmitLoading";
 import createPersonalInfo from "@/store/personalInfo/operations/createPersonalInfo";
 import updatePersonalInfo from "@/store/personalInfo/operations/updatePersonalInfo";
-import { userIdSelector, personalInfoIdSelector } from "@/store/auth/selectors";
-import { personalInfoSelector } from "@/store/personalInfo/selectors";
+import { personalInfoByLocaleSelector } from "@/store/personalInfo/selectors";
 
 import FormItem from "@/views/shared/antd/FormItem";
 import InputField from "@/views/shared/InputField";
@@ -33,7 +31,7 @@ type FieldType = {
   firstName: string;
   lastName: string;
   email: string;
-  about: string;
+  aboutMe: string;
   address: string;
   phoneNumber: string;
   birthday: string;
@@ -46,13 +44,9 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
   const t = useTranslations("PersonalInfo");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
-  const userId = useAppSelector(userIdSelector) as string;
-  const personalInfoId = useAppSelector(personalInfoIdSelector) as string;
-  const personalInfo = useAppSelector(
-    personalInfoSelector
-  ) as PersonalInfoProps;
-  const defaultValues = personalInfoByLocale(personalInfo, locale);
-
+  const defaultValues = useAppSelector((state) =>
+    personalInfoByLocaleSelector(state, locale)
+  );
   const { control, handleSubmit, formState, register } = useForm<FieldType>({
     defaultValues,
     mode: "onChange",
@@ -61,16 +55,16 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
-      ...values,
+      values: {
+        ...values,
+        userUrl: values?.userUrl || "",
+      },
       locale,
-      userId,
-      userUrl: values?.userUrl ? values.userUrl : "",
     };
 
-    const data =
-      isEdit && personalInfoId
-        ? await dispatch(updatePersonalInfo({ ...params, personalInfoId }))
-        : await dispatch(createPersonalInfo(params));
+    const data = isEdit
+      ? await dispatch(updatePersonalInfo(params))
+      : await dispatch(createPersonalInfo(params));
 
     if (!data?.payload) {
       return alert("Не удалось обновить данные");
@@ -161,18 +155,18 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
           </div>
           <FormItem
             className="form__item--field"
-            name="about"
-            controlName="about"
+            name="aboutMe"
+            controlName="aboutMe"
             control={control}
-            label={t("form.about.label")}
-            placeholder={t("form.about.placeholder")}
-            register={register("about", {
+            label={t("form.aboutMe.label")}
+            placeholder={t("form.aboutMe.placeholder")}
+            register={register("aboutMe", {
               required: {
                 value: true,
-                message: t("form.about.errors.required"),
+                message: t("form.aboutMe.errors.required"),
               },
             })}
-            errors={errors["about"]}
+            errors={errors["aboutMe"]}
             Field={TextAreaField}
             size="large"
           />
@@ -274,6 +268,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
           htmlType="submit"
           size="large"
           disabled={isSubmitDisabled(formState)}
+          loading={isSubmitLoading(formState)}
         >
           {tShared("save")}
         </Button>

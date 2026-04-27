@@ -3,22 +3,17 @@ import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
-import { isEmpty, path, pathOr } from "ramda";
+import { path } from "ramda";
 
 import { Locales } from "@/lib/constants/props/locales";
-import { PersonalLanguagesProps } from "@/lib/constants/props/resume";
 import { REGEX_STRING } from "@/lib/constants/regex";
 import { LANGUAGE_LEVEL } from "@/lib/constants/languages";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
-import { languagesByLocale } from "@/utils/personalLanguages";
+import isSubmitLoading from "@/utils/isSubmitLoading";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalLanguages from "@/store/personalLanguages/operations/createPersonalLanguages";
 import updatePersonalLanguages from "@/store/personalLanguages/operations/updatePersonalLanguages";
-import {
-  userIdSelector,
-  personalLanguagesIdSelector,
-} from "@/store/auth/selectors";
-import { personalLanguagesSelector } from "@/store/personalLanguages/selectors";
+import { personalLanguagesByLocaleSelector } from "@/store/personalLanguages/selectors";
 
 import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
@@ -44,19 +39,11 @@ const PersonalLanguagesForm = ({
   const t = useTranslations("PersonalLanguages");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
-  const userId = useAppSelector(userIdSelector);
-  const personalLanguagesId = useAppSelector(personalLanguagesIdSelector);
-  const personalLanguages = useAppSelector(
-    personalLanguagesSelector
-  ) as PersonalLanguagesProps;
-
+  const defaultValues = useAppSelector((state) =>
+    personalLanguagesByLocaleSelector(state, locale)
+  );
   const { control, handleSubmit, formState, register } = useForm({
-    values: {
-      sectionTitle: pathOr("", ["sectionTitle", locale], personalLanguages),
-      languages: !isEmpty(languagesByLocale(personalLanguages, locale))
-        ? languagesByLocale(personalLanguages, locale)
-        : [{ language: "", level: "" }],
-    },
+    defaultValues,
     mode: "onChange",
   });
   const { errors } = formState;
@@ -67,17 +54,13 @@ const PersonalLanguagesForm = ({
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
-      ...values,
+      values,
       locale,
-      userId,
     };
 
-    const data =
-      isEdit && personalLanguagesId
-        ? await dispatch(
-            updatePersonalLanguages({ ...params, personalLanguagesId })
-          )
-        : await dispatch(createPersonalLanguages(params));
+    const data = isEdit
+      ? await dispatch(updatePersonalLanguages(params))
+      : await dispatch(createPersonalLanguages(params));
 
     if (!data.payload) {
       return alert("Не удалось получить данные");
@@ -176,6 +159,7 @@ const PersonalLanguagesForm = ({
           htmlType="submit"
           size="large"
           disabled={isSubmitDisabled(formState)}
+          loading={isSubmitLoading(formState)}
         >
           {tShared("save")}
         </Button>

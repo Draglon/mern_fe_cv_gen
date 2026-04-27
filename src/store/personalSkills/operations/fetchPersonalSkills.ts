@@ -2,23 +2,23 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import axios from "@/lib/axios";
 import { personalSkillsRoute } from "@/lib/apiRoutes";
+import { personalSkillsIdSelector } from "@/store/auth/selectors";
 import { FETCH_PERSONAL_SKILLS } from "../types";
-
-type ParamsType = {
-  id: string;
-};
+import { RootState } from '../../store';
 
 const fetchPersonalSkillsOperation = createAsyncThunk(
   FETCH_PERSONAL_SKILLS,
-  async (params: ParamsType) => {
-    const { id } = params;
-
+  async (_, { getState, rejectWithValue }) => {
     try {
-      const { data } = await axios.get(personalSkillsRoute(id));
+      const state = getState() as RootState;
+      const personalSkillsId = personalSkillsIdSelector(state);
+
+      const { data } = await axios.get(personalSkillsRoute(personalSkillsId));
 
       return data;
-    } catch (error) {
+    } catch (error: unknown) {
       console.log("error: ", error);
+      return rejectWithValue(error);
     }
   },
 );

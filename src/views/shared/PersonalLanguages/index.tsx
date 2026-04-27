@@ -5,7 +5,6 @@ import { Locales } from "@/lib/constants/props/locales";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import fetchPersonalLanguages from "@/store/personalLanguages/operations/fetchPersonalLanguages";
 import { isLoadingSelector } from "@/store/personalLanguages/selectors";
-import { personalLanguagesIdSelector } from "@/store/auth/selectors";
 
 import PersonalLanguagesForm from "@/views/shared/PersonalLanguages/Form";
 
@@ -17,13 +16,12 @@ type PersonalLanguagesProps = {
 const PersonalLanguages = ({ locale, isEdit }: PersonalLanguagesProps) => {
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(isLoadingSelector);
-  const personalLanguagesId = useAppSelector(personalLanguagesIdSelector);
 
   useEffect(() => {
-    if (personalLanguagesId) {
-      dispatch(fetchPersonalLanguages({ id: personalLanguagesId }));
+    if (locale) {
+      dispatch(fetchPersonalLanguages());
     }
-  }, [dispatch, personalLanguagesId]);
+  }, [dispatch, locale]);
 
   return isLoading ? (
     <>Loading</>

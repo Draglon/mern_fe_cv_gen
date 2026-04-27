@@ -28,7 +28,7 @@ const personalInfo = {
           "minLength": "The surname must be at least 3 characters long."
         }
       },
-      "about": {
+      "aboutMe": {
         "label": "About me",
         "placeholder": "Input information about yourself",
         "errors": {

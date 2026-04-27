@@ -2,23 +2,23 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import axios from "@/lib/axios";
 import { personalLanguagesRoute } from "@/lib/apiRoutes";
+import { personalLanguagesIdSelector } from "@/store/auth/selectors";
 import { FETCH_PERSONAL_LANGUAGES } from "../types";
-
-type ParamsType = {
-  id: string;
-};
+import { RootState } from '../../store';
 
 const fetchPersonalLanguagesOperation = createAsyncThunk(
   FETCH_PERSONAL_LANGUAGES,
-  async (params: ParamsType) => {
-    const { id } = params;
-
+  async (_, { getState, rejectWithValue }) => {
     try {
-      const { data } = await axios.get(personalLanguagesRoute(id));
+      const state = getState() as RootState;
+      const personalLanguagesId = personalLanguagesIdSelector(state);
+
+      const { data } = await axios.get(personalLanguagesRoute(personalLanguagesId));
 
       return data;
-    } catch (error) {
+    } catch (error: unknown) {
       console.log("error: ", error);
+      return rejectWithValue(error);
     }
   },
 );

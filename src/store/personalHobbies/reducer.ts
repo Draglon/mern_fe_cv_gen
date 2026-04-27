@@ -24,6 +24,7 @@ export const personalHobbiesSlice = createSlice({
     resetPersonalHobbies: state => {
       state.data = initialState.data;
       state.status = initialState.status;
+      state.error = initialState.error;
     },
   },
   extraReducers: (builder) => {

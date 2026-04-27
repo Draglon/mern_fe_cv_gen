@@ -9,7 +9,7 @@ export const personalInfoByLocale = (personalInfo: PersonalInfoProps, locale: Lo
   firstName: pathOr("", ["firstName", locale], personalInfo),
   lastName: pathOr("", ["lastName", locale], personalInfo),
   email: pathOr("", ["email", locale], personalInfo),
-  about: pathOr("", ["about", locale], personalInfo),
+  aboutMe: pathOr("", ["aboutMe", locale], personalInfo),
   address: pathOr("", ["address", locale], personalInfo),
   phoneNumber: pathOr("", ["phoneNumber", locale], personalInfo),
   birthday: pathOr("", ["birthday", locale], personalInfo),

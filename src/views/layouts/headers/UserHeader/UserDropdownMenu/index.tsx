@@ -9,6 +9,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { redirect } from "@/i18n/navigation";
 import { homeRoute, profileRoute, settingsRoute } from "@/lib/routes";
 import { useAppDispatch } from "@/store/hooks";
+import { getPersistor } from "@/store/storeInstance";
 import { logout as logoutAction } from "@/store/auth/actions";
 import Avatar from "@/views/shared/antd/Avatar";
 import DropdownMenu from "@/views/shared/DropdownMenu";
@@ -21,6 +22,10 @@ const UserDropdownMenu = () => {
 
   const onLogout = () => {
     dispatch(logoutAction());
+    localStorage.removeItem("token");
+    setTimeout(() => {
+      getPersistor().purge();
+    }, 0);
     redirect({ href: homeRoute, locale });
   };
 

@@ -11,8 +11,10 @@ import { UPDATE_PERSONAL_HOBBIES } from "../types";
 import { RootState } from '../../store';
 
 type ParamsType = {
-  sectionTitle?: string,
-  hobbies: { hobby: string }[],
+  values: {
+    sectionTitle?: string,
+    hobbies: { hobby: string }[],
+  };
   locale: Locales;
 };
 
@@ -23,8 +25,14 @@ const updatePersonalHobbiesOperation = createAsyncThunk(
       const state = getState() as RootState;
       const userId = userIdSelector(state);
       const personalHobbiesId = personalHobbiesIdSelector(state);
+      const { values, locale } = params;
+      const formattedParams = {
+        ...values,
+        locale,
+        userId
+      };
 
-      const { data } = await axios.patch(personalHobbiesRoute(personalHobbiesId), { ...params, userId });
+      const { data } = await axios.patch(personalHobbiesRoute(personalHobbiesId), formattedParams);
 
       return data;
     } catch (error: unknown) {

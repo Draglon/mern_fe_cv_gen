@@ -2,26 +2,42 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import axios from "@/lib/axios";
 import { personalToolsCreateRoute } from "@/lib/apiRoutes";
+import { Locales } from "@/lib/constants/props/locales";
+import { userIdSelector } from "@/store/auth/selectors";
 import { CREATE_PERSONAL_TOOLS } from "./../types";
+import { RootState } from '../../store';
 
 type ParamsType = {
-  locale: string;
-  userId: string;
-  tools: {
-    tool: string;
-    level: string;
-    visible: boolean;
-  }[];
+  values: {
+    sectionTitle?: string,
+    tools: {
+      name: string;
+      level: string;
+      visible: boolean;
+    }[];
+  };
+  locale: Locales;
 };
 
 const createPersonalToolsOperation = createAsyncThunk(
   CREATE_PERSONAL_TOOLS,
-  async (params: ParamsType) => {
+  async (params: ParamsType, { getState, rejectWithValue }) => {
     try {
-      const { data } = await axios.post(personalToolsCreateRoute, params);
+      const state = getState() as RootState;
+      const userId = userIdSelector(state);
+      const { values, locale } = params;
+      const formattedParams = {
+        ...values,
+        locale,
+        userId
+      };
+
+      const { data } = await axios.post(personalToolsCreateRoute, formattedParams);
+
       return data;
-    } catch (error) {
+    } catch (error: unknown) {
       console.log("error: ", error);
+      return rejectWithValue(error);
     }
   },
 );

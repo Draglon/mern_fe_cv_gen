@@ -5,7 +5,6 @@ import { Locales } from "@/lib/constants/props/locales";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import fetchPersonalInfo from "@/store/personalInfo/operations/fetchPersonalInfo";
 import { isLoadingSelector } from "@/store/personalInfo/selectors";
-import { personalInfoIdSelector } from "@/store/auth/selectors";
 
 import PersonalInfoForm from "@/views/shared/PersonalInfo/Form";
 
@@ -17,13 +16,12 @@ type PersonalInfoProps = {
 const PersonalInfo = ({ locale, isEdit }: PersonalInfoProps) => {
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(isLoadingSelector);
-  const personalInfoId = useAppSelector(personalInfoIdSelector);
 
   useEffect(() => {
-    if (personalInfoId && locale) {
-      dispatch(fetchPersonalInfo({ id: personalInfoId }));
+    if (locale) {
+      dispatch(fetchPersonalInfo());
     }
-  }, [dispatch, personalInfoId, locale]);
+  }, [dispatch, locale]);
 
   return isLoading ? (
     <>Loading</>

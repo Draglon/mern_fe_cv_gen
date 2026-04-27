@@ -3,23 +3,18 @@ import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
-import { isEmpty, path, pathOr } from "ramda";
+import { path } from "ramda";
 
 import { redirect } from "@/i18n/navigation";
 import { resumeRoute } from "@/lib/routes";
 import { Locales } from "@/lib/constants/props/locales";
-import { PersonalToolsProps } from "@/lib/constants/props/resume";
 import { REGEX_STRING } from "@/lib/constants/regex";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
-import { toolsByLocale } from "@/utils/personalTools";
+import isSubmitLoading from "@/utils/isSubmitLoading";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalTools from "@/store/personalTools/operations/createPersonalTools";
 import updatePersonalTools from "@/store/personalTools/operations/updatePersonalTools";
-import { personalToolsSelector } from "@/store/personalTools/selectors";
-import {
-  userIdSelector,
-  personalToolsIdSelector,
-} from "@/store/auth/selectors";
+import { personalToolsByLocaleSelector } from "@/store/personalTools/selectors";
 import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
@@ -45,26 +40,12 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
   const t = useTranslations("PersonalTools");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
-  const userId = useAppSelector(userIdSelector) as string;
-  const personalToolsId = useAppSelector(personalToolsIdSelector) as string;
-  const personalTools = useAppSelector(
-    personalToolsSelector
-  ) as PersonalToolsProps;
-  const tools = toolsByLocale(personalTools, locale);
+  const defaultValues = useAppSelector((state) =>
+    personalToolsByLocaleSelector(state, locale)
+  );
 
   const { control, handleSubmit, register, formState } = useForm({
-    values: {
-      sectionTitle: pathOr("", ["sectionTitle", locale], personalTools),
-      tools: !isEmpty(tools)
-        ? tools
-        : [
-            {
-              tool: "",
-              level: "",
-              visible: true,
-            },
-          ],
-    },
+    defaultValues,
     mode: "onChange",
   });
   const { fields, append, remove } = useFieldArray({
@@ -75,21 +56,21 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
-      ...values,
+      values,
       locale,
-      userId,
     };
 
-    const data =
-      isEdit && personalToolsId
-        ? await dispatch(updatePersonalTools({ ...params, personalToolsId }))
-        : await dispatch(createPersonalTools(params));
+    const data = isEdit
+      ? await dispatch(updatePersonalTools(params))
+      : await dispatch(createPersonalTools(params));
 
     if (!data.payload) {
       return alert("Не удалось получить данные");
     }
 
-    redirect({ href: resumeRoute, locale });
+    if (!isEdit) {
+      redirect({ href: resumeRoute, locale });
+    }
   });
 
   return (
@@ -187,6 +168,7 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
           htmlType="submit"
           size="large"
           disabled={isSubmitDisabled(formState)}
+          loading={isSubmitLoading(formState)}
         >
           {tShared("save")}
         </Button>

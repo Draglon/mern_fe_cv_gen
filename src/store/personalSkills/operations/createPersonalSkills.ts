@@ -2,26 +2,42 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import axios from "@/lib/axios";
 import { personalSkillsCreateRoute } from "@/lib/apiRoutes";
+import { Locales } from "@/lib/constants/props/locales";
+import { userIdSelector } from "@/store/auth/selectors";
 import { CREATE_PERSONAL_SKILLS } from "./../types";
+import { RootState } from '../../store';
 
 type ParamsType = {
-  locale: string;
-  userId: string;
-  skills: {
-    skill: string;
-    level: string;
-    visible: boolean;
-  }[];
+  values: {
+    sectionTitle?: string,
+    skills: {
+      skill: string;
+      level: string;
+      visible: boolean;
+    }[];
+  };
+  locale: Locales;
 };
 
 const createPersonalSkillsOperation = createAsyncThunk(
   CREATE_PERSONAL_SKILLS,
-  async (params: ParamsType) => {
+  async (params: ParamsType, { getState, rejectWithValue }) => {
     try {
-      const { data } = await axios.post(personalSkillsCreateRoute, params);
+      const state = getState() as RootState;
+      const userId = userIdSelector(state);
+      const { values, locale } = params;
+      const formattedParams = {
+        ...values,
+        locale,
+        userId
+      };
+
+      const { data } = await axios.post(personalSkillsCreateRoute, formattedParams);
+
       return data;
-    } catch (error) {
+    } catch (error: unknown) {
       console.log("error: ", error);
+      return rejectWithValue(error);
     }
   },
 );

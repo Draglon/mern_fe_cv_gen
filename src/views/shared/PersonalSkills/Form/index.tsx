@@ -3,21 +3,16 @@ import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
-import { isEmpty, path, pathOr } from "ramda";
+import { path } from "ramda";
 
 import { Locales } from "@/lib/constants/props/locales";
-import { PersonalSkillsProps } from "@/lib/constants/props/resume";
 import { REGEX_STRING } from "@/lib/constants/regex";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
-import { skillsByLocale } from "@/utils/personalSkills";
+import isSubmitLoading from "@/utils/isSubmitLoading";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalSkills from "@/store/personalSkills/operations/createPersonalSkills";
 import updatePersonalSkills from "@/store/personalSkills/operations/updatePersonalSkills";
-import {
-  userIdSelector,
-  personalSkillsIdSelector,
-} from "@/store/auth/selectors";
-import { personalSkillsSelector } from "@/store/personalSkills/selectors";
+import { personalSkillsByLocaleSelector } from "@/store/personalSkills/selectors";
 import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
@@ -43,26 +38,11 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
   const t = useTranslations("PersonalSkills");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
-  const userId = useAppSelector(userIdSelector) as string;
-  const personalSkillsId = useAppSelector(personalSkillsIdSelector) as string;
-  const personalSkills = useAppSelector(
-    personalSkillsSelector
-  ) as PersonalSkillsProps;
-  const skills = skillsByLocale(personalSkills, locale);
-
+  const defaultValues = useAppSelector((state) =>
+    personalSkillsByLocaleSelector(state, locale)
+  );
   const { control, handleSubmit, register, formState } = useForm({
-    values: {
-      sectionTitle: pathOr("", ["sectionTitle", locale], personalSkills),
-      skills: !isEmpty(skills)
-        ? skills
-        : [
-            {
-              skill: "",
-              level: "",
-              visible: true,
-            },
-          ],
-    },
+    defaultValues,
     mode: "onChange",
   });
   const { fields, append, remove } = useFieldArray({
@@ -73,15 +53,13 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
-      ...values,
+      values,
       locale,
-      userId,
     };
 
-    const data =
-      isEdit && personalSkillsId
-        ? await dispatch(updatePersonalSkills({ ...params, personalSkillsId }))
-        : await dispatch(createPersonalSkills(params));
+    const data = isEdit
+      ? await dispatch(updatePersonalSkills(params))
+      : await dispatch(createPersonalSkills(params));
 
     if (!data.payload) {
       return alert("Не удалось получить данные");
@@ -183,6 +161,7 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
           htmlType="submit"
           size="large"
           disabled={isSubmitDisabled(formState)}
+          loading={isSubmitLoading(formState)}
         >
           {tShared("save")}
         </Button>

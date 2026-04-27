@@ -8,8 +8,10 @@ import { CREATE_PERSONAL_HOBBIES } from "./../types";
 import { RootState } from '../../store';
 
 type ParamsType = {
-  sectionTitle?: string,
-  hobbies: { hobby: string }[],
+  values: {
+    sectionTitle?: string,
+    hobbies: { hobby: string }[],
+  };
   locale: Locales;
 };
 
@@ -19,7 +21,14 @@ const createPersonalHobbiesOperation = createAsyncThunk(
     try {
       const state = getState() as RootState;
       const userId = userIdSelector(state);
-      const { data } = await axios.post(personalHobbiesCreateRoute, { ...params, userId });
+      const { values, locale } = params;
+      const formattedParams = {
+        ...values,
+        locale,
+        userId
+      };
+
+      const { data } = await axios.post(personalHobbiesCreateRoute, formattedParams);
 
       return data;
     } catch (error: unknown) {

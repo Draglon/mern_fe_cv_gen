@@ -28,7 +28,7 @@ const personalInfo = {
           "minLength": "Фамилия должна быть длиной не менее 3 символов."
         }
       },
-      "about": {
+      "aboutMe": {
         "label": "Обо мне",
         "placeholder": "Введите информацию о себе",
         "errors": {

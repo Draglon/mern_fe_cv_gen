@@ -3,22 +3,16 @@ import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
-import { isEmpty, path, pathOr } from "ramda";
 
 import { REGEX_DIGITS, REGEX_STRING } from "@/lib/constants/regex";
 import { RESUME_EXPERIENCE_DEFAULT_VALUES } from "@/lib/constants/resumeExperience";
 import { Locales } from "@/lib/constants/props/locales";
-import { PersonalExperienceProps } from "@/lib/constants/props/resume";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
-import { experienceByLocale } from "@/utils/personalExperience";
+import isSubmitLoading from "@/utils/isSubmitLoading";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalExperience from "@/store/personalExperience/operations/createPersonalExperience";
 import updatePersonalExperience from "@/store/personalExperience/operations/updatePersonalExperience";
-import {
-  userIdSelector,
-  personalExperienceIdSelector,
-} from "@/store/auth/selectors";
-import { personalExperienceSelector } from "@/store/personalExperience/selectors";
+import { personalExperienceByLocaleSelector } from "@/store/personalExperience/selectors";
 
 import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
@@ -56,23 +50,12 @@ const PersonalExperienceForm = ({
   const t = useTranslations("PersonalExperience");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
-  const userId = useAppSelector(userIdSelector) as string;
-  const personalExperienceId = useAppSelector(
-    personalExperienceIdSelector
-  ) as string;
-  const personalExperience = useAppSelector(
-    personalExperienceSelector
-  ) as PersonalExperienceProps;
-  const experience = experienceByLocale(personalExperience, locale);
-
+  const defaultValues = useAppSelector((state) =>
+    personalExperienceByLocaleSelector(state, locale)
+  );
   const { control, handleSubmit, register, formState } = useForm<FieldType>({
-    values: {
-      sectionTitle: pathOr("", ["sectionTitle", locale], personalExperience),
-      lastPlacesOfWorks: pathOr("", ["lastPlacesOfWorks"], personalExperience),
-      experience: !isEmpty(experience)
-        ? experience
-        : [RESUME_EXPERIENCE_DEFAULT_VALUES],
-    },
+    defaultValues,
+    mode: "onChange",
   });
   const { errors } = formState;
   const { fields, prepend, remove } = useFieldArray({
@@ -82,17 +65,13 @@ const PersonalExperienceForm = ({
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
-      ...values,
+      values,
       locale,
-      userId,
     };
 
-    const data =
-      isEdit && personalExperienceId
-        ? await dispatch(
-            updatePersonalExperience({ ...params, personalExperienceId })
-          )
-        : await dispatch(createPersonalExperience(params));
+    const data = isEdit
+      ? await dispatch(updatePersonalExperience(params))
+      : await dispatch(createPersonalExperience(params));
 
     if (!data.payload) {
       return alert("Не удалось получить данные");
@@ -165,7 +144,7 @@ const PersonalExperienceForm = ({
                   message: t("form.position.errors.required"),
                 },
               })}
-              errors={path(["experience", index, "position"], errors)}
+              errors={errors["experience"]?.[index]?.position}
               size="large"
               Field={InputField}
             />
@@ -182,7 +161,7 @@ const PersonalExperienceForm = ({
                   message: t("form.companyName.errors.required"),
                 },
               })}
-              errors={path(["experience", index, "companyName"], errors)}
+              errors={errors["experience"]?.[index]?.companyName}
               size="large"
               Field={InputField}
             />
@@ -199,7 +178,7 @@ const PersonalExperienceForm = ({
                   message: t("form.location.errors.required"),
                 },
               })}
-              errors={path(["experience", index, "location"], errors)}
+              errors={errors["experience"]?.[index]?.location}
               size="large"
               Field={InputField}
             />
@@ -216,7 +195,7 @@ const PersonalExperienceForm = ({
                   message: t("form.placeOfWork.errors.required"),
                 },
               })}
-              errors={path(["experience", index, "placeOfWork"], errors)}
+              errors={errors["experience"]?.[index]?.placeOfWork}
               size="large"
               Field={InputField}
             />
@@ -233,7 +212,7 @@ const PersonalExperienceForm = ({
                   message: t("form.workingTime.errors.required"),
                 },
               })}
-              errors={path(["experience", index, "workingTime"], errors)}
+              errors={errors["experience"]?.[index]?.workingTime}
               size="large"
               Field={InputField}
             />
@@ -250,7 +229,7 @@ const PersonalExperienceForm = ({
                   message: t("form.startDate.errors.required"),
                 },
               })}
-              errors={path(["experience", index, "startDate"], errors)}
+              errors={errors["experience"]?.[index]?.startDate}
               size="large"
               Field={InputField}
             />
@@ -267,7 +246,7 @@ const PersonalExperienceForm = ({
                   message: t("form.endDate.errors.required"),
                 },
               })}
-              errors={path(["experience", index, "endDate"], errors)}
+              errors={errors["experience"]?.[index]?.endDate}
               size="large"
               Field={InputField}
             />
@@ -284,7 +263,7 @@ const PersonalExperienceForm = ({
                   message: t("form.description.errors.required"),
                 },
               })}
-              errors={path(["experience", index, "description"], errors)}
+              errors={errors["experience"]?.[index]?.description}
               size="large"
               Field={TextAreaField}
             />
@@ -301,7 +280,7 @@ const PersonalExperienceForm = ({
                   message: t("form.skills.errors.required"),
                 },
               })}
-              errors={path(["experience", index, "skills"], errors)}
+              errors={errors["experience"]?.[index]?.skills}
               mode="tags"
               size="large"
               Field={SelectField}
@@ -326,6 +305,7 @@ const PersonalExperienceForm = ({
           htmlType="submit"
           size="large"
           disabled={isSubmitDisabled(formState)}
+          loading={isSubmitLoading(formState)}
         >
           {tShared("save")}
         </Button>

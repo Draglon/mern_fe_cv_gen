@@ -28,7 +28,7 @@ const personalInfo = {
           "minLength": "Прізвище повинно містити щонайменше 3 символи."
         }
       },
-      "about": {
+      "aboutMe": {
         "label": "Про мене",
         "placeholder": "Введіть інформацію про себе",
         "errors": {

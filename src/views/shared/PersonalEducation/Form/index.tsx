@@ -3,21 +3,15 @@ import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
-import { isEmpty, path, pathOr } from "ramda";
 
 import { Locales } from "@/lib/constants/props/locales";
-import { PersonalEducationProps } from "@/lib/constants/props/resume";
 import { REGEX_STRING } from "@/lib/constants/regex";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
-import { educationByLocale } from "@/utils/personalEducation";
+import isSubmitLoading from "@/utils/isSubmitLoading";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalEducation from "@/store/personalEducation/operations/createPersonalEducation";
 import updatePersonalEducation from "@/store/personalEducation/operations/updatePersonalEducation";
-import {
-  userIdSelector,
-  personalEducationIdSelector,
-} from "@/store/auth/selectors";
-import { personalEducationSelector } from "@/store/personalEducation/selectors";
+import { personalEducationByLocaleSelector } from "@/store/personalEducation/selectors";
 
 import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
@@ -49,31 +43,12 @@ const PersonalEducationForm = ({
   const t = useTranslations("PersonalEducation");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
-  const userId = useAppSelector(userIdSelector) as string;
-  const personalEducationId = useAppSelector(
-    personalEducationIdSelector
-  ) as string;
-  const personalEducation = useAppSelector(
-    personalEducationSelector
-  ) as PersonalEducationProps;
-  const education = educationByLocale(personalEducation, locale);
-
-  const { control, handleSubmit, register, formState } = useForm({
-    values: {
-      sectionTitle: pathOr("", ["sectionTitle", locale], personalEducation),
-      education: !isEmpty(education)
-        ? education
-        : [
-            {
-              institute: "",
-              degree: "",
-              faculty: "",
-              specialization: "",
-              startDate: "",
-              endDate: "",
-            },
-          ],
-    },
+  const defaultValues = useAppSelector((state) =>
+    personalEducationByLocaleSelector(state, locale)
+  );
+  const { control, handleSubmit, register, formState } = useForm<FieldType>({
+    defaultValues,
+    mode: "onChange",
   });
   const { errors } = formState;
   const { fields, append, remove } = useFieldArray({
@@ -83,17 +58,13 @@ const PersonalEducationForm = ({
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
-      ...values,
+      values,
       locale,
-      userId,
     };
 
-    const data =
-      isEdit && personalEducationId
-        ? await dispatch(
-            updatePersonalEducation({ ...params, personalEducationId })
-          )
-        : await dispatch(createPersonalEducation(params));
+    const data = isEdit
+      ? await dispatch(updatePersonalEducation(params))
+      : await dispatch(createPersonalEducation(params));
 
     if (!data.payload) {
       return alert("Не удалось получить данные");
@@ -145,7 +116,7 @@ const PersonalEducationForm = ({
                   message: t("form.institute.errors.required"),
                 },
               })}
-              errors={path(["education", index, "institute"], errors)}
+              errors={errors["education"]?.[index]?.institute}
               size="large"
               Field={InputField}
             />
@@ -162,7 +133,7 @@ const PersonalEducationForm = ({
                   message: t("form.degree.errors.required"),
                 },
               })}
-              errors={path(["education", index, "degree"], errors)}
+              errors={errors["education"]?.[index]?.degree}
               size="large"
               Field={InputField}
             />
@@ -179,7 +150,7 @@ const PersonalEducationForm = ({
                   message: t("form.faculty.errors.required"),
                 },
               })}
-              errors={path(["education", index, "faculty"], errors)}
+              errors={errors["education"]?.[index]?.faculty}
               size="large"
               Field={InputField}
             />
@@ -196,7 +167,7 @@ const PersonalEducationForm = ({
                   message: t("form.specialization.errors.required"),
                 },
               })}
-              errors={path(["education", index, "specialization"], errors)}
+              errors={errors["education"]?.[index]?.specialization}
               size="large"
               Field={InputField}
             />
@@ -213,7 +184,7 @@ const PersonalEducationForm = ({
                   message: t("form.startDate.errors.required"),
                 },
               })}
-              errors={path(["education", index, "startDate"], errors)}
+              errors={errors["education"]?.[index]?.startDate}
               size="large"
               Field={InputField}
             />
@@ -230,7 +201,7 @@ const PersonalEducationForm = ({
                   message: t("form.endDate.errors.required"),
                 },
               })}
-              errors={path(["education", index, "endDate"], errors)}
+              errors={errors["education"]?.[index]?.endDate}
               size="large"
               Field={InputField}
             />
@@ -254,6 +225,7 @@ const PersonalEducationForm = ({
           htmlType="submit"
           size="large"
           disabled={isSubmitDisabled(formState)}
+          loading={isSubmitLoading(formState)}
         >
           {tShared("save")}
         </Button>

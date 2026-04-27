@@ -18,7 +18,9 @@ const PersonalHobbies = ({ locale, isEdit }: PersonalHobbiesProps) => {
   const isLoading = useAppSelector(isLoadingSelector);
 
   useEffect(() => {
-    dispatch(fetchPersonalHobbies());
+    if (locale) {
+      dispatch(fetchPersonalHobbies());
+    }
   }, [dispatch, locale]);
 
   return isLoading ? (

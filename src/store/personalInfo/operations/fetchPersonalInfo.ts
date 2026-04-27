@@ -2,23 +2,22 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import axios from "@/lib/axios";
 import { personalInfoRoute } from "@/lib/apiRoutes";
+import { personalInfoIdSelector } from "@/store/auth/selectors";
 import { FETCH_PERSONAL_INFO } from "../types";
-
-type ParamsType = {
-  id: string;
-};
+import { RootState } from '../../store';
 
 const fetchPersonalInfoOperation = createAsyncThunk(
   FETCH_PERSONAL_INFO,
-  async (params: ParamsType) => {
-    const { id } = params;
-
+  async (_, { getState, rejectWithValue }) => {
     try {
-      const { data } = await axios.get(personalInfoRoute(id));
+      const state = getState() as RootState;
+      const personalInfoId = personalInfoIdSelector(state);
+      const { data } = await axios.get(personalInfoRoute(personalInfoId));
 
       return data;
-    } catch (error) {
+    } catch (error: unknown) {
       console.log("error: ", error);
+      return rejectWithValue(error);
     }
   },
 );

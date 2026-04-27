@@ -9,10 +9,10 @@ import { Locales } from "@/lib/constants/props/locales";
 import { MIN_INPUT_LENGTH, MAX_INPUT_LENGTH } from "@/lib/constants";
 import { REGEX_STRING } from "@/lib/constants/regex";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
+import isSubmitLoading from "@/utils/isSubmitLoading";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalHobbies from "@/store/personalHobbies/operations/createPersonalHobbies";
 import updatePersonalHobbies from "@/store/personalHobbies/operations/updatePersonalHobbies";
-import { personalHobbiesIdSelector } from "@/store/auth/selectors";
 import { personalHobbiesByLocaleSelector } from "@/store/personalHobbies/selectors";
 
 import FormItem from "@/views/shared/antd/FormItem";
@@ -35,7 +35,6 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesFormProps) => {
   const dispatch = useAppDispatch();
   const t = useTranslations("PersonalHobbies");
   const tShared = useTranslations("shared");
-  const personalHobbiesId = useAppSelector(personalHobbiesIdSelector) as string;
   const defaultValues = useAppSelector((state) =>
     personalHobbiesByLocaleSelector(state, locale)
   );
@@ -53,14 +52,13 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesFormProps) => {
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
-      ...values,
+      values,
       locale,
     };
 
-    const data =
-      isEdit && personalHobbiesId
-        ? await dispatch(updatePersonalHobbies(params))
-        : await dispatch(createPersonalHobbies(params));
+    const data = isEdit
+      ? await dispatch(updatePersonalHobbies(params))
+      : await dispatch(createPersonalHobbies(params));
 
     if (!data.payload) {
       return alert("Не удалось получить данные");
@@ -152,6 +150,7 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesFormProps) => {
           htmlType="submit"
           size="large"
           disabled={isSubmitDisabled(formState)}
+          loading={isSubmitLoading(formState)}
         >
           {tShared("save")}
         </Button>

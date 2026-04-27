@@ -11,7 +11,7 @@ export type PersonalInfoProps = {
   firstName: Locale,
   lastName: Locale,
   email: Locale,
-  about: Locale,
+  aboutMe: Locale,
   address: Locale,
   phoneNumber: Locale,
   birthday: Locale,

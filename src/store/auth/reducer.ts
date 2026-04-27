@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { getPersistor } from '@/store/storeInstance';
 import fetchAuth from "./operations/fetchAuth";
 import fetchRegister from "./operations/fetchRegister";
 import fetchUser from "./operations/fetchUser";
@@ -26,8 +25,7 @@ export const authSlice = createSlice({
     logout: state => {
       state.data = initialState.data;
       state.status = initialState.status;
-      localStorage.removeItem("token");
-      getPersistor().purge();
+      state.error = initialState.error;
     },
   },
   extraReducers: (builder) => {

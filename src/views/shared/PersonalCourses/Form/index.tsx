@@ -3,21 +3,15 @@ import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
-import { isEmpty, path, pathOr } from "ramda";
 
 import { Locales } from "@/lib/constants/props/locales";
-import { PersonalCoursesProps } from "@/lib/constants/props/resume";
 import { REGEX_STRING } from "@/lib/constants/regex";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
-import { coursesByLocale } from "@/utils/personalCourses";
+import isSubmitLoading from "@/utils/isSubmitLoading";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalCourses from "@/store/personalCourses/operations/createPersonalCourses";
 import updatePersonalCourses from "@/store/personalCourses/operations/updatePersonalCourses";
-import {
-  userIdSelector,
-  personalCoursesIdSelector,
-} from "@/store/auth/selectors";
-import { personalCoursesSelector } from "@/store/personalCourses/selectors";
+import { personalCoursesByLocaleSelector } from "@/store/personalCourses/selectors";
 
 import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
@@ -47,27 +41,12 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
   const t = useTranslations("PersonalCourses");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
-  const userId = useAppSelector(userIdSelector) as string;
-  const personalCoursesId = useAppSelector(personalCoursesIdSelector) as string;
-  const personalCourses = useAppSelector(
-    personalCoursesSelector
-  ) as PersonalCoursesProps;
-  const courses = coursesByLocale(personalCourses, locale);
-
-  const { control, handleSubmit, register, formState } = useForm({
-    values: {
-      sectionTitle: pathOr("", ["sectionTitle", locale], personalCourses),
-      courses: !isEmpty(courses)
-        ? courses
-        : [
-            {
-              course: "",
-              description: "",
-              startDate: "",
-              endDate: "",
-            },
-          ],
-    },
+  const defaultValues = useAppSelector((state) =>
+    personalCoursesByLocaleSelector(state, locale)
+  );
+  const { control, handleSubmit, register, formState } = useForm<FieldType>({
+    defaultValues,
+    mode: "onChange",
   });
   const { errors } = formState;
   const { fields, append, remove } = useFieldArray({
@@ -77,17 +56,13 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
-      ...values,
+      values,
       locale,
-      userId,
     };
 
-    const data =
-      isEdit && personalCoursesId
-        ? await dispatch(
-            updatePersonalCourses({ ...params, personalCoursesId })
-          )
-        : await dispatch(createPersonalCourses(params));
+    const data = isEdit
+      ? await dispatch(updatePersonalCourses(params))
+      : await dispatch(createPersonalCourses(params));
 
     if (!data.payload) {
       return alert("Не удалось получить данные");
@@ -139,7 +114,7 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
                   message: t("form.course.errors.required"),
                 },
               })}
-              errors={path(["courses", index, "course"], errors)}
+              errors={errors["courses"]?.[index]?.course}
               size="large"
               Field={InputField}
             />
@@ -156,7 +131,7 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
                   message: t("form.description.errors.required"),
                 },
               })}
-              errors={path(["courses", index, "description"], errors)}
+              errors={errors["courses"]?.[index]?.description}
               size="large"
               Field={TextAreaField}
             />
@@ -173,7 +148,7 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
                   message: t("form.startDate.errors.required"),
                 },
               })}
-              errors={path(["courses", index, "startDate"], errors)}
+              errors={errors["courses"]?.[index]?.startDate}
               size="large"
               Field={InputField}
             />
@@ -190,7 +165,7 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
                   message: t("form.endDate.errors.required"),
                 },
               })}
-              errors={path(["courses", index, "endDate"], errors)}
+              errors={errors["courses"]?.[index]?.endDate}
               size="large"
               Field={InputField}
             />
@@ -214,6 +189,7 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
           htmlType="submit"
           size="large"
           disabled={isSubmitDisabled(formState)}
+          loading={isSubmitLoading(formState)}
         >
           {tShared("save")}
         </Button>

@@ -11,7 +11,7 @@ const PersonalInfo = ({
   templateLanguage,
   personalInfo,
 }: TemplateProps & { personalInfo: PersonalInfoProps }) => {
-  const { about } = personalInfo;
+  const { aboutMe } = personalInfo;
 
   return (
     <section className="personal-info">
@@ -22,9 +22,9 @@ const PersonalInfo = ({
           </Title>
         </header>
       )}
-      {about && about[templateLanguage] && (
+      {aboutMe && aboutMe[templateLanguage] && (
         <Paragraph className="personal-info__about">
-          {about[templateLanguage]}
+          {aboutMe[templateLanguage]}
         </Paragraph>
       )}
     </section>
