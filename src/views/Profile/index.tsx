@@ -1,5 +1,4 @@
 "use client";
-import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 
@@ -29,32 +28,21 @@ const Profile = () => {
   const tProfile = useTranslations("Profile");
   const dispatch = useAppDispatch();
   const user = useAppSelector(userSelector) as {
-    avatarUrl: string;
+    avatarUrl?: string;
     firstName: string;
     lastName: string;
     userName: string;
   };
-  const { control, handleSubmit, formState, register, reset } =
-    useForm<FieldType>({
-      defaultValues: getProfileDefaultValues(user) as FieldType,
-      mode: "onChange",
-    });
+  const { control, handleSubmit, formState, register } = useForm<FieldType>({
+    defaultValues: getProfileDefaultValues(user) as FieldType,
+    mode: "onChange",
+  });
   const { errors } = formState;
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = { values };
     await dispatch(updateUserProfile(params));
   });
-
-  useEffect(() => {
-    const { avatarUrl, firstName, lastName, userName } = user;
-    if (avatarUrl) {
-      reset({ avatarUrl: avatarUrl ? [avatarUrl] : [] });
-    }
-    if (firstName || lastName || userName) {
-      reset({ firstName, lastName, userName });
-    }
-  }, [user, reset]);
 
   return (
     <div className="page__wrapper">
