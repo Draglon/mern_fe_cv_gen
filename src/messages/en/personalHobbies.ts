@@ -6,7 +6,9 @@ const personalHobbies = {
         "label": "Section title",
         "placeholder": "Input section title",
         "errors": {
-          "required": "Please input your section title!",
+          "pattern": "Please use only letters and spaces!",
+          "minLength": "The length must be at least {minLength} characters!",
+          "maxLength": "The length must be no more than {maxLength} characters!",
         }
       },
       "hobby": {

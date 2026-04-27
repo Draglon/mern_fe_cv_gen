@@ -1,23 +1,19 @@
 "use client";
+import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
-import { isEmpty, path, pathOr } from "ramda";
 
 import { Locales } from "@/lib/constants/props/locales";
-import { PersonalHobbiesProps } from "@/lib/constants/props/resume";
+import { MIN_INPUT_LENGTH, MAX_INPUT_LENGTH } from "@/lib/constants";
 import { REGEX_STRING } from "@/lib/constants/regex";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
-import { hobbiesByLocale } from "@/utils/personalHobbies";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalHobbies from "@/store/personalHobbies/operations/createPersonalHobbies";
 import updatePersonalHobbies from "@/store/personalHobbies/operations/updatePersonalHobbies";
-import {
-  userIdSelector,
-  personalHobbiesIdSelector,
-} from "@/store/auth/selectors";
-import { personalHobbiesSelector } from "@/store/personalHobbies/selectors";
+import { personalHobbiesIdSelector } from "@/store/auth/selectors";
+import { personalHobbiesByLocaleSelector } from "@/store/personalHobbies/selectors";
 
 import FormItem from "@/views/shared/antd/FormItem";
 import FormList from "@/views/shared/antd/FormList";
@@ -36,23 +32,19 @@ type FieldType = {
 };
 
 const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesFormProps) => {
+  const dispatch = useAppDispatch();
   const t = useTranslations("PersonalHobbies");
   const tShared = useTranslations("shared");
-  const dispatch = useAppDispatch();
-  const userId = useAppSelector(userIdSelector) as string;
   const personalHobbiesId = useAppSelector(personalHobbiesIdSelector) as string;
-  const personalHobbies = useAppSelector(
-    personalHobbiesSelector
-  ) as PersonalHobbiesProps;
-  const hobbies = hobbiesByLocale(personalHobbies, locale);
+  const defaultValues = useAppSelector((state) =>
+    personalHobbiesByLocaleSelector(state, locale)
+  );
 
-  const { control, handleSubmit, formState, register } = useForm<FieldType>({
-    values: {
-      sectionTitle: pathOr("", ["sectionTitle", locale], personalHobbies),
-      hobbies: !isEmpty(hobbies) ? hobbies : [{ hobby: "" }],
-    },
-    mode: "onChange",
-  });
+  const { control, handleSubmit, formState, register, reset } =
+    useForm<FieldType>({
+      defaultValues,
+      mode: "onChange",
+    });
   const { errors } = formState;
   const { fields, append, remove } = useFieldArray({
     control,
@@ -63,20 +55,21 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesFormProps) => {
     const params = {
       ...values,
       locale,
-      userId,
     };
 
     const data =
       isEdit && personalHobbiesId
-        ? await dispatch(
-            updatePersonalHobbies({ ...params, personalHobbiesId })
-          )
+        ? await dispatch(updatePersonalHobbies(params))
         : await dispatch(createPersonalHobbies(params));
 
     if (!data.payload) {
       return alert("Не удалось получить данные");
     }
   });
+
+  useEffect(() => {
+    reset(defaultValues);
+  }, [reset, defaultValues]);
 
   return (
     <Form
@@ -98,7 +91,19 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesFormProps) => {
           register={register("sectionTitle", {
             pattern: {
               value: REGEX_STRING,
-              message: t("form.sectionTitle.errors.required"),
+              message: t("form.sectionTitle.errors.pattern"),
+            },
+            minLength: {
+              value: MIN_INPUT_LENGTH,
+              message: t("form.sectionTitle.errors.minLength", {
+                minLength: MIN_INPUT_LENGTH,
+              }),
+            },
+            maxLength: {
+              value: MAX_INPUT_LENGTH,
+              message: t("form.sectionTitle.errors.maxLength", {
+                maxLength: MAX_INPUT_LENGTH,
+              }),
             },
           })}
           errors={errors["sectionTitle"]}
@@ -125,7 +130,7 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesFormProps) => {
                   message: t("form.hobby.errors.required"),
                 },
               })}
-              errors={path(["hobbies", index, "hobby"], errors)}
+              errors={errors["hobbies"]?.[index]?.hobby}
             />
             {fields.length > 1 && (
               <MinusCircleOutlined
