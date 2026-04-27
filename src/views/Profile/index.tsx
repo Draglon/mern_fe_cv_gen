@@ -104,7 +104,6 @@ const Profile = () => {
             label={tProfile("form.firstName.label")}
             placeholder={tProfile("form.firstName.placeholder")}
             register={register("firstName", {
-              required: tProfile("form.firstName.errors.required"),
               minLength: {
                 value: MIN_NAME_LENGTH,
                 message: tProfile("form.firstName.errors.minLength", {
@@ -131,7 +130,6 @@ const Profile = () => {
             label={tProfile("form.lastName.label")}
             placeholder={tProfile("form.lastName.placeholder")}
             register={register("lastName", {
-              required: tProfile("form.lastName.errors.required"),
               minLength: {
                 value: MIN_NAME_LENGTH,
                 message: tProfile("form.lastName.errors.minLength", {

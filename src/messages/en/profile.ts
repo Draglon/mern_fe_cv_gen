@@ -23,7 +23,6 @@ const profile = {
         "label": "Name",
         "placeholder": "Input name",
         "errors": {
-          "required": "Please input your name!",
           "minLength": "Must be at least {minLength} characters!",
           "maxLength": "Must be no more than {maxLength} characters!",
         },
@@ -32,12 +31,11 @@ const profile = {
         "label": "Surname",
         "placeholder": "Input surname",
         "errors": {
-          "required": "Please input your surname!",
           "minLength": "Must be at least {minLength} characters!",
           "maxLength": "Must be no more than {maxLength} characters!",
         },
       },
-      "submitButton": "Save",
+      "submitButton": "Save changes",
     },
   },
 };
