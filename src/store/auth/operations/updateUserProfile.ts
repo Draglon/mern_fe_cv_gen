@@ -1,10 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { isEmpty } from "ramda";
 
-import getBase64 from "@/utils/getBase64";
 import axios from "@/lib/axios";
 import { FieldType } from "@/lib/constants/props/profile";
 import { usersRoute } from "@/lib/apiRoutes";
+import { normalizeUrl } from "@/utils/normalizeUrl";
 import { userIdSelector } from "../selectors";
 import { UPDATE_USER_PROFILE } from "../types";
 import { RootState } from '../../store';
@@ -21,7 +20,7 @@ const updateUserProfileOperation = createAsyncThunk(
     const { values } = params;
 
     try {
-      const avatarUrl = !isEmpty(values.avatarUrl) ? await getBase64(values.avatarUrl[0]) : "";
+      const avatarUrl = await normalizeUrl(values.avatarUrl);
       const { data } = await axios.patch(usersRoute(userId), { ...values, avatarUrl });
 
       return data;

@@ -1,4 +1,5 @@
 "use client";
+import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 
@@ -12,6 +13,7 @@ import {
   MAX_NAME_LENGTH,
 } from "@/lib/constants";
 import { REGEX_NICK_NAME } from "@/lib/constants/regex";
+import isPresent from "@/utils/isPresent";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
 import updateUserProfile from "@/store/auth/operations/updateUserProfile";
@@ -29,20 +31,31 @@ const Profile = () => {
   const dispatch = useAppDispatch();
   const user = useAppSelector(userSelector) as {
     avatarUrl?: string;
-    firstName: string;
-    lastName: string;
+    firstName?: string;
+    lastName?: string;
     userName: string;
   };
-  const { control, handleSubmit, formState, register } = useForm<FieldType>({
-    defaultValues: getProfileDefaultValues(user) as FieldType,
-    mode: "onChange",
-  });
+  const defaultValues = getProfileDefaultValues(user) as FieldType;
+  const { control, handleSubmit, formState, register, reset } =
+    useForm<FieldType>({
+      defaultValues,
+      mode: "onChange",
+    });
   const { errors } = formState;
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = { values };
     await dispatch(updateUserProfile(params));
   });
+
+  useEffect(() => {
+    reset({
+      avatarUrl: isPresent(user.avatarUrl) ? [user.avatarUrl] : [],
+      firstName: user?.firstName ?? "",
+      lastName: user?.lastName ?? "",
+      userName: user?.userName ?? "",
+    });
+  }, [user, reset]);
 
   return (
     <div className="page__wrapper">
