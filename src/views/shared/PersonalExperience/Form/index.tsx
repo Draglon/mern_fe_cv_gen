@@ -5,7 +5,6 @@ import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
 
 import { REGEX_DIGITS, REGEX_STRING } from "@/lib/constants/regex";
-import { RESUME_EXPERIENCE_DEFAULT_VALUES } from "@/lib/constants/resumeExperience";
 import { Locales } from "@/lib/constants/props/locales";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
@@ -124,11 +123,7 @@ const PersonalExperienceForm = ({
         />
         <Divider />
       </div>
-      <FormList
-        name="experience"
-        prepend={prepend}
-        fieldValues={RESUME_EXPERIENCE_DEFAULT_VALUES}
-      >
+      <FormList name="experience" prepend={prepend} fieldValues={fields}>
         {fields.map((field, index) => (
           <Space key={field.id} align="baseline" className="form__list-space">
             <FormItem

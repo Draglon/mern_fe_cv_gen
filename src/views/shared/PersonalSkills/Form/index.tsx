@@ -95,7 +95,7 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
         />
         <Divider />
       </div>
-      <FormList name="skills" append={append}>
+      <FormList name="skills" append={append} fieldValues={fields}>
         {fields.map((field, index) => (
           <Space key={field.id} align="baseline" className="form__list-space">
             <FormItem

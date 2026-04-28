@@ -102,7 +102,7 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
         />
         <Divider />
       </div>
-      <FormList name="tools" append={append}>
+      <FormList name="tools" append={append} fieldValues={fields}>
         {fields.map((field, index) => (
           <Space key={field.id} align="baseline" className="form__list-space">
             <FormItem

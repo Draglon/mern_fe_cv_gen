@@ -96,7 +96,7 @@ const PersonalLanguagesForm = ({
         />
         <Divider />
       </div>
-      <FormList name="languages" append={append}>
+      <FormList name="languages" append={append} fieldValues={fields}>
         {fields.map((field, index) => {
           return (
             <Space key={field.id} align="baseline" className="form__list-space">
