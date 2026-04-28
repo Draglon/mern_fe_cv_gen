@@ -1,4 +1,4 @@
-export const RESUME_EXPERIENCE_DEFAULT_VALUES = {
+export const EXPERIENCE_DEFAULT_VALUES = {
   position: "",
   companyName: "",
   location: "",

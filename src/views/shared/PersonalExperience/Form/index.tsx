@@ -13,7 +13,7 @@ import createPersonalExperience from "@/store/personalExperience/operations/crea
 import updatePersonalExperience from "@/store/personalExperience/operations/updatePersonalExperience";
 import { personalExperienceByLocaleSelector } from "@/store/personalExperience/selectors";
 
-import FormItem from "@/views/shared/antd/FormItem";
+import FormItem from "@/views/shared/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
 import InputField from "@/views/shared/InputField";
@@ -162,7 +162,7 @@ const PersonalExperienceForm = ({
             />
             <FormItem
               name={[index, "location"]}
-              controlName={`experience[${index}].location`}
+              controlName={`experience.${index}.location`}
               control={control}
               className="form__item--field"
               label={t("form.location.label")}
@@ -179,7 +179,7 @@ const PersonalExperienceForm = ({
             />
             <FormItem
               name={[index, "placeOfWork"]}
-              controlName={`experience[${index}].placeOfWork`}
+              controlName={`experience.${index}.placeOfWork`}
               control={control}
               className="form__item--field"
               label={t("form.placeOfWork.label")}
@@ -196,7 +196,7 @@ const PersonalExperienceForm = ({
             />
             <FormItem
               name={[index, "workingTime"]}
-              controlName={`experience[${index}].workingTime`}
+              controlName={`experience.${index}.workingTime`}
               control={control}
               className="form__item--field"
               label={t("form.workingTime.label")}
@@ -213,7 +213,7 @@ const PersonalExperienceForm = ({
             />
             <FormItem
               name={[index, "startDate"]}
-              controlName={`experience[${index}].startDate`}
+              controlName={`experience.${index}.startDate`}
               control={control}
               className="form__item--field"
               label={t("form.startDate.label")}
@@ -230,7 +230,7 @@ const PersonalExperienceForm = ({
             />
             <FormItem
               name={[index, "endDate"]}
-              controlName={`experience[${index}].endDate`}
+              controlName={`experience.${index}.endDate`}
               control={control}
               className="form__item--field"
               label={t("form.endDate.label")}
@@ -247,7 +247,7 @@ const PersonalExperienceForm = ({
             />
             <FormItem
               name={[index, "description"]}
-              controlName={`experience[${index}].description`}
+              controlName={`experience.${index}.description`}
               control={control}
               className="form__item--field"
               label={t("form.description.label")}
@@ -264,7 +264,7 @@ const PersonalExperienceForm = ({
             />
             <FormItem
               name={[index, "skills"]}
-              controlName={`experience[${index}].skills`}
+              controlName={`experience.${index}.skills`}
               control={control}
               className="form__item--field"
               label={t("form.skills.label")}
@@ -290,21 +290,16 @@ const PersonalExperienceForm = ({
         ))}
       </FormList>
 
-      <FormItem
-        className="form__item--buttons d-flex justify-content-end"
-        name="buttons"
+      <Button
+        className="form__button"
+        type="primary"
+        htmlType="submit"
+        size="large"
+        disabled={isSubmitDisabled(formState)}
+        loading={isSubmitLoading(formState)}
       >
-        <Button
-          className="form__button"
-          type="primary"
-          htmlType="submit"
-          size="large"
-          disabled={isSubmitDisabled(formState)}
-          loading={isSubmitLoading(formState)}
-        >
-          {tShared("save")}
-        </Button>
-      </FormItem>
+        {tShared("save")}
+      </Button>
     </Form>
   );
 };

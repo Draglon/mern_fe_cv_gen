@@ -15,7 +15,7 @@ import createPersonalLanguages from "@/store/personalLanguages/operations/create
 import updatePersonalLanguages from "@/store/personalLanguages/operations/updatePersonalLanguages";
 import { personalLanguagesByLocaleSelector } from "@/store/personalLanguages/selectors";
 
-import FormItem from "@/views/shared/antd/FormItem";
+import FormItem from "@/views/shared/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
 import InputField from "@/views/shared/InputField";
@@ -149,21 +149,16 @@ const PersonalLanguagesForm = ({
         })}
       </FormList>
 
-      <FormItem
-        className="form__item--buttons d-flex justify-content-end"
-        name="buttons"
+      <Button
+        className="form__button"
+        type="primary"
+        htmlType="submit"
+        size="large"
+        disabled={isSubmitDisabled(formState)}
+        loading={isSubmitLoading(formState)}
       >
-        <Button
-          className="form__button"
-          type="primary"
-          htmlType="submit"
-          size="large"
-          disabled={isSubmitDisabled(formState)}
-          loading={isSubmitLoading(formState)}
-        >
-          {tShared("save")}
-        </Button>
-      </FormItem>
+        {tShared("save")}
+      </Button>
     </Form>
   );
 };

@@ -1,33 +1,29 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 
 import { FieldType } from "@/lib/constants/props/profile";
-import { getProfileDefaultValues } from "@/lib/constants/profile";
+import { getProfileDefaultValues } from "@/utils/profile";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import {
-  MIN_NIKE_NAME_LENGTH,
-  MAX_NIKE_NAME_LENGTH,
-  MIN_NAME_LENGTH,
-  MAX_NAME_LENGTH,
-} from "@/lib/constants";
-import { REGEX_NICK_NAME } from "@/lib/constants/regex";
 import isPresent from "@/utils/isPresent";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
+import { getUserNameRules } from "@/utils/forms/validations/userNameValidation";
+import { getNameRules } from "@/utils/forms/validations/nameValidation";
 import updateUserProfile from "@/store/auth/operations/updateUserProfile";
 import { userSelector } from "@/store/auth/selectors";
 
 import { Title } from "@/views/shared/antd/Typography";
 import Form from "@/views/shared/antd/Form";
-import FormItem from "@/views/shared/antd/FormItem";
+import FormItem from "@/views/shared/FormItem";
 import InputField from "@/views/shared/InputField";
 import UploadFileField from "@/views/shared/UploadFileField";
 import Button from "@/views/shared/antd/Button";
 
 const Profile = () => {
   const tProfile = useTranslations("Profile");
+  const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
   const user = useAppSelector(userSelector) as {
     avatarUrl?: string;
@@ -42,6 +38,8 @@ const Profile = () => {
       mode: "onChange",
     });
   const { errors } = formState;
+  const userNameRules = useMemo(() => getUserNameRules(tShared), [tShared]);
+  const nameRules = useMemo(() => getNameRules(tShared), [tShared]);
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = { values };
@@ -74,7 +72,7 @@ const Profile = () => {
             name="avatarUrl"
             controlName="avatarUrl"
             control={control}
-            label={tProfile("form.avatarUrl.label")}
+            label={tShared("form.avatarUrl.label")}
             Field={UploadFileField}
             size="large"
           />
@@ -83,27 +81,9 @@ const Profile = () => {
             name="userName"
             controlName="userName"
             control={control}
-            label={tProfile("form.userName.label")}
-            placeholder={tProfile("form.userName.placeholder")}
-            register={register("userName", {
-              required: tProfile("form.userName.errors.required"),
-              pattern: {
-                value: REGEX_NICK_NAME,
-                message: tProfile("form.userName.errors.pattern"),
-              },
-              minLength: {
-                value: MIN_NIKE_NAME_LENGTH,
-                message: tProfile("form.userName.errors.minLength", {
-                  minLength: MIN_NIKE_NAME_LENGTH,
-                }),
-              },
-              maxLength: {
-                value: MAX_NIKE_NAME_LENGTH,
-                message: tProfile("form.userName.errors.maxLength", {
-                  maxLength: MAX_NIKE_NAME_LENGTH,
-                }),
-              },
-            })}
+            label={tShared("form.userName.label")}
+            placeholder={tShared("form.userName.placeholder")}
+            rules={userNameRules}
             errors={errors["userName"]}
             Field={InputField}
             size="large"
@@ -114,22 +94,9 @@ const Profile = () => {
             name="firstName"
             controlName="firstName"
             control={control}
-            label={tProfile("form.firstName.label")}
-            placeholder={tProfile("form.firstName.placeholder")}
-            register={register("firstName", {
-              minLength: {
-                value: MIN_NAME_LENGTH,
-                message: tProfile("form.firstName.errors.minLength", {
-                  minLength: MIN_NAME_LENGTH,
-                }),
-              },
-              maxLength: {
-                value: MAX_NAME_LENGTH,
-                message: tProfile("form.firstName.errors.maxLength", {
-                  maxLength: MAX_NAME_LENGTH,
-                }),
-              },
-            })}
+            label={tShared("form.firstName.label")}
+            placeholder={tShared("form.firstName.placeholder")}
+            rules={nameRules}
             errors={errors["firstName"]}
             Field={InputField}
             size="large"
@@ -140,39 +107,24 @@ const Profile = () => {
             name="lastName"
             controlName="lastName"
             control={control}
-            label={tProfile("form.lastName.label")}
-            placeholder={tProfile("form.lastName.placeholder")}
-            register={register("lastName", {
-              minLength: {
-                value: MIN_NAME_LENGTH,
-                message: tProfile("form.lastName.errors.minLength", {
-                  minLength: MIN_NAME_LENGTH,
-                }),
-              },
-              maxLength: {
-                value: MAX_NAME_LENGTH,
-                message: tProfile("form.lastName.errors.maxLength", {
-                  maxLength: MAX_NAME_LENGTH,
-                }),
-              },
-            })}
+            label={tShared("form.lastName.label")}
+            placeholder={tShared("form.lastName.placeholder")}
+            rules={nameRules}
             errors={errors["lastName"]}
             Field={InputField}
             size="large"
           />
 
-          <FormItem name="buttons">
-            <Button
-              className="form__button"
-              type="primary"
-              htmlType="submit"
-              size="large"
-              disabled={isSubmitDisabled(formState)}
-              loading={isSubmitLoading(formState)}
-            >
-              {tProfile("form.submitButton")}
-            </Button>
-          </FormItem>
+          <Button
+            className="form__button"
+            type="primary"
+            htmlType="submit"
+            size="large"
+            disabled={isSubmitDisabled(formState)}
+            loading={isSubmitLoading(formState)}
+          >
+            {tShared("form.submitButton")}
+          </Button>
         </Form>
       </div>
     </div>

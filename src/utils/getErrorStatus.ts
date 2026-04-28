@@ -12,6 +12,8 @@ export const isErrorStatusForbidden = (error: unknown) => errorStatus(error) ===
 
 export const isErrorStatusNotFound = (error: unknown) => errorStatus(error) === HTTP_STATUSES.notFound;
 
+export const isErrorStatusConflict = (error: unknown) => errorStatus(error) === HTTP_STATUSES.conflict;
+
 export const isErrorStatusGone = (error: unknown) => errorStatus(error) === HTTP_STATUSES.gone;
 
 export const isErrorStatusUnprocessableEntity = (error: unknown) => errorStatus(error) === HTTP_STATUSES.unprocessableEntity;

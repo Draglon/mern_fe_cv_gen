@@ -13,7 +13,7 @@ import createPersonalEducation from "@/store/personalEducation/operations/create
 import updatePersonalEducation from "@/store/personalEducation/operations/updatePersonalEducation";
 import { personalEducationByLocaleSelector } from "@/store/personalEducation/selectors";
 
-import FormItem from "@/views/shared/antd/FormItem";
+import FormItem from "@/views/shared/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
 import InputField from "@/views/shared/InputField";
@@ -122,7 +122,7 @@ const PersonalEducationForm = ({
             />
             <FormItem
               name={[index, "degree"]}
-              controlName={`education[${index}].degree`}
+              controlName={`education.${index}.degree`}
               control={control}
               className="form__item--field"
               label={t("form.degree.label")}
@@ -139,7 +139,7 @@ const PersonalEducationForm = ({
             />
             <FormItem
               name={[index, "faculty"]}
-              controlName={`education[${index}].faculty`}
+              controlName={`education.${index}.faculty`}
               control={control}
               className="form__item--field"
               label={t("form.faculty.label")}
@@ -156,7 +156,7 @@ const PersonalEducationForm = ({
             />
             <FormItem
               name={[index, "specialization"]}
-              controlName={`education[${index}].specialization`}
+              controlName={`education.${index}.specialization`}
               control={control}
               className="form__item--field"
               label={t("form.specialization.label")}
@@ -173,7 +173,7 @@ const PersonalEducationForm = ({
             />
             <FormItem
               name={[index, "startDate"]}
-              controlName={`education[${index}].startDate`}
+              controlName={`education.${index}.startDate`}
               control={control}
               className="form__item--field"
               label={t("form.startDate.label")}
@@ -190,7 +190,7 @@ const PersonalEducationForm = ({
             />
             <FormItem
               name={[index, "endDate"]}
-              controlName={`education[${index}].endDate`}
+              controlName={`education.${index}.endDate`}
               control={control}
               className="form__item--field"
               label={t("form.endDate.label")}
@@ -215,21 +215,16 @@ const PersonalEducationForm = ({
         ))}
       </FormList>
 
-      <FormItem
-        className="form__item--buttons d-flex justify-content-end"
-        name="buttons"
+      <Button
+        className="form__button"
+        type="primary"
+        htmlType="submit"
+        size="large"
+        disabled={isSubmitDisabled(formState)}
+        loading={isSubmitLoading(formState)}
       >
-        <Button
-          className="form__button"
-          type="primary"
-          htmlType="submit"
-          size="large"
-          disabled={isSubmitDisabled(formState)}
-          loading={isSubmitLoading(formState)}
-        >
-          {tShared("save")}
-        </Button>
-      </FormItem>
+        {tShared("save")}
+      </Button>
     </Form>
   );
 };

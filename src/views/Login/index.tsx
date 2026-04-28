@@ -1,23 +1,16 @@
 "use client";
+import { useMemo } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { useForm } from "react-hook-form";
 
 import { useRouter } from "@/i18n/navigation";
-import {
-  MAX_EMAIL_LENGTH,
-  MIN_PASSWORD_LENGTH,
-  MAX_PASSWORD_LENGTH,
-} from "@/lib/constants";
-import {
-  REGEX_EMAIL,
-  REGEX_HAS_LETTERS,
-  REGEX_HAS_DIGITS,
-} from "@/lib/constants/regex";
 import { FieldType } from "@/lib/constants/props/login";
-import { LOGIN_DEFAULT_VALUES } from "@/lib/constants/login";
+import { LOGIN_DEFAULT_VALUES } from "@/lib/constants/forms/login";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
+import { getEmailRules } from "@/utils/forms/validations/emailValidation";
+import { getPasswordRules } from "@/utils/forms/validations/passwordValidation";
 import {
   isErrorStatusUnauthorized,
   isErrorStatusNotFound,
@@ -27,22 +20,25 @@ import { userErrorSelector } from "@/store/auth/selectors";
 
 import { Title, Paragraph } from "@/views/shared/antd/Typography";
 import Form from "@/views/shared/antd/Form";
-import FormItem from "@/views/shared/antd/FormItem";
+import FormItem from "@/views/shared/FormItem";
 import InputField from "@/views/shared/InputField";
 import Button from "@/views/shared/antd/Button";
 import Alert from "@/views/shared/antd/Alert";
 
 const Login = () => {
   const t = useTranslations("Login");
+  const tShared = useTranslations("shared");
   const locale = useLocale();
   const router = useRouter();
   const dispatch = useAppDispatch();
   const userError = useAppSelector(userErrorSelector);
-  const { control, handleSubmit, formState, register } = useForm<FieldType>({
+  const { control, handleSubmit, formState } = useForm<FieldType>({
     defaultValues: LOGIN_DEFAULT_VALUES,
     mode: "onChange",
   });
   const { errors } = formState;
+  const passwordRules = useMemo(() => getPasswordRules(tShared), [tShared]);
+  const emailRules = useMemo(() => getEmailRules(tShared), [tShared]);
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = { values, router, locale };
@@ -77,21 +73,9 @@ const Login = () => {
             type="email"
             controlName="email"
             control={control}
-            label={t("form.email.label")}
-            placeholder={t("form.email.placeholder")}
-            register={register("email", {
-              required: t("form.email.errors.required"),
-              pattern: {
-                value: REGEX_EMAIL,
-                message: t("form.email.errors.pattern"),
-              },
-              maxLength: {
-                value: MAX_EMAIL_LENGTH,
-                message: t("form.email.errors.maxLength", {
-                  maxLength: MAX_EMAIL_LENGTH,
-                }),
-              },
-            })}
+            label={tShared("form.email.label")}
+            placeholder={tShared("form.email.placeholder")}
+            rules={emailRules}
             errors={errors["email"]}
             Field={InputField}
             size="large"
@@ -102,52 +86,25 @@ const Login = () => {
             type="password"
             controlName="password"
             control={control}
-            label={t("form.password.label")}
-            placeholder={t("form.password.placeholder")}
-            register={register("password", {
-              required: {
-                value: true,
-                message: t("form.password.errors.required"),
-              },
-              minLength: {
-                value: MIN_PASSWORD_LENGTH,
-                message: t("form.password.errors.minLength", {
-                  minLength: MIN_PASSWORD_LENGTH,
-                }),
-              },
-              maxLength: {
-                value: MAX_PASSWORD_LENGTH,
-                message: t("form.password.errors.maxLength", {
-                  maxLength: MAX_PASSWORD_LENGTH,
-                }),
-              },
-              validate: {
-                hasUppercase: (value: string) =>
-                  REGEX_HAS_LETTERS.test(value) ||
-                  t("form.password.errors.uppercase"),
-                hasNumber: (value: string) =>
-                  REGEX_HAS_DIGITS.test(value) ||
-                  t("form.password.errors.number"),
-              },
-            })}
+            label={tShared("form.password.label")}
+            placeholder={tShared("form.password.placeholder")}
+            rules={passwordRules}
             errors={errors["password"]}
             Field={InputField}
             size="large"
           />
 
-          <FormItem name="buttons">
-            <Button
-              className="form__button"
-              type="primary"
-              htmlType="submit"
-              size="large"
-              block
-              disabled={isSubmitDisabled(formState)}
-              loading={isSubmitLoading(formState)}
-            >
-              {t("submitButton")}
-            </Button>
-          </FormItem>
+          <Button
+            className="form__button"
+            type="primary"
+            htmlType="submit"
+            size="large"
+            block
+            disabled={isSubmitDisabled(formState)}
+            loading={isSubmitLoading(formState)}
+          >
+            {t("submitButton")}
+          </Button>
         </Form>
       </div>
     </div>

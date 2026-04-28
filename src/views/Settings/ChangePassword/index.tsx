@@ -1,55 +1,75 @@
 "use client";
+import { useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 
-import { MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH } from "@/lib/constants";
-import { REGEX_HAS_DIGITS, REGEX_HAS_LETTERS } from "@/lib/constants/regex";
+import { FieldType } from "@/lib/constants/props/settings/changePassword";
+import { CHANGE_PASSWORD_DEFAULT_VALUES } from "@/lib/constants/forms/settings/changePassword";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
+import {
+  isErrorCodeIncorrectCurrentPassword,
+  isErrorCodeNewPasswordEqualsOld,
+} from "@/utils/getErrorCode";
+import {
+  getPasswordRules,
+  getConfirmPasswordRules,
+} from "@/utils/forms/validations/passwordValidation";
 import { useAppDispatch } from "@/store/hooks";
 import updateUserPassword from "@/store/auth/operations/updateUserPassword";
 
+import FormItem from "@/views/shared/FormItem";
 import { Title } from "@/views/shared/antd/Typography";
 import Button from "@/views/shared/antd/Button";
 import Form from "@/views/shared/antd/Form";
-import FormItem from "@/views/shared/antd/FormItem";
 import InputField from "@/views/shared/InputField";
-
-type FieldType = {
-  currentPassword: string;
-  newPassword: string;
-  confirmPassword: string;
-};
 
 const ChangePassword = () => {
   const dispatch = useAppDispatch();
   const t = useTranslations("Settings");
-  const { control, handleSubmit, formState, register, setError } =
-    useForm<FieldType>({
-      defaultValues: {
-        currentPassword: "",
-        newPassword: "",
-        confirmPassword: "",
-      },
-      mode: "onChange",
-    });
+  const tShared = useTranslations("shared");
+  const {
+    control,
+    handleSubmit,
+    formState,
+    setError,
+    reset,
+    getValues,
+    trigger,
+  } = useForm<FieldType>({
+    defaultValues: CHANGE_PASSWORD_DEFAULT_VALUES,
+    mode: "onChange",
+  });
   const { errors } = formState;
+  const passwordRules = useMemo(() => getPasswordRules(tShared), [tShared]);
+
+  const confirmPasswordRules = useMemo(
+    () =>
+      getConfirmPasswordRules({
+        t,
+        getValues,
+        trigger,
+      }),
+    [t, getValues, trigger]
+  );
 
   const onFinish = handleSubmit(async (values: FieldType) => {
-    const { currentPassword, newPassword, confirmPassword } = values;
-    const params = {
-      values: { currentPassword, newPassword },
-      form: { setError },
-      tSettings: t,
-    };
-
-    if (newPassword !== confirmPassword) {
-      setError("confirmPassword", {
-        type: "manual",
-        message: t("changePassword.form.password.errors.confirmPassword"),
-      });
-    } else {
-      await dispatch(updateUserPassword(params));
+    try {
+      await dispatch(updateUserPassword(values)).unwrap();
+      reset(CHANGE_PASSWORD_DEFAULT_VALUES);
+    } catch (error) {
+      if (isErrorCodeIncorrectCurrentPassword(error)) {
+        setError("currentPassword", {
+          type: "manual",
+          message: t("changePassword.form.password.errors.currentPassword"),
+        });
+      }
+      if (isErrorCodeNewPasswordEqualsOld(error)) {
+        setError("newPassword", {
+          type: "manual",
+          message: t("changePassword.form.password.errors.newPassword"),
+        });
+      }
     }
   });
 
@@ -73,33 +93,8 @@ const ChangePassword = () => {
           controlName="currentPassword"
           control={control}
           label={t("changePassword.form.password.label.currentPassword")}
-          placeholder={t("changePassword.form.password.placeholder")}
-          register={register("currentPassword", {
-            required: {
-              value: true,
-              message: t("changePassword.form.password.errors.required"),
-            },
-            minLength: {
-              value: MIN_PASSWORD_LENGTH,
-              message: t("changePassword.form.password.errors.minLength", {
-                minLength: MIN_PASSWORD_LENGTH,
-              }),
-            },
-            maxLength: {
-              value: MAX_PASSWORD_LENGTH,
-              message: t("changePassword.form.password.errors.maxLength", {
-                maxLength: MAX_PASSWORD_LENGTH,
-              }),
-            },
-            validate: {
-              hasUppercase: (value: string) =>
-                REGEX_HAS_LETTERS.test(value) ||
-                t("changePassword.form.password.errors.uppercase"),
-              hasNumber: (value: string) =>
-                REGEX_HAS_DIGITS.test(value) ||
-                t("changePassword.form.password.errors.number"),
-            },
-          })}
+          placeholder={tShared("form.password.placeholder")}
+          rules={passwordRules}
           errors={errors["currentPassword"]}
           Field={InputField}
           size="large"
@@ -111,33 +106,10 @@ const ChangePassword = () => {
           controlName="newPassword"
           control={control}
           label={t("changePassword.form.password.label.newPassword")}
-          placeholder={t("changePassword.form.password.placeholder")}
-          register={register("newPassword", {
-            required: {
-              value: true,
-              message: t("changePassword.form.password.errors.required"),
-            },
-            minLength: {
-              value: MIN_PASSWORD_LENGTH,
-              message: t("changePassword.form.password.errors.minLength", {
-                minLength: MIN_PASSWORD_LENGTH,
-              }),
-            },
-            maxLength: {
-              value: MAX_PASSWORD_LENGTH,
-              message: t("changePassword.form.password.errors.maxLength", {
-                maxLength: MAX_PASSWORD_LENGTH,
-              }),
-            },
-            validate: {
-              hasUppercase: (value: string) =>
-                REGEX_HAS_LETTERS.test(value) ||
-                t("changePassword.form.password.errors.uppercase"),
-              hasNumber: (value: string) =>
-                REGEX_HAS_DIGITS.test(value) ||
-                t("changePassword.form.password.errors.number"),
-            },
-          })}
+          placeholder={t(
+            "changePassword.form.password.placeholder.newPassword"
+          )}
+          rules={passwordRules}
           errors={errors["newPassword"]}
           Field={InputField}
           size="large"
@@ -149,51 +121,26 @@ const ChangePassword = () => {
           controlName="confirmPassword"
           control={control}
           label={t("changePassword.form.password.label.confirmPassword")}
-          placeholder={t("changePassword.form.password.placeholder")}
-          register={register("confirmPassword", {
-            required: {
-              value: true,
-              message: t("changePassword.form.password.errors.required"),
-            },
-            minLength: {
-              value: MIN_PASSWORD_LENGTH,
-              message: t("changePassword.form.password.errors.minLength", {
-                minLength: MIN_PASSWORD_LENGTH,
-              }),
-            },
-            maxLength: {
-              value: MAX_PASSWORD_LENGTH,
-              message: t("changePassword.form.password.errors.maxLength", {
-                maxLength: MAX_PASSWORD_LENGTH,
-              }),
-            },
-            validate: {
-              hasUppercase: (value: string) =>
-                REGEX_HAS_LETTERS.test(value) ||
-                t("changePassword.form.password.errors.uppercase"),
-              hasNumber: (value: string) =>
-                REGEX_HAS_DIGITS.test(value) ||
-                t("changePassword.form.password.errors.number"),
-            },
-          })}
+          placeholder={t(
+            "changePassword.form.password.placeholder.confirmPassword"
+          )}
+          rules={confirmPasswordRules}
           errors={errors["confirmPassword"]}
           Field={InputField}
           size="large"
         />
 
-        <FormItem name="buttons">
-          <Button
-            className="form__button"
-            type="primary"
-            htmlType="submit"
-            size="large"
-            block
-            disabled={isSubmitDisabled(formState)}
-            loading={isSubmitLoading(formState)}
-          >
-            {t("changePassword.form.submitButton")}
-          </Button>
-        </FormItem>
+        <Button
+          className="form__button"
+          type="primary"
+          htmlType="submit"
+          size="large"
+          block
+          disabled={isSubmitDisabled(formState)}
+          loading={isSubmitLoading(formState)}
+        >
+          {tShared("form.submitButton")}
+        </Button>
       </Form>
     </section>
   );

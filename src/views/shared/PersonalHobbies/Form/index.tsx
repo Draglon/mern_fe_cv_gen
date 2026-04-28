@@ -15,7 +15,7 @@ import createPersonalHobbies from "@/store/personalHobbies/operations/createPers
 import updatePersonalHobbies from "@/store/personalHobbies/operations/updatePersonalHobbies";
 import { personalHobbiesByLocaleSelector } from "@/store/personalHobbies/selectors";
 
-import FormItem from "@/views/shared/antd/FormItem";
+import FormItem from "@/views/shared/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
 import InputField from "@/views/shared/InputField";
@@ -140,21 +140,16 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesFormProps) => {
         ))}
       </FormList>
 
-      <FormItem
-        className="form__item--buttons d-flex justify-content-end"
-        name="buttons"
+      <Button
+        className="form__button"
+        type="primary"
+        htmlType="submit"
+        size="large"
+        disabled={isSubmitDisabled(formState)}
+        loading={isSubmitLoading(formState)}
       >
-        <Button
-          className="form__button"
-          type="primary"
-          htmlType="submit"
-          size="large"
-          disabled={isSubmitDisabled(formState)}
-          loading={isSubmitLoading(formState)}
-        >
-          {tShared("save")}
-        </Button>
-      </FormItem>
+        {tShared("save")}
+      </Button>
     </Form>
   );
 };

@@ -1,15 +1,15 @@
 "use client";
+import { useMemo } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { useForm } from "react-hook-form";
 
 import { useRouter } from "@/i18n/navigation";
-import { MIN_NIKE_NAME_LENGTH, MAX_NIKE_NAME_LENGTH } from "@/lib/constants";
-import { REGEX_NICK_NAME } from "@/lib/constants/regex";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import {
   isErrorStatusForbidden,
   isErrorStatusNotFound,
 } from "@/utils/getErrorStatus";
+import { getUserNameRules } from "@/utils/forms/validations/userNameValidation";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { hideModal as hideModalAction } from "@/store/modal/actions";
 import deleteAccount from "@/store/settings/operations/deleteAccount";
@@ -22,7 +22,7 @@ import {
 import Modal from "@/views/shared/antd/Modal";
 import Alert from "@/views/shared/antd/Alert";
 import Form from "@/views/shared/antd/Form";
-import FormItem from "@/views/shared/antd/FormItem";
+import FormItem from "@/views/shared/FormItem";
 import InputField from "@/views/shared/InputField";
 import Button from "@/views/shared/antd/Button";
 
@@ -33,17 +33,19 @@ export type FieldType = {
 const DeleteAccountModal = () => {
   const dispatch = useAppDispatch();
   const t = useTranslations("Settings");
+  const tShared = useTranslations("shared");
   const locale = useLocale();
   const router = useRouter();
   const userId = useAppSelector(userIdSelector);
   const isLoading = useAppSelector(isLoadingSelector);
   const settingsError = useAppSelector(settingsErrorSelector);
 
-  const { control, handleSubmit, formState, register } = useForm<FieldType>({
+  const { control, handleSubmit, formState } = useForm<FieldType>({
     defaultValues: { userName: "" },
     mode: "onChange",
   });
   const { errors } = formState;
+  const userNameRules = useMemo(() => getUserNameRules(tShared), [tShared]);
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = { userId, values, router, locale };
@@ -81,44 +83,24 @@ const DeleteAccountModal = () => {
           controlName="userName"
           control={control}
           label={t("deleteAccount.modal.form.userName.label")}
-          placeholder={t("deleteAccount.modal.form.userName.placeholder")}
-          register={register("userName", {
-            required: t("deleteAccount.modal.form.userName.errors.required"),
-            pattern: {
-              value: REGEX_NICK_NAME,
-              message: t("deleteAccount.modal.form.userName.errors.pattern"),
-            },
-            minLength: {
-              value: MIN_NIKE_NAME_LENGTH,
-              message: t("deleteAccount.modal.form.userName.errors.minLength", {
-                minLength: MIN_NIKE_NAME_LENGTH,
-              }),
-            },
-            maxLength: {
-              value: MAX_NIKE_NAME_LENGTH,
-              message: t("deleteAccount.modal.form.userName.errors.maxLength", {
-                maxLength: MAX_NIKE_NAME_LENGTH,
-              }),
-            },
-          })}
+          placeholder={tShared("form.userName.placeholder")}
+          rules={userNameRules}
           errors={errors["userName"]}
           Field={InputField}
           size="large"
         />
 
-        <FormItem name="buttons" className="text-right">
-          <Button
-            className="form__button"
-            color="danger"
-            type="primary"
-            htmlType="submit"
-            size="large"
-            disabled={isSubmitDisabled(formState)}
-            loading={isLoading}
-          >
-            {t("deleteAccount.modal.form.submitButton")}
-          </Button>
-        </FormItem>
+        <Button
+          className="form__button"
+          color="danger"
+          type="primary"
+          htmlType="submit"
+          size="large"
+          disabled={isSubmitDisabled(formState)}
+          loading={isLoading}
+        >
+          {t("deleteAccount.modal.form.submitButton")}
+        </Button>
       </Form>
     </Modal>
   );

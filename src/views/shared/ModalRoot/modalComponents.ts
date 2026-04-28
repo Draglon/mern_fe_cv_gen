@@ -1,5 +1,5 @@
 import ConfirmModal from "@/views/shared/ConfirmModal";
-import DeleteAccountModal from "@/views/Settings/DeleteAccountModal";
+import DeleteAccountModal from "@/views/Settings/DeleteAccount/DeleteAccountModal";
 
 const MODAL_COMPONENTS: any = {
   CONFIRM_MODAL: ConfirmModal,

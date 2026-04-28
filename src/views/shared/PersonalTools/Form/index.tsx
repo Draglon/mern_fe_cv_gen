@@ -15,7 +15,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalTools from "@/store/personalTools/operations/createPersonalTools";
 import updatePersonalTools from "@/store/personalTools/operations/updatePersonalTools";
 import { personalToolsByLocaleSelector } from "@/store/personalTools/selectors";
-import FormItem from "@/views/shared/antd/FormItem";
+import FormItem from "@/views/shared/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
 import InputField from "@/views/shared/InputField";
@@ -158,21 +158,16 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
         ))}
       </FormList>
 
-      <FormItem
-        className="form__item--buttons d-flex justify-content-end"
-        name="buttons"
+      <Button
+        className="form__button"
+        type="primary"
+        htmlType="submit"
+        size="large"
+        disabled={isSubmitDisabled(formState)}
+        loading={isSubmitLoading(formState)}
       >
-        <Button
-          className="form__button"
-          type="primary"
-          htmlType="submit"
-          size="large"
-          disabled={isSubmitDisabled(formState)}
-          loading={isSubmitLoading(formState)}
-        >
-          {tShared("save")}
-        </Button>
-      </FormItem>
+        {tShared("save")}
+      </Button>
     </Form>
   );
 };

@@ -18,7 +18,13 @@ export const HTTP_STATUSES = {
   unauthorized: 401,
   forbidden: 403,
   notFound: 404,
+  conflict: 409,
   gone: 410,
   unprocessableEntity: 422,
   tooManyRequests: 429,
 }
+
+export const HTTP_CODES = {
+  incorrectCurrentPassword: "INCORRECT_CURRENT_PASSWORD",
+  newPasswordEqualsOld: "NEW_PASSWORD_EQUALS_OLD",
+};

@@ -13,7 +13,7 @@ import createPersonalInfo from "@/store/personalInfo/operations/createPersonalIn
 import updatePersonalInfo from "@/store/personalInfo/operations/updatePersonalInfo";
 import { personalInfoByLocaleSelector } from "@/store/personalInfo/selectors";
 
-import FormItem from "@/views/shared/antd/FormItem";
+import FormItem from "@/views/shared/FormItem";
 import InputField from "@/views/shared/InputField";
 import TextAreaField from "@/views/shared/TextAreaField";
 import UploadFileField from "@/views/shared/UploadFileField";
@@ -260,21 +260,16 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
         </div>
       </div>
 
-      <FormItem
-        className="form__item--buttons d-flex justify-content-end"
-        name="buttons"
+      <Button
+        className="form__button"
+        type="primary"
+        htmlType="submit"
+        size="large"
+        disabled={isSubmitDisabled(formState)}
+        loading={isSubmitLoading(formState)}
       >
-        <Button
-          className="form__button"
-          type="primary"
-          htmlType="submit"
-          size="large"
-          disabled={isSubmitDisabled(formState)}
-          loading={isSubmitLoading(formState)}
-        >
-          {tShared("save")}
-        </Button>
-      </FormItem>
+        {tShared("save")}
+      </Button>
     </Form>
   );
 };
