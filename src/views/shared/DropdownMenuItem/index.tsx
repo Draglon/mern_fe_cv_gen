@@ -1,6 +1,5 @@
 import clsx from "clsx";
 import { ReactNode } from "react";
-import { LinkProps } from "next/link";
 
 import { Link } from "@/i18n/navigation";
 import Button from "@/views/shared/antd/Button";
@@ -18,6 +17,7 @@ type DropdownMenuItemProps = {
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
   children?: ReactNode;
+  onClick?: () => void;
 };
 
 const DropdownMenuItem = ({
@@ -32,9 +32,10 @@ const DropdownMenuItem = ({
   iconLeft,
   iconRight,
   children,
+  onClick,
   ...restProps
-}: DropdownMenuItemProps & LinkProps) => {
-  if (isNextLink) {
+}: DropdownMenuItemProps) => {
+  if (isNextLink && href) {
     return (
       <Link href={href} target={target} legacyBehavior={legacyBehavior}>
         <Button
@@ -57,7 +58,7 @@ const DropdownMenuItem = ({
     );
   }
 
-  if (isLink) {
+  if (isLink && href) {
     <a
       id={id}
       href={href}
@@ -82,6 +83,7 @@ const DropdownMenuItem = ({
       role="button"
       type="text"
       color="default"
+      onClick={onClick}
       {...restProps}
     >
       <DropdownMenuItemContent

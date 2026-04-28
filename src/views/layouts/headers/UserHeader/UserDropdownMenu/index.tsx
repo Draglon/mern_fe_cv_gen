@@ -1,18 +1,19 @@
 "use client";
+import { useTranslations, useLocale } from "next-intl";
 import {
   UserOutlined,
   SettingOutlined,
   LogoutOutlined,
 } from "@ant-design/icons";
-import { useTranslations, useLocale } from "next-intl";
 
 import { redirect } from "@/i18n/navigation";
 import { homeRoute, profileRoute, settingsRoute } from "@/lib/routes";
 import { useAppDispatch } from "@/store/hooks";
 import { getPersistor } from "@/store/storeInstance";
 import { logout as logoutAction } from "@/store/auth/actions";
-import Avatar from "@/views/shared/antd/Avatar";
+
 import DropdownMenu from "@/views/shared/DropdownMenu";
+import DropdownMenuIcon from "@/views/shared/DropdownMenuIcon";
 import DropdownMenuItem from "@/views/shared/DropdownMenuItem";
 
 const UserDropdownMenu = () => {
@@ -31,7 +32,7 @@ const UserDropdownMenu = () => {
 
   return (
     <DropdownMenu
-      icon={<Avatar size="large" icon={<UserOutlined />} />}
+      icon={<DropdownMenuIcon />}
       items={[
         {
           key: "1",
@@ -63,11 +64,7 @@ const UserDropdownMenu = () => {
         {
           key: "3",
           label: (
-            <DropdownMenuItem
-              href={""}
-              iconLeft={<LogoutOutlined />}
-              onClick={onLogout}
-            >
+            <DropdownMenuItem iconLeft={<LogoutOutlined />} onClick={onLogout}>
               {t("logout")}
             </DropdownMenuItem>
           ),

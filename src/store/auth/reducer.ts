@@ -76,13 +76,7 @@ export const authSlice = createSlice({
       state.error = null;
     });
     builder.addCase(updateUserProfile.fulfilled, (state, action) => {
-      state.data = {
-        ...state.data,
-        avatarUrl: action.payload.avatarUrl,
-        firstName: action.payload.firstName,
-        lastName: action.payload.lastName,
-        userName: action.payload.userName,
-      };
+      state.data = action.payload;
       state.status = "loaded";
       state.error = null;
     });
@@ -98,7 +92,7 @@ export const authSlice = createSlice({
     builder.addCase(updateUserEmail.fulfilled, (state, action) => {
       state.data = {
         ...state.data,
-        email: action.payload.email,
+        ...action.payload,
       };
       state.status = "loaded";
       state.error = null;
