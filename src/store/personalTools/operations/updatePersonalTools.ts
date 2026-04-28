@@ -14,7 +14,7 @@ type ParamsType = {
   values: {
     sectionTitle?: string,
     tools: {
-      name: string;
+      tool: string;
       level: string;
       visible: boolean;
     }[];

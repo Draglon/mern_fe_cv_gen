@@ -9,6 +9,7 @@ type PersonalPhotoProps = {
 };
 
 const PersonalPhoto = ({ src, alt, width, height }: PersonalPhotoProps) => {
+  console.log("src: ", src);
   return (
     <div className="personal-photo">
       <Image
