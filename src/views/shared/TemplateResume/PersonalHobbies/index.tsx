@@ -10,15 +10,12 @@ type HobbyProps = {
 };
 
 type HobbiesProps = {
-  templateLanguage: Locales;
+  templateLocale: Locales;
   personalHobbies: PersonalHobbiesProps;
 };
 
-const PersonalHobbies = ({
-  templateLanguage,
-  personalHobbies,
-}: HobbiesProps) => {
-  const hobbies = hobbiesByLocale(personalHobbies, templateLanguage);
+const PersonalHobbies = ({ templateLocale, personalHobbies }: HobbiesProps) => {
+  const hobbies = hobbiesByLocale(personalHobbies, templateLocale);
 
   return (
     <div className="personal-interests">

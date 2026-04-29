@@ -5,7 +5,7 @@ import { PersonalInfoProps } from "@/lib/constants/props/resume";
 
 export const personalInfoByLocale = (personalInfo: PersonalInfoProps, locale: Locales) => ({
   sectionTitle: pathOr("", ["sectionTitle", locale], personalInfo),
-  userUrl: personalInfo?.userUrl ? [personalInfo?.userUrl] : [],
+  userUrl: personalInfo?.userUrl?.[locale] ? [personalInfo.userUrl[locale]] : [],
   firstName: pathOr("", ["firstName", locale], personalInfo),
   lastName: pathOr("", ["lastName", locale], personalInfo),
   email: pathOr("", ["email", locale], personalInfo),

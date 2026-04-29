@@ -12,12 +12,12 @@ type SkillItemProps = {
 };
 
 type SkillsProps = {
-  templateLanguage: Locales;
+  templateLocale: Locales;
   personalSkills: PersonalSkillsProps;
 };
 
-const PersonalSkills = ({ templateLanguage, personalSkills }: SkillsProps) => {
-  const skills = skillsByLocale(personalSkills, templateLanguage);
+const PersonalSkills = ({ templateLocale, personalSkills }: SkillsProps) => {
+  const skills = skillsByLocale(personalSkills, templateLocale);
 
   return (
     <div className="personal-skills">

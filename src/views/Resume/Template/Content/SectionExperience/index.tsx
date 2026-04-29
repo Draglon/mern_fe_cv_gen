@@ -10,16 +10,16 @@ import Section from "@/views/shared/TemplateResume/Section";
 import PersonalExperience from "@/views/shared/TemplateResume/PersonalExperience";
 
 type SectionExperienceProps = {
-  templateLanguage: Locales;
+  templateLocale: Locales;
   personalExperience: PersonalExperienceProps;
 };
 
 const SectionExperience = ({
   personalExperience,
-  templateLanguage,
+  templateLocale,
 }: SectionExperienceProps) => {
   const t = useTranslations("Template");
-  const experience = experienceByLocale(personalExperience, templateLanguage);
+  const experience = experienceByLocale(personalExperience, templateLocale);
   const lastPlacesOfWorks = pathOr(
     undefined,
     ["lastPlacesOfWorks"],
@@ -33,14 +33,14 @@ const SectionExperience = ({
   return (
     <Section
       title={pathOr(
-        t("personalExperience.title", { locale: templateLanguage }),
-        ["sectionTitle", templateLanguage],
+        t("personalExperience.title", { locale: templateLocale }),
+        ["sectionTitle", templateLocale],
         personalExperience
       )}
       text={
         lastPlacesOfWorks
           ? t("personalExperience.text", {
-              locale: templateLanguage,
+              locale: templateLocale,
               number: lastPlacesOfWorks,
             })
           : undefined
@@ -48,7 +48,7 @@ const SectionExperience = ({
     >
       <PersonalExperience
         experience={formattedExperience}
-        templateLanguage={templateLanguage}
+        templateLocale={templateLocale}
       />
     </Section>
   );

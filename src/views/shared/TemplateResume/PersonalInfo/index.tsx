@@ -8,7 +8,7 @@ import { Title, Paragraph } from "@/views/shared/antd/Typography";
 
 const PersonalInfo = ({
   template,
-  templateLanguage,
+  templateLocale,
   personalInfo,
 }: TemplateProps & { personalInfo: PersonalInfoProps }) => {
   const { aboutMe } = personalInfo;
@@ -18,13 +18,13 @@ const PersonalInfo = ({
       {equals(template, TEMPLATES.standford) && (
         <header className="personal-info__header">
           <Title className="personal-info__fullname" level={1}>
-            {profileName(personalInfo, templateLanguage)}
+            {profileName(personalInfo, templateLocale)}
           </Title>
         </header>
       )}
-      {aboutMe && aboutMe[templateLanguage] && (
+      {aboutMe && aboutMe[templateLocale] && (
         <Paragraph className="personal-info__about">
-          {aboutMe[templateLanguage]}
+          {aboutMe[templateLocale]}
         </Paragraph>
       )}
     </section>

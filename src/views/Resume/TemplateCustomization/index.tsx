@@ -9,13 +9,13 @@ import { LOCALES, FLAGS } from "@/lib/constants/locales";
 import { Title, Text } from "@/views/shared/antd/Typography";
 
 type ResumeTemplateCustomizationProps = {
-  activeTemplateLanguage: string;
-  setTemplateLanguage: Dispatch<SetStateAction<Locales>>;
+  activeTemplateLocale: string;
+  setTemplateLocale: Dispatch<SetStateAction<Locales>>;
 };
 
 const ResumeTemplateCustomization = ({
-  activeTemplateLanguage,
-  setTemplateLanguage,
+  activeTemplateLocale,
+  setTemplateLocale,
 }: ResumeTemplateCustomizationProps) => {
   const t = useTranslations("ResumeCustomization");
 
@@ -34,9 +34,9 @@ const ResumeTemplateCustomization = ({
               key={locale}
               className={clsx("template-settings__section-item", {
                 "template-settings__section-item--active":
-                  activeTemplateLanguage === locale,
+                  activeTemplateLocale === locale,
               })}
-              onClick={() => setTemplateLanguage(locale as Locales)}
+              onClick={() => setTemplateLocale(locale as Locales)}
               role="button"
             >
               <Image

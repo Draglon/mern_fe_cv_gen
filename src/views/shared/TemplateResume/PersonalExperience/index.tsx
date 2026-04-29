@@ -20,13 +20,13 @@ type Experience = {
 };
 
 type ExperiencesProps = {
-  templateLanguage: Locales;
+  templateLocale: Locales;
   experience: Experience[];
 };
 
 const PersonalExperience = ({
   experience,
-  templateLanguage,
+  templateLocale,
 }: ExperiencesProps) => {
   const t = useTranslations("Template");
 
@@ -67,7 +67,7 @@ const PersonalExperience = ({
           {!isEmpty(item?.skills) && (
             <div className="skills">
               <Text className="skills__label" strong>
-                {t("skills", { locale: templateLanguage })}
+                {t("skills", { locale: templateLocale })}
               </Text>
               <ul className="skills__list">
                 {item.skills.map((skill: string) => (

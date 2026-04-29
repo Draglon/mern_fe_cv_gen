@@ -5,19 +5,19 @@ import { PersonalInfoProps } from "@/lib/constants/props/resume";
 import { Title } from "@/views/shared/antd/Typography";
 
 type PersonalFullNameProps = {
-  templateLanguage: Locales;
+  templateLocale: Locales;
   personalInfo: PersonalInfoProps;
 };
 
 const PersonalFullName = ({
   personalInfo,
-  templateLanguage,
+  templateLocale,
 }: PersonalFullNameProps) => {
   return (
     <section className="personal-fullname">
       <header className="personal-fullname__header">
         <Title className="personal-fullname__title" level={2}>
-          {profileName(personalInfo, templateLanguage)}
+          {profileName(personalInfo, templateLocale)}
         </Title>
       </header>
     </section>

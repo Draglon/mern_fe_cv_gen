@@ -13,16 +13,16 @@ type Language = {
 };
 
 type LanguagesProps = {
-  templateLanguage: Locales;
+  templateLocale: Locales;
   personalLanguages: PersonalLanguagesProps;
 };
 
 const PersonalLanguages = ({
-  templateLanguage,
+  templateLocale,
   personalLanguages,
 }: LanguagesProps) => {
   const t = useTranslations("Template");
-  const languages = languagesByLocale(personalLanguages, templateLanguage);
+  const languages = languagesByLocale(personalLanguages, templateLocale);
 
   return (
     <div className="personal-languages">
@@ -34,7 +34,7 @@ const PersonalLanguages = ({
             </Text>
             <Text className="personal-languages__text section__text">
               {t(`personalLanguages.level.${level}`, {
-                locale: templateLanguage,
+                locale: templateLocale,
               })}
             </Text>
           </li>

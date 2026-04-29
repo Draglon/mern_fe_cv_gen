@@ -12,12 +12,12 @@ type ToolItemProps = {
 };
 
 type ToolsProps = {
-  templateLanguage: Locales;
+  templateLocale: Locales;
   personalTools: PersonalToolsProps;
 };
 
-const PersonalTools = ({ templateLanguage, personalTools }: ToolsProps) => {
-  const tools = toolsByLocale(personalTools, templateLanguage);
+const PersonalTools = ({ templateLocale, personalTools }: ToolsProps) => {
+  const tools = toolsByLocale(personalTools, templateLocale);
 
   return (
     <div className="personal-tools">

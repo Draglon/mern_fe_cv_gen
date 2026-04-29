@@ -63,12 +63,10 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
       locale,
     };
 
-    const data = isEdit
-      ? await dispatch(updatePersonalInfo(params))
-      : await dispatch(createPersonalInfo(params));
-
-    if (!data?.payload) {
-      return alert("Не удалось обновить данные");
+    if (isEdit) {
+      await dispatch(updatePersonalInfo(params));
+    } else {
+      await dispatch(createPersonalInfo(params));
     }
   });
 

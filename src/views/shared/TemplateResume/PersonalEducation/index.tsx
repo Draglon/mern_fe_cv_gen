@@ -17,16 +17,16 @@ type EducationProps = {
 };
 
 type EducationsProps = {
-  templateLanguage: Locales;
+  templateLocale: Locales;
   personalEducation: PersonalEducationProps;
 };
 
 const PersonalEducation = ({
-  templateLanguage,
+  templateLocale,
   personalEducation,
 }: EducationsProps) => {
   const t = useTranslations("Template");
-  const education = educationByLocale(personalEducation, templateLanguage);
+  const education = educationByLocale(personalEducation, templateLocale);
 
   return (
     <>
@@ -47,13 +47,13 @@ const PersonalEducation = ({
           </Paragraph>
           <Paragraph className="section__paragraph">
             <Text className="section__text" strong>
-              {t("faculty", { locale: templateLanguage })}
+              {t("faculty", { locale: templateLocale })}
             </Text>
             <Text className="section__text">{item.faculty}</Text>
           </Paragraph>
           <Paragraph className="section__paragraph">
             <Text className="section__text" strong>
-              {t("specialty", { locale: templateLanguage })}
+              {t("specialty", { locale: templateLocale })}
             </Text>
             <Text className="section__text">{item.specialization}</Text>
           </Paragraph>

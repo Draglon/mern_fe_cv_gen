@@ -1,6 +1,8 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { path, pathOr } from 'ramda';
 
+import isPresent from '@/utils/isPresent';
+
 import { RootState } from '../store';
 
 const getState = (state: RootState) => state;
@@ -10,5 +12,5 @@ export const personalHobbiesSelector = createSelector(getState, path(["personalH
 
 export const personalHobbiesByLocaleSelector = createSelector([(_, locale) => locale, personalHobbiesSelector], (locale, data) => ({
   sectionTitle: pathOr("", ["sectionTitle", locale], data),
-  hobbies: data?.hobbies?.[locale] ? data.hobbies[locale] : [{ hobby: "" }],
+  hobbies: isPresent(data?.hobbies?.[locale]) ? data.hobbies[locale] : [{ hobby: "" }],
 }));

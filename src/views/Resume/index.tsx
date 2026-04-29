@@ -9,7 +9,7 @@ import TemplateCustomization from "@/views/Resume/TemplateCustomization";
 
 const Resume = () => {
   const [template, setTemplate] = useState<string>(TEMPLATES.edinburghPlus);
-  const [templateLanguage, setTemplateLanguage] = useState<Locales>("en");
+  const [templateLocale, setTemplateLocale] = useState<Locales>("en");
 
   return (
     <>
@@ -17,12 +17,12 @@ const Resume = () => {
         <TemplatesList setTemplate={setTemplate} activeTemplate={template} />
       </div>
       <div className="page__content">
-        <Template template={template} templateLanguage={templateLanguage} />
+        <Template template={template} templateLocale={templateLocale} />
       </div>
       <div className="page__sidebar page__sidebar--right">
         <TemplateCustomization
-          activeTemplateLanguage={templateLanguage}
-          setTemplateLanguage={setTemplateLanguage}
+          activeTemplateLocale={templateLocale}
+          setTemplateLocale={setTemplateLocale}
         />
       </div>
     </>

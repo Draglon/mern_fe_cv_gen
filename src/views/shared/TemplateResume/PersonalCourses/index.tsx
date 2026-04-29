@@ -13,15 +13,12 @@ type Course = {
 };
 
 type CoursesProps = {
-  templateLanguage: Locales;
+  templateLocale: Locales;
   personalCourses: PersonalCoursesProps;
 };
 
-const PersonalCourses = ({
-  templateLanguage,
-  personalCourses,
-}: CoursesProps) => {
-  const courses = coursesByLocale(personalCourses, templateLanguage);
+const PersonalCourses = ({ templateLocale, personalCourses }: CoursesProps) => {
+  const courses = coursesByLocale(personalCourses, templateLocale);
 
   return (
     <>

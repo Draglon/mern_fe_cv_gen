@@ -11,7 +11,7 @@ import { resumeSelector } from "@/store/resume/selectors";
 import Sidebar from "@/views/Resume/Template/Sidebar";
 import Content from "@/views/Resume/Template/Content";
 
-const ResumeTemplate = ({ template, templateLanguage }: TemplateProps) => {
+const ResumeTemplate = ({ template, templateLocale }: TemplateProps) => {
   const dispatch = useAppDispatch();
   const userId: string = useAppSelector(userIdSelector);
   const resume = useAppSelector(resumeSelector) as ResumeProps;
@@ -28,12 +28,12 @@ const ResumeTemplate = ({ template, templateLanguage }: TemplateProps) => {
         <>
           <Sidebar
             template={template}
-            templateLanguage={templateLanguage}
+            templateLocale={templateLocale}
             resume={resume}
           />
           <Content
             template={template}
-            templateLanguage={templateLanguage}
+            templateLocale={templateLocale}
             resume={resume}
           />
         </>
