@@ -1,9 +1,10 @@
 "use client";
 import { useMemo } from "react";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 
 import { useRouter } from "@/i18n/navigation";
+import { resumeRoute } from "@/lib/routes";
 import { FieldType } from "@/lib/constants/props/login";
 import { LOGIN_DEFAULT_VALUES } from "@/lib/constants/forms/login";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
@@ -28,7 +29,6 @@ import Alert from "@/views/shared/antd/Alert";
 const Login = () => {
   const t = useTranslations("Login");
   const tShared = useTranslations("shared");
-  const locale = useLocale();
   const router = useRouter();
   const dispatch = useAppDispatch();
   const userError = useAppSelector(userErrorSelector);
@@ -36,13 +36,20 @@ const Login = () => {
     defaultValues: LOGIN_DEFAULT_VALUES,
     mode: "onChange",
   });
-  const { errors } = formState;
   const passwordRules = useMemo(() => getPasswordRules(tShared), [tShared]);
   const emailRules = useMemo(() => getEmailRules(tShared), [tShared]);
 
   const onFinish = handleSubmit(async (values: FieldType) => {
-    const params = { values, router, locale };
-    await dispatch(fetchAuth(params));
+    try {
+      const data = await dispatch(fetchAuth(values)).unwrap();
+
+      if (data?.token) {
+        localStorage.setItem("token", data.token);
+        router.push(resumeRoute);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   });
 
   return (
@@ -61,6 +68,7 @@ const Login = () => {
             />
           )}
         </header>
+
         <Form
           name="login"
           className="form--small"
@@ -76,7 +84,6 @@ const Login = () => {
             label={tShared("form.email.label")}
             placeholder={tShared("form.email.placeholder")}
             rules={emailRules}
-            errors={errors["email"]}
             Field={InputField}
             size="large"
           />
@@ -89,7 +96,6 @@ const Login = () => {
             label={tShared("form.password.label")}
             placeholder={tShared("form.password.placeholder")}
             rules={passwordRules}
-            errors={errors["password"]}
             Field={InputField}
             size="large"
           />

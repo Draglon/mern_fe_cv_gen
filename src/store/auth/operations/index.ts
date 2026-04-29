@@ -5,6 +5,7 @@ import fetchUser from "./fetchUser";
 import updateUserProfile from "./updateUserProfile";
 import updateUserEmail from "./updateUserEmail";
 import updateUserPassword from "./updateUserPassword";
+import deleteAccount from "./deleteAccount";
 
 const authOperations = [
   fetchAuth,
@@ -13,6 +14,7 @@ const authOperations = [
   updateUserProfile,
   updateUserEmail,
   updateUserPassword,
+  deleteAccount,
 ];
 
 export default authOperations;

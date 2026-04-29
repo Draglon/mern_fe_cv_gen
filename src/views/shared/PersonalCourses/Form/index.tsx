@@ -48,7 +48,6 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
     defaultValues,
     mode: "onChange",
   });
-  const { errors } = formState;
   const { fields, append, remove } = useFieldArray({
     control,
     name: "courses",
@@ -92,7 +91,6 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
               message: t("form.sectionTitle.errors.required"),
             },
           })}
-          errors={errors["sectionTitle"]}
           Field={InputField}
           size="large"
         />
@@ -114,7 +112,6 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
                   message: t("form.course.errors.required"),
                 },
               })}
-              errors={errors["courses"]?.[index]?.course}
               size="large"
               Field={InputField}
             />
@@ -131,7 +128,6 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
                   message: t("form.description.errors.required"),
                 },
               })}
-              errors={errors["courses"]?.[index]?.description}
               size="large"
               Field={TextAreaField}
             />
@@ -148,7 +144,6 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
                   message: t("form.startDate.errors.required"),
                 },
               })}
-              errors={errors["courses"]?.[index]?.startDate}
               size="large"
               Field={InputField}
             />
@@ -165,7 +160,6 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
                   message: t("form.endDate.errors.required"),
                 },
               })}
-              errors={errors["courses"]?.[index]?.endDate}
               size="large"
               Field={InputField}
             />

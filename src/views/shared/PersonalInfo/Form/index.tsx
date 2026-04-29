@@ -52,7 +52,6 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
     defaultValues,
     mode: "onChange",
   });
-  const { errors } = formState;
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const userUrl = await normalizeUrl(values.userUrl);
@@ -96,7 +95,6 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
                 message: t("form.sectionTitle.errors.required"),
               },
             })}
-            errors={errors["sectionTitle"]}
             Field={InputField}
             size="large"
           />
@@ -129,7 +127,6 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
                   message: t("form.firstName.errors.minLength"),
                 },
               })}
-              errors={errors["firstName"]}
               Field={InputField}
               size="large"
             />
@@ -150,7 +147,6 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
                   message: t("form.lastName.errors.minLength"),
                 },
               })}
-              errors={errors["lastName"]}
               Field={InputField}
               size="large"
             />
@@ -168,7 +164,6 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
                 message: t("form.aboutMe.errors.required"),
               },
             })}
-            errors={errors["aboutMe"]}
             Field={TextAreaField}
             size="large"
           />
@@ -189,7 +184,6 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
                 message: t("form.email.errors.required"),
               },
             })}
-            errors={errors["email"]}
             Field={InputField}
             size="large"
           />

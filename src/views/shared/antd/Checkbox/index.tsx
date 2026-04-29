@@ -6,14 +6,14 @@ import type { CheckboxProps } from "antd";
 const Checkbox = ({
   className,
   children,
-  defaultValue = false,
+  value = false,
   ...rest
-}: CheckboxProps & { defaultValue?: boolean }) => {
+}: CheckboxProps) => {
   return (
     <AntdCheckbox
       className={clsx("checkbox", className)}
-      checked={defaultValue}
-      defaultChecked={defaultValue}
+      checked={value}
+      defaultChecked={value}
       {...rest}
     >
       {children}

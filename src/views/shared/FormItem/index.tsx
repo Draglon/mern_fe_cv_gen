@@ -9,7 +9,6 @@ type Props<T extends FieldValues> = {
   label?: string;
   Field: React.ComponentType<any>;
   children?: React.ReactNode;
-  errors?: any;
   [key: string]: any;
 };
 
@@ -20,7 +19,6 @@ const FormItem = <T extends FieldValues>({
   label,
   Field,
   rules,
-  errors,
   ...restProps
 }: Props<T>) => {
   return (
@@ -32,11 +30,7 @@ const FormItem = <T extends FieldValues>({
         <div className={clsx("form__item", className)}>
           {label && <label>{label}</label>}
 
-          <Field
-            {...field}
-            {...restProps}
-            errors={fieldState.error || errors}
-          />
+          <Field {...field} {...restProps} errors={fieldState.error} />
         </div>
       )}
     />

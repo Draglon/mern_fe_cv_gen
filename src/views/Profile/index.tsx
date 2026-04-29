@@ -4,15 +4,13 @@ import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 
 import { FieldType } from "@/lib/constants/props/profile";
-import { getProfileDefaultValues } from "@/utils/profile";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import isPresent from "@/utils/isPresent";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
 import { getUserNameRules } from "@/utils/forms/validations/userNameValidation";
 import { getNameRules } from "@/utils/forms/validations/nameValidation";
 import updateUserProfile from "@/store/auth/operations/updateUserProfile";
-import { userSelector } from "@/store/auth/selectors";
+import { userProfileSelector } from "@/store/auth/selectors";
 
 import { Title } from "@/views/shared/antd/Typography";
 import Form from "@/views/shared/antd/Form";
@@ -25,35 +23,30 @@ const Profile = () => {
   const tProfile = useTranslations("Profile");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
-  const user = useAppSelector(userSelector) as {
-    avatarUrl?: string;
-    firstName?: string;
-    lastName?: string;
-    userName: string;
-  };
-  const defaultValues = getProfileDefaultValues(user) as FieldType;
-  const { control, handleSubmit, formState, register, reset } =
-    useForm<FieldType>({
-      defaultValues,
-      mode: "onChange",
-    });
-  const { errors } = formState;
+  const defaultValues = useAppSelector(userProfileSelector) as FieldType;
+  const { control, handleSubmit, formState, reset } = useForm<FieldType>({
+    defaultValues,
+    mode: "onChange",
+  });
   const userNameRules = useMemo(() => getUserNameRules(tShared), [tShared]);
-  const nameRules = useMemo(() => getNameRules(tShared), [tShared]);
+  const firstNameRules = useMemo(
+    () => getNameRules(tShared, "firstName"),
+    [tShared]
+  );
+  const lastNameRules = useMemo(
+    () => getNameRules(tShared, "lastName"),
+    [tShared]
+  );
 
   const onFinish = handleSubmit(async (values: FieldType) => {
-    const params = { values };
-    await dispatch(updateUserProfile(params));
+    await dispatch(updateUserProfile(values)).unwrap();
   });
 
   useEffect(() => {
-    reset({
-      avatarUrl: isPresent(user.avatarUrl) ? [user.avatarUrl] : [],
-      firstName: user?.firstName ?? "",
-      lastName: user?.lastName ?? "",
-      userName: user?.userName ?? "",
-    });
-  }, [user, reset]);
+    if (defaultValues) {
+      reset(defaultValues);
+    }
+  }, [defaultValues, reset]);
 
   return (
     <div className="page__wrapper">
@@ -84,7 +77,6 @@ const Profile = () => {
             label={tShared("form.userName.label")}
             placeholder={tShared("form.userName.placeholder")}
             rules={userNameRules}
-            errors={errors["userName"]}
             Field={InputField}
             size="large"
           />
@@ -96,8 +88,7 @@ const Profile = () => {
             control={control}
             label={tShared("form.firstName.label")}
             placeholder={tShared("form.firstName.placeholder")}
-            rules={nameRules}
-            errors={errors["firstName"]}
+            rules={firstNameRules}
             Field={InputField}
             size="large"
           />
@@ -109,8 +100,7 @@ const Profile = () => {
             control={control}
             label={tShared("form.lastName.label")}
             placeholder={tShared("form.lastName.placeholder")}
-            rules={nameRules}
-            errors={errors["lastName"]}
+            rules={lastNameRules}
             Field={InputField}
             size="large"
           />

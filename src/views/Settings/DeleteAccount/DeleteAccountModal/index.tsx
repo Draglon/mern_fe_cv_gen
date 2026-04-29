@@ -1,23 +1,25 @@
 "use client";
 import { useMemo } from "react";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 
 import { useRouter } from "@/i18n/navigation";
+import { homeRoute } from "@/lib/routes";
+import { FieldType } from "@/lib/constants/props/settings/deleteAccount";
+import { DELETE_ACCOUNT_DEFAULT_VALUES } from "@/lib/constants/forms/settings/deleteAccount";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
+import isSubmitLoading from "@/utils/isSubmitLoading";
+import clearAuthSession from "@/utils/clearAuthSession";
 import {
   isErrorStatusForbidden,
   isErrorStatusNotFound,
 } from "@/utils/getErrorStatus";
 import { getUserNameRules } from "@/utils/forms/validations/userNameValidation";
+
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { hideModal as hideModalAction } from "@/store/modal/actions";
-import deleteAccount from "@/store/settings/operations/deleteAccount";
-import { userIdSelector } from "@/store/auth/selectors";
-import {
-  isLoadingSelector,
-  settingsErrorSelector,
-} from "@/store/settings/selectors";
+import deleteAccount from "@/store/auth/operations/deleteAccount";
+import { userErrorSelector } from "@/store/auth/selectors";
 
 import Modal from "@/views/shared/antd/Modal";
 import Alert from "@/views/shared/antd/Alert";
@@ -26,30 +28,30 @@ import FormItem from "@/views/shared/FormItem";
 import InputField from "@/views/shared/InputField";
 import Button from "@/views/shared/antd/Button";
 
-export type FieldType = {
-  userName: string;
-};
-
 const DeleteAccountModal = () => {
   const dispatch = useAppDispatch();
   const t = useTranslations("Settings");
   const tShared = useTranslations("shared");
-  const locale = useLocale();
   const router = useRouter();
-  const userId = useAppSelector(userIdSelector);
-  const isLoading = useAppSelector(isLoadingSelector);
-  const settingsError = useAppSelector(settingsErrorSelector);
+  const userError = useAppSelector(userErrorSelector);
 
   const { control, handleSubmit, formState } = useForm<FieldType>({
-    defaultValues: { userName: "" },
+    defaultValues: DELETE_ACCOUNT_DEFAULT_VALUES,
     mode: "onChange",
   });
-  const { errors } = formState;
   const userNameRules = useMemo(() => getUserNameRules(tShared), [tShared]);
 
   const onFinish = handleSubmit(async (values: FieldType) => {
-    const params = { userId, values, router, locale };
-    await dispatch(deleteAccount(params));
+    try {
+      await dispatch(deleteAccount(values)).unwrap();
+      await clearAuthSession(dispatch);
+
+      dispatch(hideModalAction());
+
+      router.push(homeRoute);
+    } catch (error) {
+      console.log(error);
+    }
   });
 
   const onCloseModal = () => {
@@ -63,8 +65,8 @@ const DeleteAccountModal = () => {
       onCancel={onCloseModal}
       footer={null}
     >
-      {(isErrorStatusNotFound(settingsError) ||
-        isErrorStatusForbidden(settingsError)) && (
+      {(isErrorStatusNotFound(userError) ||
+        isErrorStatusForbidden(userError)) && (
         <Alert
           className="mb-16"
           type="error"
@@ -85,7 +87,6 @@ const DeleteAccountModal = () => {
           label={t("deleteAccount.modal.form.userName.label")}
           placeholder={tShared("form.userName.placeholder")}
           rules={userNameRules}
-          errors={errors["userName"]}
           Field={InputField}
           size="large"
         />
@@ -97,7 +98,7 @@ const DeleteAccountModal = () => {
           htmlType="submit"
           size="large"
           disabled={isSubmitDisabled(formState)}
-          loading={isLoading}
+          loading={isSubmitLoading(formState)}
         >
           {t("deleteAccount.modal.form.submitButton")}
         </Button>

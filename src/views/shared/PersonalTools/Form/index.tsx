@@ -3,7 +3,6 @@ import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
-import { path } from "ramda";
 
 import { redirect } from "@/i18n/navigation";
 import { resumeRoute } from "@/lib/routes";
@@ -52,7 +51,6 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
     control,
     name: "tools",
   });
-  const { errors } = formState;
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
@@ -96,7 +94,6 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
               message: t("form.sectionTitle.errors.required"),
             },
           })}
-          errors={errors["sectionTitle"]}
           Field={InputField}
           size="large"
         />
@@ -120,7 +117,6 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
                   message: t("form.tool.errors.required"),
                 },
               })}
-              errors={path(["tools", index, "tool"], errors)}
             />
             <FormItem
               name={[index, "level"]}
@@ -135,7 +131,6 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
                   message: t("form.level.errors.required"),
                 },
               })}
-              errors={path(["tools", index, "level"], errors)}
               size="large"
               Field={InputField}
             />

@@ -3,7 +3,6 @@ import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
-import { path } from "ramda";
 
 import { Locales } from "@/lib/constants/props/locales";
 import { REGEX_STRING } from "@/lib/constants/regex";
@@ -49,7 +48,6 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
     control,
     name: "skills",
   });
-  const { errors } = formState;
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
@@ -89,7 +87,6 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
               message: t("form.sectionTitle.errors.required"),
             },
           })}
-          errors={errors["sectionTitle"]}
           Field={InputField}
           size="large"
         />
@@ -113,7 +110,6 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
                   message: t("form.skill.errors.required"),
                 },
               })}
-              errors={path(["skills", index, "skill"], errors)}
             />
             <FormItem
               name={[index, "level"]}
@@ -130,7 +126,6 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
                   message: t("form.level.errors.required"),
                 },
               })}
-              errors={path(["skills", index, "level"], errors)}
             />
             <FormItem
               name={[index, "visible"]}

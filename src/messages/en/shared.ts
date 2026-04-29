@@ -48,18 +48,11 @@ const shared = {
           "maxLength": "Must be no more than {maxLength} characters!",
         }
       },
-      "name": {
-        "label": "Name",
-        "placeholder": "Input name",
-        "errors": {
-          "minLength": "Must be at least {minLength} characters!",
-          "maxLength": "Must be no more than {maxLength} characters!",
-        },
-      },
       "firstName": {
         "label": "Name",
         "placeholder": "Input name",
         "errors": {
+          "pattern": "Only letters, hyphens, and apostrophes are allowed",
           "minLength": "Must be at least {minLength} characters!",
           "maxLength": "Must be no more than {maxLength} characters!",
         },
@@ -68,6 +61,7 @@ const shared = {
         "label": "Surname",
         "placeholder": "Input surname",
         "errors": {
+          "pattern": "Only letters, hyphens, and apostrophes are allowed",
           "minLength": "Must be at least {minLength} characters!",
           "maxLength": "Must be no more than {maxLength} characters!",
         },

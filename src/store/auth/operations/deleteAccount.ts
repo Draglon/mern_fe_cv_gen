@@ -1,22 +1,20 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import axios from "@/lib/axios";
-import { usersEmailRoute } from "@/lib/apiRoutes";
-import { ParamsType } from "@/lib/constants/props/settings/changeEmail";
+import { usersRoute } from "@/lib/apiRoutes";
+import { ParamsType } from "@/lib/constants/props/settings/deleteAccount";
 import { userIdSelector } from "../selectors";
-import { UPDATE_USER_EMAIL } from "../types";
+import { DELETE_ACCOUNT } from "../types";
 import { RootState } from '../../store';
 
-const updateUserEmailOperation = createAsyncThunk(
-  UPDATE_USER_EMAIL,
+const deleteAccountOperation = createAsyncThunk(
+  DELETE_ACCOUNT,
   async (params: ParamsType, { getState, rejectWithValue }) => {
     const state = getState() as RootState;
     const userId = userIdSelector(state);
 
     try {
-      const { data } = await axios.patch(usersEmailRoute(userId), params);
-
-      return data;
+      await axios.delete(usersRoute(userId), { data: params });
     } catch (error: unknown) {
       console.log("error: ", error);
       return rejectWithValue(error);
@@ -24,4 +22,4 @@ const updateUserEmailOperation = createAsyncThunk(
   },
 );
 
-export default updateUserEmailOperation;
+export default deleteAccountOperation;

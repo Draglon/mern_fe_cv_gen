@@ -50,7 +50,6 @@ const PersonalEducationForm = ({
     defaultValues,
     mode: "onChange",
   });
-  const { errors } = formState;
   const { fields, append, remove } = useFieldArray({
     control,
     name: "education",
@@ -94,7 +93,6 @@ const PersonalEducationForm = ({
               message: t("form.sectionTitle.errors.required"),
             },
           })}
-          errors={errors["sectionTitle"]}
           Field={InputField}
           size="large"
         />
@@ -116,7 +114,6 @@ const PersonalEducationForm = ({
                   message: t("form.institute.errors.required"),
                 },
               })}
-              errors={errors["education"]?.[index]?.institute}
               size="large"
               Field={InputField}
             />
@@ -133,7 +130,6 @@ const PersonalEducationForm = ({
                   message: t("form.degree.errors.required"),
                 },
               })}
-              errors={errors["education"]?.[index]?.degree}
               size="large"
               Field={InputField}
             />
@@ -150,7 +146,6 @@ const PersonalEducationForm = ({
                   message: t("form.faculty.errors.required"),
                 },
               })}
-              errors={errors["education"]?.[index]?.faculty}
               size="large"
               Field={InputField}
             />
@@ -167,7 +162,6 @@ const PersonalEducationForm = ({
                   message: t("form.specialization.errors.required"),
                 },
               })}
-              errors={errors["education"]?.[index]?.specialization}
               size="large"
               Field={InputField}
             />
@@ -184,7 +178,6 @@ const PersonalEducationForm = ({
                   message: t("form.startDate.errors.required"),
                 },
               })}
-              errors={errors["education"]?.[index]?.startDate}
               size="large"
               Field={InputField}
             />
@@ -201,7 +194,6 @@ const PersonalEducationForm = ({
                   message: t("form.endDate.errors.required"),
                 },
               })}
-              errors={errors["education"]?.[index]?.endDate}
               size="large"
               Field={InputField}
             />

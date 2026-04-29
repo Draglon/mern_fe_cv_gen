@@ -1,14 +1,16 @@
 "use client";
 import { useMemo } from "react";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 
 import { useRouter } from "@/i18n/navigation";
+import { loginRoute } from "@/lib/routes";
 import { FieldType } from "@/lib/constants/props/signup";
 import { SIGNUP_DEFAULT_VALUES } from "@/lib/constants/forms/registration";
 import { useAppDispatch } from "@/store/hooks";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
+import { isErrorStatusUnauthorized } from "@/utils/getErrorStatus";
 import { getUserNameRules } from "@/utils/forms/validations/userNameValidation";
 import { getEmailRules } from "@/utils/forms/validations/emailValidation";
 import { getPasswordRules } from "@/utils/forms/validations/passwordValidation";
@@ -21,7 +23,6 @@ import InputField from "@/views/shared/InputField";
 import Button from "@/views/shared/antd/Button";
 
 const Registration = () => {
-  const locale = useLocale();
   const router = useRouter();
   const tRegistration = useTranslations("Registration");
   const tShared = useTranslations("shared");
@@ -31,20 +32,25 @@ const Registration = () => {
       defaultValues: SIGNUP_DEFAULT_VALUES,
       mode: "onChange",
     });
-  const { errors } = formState;
   const userNameRules = useMemo(() => getUserNameRules(tShared), [tShared]);
   const passwordRules = useMemo(() => getPasswordRules(tShared), [tShared]);
   const emailRules = useMemo(() => getEmailRules(tShared), [tShared]);
 
   const onFinish = handleSubmit(async (values: FieldType) => {
-    const params = {
-      values,
-      form: { setError },
-      router,
-      locale,
-      t: tRegistration,
-    };
-    await dispatch(fetchRegister(params));
+    try {
+      const data = await dispatch(fetchRegister(values)).unwrap();
+
+      if (data?.token) {
+        router.push(loginRoute);
+      }
+    } catch (error) {
+      if (isErrorStatusUnauthorized(error)) {
+        setError("email", {
+          type: "manual",
+          message: tShared("form.email.errors.alreadyExists"),
+        });
+      }
+    }
   });
 
   return (
@@ -72,7 +78,6 @@ const Registration = () => {
             label={tShared("form.userName.label")}
             placeholder={tShared("form.userName.placeholder")}
             rules={userNameRules}
-            errors={errors["userName"]}
             Field={InputField}
             size="large"
           />
@@ -85,7 +90,6 @@ const Registration = () => {
             label={tShared("form.email.label")}
             placeholder={tShared("form.email.placeholder")}
             rules={emailRules}
-            errors={errors["email"]}
             Field={InputField}
             size="large"
           />
@@ -98,7 +102,6 @@ const Registration = () => {
             label={tShared("form.password.label")}
             placeholder={tShared("form.password.placeholder")}
             rules={passwordRules}
-            errors={errors["password"]}
             Field={InputField}
             size="large"
           />

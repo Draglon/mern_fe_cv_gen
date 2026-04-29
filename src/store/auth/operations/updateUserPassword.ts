@@ -2,14 +2,10 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import axios from "@/lib/axios";
 import { usersPasswordRoute } from "@/lib/apiRoutes";
+import { ParamsType } from "@/lib/constants/props/settings/changePassword";
 import { userIdSelector } from "../selectors";
 import { UPDATE_USER_PASSWORD } from "../types";
 import { RootState } from '../../store';
-
-type ParamsType = {
-  currentPassword: string;
-  newPassword: string;
-};
 
 const updateUserPasswordOperation = createAsyncThunk(
   UPDATE_USER_PASSWORD,

@@ -5,6 +5,7 @@ import fetchRegister from "./operations/fetchRegister";
 import fetchUser from "./operations/fetchUser";
 import updateUserProfile from "./operations/updateUserProfile";
 import updateUserEmail from "./operations/updateUserEmail";
+import deleteAccount from "./operations/deleteAccount";
 
 interface IAuthState {
   data: any | null;
@@ -76,7 +77,10 @@ export const authSlice = createSlice({
       state.error = null;
     });
     builder.addCase(updateUserProfile.fulfilled, (state, action) => {
-      state.data = action.payload;
+      state.data = {
+        ...state.data,
+        ...action.payload,
+      };
       state.status = "loaded";
       state.error = null;
     });
@@ -98,6 +102,19 @@ export const authSlice = createSlice({
       state.error = null;
     });
     builder.addCase(updateUserEmail.rejected, (state, action) => {
+      state.status = "error";
+      state.error = action.payload;
+    });
+
+    builder.addCase(deleteAccount.pending, (state) => {
+      state.status = "loading";
+      state.error = null;
+    });
+    builder.addCase(deleteAccount.fulfilled, (state) => {
+      state.status = "loaded";
+      state.error = null;
+    });
+    builder.addCase(deleteAccount.rejected, (state, action) => {
       state.status = "error";
       state.error = action.payload;
     });

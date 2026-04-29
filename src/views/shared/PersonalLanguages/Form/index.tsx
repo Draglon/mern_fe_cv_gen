@@ -3,7 +3,6 @@ import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
-import { path } from "ramda";
 
 import { Locales } from "@/lib/constants/props/locales";
 import { REGEX_STRING } from "@/lib/constants/regex";
@@ -46,7 +45,6 @@ const PersonalLanguagesForm = ({
     defaultValues,
     mode: "onChange",
   });
-  const { errors } = formState;
   const { fields, append, remove } = useFieldArray({
     control,
     name: "languages",
@@ -90,7 +88,6 @@ const PersonalLanguagesForm = ({
               message: t("form.sectionTitle.errors.required"),
             },
           })}
-          errors={errors["sectionTitle"]}
           Field={InputField}
           size="large"
         />
@@ -115,7 +112,6 @@ const PersonalLanguagesForm = ({
                     message: t("form.language.errors.required"),
                   },
                 })}
-                errors={path(["languages", index, "language"], errors)}
               />
               <FormItem
                 className="form__item--field"
@@ -136,7 +132,6 @@ const PersonalLanguagesForm = ({
                     message: t("form.languageLevel.errors.required"),
                   },
                 })}
-                errors={path(["languages", index, "level"], errors)}
               />
               {fields.length > 1 && (
                 <MinusCircleOutlined

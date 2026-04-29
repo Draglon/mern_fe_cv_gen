@@ -44,7 +44,6 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesFormProps) => {
       defaultValues,
       mode: "onChange",
     });
-  const { errors } = formState;
   const { fields, append, remove } = useFieldArray({
     control,
     name: "hobbies",
@@ -104,7 +103,6 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesFormProps) => {
               }),
             },
           })}
-          errors={errors["sectionTitle"]}
           Field={InputField}
           size="large"
         />
@@ -128,7 +126,6 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesFormProps) => {
                   message: t("form.hobby.errors.required"),
                 },
               })}
-              errors={errors["hobbies"]?.[index]?.hobby}
             />
             {fields.length > 1 && (
               <MinusCircleOutlined

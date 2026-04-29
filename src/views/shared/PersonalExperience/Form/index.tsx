@@ -56,7 +56,6 @@ const PersonalExperienceForm = ({
     defaultValues,
     mode: "onChange",
   });
-  const { errors } = formState;
   const { fields, prepend, remove } = useFieldArray({
     control,
     name: "experience",
@@ -100,7 +99,6 @@ const PersonalExperienceForm = ({
               message: t("form.sectionTitle.errors.required"),
             },
           })}
-          errors={errors["sectionTitle"]}
           Field={InputField}
           size="large"
         />
@@ -117,7 +115,6 @@ const PersonalExperienceForm = ({
               message: t("form.lastPlacesOfWorks.errors.required"),
             },
           })}
-          errors={errors["lastPlacesOfWorks"]}
           Field={InputField}
           size="large"
         />
@@ -139,7 +136,6 @@ const PersonalExperienceForm = ({
                   message: t("form.position.errors.required"),
                 },
               })}
-              errors={errors["experience"]?.[index]?.position}
               size="large"
               Field={InputField}
             />
@@ -156,7 +152,6 @@ const PersonalExperienceForm = ({
                   message: t("form.companyName.errors.required"),
                 },
               })}
-              errors={errors["experience"]?.[index]?.companyName}
               size="large"
               Field={InputField}
             />
@@ -173,7 +168,6 @@ const PersonalExperienceForm = ({
                   message: t("form.location.errors.required"),
                 },
               })}
-              errors={errors["experience"]?.[index]?.location}
               size="large"
               Field={InputField}
             />
@@ -190,7 +184,6 @@ const PersonalExperienceForm = ({
                   message: t("form.placeOfWork.errors.required"),
                 },
               })}
-              errors={errors["experience"]?.[index]?.placeOfWork}
               size="large"
               Field={InputField}
             />
@@ -207,7 +200,6 @@ const PersonalExperienceForm = ({
                   message: t("form.workingTime.errors.required"),
                 },
               })}
-              errors={errors["experience"]?.[index]?.workingTime}
               size="large"
               Field={InputField}
             />
@@ -224,7 +216,6 @@ const PersonalExperienceForm = ({
                   message: t("form.startDate.errors.required"),
                 },
               })}
-              errors={errors["experience"]?.[index]?.startDate}
               size="large"
               Field={InputField}
             />
@@ -241,7 +232,6 @@ const PersonalExperienceForm = ({
                   message: t("form.endDate.errors.required"),
                 },
               })}
-              errors={errors["experience"]?.[index]?.endDate}
               size="large"
               Field={InputField}
             />
@@ -258,7 +248,6 @@ const PersonalExperienceForm = ({
                   message: t("form.description.errors.required"),
                 },
               })}
-              errors={errors["experience"]?.[index]?.description}
               size="large"
               Field={TextAreaField}
             />
@@ -275,7 +264,6 @@ const PersonalExperienceForm = ({
                   message: t("form.skills.errors.required"),
                 },
               })}
-              errors={errors["experience"]?.[index]?.skills}
               mode="tags"
               size="large"
               Field={SelectField}

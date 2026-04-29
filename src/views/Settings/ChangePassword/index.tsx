@@ -40,9 +40,7 @@ const ChangePassword = () => {
     defaultValues: CHANGE_PASSWORD_DEFAULT_VALUES,
     mode: "onChange",
   });
-  const { errors } = formState;
   const passwordRules = useMemo(() => getPasswordRules(tShared), [tShared]);
-
   const confirmPasswordRules = useMemo(
     () =>
       getConfirmPasswordRules({
@@ -95,7 +93,6 @@ const ChangePassword = () => {
           label={t("changePassword.form.password.label.currentPassword")}
           placeholder={tShared("form.password.placeholder")}
           rules={passwordRules}
-          errors={errors["currentPassword"]}
           Field={InputField}
           size="large"
         />
@@ -110,7 +107,6 @@ const ChangePassword = () => {
             "changePassword.form.password.placeholder.newPassword"
           )}
           rules={passwordRules}
-          errors={errors["newPassword"]}
           Field={InputField}
           size="large"
         />
@@ -125,7 +121,6 @@ const ChangePassword = () => {
             "changePassword.form.password.placeholder.confirmPassword"
           )}
           rules={confirmPasswordRules}
-          errors={errors["confirmPassword"]}
           Field={InputField}
           size="large"
         />

@@ -1,6 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { path, prop } from 'ramda';
 
+import { getProfileDefaultValues } from "@/utils/profile";
 import { RootState } from '../store';
 
 const getState = (state: RootState) => state;
@@ -13,6 +14,8 @@ export const userErrorSelector = createSelector(getState, path(["auth", "error"]
 export const userIdSelector = createSelector(userSelector, prop("_id"));
 export const userEmailSelector = createSelector(userSelector, prop("email"));
 export const userNameSelector = createSelector(userSelector, prop("userName"));
+export const userProfileSelector = createSelector(userSelector, getProfileDefaultValues);
+
 export const personalInfoIdSelector = createSelector(userSelector, prop("personalInfoId"));
 export const personalHobbiesIdSelector = createSelector(userSelector, prop("personalHobbiesId"));
 export const personalLanguagesIdSelector = createSelector(userSelector, prop("personalLanguagesId"));

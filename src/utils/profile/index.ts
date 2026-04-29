@@ -3,9 +3,9 @@ import { propOr } from "ramda";
 import isPresent from "@/utils/isPresent";
 
 type UserType = {
-  avatarUrl?: string;
-  firstName?: string;
-  lastName?: string;
+  avatarUrl: string;
+  firstName: string;
+  lastName: string;
   userName: string;
 };
 

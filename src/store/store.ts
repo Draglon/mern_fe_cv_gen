@@ -13,7 +13,6 @@ import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
 
 import authReducer from "./auth";
 import modalReducer from "./modal";
-import settingsReducer from "./settings";
 import resumeReducer from "./resume";
 import personalInfoReducer from "./personalInfo";
 import personalHobbiesReducer from "./personalHobbies";
@@ -52,7 +51,6 @@ const persistConfig: PersistConfig<ReturnType<typeof appReducer>> = {
 const appReducer = combineReducers({
   auth: authReducer,
   modal: modalReducer,
-  settings: settingsReducer,
   resume: resumeReducer,
   personalInfo: personalInfoReducer,
   personalHobbies: personalHobbiesReducer,

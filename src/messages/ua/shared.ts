@@ -48,18 +48,11 @@ const shared = {
           "maxLength": "Має містити не більше {maxLength} символів!",
         }
       },
-      "name": {
-        "label": "Ім'я",
-        "placeholder": "Введіть своє ім'я",
-        "errors": {
-          "minLength": "Має містити щонайменше {minLength} символів!",
-          "maxLength": "Має містити не більше {maxLength} символів!",
-        },
-      },
       "firstName": {
         "label": "Ім'я",
         "placeholder": "Введіть своє ім'я",
         "errors": {
+          "pattern": "Дозволені лише літери, дефіс та апостроф!",
           "minLength": "Має містити щонайменше {minLength} символів!",
           "maxLength": "Має містити не більше {maxLength} символів!",
         },
@@ -68,6 +61,7 @@ const shared = {
         "label": "Прізвище",
         "placeholder": "Введіть прізвище",
         "errors": {
+          "pattern": "Дозволені лише літери, дефіс та апостроф!",
           "minLength": "Має містити щонайменше {minLength} символів!",
           "maxLength": "Має містити не більше {maxLength} символів!",
         },

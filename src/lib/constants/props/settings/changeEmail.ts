@@ -1,5 +1,5 @@
 export type FieldType = {
-  email: string;
+  newEmail: string;
   password: string;
 };
 

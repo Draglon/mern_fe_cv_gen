@@ -17,6 +17,7 @@ type DropdownMenuItemProps = {
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
   children?: ReactNode;
+  disabled?: boolean;
   onClick?: () => void;
 };
 
@@ -32,6 +33,7 @@ const DropdownMenuItem = ({
   iconLeft,
   iconRight,
   children,
+  disabled,
   onClick,
   ...restProps
 }: DropdownMenuItemProps) => {
@@ -83,6 +85,7 @@ const DropdownMenuItem = ({
       role="button"
       type="text"
       color="default"
+      disabled={disabled}
       onClick={onClick}
       {...restProps}
     >
