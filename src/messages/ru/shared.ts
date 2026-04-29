@@ -66,6 +66,22 @@ const shared = {
           "maxLength": "Длина должна быть не более {maxLength} символов!",
         },
       },
+      "sectionTitle": {
+        "label": "Заголовок раздела",
+        "placeholder": "Ввести название раздела",
+        "errors": {
+          "pattern": "Допустимы только буквы и пробелы!",
+          "minLength": "Длина должна быть не менее {minLength} символов!",
+          "maxLength": "Длина должна быть не более {maxLength} символов!",
+        }
+      },
+      "inputText": {
+        "errors": {
+          "required": "Поле обязательно для заполнения!",
+          "minLength": "Длина должна быть не менее {minLength} символов!",
+          "maxLength": "Длина должна быть не более {maxLength} символов!",
+        }
+      },
       "submitButton": "Сохранить изменения",
     }
   }

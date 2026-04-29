@@ -66,6 +66,22 @@ const shared = {
           "maxLength": "Має містити не більше {maxLength} символів!",
         },
       },
+      "sectionTitle": {
+        "label": "Назва розділу",
+        "placeholder": "Ввести назву розділу",
+        "errors": {
+          "pattern": "Дозволені лише літери та пробіли!",
+          "minLength": "Має містити щонайменше {minLength} символів!",
+          "maxLength": "Має містити не більше {maxLength} символів!",
+        }
+      },
+      "inputText": {
+        "errors": {
+          "required": "Обов'язкове поле!",
+          "minLength": "Має містити щонайменше {minLength} символів!",
+          "maxLength": "Має містити не більше {maxLength} символів!",
+        }
+      },
       "submitButton": "Зберегти зміни",
     }
   }

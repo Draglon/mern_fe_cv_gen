@@ -66,6 +66,22 @@ const shared = {
           "maxLength": "Must be no more than {maxLength} characters!",
         },
       },
+      "sectionTitle": {
+        "label": "Section title",
+        "placeholder": "Input section title",
+        "errors": {
+          "pattern": "Please use only letters and spaces!",
+          "minLength": "Must be at least {minLength} characters!",
+          "maxLength": "Must be no more than {maxLength} characters!",
+        }
+      },
+      "inputText": {
+        "errors": {
+          "required": "Field is required!",
+          "minLength": "Must be at least {minLength} characters!",
+          "maxLength": "Must be no more than {maxLength} characters!",
+        }
+      },
       "submitButton": "Save changes",
     }
   },

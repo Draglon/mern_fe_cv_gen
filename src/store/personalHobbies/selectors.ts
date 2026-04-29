@@ -7,7 +7,8 @@ const getState = (state: RootState) => state;
 
 export const isLoadingSelector = createSelector(getState, (state: RootState) => state.personalHobbies.status === "loading");
 export const personalHobbiesSelector = createSelector(getState, path(["personalHobbies", "data"]));
+
 export const personalHobbiesByLocaleSelector = createSelector([(_, locale) => locale, personalHobbiesSelector], (locale, data) => ({
   sectionTitle: pathOr("", ["sectionTitle", locale], data),
-  hobbies: data?.hobbies?.[locale] ? JSON.parse(data.hobbies[locale]) : [{ hobby: "" }],
+  hobbies: data?.hobbies?.[locale] ? data.hobbies[locale] : [{ hobby: "" }],
 }));

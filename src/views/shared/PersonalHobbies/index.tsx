@@ -1,17 +1,12 @@
 "use client";
 import { useEffect } from "react";
 
-import { Locales } from "@/lib/constants/props/locales";
+import { PersonalHobbiesProps } from "@/lib/constants/props/resume/personalHobbies";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import fetchPersonalHobbies from "@/store/personalHobbies/operations/fetchPersonalHobbies";
 import { isLoadingSelector } from "@/store/personalHobbies/selectors";
 
 import PersonalHobbiesForm from "@/views/shared/PersonalHobbies/Form";
-
-type PersonalHobbiesProps = {
-  locale: Locales;
-  isEdit?: boolean;
-};
 
 const PersonalHobbies = ({ locale, isEdit }: PersonalHobbiesProps) => {
   const dispatch = useAppDispatch();
