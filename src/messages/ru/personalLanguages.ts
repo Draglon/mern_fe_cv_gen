@@ -2,25 +2,16 @@ const personalLanguages = {
   "PersonalLanguages": {
     "title": "Языки",
     "form": {
-      "sectionTitle": {
-        "label": "Заголовок раздела",
-        "placeholder": "Ввести название раздела",
-        "errors": {
-          "required": "Пожалуйста, введите название вашего раздела!",
-        }
-      },
       "language": {
         "label": "Язык",
         "placeholder": "Введите язык",
-        "errors": {
-          "required": "Пожалуйста, введите язык!"
-        }
       },
       "languageLevel": {
         "label": "Уровень",
         "placeholder": "Выберите уровень языка",
         "errors": {
-          "required": "Пожалуйста, выберите уровень вашего языка!"
+          "required": "Поле обязательно для заполнения!",
+          "invalidLanguageLevel": "Неверный уровень владения языком!"
         },
         "levelOptions": {
           "native": "Родной",

@@ -9,7 +9,7 @@ const personalExperience = {
           "required": "Пожалуйста, введите название вашего раздела!",
         }
       },
-      "lastPlacesOfWorks": {
+      "recentPositionsCount": {
         "label": "Последние места работы",
         "placeholder": "Введите число",
         "errors": {
@@ -37,14 +37,14 @@ const personalExperience = {
           "required": "Пожалуйста, введите местоположение!",
         }
       },
-      "placeOfWork": {
+      "employmentType": {
         "label": "Место работы",
         "placeholder": "Выберите место работы",
         "errors": {
           "required": "Пожалуйста, выберите ваше место работы!",
         }
       },
-      "workingTime": {
+      "workFormat": {
         "label": "Время работы",
         "placeholder": "Выберите время работы",
         "errors": {

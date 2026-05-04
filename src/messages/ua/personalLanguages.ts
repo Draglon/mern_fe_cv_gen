@@ -2,25 +2,16 @@ const personalLanguages = {
   "PersonalLanguages": {
     "title": "Мови",
     "form": {
-      "sectionTitle": {
-        "label": "Назва розділу",
-        "placeholder": "Ввести назву розділу",
-        "errors": {
-          "required": "Будь ласка, введіть назву вашого розділу!",
-        }
-      },
       "language": {
         "label": "Мова",
         "placeholder": "Введіть мову",
-        "errors": {
-          "required": "Будь ласка, введіть свою мову!"
-        }
       },
       "languageLevel": {
         "label": "Рівень",
         "placeholder": "Виберіть рівень володіння мовою",
         "errors": {
-          "required": "Будь ласка, вкажіть свій рівень володіння мовою!"
+          "required": "Обов'язкове поле!",
+          "invalidLanguageLevel": "Недійсний рівень мови!"
         },
         "levelOptions": {
           "native": "Рідна",

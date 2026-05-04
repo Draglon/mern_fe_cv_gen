@@ -6,7 +6,10 @@ import { MinusCircleOutlined } from "@ant-design/icons";
 
 import { redirect } from "@/i18n/navigation";
 import { resumeRoute } from "@/lib/routes";
-import { Locales } from "@/lib/constants/props/locales";
+import {
+  PersonalToolsProps,
+  FieldType,
+} from "@/lib/constants/props/resume/personalTools";
 import { REGEX_STRING } from "@/lib/constants/regex";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
@@ -21,21 +24,7 @@ import InputField from "@/views/shared/InputField";
 import Checkbox from "@/views/shared/antd/Checkbox";
 import Divider from "@/views/shared/antd/Divider";
 
-type PersonalToolsFormProps = {
-  locale: Locales;
-  isEdit?: boolean;
-};
-
-type FieldType = {
-  sectionTitle?: string;
-  tools: {
-    tool: string;
-    level: string;
-    visible: boolean;
-  }[];
-};
-
-const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
+const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsProps) => {
   const t = useTranslations("PersonalTools");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
@@ -58,12 +47,10 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsFormProps) => {
       locale,
     };
 
-    const data = isEdit
-      ? await dispatch(updatePersonalTools(params))
-      : await dispatch(createPersonalTools(params));
-
-    if (!data.payload) {
-      return alert("Не удалось получить данные");
+    if (isEdit) {
+      await dispatch(updatePersonalTools(params));
+    } else {
+      await dispatch(createPersonalTools(params));
     }
 
     if (!isEdit) {

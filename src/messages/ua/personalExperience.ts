@@ -9,7 +9,7 @@ const personalExperience = {
           "required": "Please input your section title!",
         }
       },
-      "lastPlacesOfWorks": {
+      "recentPositionsCount": {
         "label": "Останні місця роботи",
         "placeholder": "Введіть число",
         "errors": {
@@ -37,14 +37,14 @@ const personalExperience = {
           "required": "Будь ласка, введіть розташування!",
         }
       },
-      "placeOfWork": {
+      "employmentType": {
         "label": "Місце роботи",
         "placeholder": "Вкажить місце роботы",
         "errors": {
           "required": "Будь ласка, вкажить місце роботы!",
         }
       },
-      "workingTime": {
+      "workFormat": {
         "label": "Час роботи",
         "placeholder": "Введіть час роботи",
         "errors": {

@@ -9,7 +9,7 @@ const personalExperience = {
           "required": "Please input your section title!",
         }
       },
-      "lastPlacesOfWorks": {
+      "recentPositionsCount": {
         "label": "Last places of works",
         "placeholder": "Input number",
         "errors": {
@@ -37,14 +37,14 @@ const personalExperience = {
           "required": "Please input your location!",
         }
       },
-      "placeOfWork": {
+      "employmentType": {
         "label": "Place of work",
         "placeholder": "Select place of work",
         "errors": {
           "required": "Please select your place of work!",
         }
       },
-      "workingTime": {
+      "workFormat": {
         "label": "Working time",
         "placeholder": "Select working time",
         "errors": {

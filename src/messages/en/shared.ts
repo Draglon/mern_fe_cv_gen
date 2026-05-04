@@ -82,6 +82,11 @@ const shared = {
           "maxLength": "Must be no more than {maxLength} characters!",
         }
       },
+      "select": {
+        "errors": {
+          "required": "Field is required!",
+        }
+      },
       "submitButton": "Save changes",
     }
   },

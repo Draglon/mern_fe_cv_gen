@@ -4,7 +4,10 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
 
-import { Locales } from "@/lib/constants/props/locales";
+import {
+  PersonalCoursesProps,
+  FieldType,
+} from "@/lib/constants/props/resume/personalCourses";
 import { REGEX_STRING } from "@/lib/constants/regex";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
@@ -20,24 +23,7 @@ import InputField from "@/views/shared/InputField";
 import TextAreaField from "@/views/shared/TextAreaField";
 import Divider from "@/views/shared/antd/Divider";
 
-type PersonalCoursesFormProps = {
-  locale: Locales;
-  isEdit?: boolean;
-};
-
-type Course = {
-  course: string;
-  description: string;
-  startDate: string;
-  endDate: string;
-};
-
-type FieldType = {
-  sectionTitle?: string;
-  courses: Course[];
-};
-
-const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
+const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesProps) => {
   const t = useTranslations("PersonalCourses");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
@@ -59,12 +45,10 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesFormProps) => {
       locale,
     };
 
-    const data = isEdit
-      ? await dispatch(updatePersonalCourses(params))
-      : await dispatch(createPersonalCourses(params));
-
-    if (!data.payload) {
-      return alert("Не удалось получить данные");
+    if (isEdit) {
+      await dispatch(updatePersonalCourses(params));
+    } else {
+      await dispatch(createPersonalCourses(params));
     }
   });
 

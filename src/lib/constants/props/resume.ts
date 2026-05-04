@@ -1,4 +1,11 @@
 import { Locales, Locale } from "@/lib/constants/props/locales";
+import { CourseType } from "@/lib/constants/props/resume/personalCourses";
+import { EducationType } from "@/lib/constants/props/resume/personalEducation";
+import { ExperienceType } from "@/lib/constants/props/resume/personalExperiences";
+import { HobbyType } from "@/lib/constants/props/resume/personalHobbies";
+import { LanguageType } from "@/lib/constants/props/resume/personalLanguages";
+import { SkillType } from "@/lib/constants/props/resume/personalSkills";
+import { ToolType } from "@/lib/constants/props/resume/personalTools";
 
 export type TemplateProps = {
   template: string;
@@ -22,38 +29,66 @@ export type PersonalInfoProps = {
 
 export type PersonalHobbiesProps = {
   sectionTitle?: Locale;
-  hobbies: Locale;
+  hobbies: {
+    en: HobbyType[];
+    ua: HobbyType[];
+    ru: HobbyType[];
+  };
 };
 
 export type PersonalLanguagesProps = {
   sectionTitle?: Locale;
-  languages: Locale;
+  languages: {
+    en: LanguageType[];
+    ua: LanguageType[];
+    ru: LanguageType[];
+  };
 };
 
 export type PersonalExperienceProps = {
   sectionTitle?: Locale;
-  lastPlacesOfWorks?: number | string;
-  experience: Locale;
+  recentPositionsCount?: number | string;
+  experiences: {
+    en: ExperienceType[];
+    ua: ExperienceType[];
+    ru: ExperienceType[];
+  };
 };
 
 export type PersonalEducationProps = {
   sectionTitle?: Locale;
-  education: Locale;
+  education: {
+    en: EducationType[];
+    ua: EducationType[];
+    ru: EducationType[];
+  };
 };
 
 export type PersonalCoursesProps = {
   sectionTitle?: Locale;
-  courses: Locale;
+  courses: {
+    en: CourseType[];
+    ua: CourseType[];
+    ru: CourseType[];
+  }
 };
 
 export type PersonalSkillsProps = {
   sectionTitle?: Locale;
-  skills: Locale;
+  skills: {
+    en: SkillType[];
+    ua: SkillType[];
+    ru: SkillType[];
+  };
 };
 
 export type PersonalToolsProps = {
   sectionTitle?: Locale;
-  tools: Locale;
+  tools: {
+    en?: ToolType[];
+    ua?: ToolType[];
+    ru?: ToolType[];
+  };
 };
 
 export type ResumeProps = {

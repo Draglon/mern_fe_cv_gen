@@ -1,16 +1,10 @@
 "use client";
 import { Locales } from "@/lib/constants/props/locales";
 import { PersonalCoursesProps } from "@/lib/constants/props/resume";
+import { CourseType } from "@/lib/constants/props/resume/personalCourses";
 import { coursesByLocale } from "@/utils/personalCourses";
 
 import { Title, Text, Paragraph } from "@/views/shared/antd/Typography";
-
-type Course = {
-  course: string;
-  description: string;
-  startDate: string;
-  endDate: string;
-};
 
 type CoursesProps = {
   templateLocale: Locales;
@@ -22,7 +16,7 @@ const PersonalCourses = ({ templateLocale, personalCourses }: CoursesProps) => {
 
   return (
     <>
-      {courses.map((item: Course, index: number) => (
+      {courses.map((item: CourseType, index: number) => (
         <div className="section__item" key={index}>
           <header className="section__subheader">
             <Title className="section__subtitle" level={4}>

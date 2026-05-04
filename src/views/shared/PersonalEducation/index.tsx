@@ -1,17 +1,12 @@
 "use client";
 import { useEffect } from "react";
 
-import { Locales } from "@/lib/constants/props/locales";
+import { PersonalEducationProps } from "@/lib/constants/props/resume/personalEducation";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import fetchPersonalEducation from "@/store/personalEducation/operations/fetchPersonalEducation";
 import { isLoadingSelector } from "@/store/personalEducation/selectors";
 
 import PersonalEducationForm from "@/views/shared/PersonalEducation/Form";
-
-type PersonalEducationProps = {
-  locale: Locales;
-  isEdit?: boolean;
-};
 
 const PersonalEducation = ({ locale, isEdit }: PersonalEducationProps) => {
   const dispatch = useAppDispatch();

@@ -4,9 +4,11 @@ import { useForm } from "react-hook-form";
 import { Form } from "antd";
 
 import { REGEX_STRING } from "@/lib/constants/regex";
-import { Locales } from "@/lib/constants/props/locales";
+import {
+  PersonalInfoProps,
+  FieldType,
+} from "@/lib/constants/props/resume/personalInfo";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { normalizeUrl } from "@/utils/normalizeUrl";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
 import createPersonalInfo from "@/store/personalInfo/operations/createPersonalInfo";
@@ -21,27 +23,7 @@ import PhoneNumberField from "@/views/shared/PhoneNumberField";
 import Button from "@/views/shared/antd/Button";
 import Divider from "@/views/shared/antd/Divider";
 
-type PersonalInfoFormProps = {
-  locale: Locales;
-  isEdit?: boolean;
-};
-
-type FieldType = {
-  sectionTitle?: string;
-  userUrl?: string[];
-  firstName: string;
-  lastName: string;
-  email: string;
-  aboutMe: string;
-  address: string;
-  phoneNumber: string;
-  birthday: string;
-  linkedIn?: string;
-  telegram?: string;
-  portfolio?: string;
-};
-
-const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
+const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoProps) => {
   const t = useTranslations("PersonalInfo");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
@@ -54,12 +36,8 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoFormProps) => {
   });
 
   const onFinish = handleSubmit(async (values: FieldType) => {
-    const userUrl = await normalizeUrl(values.userUrl);
     const params = {
-      values: {
-        ...values,
-        userUrl,
-      },
+      values,
       locale,
     };
 

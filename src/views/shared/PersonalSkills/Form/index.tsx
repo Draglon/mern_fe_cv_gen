@@ -4,7 +4,10 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
 
-import { Locales } from "@/lib/constants/props/locales";
+import {
+  PersonalSkillsProps,
+  FieldType,
+} from "@/lib/constants/props/resume/personalSkills";
 import { REGEX_STRING } from "@/lib/constants/regex";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
@@ -19,21 +22,7 @@ import InputField from "@/views/shared/InputField";
 import Checkbox from "@/views/shared/antd/Checkbox";
 import Divider from "@/views/shared/antd/Divider";
 
-type PersonalSkillsFormProps = {
-  locale: Locales;
-  isEdit?: boolean;
-};
-
-type FieldType = {
-  sectionTitle?: string;
-  skills: {
-    skill: string;
-    level: string;
-    visible: boolean;
-  }[];
-};
-
-const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
+const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsProps) => {
   const t = useTranslations("PersonalSkills");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
@@ -55,12 +44,10 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsFormProps) => {
       locale,
     };
 
-    const data = isEdit
-      ? await dispatch(updatePersonalSkills(params))
-      : await dispatch(createPersonalSkills(params));
-
-    if (!data.payload) {
-      return alert("Не удалось получить данные");
+    if (isEdit) {
+      await dispatch(updatePersonalSkills(params));
+    } else {
+      await dispatch(createPersonalSkills(params));
     }
   });
 

@@ -2,29 +2,10 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import axios from "@/lib/axios";
 import { personalExperienceCreateRoute } from "@/lib/apiRoutes";
-import { Locales } from "@/lib/constants/props/locales";
+import { ParamsType } from "@/lib/constants/props/resume/personalExperiences";
 import { userIdSelector } from "@/store/auth/selectors";
 import { CREATE_PERSONAL_EXPERIENCE } from "./../types";
 import { RootState } from '../../store';
-
-type ParamsType = {
-  values: {
-    sectionTitle?: string,
-    lastPlacesOfWorks?: number | string;
-    experience: {
-      position: string;
-      companyName: string;
-      location: string;
-      placeOfWork: string;
-      workingTime: string;
-      startDate: string;
-      endDate: string;
-      description: string;
-      skills: string,
-    }[];
-  };
-  locale: Locales;
-};
 
 const createPersonalExperienceOperation = createAsyncThunk(
   CREATE_PERSONAL_EXPERIENCE,

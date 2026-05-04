@@ -5,9 +5,13 @@ export type PersonalHobbiesProps = {
   isEdit?: boolean;
 };
 
+export type HobbyType = {
+  hobby: string;
+};
+
 export type FieldType = {
   sectionTitle: string;
-  hobbies: { hobby: string }[];
+  hobbies: HobbyType[];
 };
 
 export type ParamsType = {

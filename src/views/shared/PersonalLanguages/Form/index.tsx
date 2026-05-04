@@ -1,14 +1,20 @@
 "use client";
+import { useEffect, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
 
-import { Locales } from "@/lib/constants/props/locales";
-import { REGEX_STRING } from "@/lib/constants/regex";
+import {
+  PersonalLanguagesProps,
+  FieldType,
+} from "@/lib/constants/props/resume/personalLanguages";
 import { LANGUAGE_LEVEL } from "@/lib/constants/languages";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
+import { getSectionTitleRules } from "@/utils/forms/validations/resume/sectionTitleValidation";
+import { getInputTextRules } from "@/utils/forms/validations/resume/inputTextValidation";
+import { getSelectLanguageRules } from "@/utils/forms/validations/resume/selectValidation";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalLanguages from "@/store/personalLanguages/operations/createPersonalLanguages";
 import updatePersonalLanguages from "@/store/personalLanguages/operations/updatePersonalLanguages";
@@ -21,27 +27,14 @@ import InputField from "@/views/shared/InputField";
 import SelectField from "@/views/shared/SelectField";
 import Divider from "@/views/shared/antd/Divider";
 
-type PersonalLanguagesFormProps = {
-  locale: Locales;
-  isEdit?: boolean;
-};
-
-type FieldType = {
-  sectionTitle?: string;
-  languages: { language: string; level: string }[];
-};
-
-const PersonalLanguagesForm = ({
-  locale,
-  isEdit,
-}: PersonalLanguagesFormProps) => {
+const PersonalLanguagesForm = ({ locale, isEdit }: PersonalLanguagesProps) => {
   const t = useTranslations("PersonalLanguages");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
   const defaultValues = useAppSelector((state) =>
     personalLanguagesByLocaleSelector(state, locale)
   );
-  const { control, handleSubmit, formState, register } = useForm({
+  const { control, handleSubmit, formState, reset } = useForm({
     defaultValues,
     mode: "onChange",
   });
@@ -49,6 +42,12 @@ const PersonalLanguagesForm = ({
     control,
     name: "languages",
   });
+  const sectionTitleRules = useMemo(
+    () => getSectionTitleRules(tShared),
+    [tShared]
+  );
+  const selectLanguageRules = useMemo(() => getSelectLanguageRules(t), [t]);
+  const inputTextRules = useMemo(() => getInputTextRules(tShared), [tShared]);
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
@@ -56,14 +55,16 @@ const PersonalLanguagesForm = ({
       locale,
     };
 
-    const data = isEdit
-      ? await dispatch(updatePersonalLanguages(params))
-      : await dispatch(createPersonalLanguages(params));
-
-    if (!data.payload) {
-      return alert("Не удалось получить данные");
+    if (isEdit) {
+      await dispatch(updatePersonalLanguages(params));
+    } else {
+      await dispatch(createPersonalLanguages(params));
     }
   });
+
+  useEffect(() => {
+    reset(defaultValues);
+  }, [reset, defaultValues]);
 
   return (
     <Form
@@ -80,14 +81,9 @@ const PersonalLanguagesForm = ({
           name="sectionTitle"
           controlName="sectionTitle"
           control={control}
-          label={t("form.sectionTitle.label")}
-          placeholder={t("form.sectionTitle.placeholder")}
-          register={register("sectionTitle", {
-            pattern: {
-              value: REGEX_STRING,
-              message: t("form.sectionTitle.errors.required"),
-            },
-          })}
+          label={tShared("form.sectionTitle.label")}
+          placeholder={tShared("form.sectionTitle.placeholder")}
+          rules={sectionTitleRules}
           Field={InputField}
           size="large"
         />
@@ -104,14 +100,9 @@ const PersonalLanguagesForm = ({
                 control={control}
                 label={t("form.language.label")}
                 placeholder={t("form.language.placeholder")}
-                size="large"
+                rules={inputTextRules}
                 Field={InputField}
-                register={register(`languages.${index}.language`, {
-                  required: {
-                    value: true,
-                    message: t("form.language.errors.required"),
-                  },
-                })}
+                size="large"
               />
               <FormItem
                 className="form__item--field"
@@ -120,18 +111,13 @@ const PersonalLanguagesForm = ({
                 control={control}
                 label={t("form.languageLevel.label")}
                 placeholder={t("form.languageLevel.placeholder")}
+                rules={selectLanguageRules}
                 Field={SelectField}
                 options={LANGUAGE_LEVEL.map((level) => ({
                   label: t(`form.languageLevel.levelOptions.${level}`),
                   value: level,
                 }))}
                 size="large"
-                register={register(`languages.${index}.level`, {
-                  required: {
-                    value: true,
-                    message: t("form.languageLevel.errors.required"),
-                  },
-                })}
               />
               {fields.length > 1 && (
                 <MinusCircleOutlined

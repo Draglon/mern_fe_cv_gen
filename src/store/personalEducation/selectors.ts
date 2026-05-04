@@ -1,6 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { path, pathOr } from 'ramda';
 
+import { EDUCATION_DEFAULT_VALUES } from '@/lib/constants/forms/resumeEdit/education';
 import { RootState } from '../store';
 
 const getState = (state: RootState) => state;
@@ -10,14 +11,5 @@ export const personalEducationSelector = createSelector(getState, path(["persona
 
 export const personalEducationByLocaleSelector = createSelector([(_, locale) => locale, personalEducationSelector], (locale, data) => ({
   sectionTitle: pathOr("", ["sectionTitle", locale], data),
-  education: data?.education?.[locale] ? JSON.parse(data.education[locale]) : [
-    {
-      institute: "",
-      degree: "",
-      faculty: "",
-      specialization: "",
-      startDate: "",
-      endDate: "",
-    },
-  ],
+  education: data?.education?.[locale] ? data.education[locale] : EDUCATION_DEFAULT_VALUES,
 }));

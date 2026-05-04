@@ -4,35 +4,24 @@ import { isEmpty } from "ramda";
 
 import splitText from "@/utils/splitText";
 import { Locales } from "@/lib/constants/props/locales";
+import { ExperienceType } from "@/lib/constants/props/resume/personalExperiences";
 
 import { Title, Text, Paragraph } from "@/views/shared/antd/Typography";
 
-type Experience = {
-  position: string;
-  startDate: string;
-  endDate: string;
-  companyName: string;
-  placeOfWork: string;
-  location: string;
-  workingTime: string;
-  description: string;
-  skills: string[];
-};
-
 type ExperiencesProps = {
   templateLocale: Locales;
-  experience: Experience[];
+  experiences: ExperienceType[];
 };
 
 const PersonalExperience = ({
-  experience,
+  experiences,
   templateLocale,
 }: ExperiencesProps) => {
   const t = useTranslations("Template");
 
   return (
     <div className="experience">
-      {experience.map((item: Experience, index: number) => (
+      {experiences.map((item: ExperienceType, index: number) => (
         <div className="experience__item" key={index}>
           <header className="experience__header">
             <div className="experience__header-item">
@@ -48,12 +37,12 @@ const PersonalExperience = ({
                 {item.companyName}
               </Text>
               <Text type="secondary"> · </Text>
-              <Text type="secondary">{item.workingTime}</Text>
+              <Text type="secondary">{item.workFormat}</Text>
             </Paragraph>
             <Paragraph className="experience__place" italic>
               <Text className="experience__place-label">{item.location}</Text>
               <Text type="secondary"> · </Text>
-              <Text type="secondary">{item.placeOfWork}</Text>
+              <Text type="secondary">{item.employmentType}</Text>
             </Paragraph>
           </header>
           <Paragraph className="experience__info">

@@ -2,28 +2,11 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import axios from "@/lib/axios";
 import { personalInfoCreateRoute } from "@/lib/apiRoutes";
-import { Locales } from "@/lib/constants/props/locales";
+import { ParamsType } from "@/lib/constants/props/resume/personalInfo";
+import { normalizeUrl } from "@/utils/normalizeUrl";
 import { userIdSelector } from "@/store/auth/selectors";
 import { CREATE_PERSONAL_INFO } from "./../types";
 import { RootState } from '../../store';
-
-type ParamsType = {
-  values: {
-    sectionTitle?: string;
-    userUrl?: string;
-    firstName: string;
-    lastName: string;
-    aboutMe: string;
-    email: string;
-    address: string;
-    phoneNumber: string;
-    birthday: string;
-    linkedIn?: string;
-    telegram?: string;
-    portfolio?: string;
-  };
-  locale: Locales;
-};
 
 const createPersonalInfoOperation = createAsyncThunk(
   CREATE_PERSONAL_INFO,
@@ -32,8 +15,10 @@ const createPersonalInfoOperation = createAsyncThunk(
       const state = getState() as RootState;
       const userId = userIdSelector(state);
       const { values, locale } = params;
+      const userUrl: string = await normalizeUrl(values.userUrl);
       const formattedParams = {
         ...values,
+        userUrl,
         locale,
         userId,
       };

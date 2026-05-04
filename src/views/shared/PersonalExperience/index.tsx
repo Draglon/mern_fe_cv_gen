@@ -1,19 +1,14 @@
 "use client";
 import { useEffect } from "react";
 
-import { Locales } from "@/lib/constants/props/locales";
+import { PersonalExperiencesProps } from "@/lib/constants/props/resume/personalExperiences";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import fetchPersonalExperience from "@/store/personalExperience/operations/fetchPersonalExperience";
 import { isLoadingSelector } from "@/store/personalExperience/selectors";
 
 import PersonalExperienceForm from "@/views/shared/PersonalExperience/Form";
 
-type PersonalExperienceProps = {
-  locale: Locales;
-  isEdit?: boolean;
-};
-
-const PersonalExperience = ({ locale, isEdit }: PersonalExperienceProps) => {
+const PersonalExperience = ({ locale, isEdit }: PersonalExperiencesProps) => {
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(isLoadingSelector);
 

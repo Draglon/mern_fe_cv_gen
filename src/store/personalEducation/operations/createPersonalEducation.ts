@@ -1,26 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import axios from "@/lib/axios";
-import { Locales } from "@/lib/constants/props/locales";
 import { personalEducationCreateRoute } from "@/lib/apiRoutes";
+import { ParamsType } from "@/lib/constants/props/resume/personalEducation";
 import { CREATE_PERSONAL_EDUCATION } from "./../types";
 import { userIdSelector } from "@/store/auth/selectors";
 import { RootState } from '../../store';
-
-type ParamsType = {
-  values: {
-    sectionTitle?: string,
-    education: {
-      institute: string;
-      degree: string;
-      faculty: string;
-      specialization: string;
-      startDate: string;
-      endDate: string;
-    }[];
-  }
-  locale: Locales;
-};
 
 const createPersonalEducationOperation = createAsyncThunk(
   CREATE_PERSONAL_EDUCATION,

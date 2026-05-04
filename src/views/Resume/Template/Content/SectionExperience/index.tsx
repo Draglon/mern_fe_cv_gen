@@ -19,15 +19,16 @@ const SectionExperience = ({
   templateLocale,
 }: SectionExperienceProps) => {
   const t = useTranslations("Template");
-  const experience = experienceByLocale(personalExperience, templateLocale);
-  const lastPlacesOfWorks = pathOr(
+
+  const experiences = experienceByLocale(personalExperience, templateLocale);
+  const recentPositionsCount = pathOr(
     undefined,
-    ["lastPlacesOfWorks"],
+    ["recentPositionsCount"],
     personalExperience
   );
-  const formattedExperience = experience.slice(
+  const formattedExperience = experiences.slice(
     0,
-    lastPlacesOfWorks || experience.length
+    recentPositionsCount || experiences.length
   );
 
   return (
@@ -38,16 +39,16 @@ const SectionExperience = ({
         personalExperience
       )}
       text={
-        lastPlacesOfWorks
+        recentPositionsCount
           ? t("personalExperience.text", {
               locale: templateLocale,
-              number: lastPlacesOfWorks,
+              number: recentPositionsCount,
             })
           : undefined
       }
     >
       <PersonalExperience
-        experience={formattedExperience}
+        experiences={formattedExperience}
         templateLocale={templateLocale}
       />
     </Section>

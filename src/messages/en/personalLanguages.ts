@@ -2,25 +2,16 @@ const personalLanguages = {
   "PersonalLanguages": {
     "title": "Languages",
     "form": {
-      "sectionTitle": {
-        "label": "Section title",
-        "placeholder": "Input section title",
-        "errors": {
-          "required": "Please input your section title!",
-        }
-      },
       "language": {
         "label": "Language",
         "placeholder": "Input language",
-        "errors": {
-          "required": "Please input your language!"
-        }
       },
       "languageLevel": {
         "label": "Level",
         "placeholder": "Select language level",
         "errors": {
-          "required": "Please select your language level!"
+          "required": "Field is required!",
+          "invalidLanguageLevel": "Invalid language level!"
         },
         "levelOptions": {
           "native": "Native",

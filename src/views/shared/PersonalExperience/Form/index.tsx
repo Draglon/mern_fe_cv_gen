@@ -5,7 +5,10 @@ import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
 
 import { REGEX_DIGITS, REGEX_STRING } from "@/lib/constants/regex";
-import { Locales } from "@/lib/constants/props/locales";
+import {
+  PersonalExperiencesProps,
+  FieldType,
+} from "@/lib/constants/props/resume/personalExperiences";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
@@ -21,31 +24,10 @@ import TextAreaField from "@/views/shared/TextAreaField";
 import SelectField from "@/views/shared/SelectField";
 import Divider from "@/views/shared/antd/Divider";
 
-type PersonalExperienceFormProps = {
-  locale: Locales;
-  isEdit?: boolean;
-};
-
-type FieldType = {
-  sectionTitle?: string;
-  lastPlacesOfWorks?: number | string;
-  experience: {
-    position: string;
-    companyName: string;
-    location: string;
-    placeOfWork: string;
-    workingTime: string;
-    startDate: string;
-    endDate: string;
-    description: string;
-    skills: string;
-  }[];
-};
-
 const PersonalExperienceForm = ({
   locale,
   isEdit,
-}: PersonalExperienceFormProps) => {
+}: PersonalExperiencesProps) => {
   const t = useTranslations("PersonalExperience");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
@@ -58,7 +40,7 @@ const PersonalExperienceForm = ({
   });
   const { fields, prepend, remove } = useFieldArray({
     control,
-    name: "experience",
+    name: "experiences",
   });
 
   const onFinish = handleSubmit(async (values: FieldType) => {
@@ -67,12 +49,10 @@ const PersonalExperienceForm = ({
       locale,
     };
 
-    const data = isEdit
-      ? await dispatch(updatePersonalExperience(params))
-      : await dispatch(createPersonalExperience(params));
-
-    if (!data.payload) {
-      return alert("Не удалось получить данные");
+    if (isEdit) {
+      await dispatch(updatePersonalExperience(params));
+    } else {
+      await dispatch(createPersonalExperience(params));
     }
   });
 
@@ -104,15 +84,15 @@ const PersonalExperienceForm = ({
         />
         <FormItem
           className="form__item--field"
-          name="lastPlacesOfWorks"
-          controlName="lastPlacesOfWorks"
+          name="recentPositionsCount"
+          controlName="recentPositionsCount"
           control={control}
-          label={t("form.lastPlacesOfWorks.label")}
-          placeholder={t("form.lastPlacesOfWorks.placeholder")}
-          register={register("lastPlacesOfWorks", {
+          label={t("form.recentPositionsCount.label")}
+          placeholder={t("form.recentPositionsCount.placeholder")}
+          register={register("recentPositionsCount", {
             pattern: {
               value: REGEX_DIGITS,
-              message: t("form.lastPlacesOfWorks.errors.required"),
+              message: t("form.recentPositionsCount.errors.required"),
             },
           })}
           Field={InputField}
@@ -125,12 +105,12 @@ const PersonalExperienceForm = ({
           <Space key={field.id} align="baseline" className="form__list-space">
             <FormItem
               name={[index, "position"]}
-              controlName={`experience.${index}.position`}
+              controlName={`experiences.${index}.position`}
               control={control}
               className="form__item--field"
               label={t("form.position.label")}
               placeholder={t("form.position.placeholder")}
-              register={register(`experience.${index}.position`, {
+              register={register(`experiences.${index}.position`, {
                 required: {
                   value: true,
                   message: t("form.position.errors.required"),
@@ -141,12 +121,12 @@ const PersonalExperienceForm = ({
             />
             <FormItem
               name={[index, "companyName"]}
-              controlName={`experience.${index}.companyName`}
+              controlName={`experiences.${index}.companyName`}
               control={control}
               className="form__item--field"
               label={t("form.companyName.label")}
               placeholder={t("form.companyName.placeholder")}
-              register={register(`experience.${index}.companyName`, {
+              register={register(`experiences.${index}.companyName`, {
                 required: {
                   value: true,
                   message: t("form.companyName.errors.required"),
@@ -157,12 +137,12 @@ const PersonalExperienceForm = ({
             />
             <FormItem
               name={[index, "location"]}
-              controlName={`experience.${index}.location`}
+              controlName={`experiences.${index}.location`}
               control={control}
               className="form__item--field"
               label={t("form.location.label")}
               placeholder={t("form.location.placeholder")}
-              register={register(`experience.${index}.location`, {
+              register={register(`experiences.${index}.location`, {
                 required: {
                   value: true,
                   message: t("form.location.errors.required"),
@@ -172,32 +152,32 @@ const PersonalExperienceForm = ({
               Field={InputField}
             />
             <FormItem
-              name={[index, "placeOfWork"]}
-              controlName={`experience.${index}.placeOfWork`}
+              name={[index, "employmentType"]}
+              controlName={`experiences.${index}.employmentType`}
               control={control}
               className="form__item--field"
-              label={t("form.placeOfWork.label")}
-              placeholder={t("form.placeOfWork.placeholder")}
-              register={register(`experience.${index}.placeOfWork`, {
+              label={t("form.employmentType.label")}
+              placeholder={t("form.employmentType.placeholder")}
+              register={register(`experiences.${index}.employmentType`, {
                 required: {
                   value: true,
-                  message: t("form.placeOfWork.errors.required"),
+                  message: t("form.employmentType.errors.required"),
                 },
               })}
               size="large"
               Field={InputField}
             />
             <FormItem
-              name={[index, "workingTime"]}
-              controlName={`experience.${index}.workingTime`}
+              name={[index, "workFormat"]}
+              controlName={`experiences.${index}.workFormat`}
               control={control}
               className="form__item--field"
-              label={t("form.workingTime.label")}
-              placeholder={t("form.workingTime.placeholder")}
-              register={register(`experience.${index}.workingTime`, {
+              label={t("form.workFormat.label")}
+              placeholder={t("form.workFormat.placeholder")}
+              register={register(`experiences.${index}.workFormat`, {
                 required: {
                   value: true,
-                  message: t("form.workingTime.errors.required"),
+                  message: t("form.workFormat.errors.required"),
                 },
               })}
               size="large"
@@ -205,12 +185,12 @@ const PersonalExperienceForm = ({
             />
             <FormItem
               name={[index, "startDate"]}
-              controlName={`experience.${index}.startDate`}
+              controlName={`experiences.${index}.startDate`}
               control={control}
               className="form__item--field"
               label={t("form.startDate.label")}
               placeholder={t("form.startDate.placeholder")}
-              register={register(`experience.${index}.startDate`, {
+              register={register(`experiences.${index}.startDate`, {
                 required: {
                   value: true,
                   message: t("form.startDate.errors.required"),
@@ -221,12 +201,12 @@ const PersonalExperienceForm = ({
             />
             <FormItem
               name={[index, "endDate"]}
-              controlName={`experience.${index}.endDate`}
+              controlName={`experiences.${index}.endDate`}
               control={control}
               className="form__item--field"
               label={t("form.endDate.label")}
               placeholder={t("form.endDate.placeholder")}
-              register={register(`experience.${index}.endDate`, {
+              register={register(`experiences.${index}.endDate`, {
                 required: {
                   value: true,
                   message: t("form.endDate.errors.required"),
@@ -237,12 +217,12 @@ const PersonalExperienceForm = ({
             />
             <FormItem
               name={[index, "description"]}
-              controlName={`experience.${index}.description`}
+              controlName={`experiences.${index}.description`}
               control={control}
               className="form__item--field"
               label={t("form.description.label")}
               placeholder={t("form.description.placeholder")}
-              register={register(`experience.${index}.description`, {
+              register={register(`experiences.${index}.description`, {
                 required: {
                   value: true,
                   message: t("form.description.errors.required"),
@@ -253,12 +233,12 @@ const PersonalExperienceForm = ({
             />
             <FormItem
               name={[index, "skills"]}
-              controlName={`experience.${index}.skills`}
+              controlName={`experiences.${index}.skills`}
               control={control}
               className="form__item--field"
               label={t("form.skills.label")}
               placeholder={t("form.skills.placeholder")}
-              register={register(`experience.${index}.skills`, {
+              register={register(`experiences.${index}.skills`, {
                 required: {
                   value: true,
                   message: t("form.skills.errors.required"),

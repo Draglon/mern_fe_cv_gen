@@ -4,7 +4,10 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
 
-import { Locales } from "@/lib/constants/props/locales";
+import {
+  PersonalEducationProps,
+  FieldType,
+} from "@/lib/constants/props/resume/personalEducation";
 import { REGEX_STRING } from "@/lib/constants/regex";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
@@ -19,27 +22,7 @@ import Button from "@/views/shared/antd/Button";
 import InputField from "@/views/shared/InputField";
 import Divider from "@/views/shared/antd/Divider";
 
-type PersonalEducationFormProps = {
-  locale: Locales;
-  isEdit?: boolean;
-};
-
-type FieldType = {
-  sectionTitle?: string;
-  education: {
-    institute: string;
-    degree: string;
-    faculty: string;
-    specialization: string;
-    startDate: string;
-    endDate: string;
-  }[];
-};
-
-const PersonalEducationForm = ({
-  locale,
-  isEdit,
-}: PersonalEducationFormProps) => {
+const PersonalEducationForm = ({ locale, isEdit }: PersonalEducationProps) => {
   const t = useTranslations("PersonalEducation");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
@@ -61,12 +44,10 @@ const PersonalEducationForm = ({
       locale,
     };
 
-    const data = isEdit
-      ? await dispatch(updatePersonalEducation(params))
-      : await dispatch(createPersonalEducation(params));
-
-    if (!data.payload) {
-      return alert("Не удалось получить данные");
+    if (isEdit) {
+      await dispatch(updatePersonalEducation(params));
+    } else {
+      await dispatch(createPersonalEducation(params));
     }
   });
 

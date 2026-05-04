@@ -1,6 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { path, pathOr } from 'ramda';
 
+import { SKILLS_DEFAULT_VALUES } from '@/lib/constants/forms/resumeEdit/skills';
 import { RootState } from '../store';
 
 const getState = (state: RootState) => state;
@@ -10,11 +11,5 @@ export const personalSkillsSelector = createSelector(getState, path(["personalSk
 
 export const personalSkillsByLocaleSelector = createSelector([(_, locale) => locale, personalSkillsSelector], (locale, data) => ({
   sectionTitle: pathOr("", ["sectionTitle", locale], data),
-  skills: data?.skills?.[locale] ? JSON.parse(data.skills[locale]) : [
-    {
-      skill: "",
-      level: "",
-      visible: true,
-    },
-  ],
+  skills: data?.skills?.[locale] ? data.skills[locale] : SKILLS_DEFAULT_VALUES,
 }));

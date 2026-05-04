@@ -82,10 +82,14 @@ const shared = {
           "maxLength": "Має містити не більше {maxLength} символів!",
         }
       },
+      "select": {
+        "errors": {
+          "required": "Обов'язкове поле!",
+        }
+      },
       "submitButton": "Зберегти зміни",
     }
   }
 };
 
 export default shared;
-

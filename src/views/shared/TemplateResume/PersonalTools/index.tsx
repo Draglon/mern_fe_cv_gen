@@ -1,15 +1,10 @@
 "use client";
 import { Locales } from "@/lib/constants/props/locales";
 import { PersonalToolsProps } from "@/lib/constants/props/resume";
+import { ToolType } from "@/lib/constants/props/resume/personalTools";
 import { toolsByLocale } from "@/utils/personalTools";
 
 import { Text } from "@/views/shared/antd/Typography";
-
-type ToolItemProps = {
-  tool: string;
-  level: string | number;
-  visible: boolean;
-};
 
 type ToolsProps = {
   templateLocale: Locales;
@@ -22,7 +17,7 @@ const PersonalTools = ({ templateLocale, personalTools }: ToolsProps) => {
   return (
     <div className="personal-tools">
       {tools.map(
-        ({ tool, level, visible }: ToolItemProps, index: number) =>
+        ({ tool, level, visible }: ToolType, index: number) =>
           visible && (
             <div className="personal-tools__item" key={index}>
               <Text className="personal-tools__label" strong>

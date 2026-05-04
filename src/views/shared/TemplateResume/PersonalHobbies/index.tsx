@@ -1,13 +1,10 @@
 "use client";
 import { Locales } from "@/lib/constants/props/locales";
 import { PersonalHobbiesProps } from "@/lib/constants/props/resume";
+import { HobbyType } from "@/lib/constants/props/resume/personalHobbies";
 import { hobbiesByLocale } from "@/utils/personalHobbies";
 
 import { Text } from "@/views/shared/antd/Typography";
-
-type HobbyProps = {
-  hobby: string;
-};
 
 type HobbiesProps = {
   templateLocale: Locales;
@@ -20,7 +17,7 @@ const PersonalHobbies = ({ templateLocale, personalHobbies }: HobbiesProps) => {
   return (
     <div className="personal-interests">
       <ul className="personal-interests__list">
-        {hobbies.map(({ hobby }: HobbyProps, index: number) => (
+        {hobbies.map(({ hobby }: HobbyType, index: number) => (
           <li className="personal-interests__item" key={index}>
             <Text className="personal-interests__text">{hobby}</Text>
           </li>

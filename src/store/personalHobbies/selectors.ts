@@ -1,8 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { path, pathOr } from 'ramda';
 
-import isPresent from '@/utils/isPresent';
-
+import { HOBBIES_DEFAULT_VALUES } from '@/lib/constants/forms/resumeEdit/hobbies';
 import { RootState } from '../store';
 
 const getState = (state: RootState) => state;
@@ -12,5 +11,5 @@ export const personalHobbiesSelector = createSelector(getState, path(["personalH
 
 export const personalHobbiesByLocaleSelector = createSelector([(_, locale) => locale, personalHobbiesSelector], (locale, data) => ({
   sectionTitle: pathOr("", ["sectionTitle", locale], data),
-  hobbies: isPresent(data?.hobbies?.[locale]) ? data.hobbies[locale] : [{ hobby: "" }],
+  hobbies: data?.hobbies?.[locale] ? data.hobbies[locale] : HOBBIES_DEFAULT_VALUES,
 }));

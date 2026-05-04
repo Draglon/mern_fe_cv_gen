@@ -3,18 +3,10 @@ import { useTranslations } from "next-intl";
 
 import { Locales } from "@/lib/constants/props/locales";
 import { PersonalEducationProps } from "@/lib/constants/props/resume";
+import { EducationType } from "@/lib/constants/props/resume/personalEducation";
 import { educationByLocale } from "@/utils/personalEducation";
 
 import { Title, Text, Paragraph } from "@/views/shared/antd/Typography";
-
-type EducationProps = {
-  degree: string;
-  institute: string;
-  faculty: string;
-  specialization: string;
-  startDate: string;
-  endDate: string;
-};
 
 type EducationsProps = {
   templateLocale: Locales;
@@ -30,7 +22,7 @@ const PersonalEducation = ({
 
   return (
     <>
-      {education.map((item: EducationProps, index: number) => (
+      {education.map((item: EducationType, index: number) => (
         <div className="section__item" key={index}>
           <header className="section__subheader">
             <Title className="section__subtitle" level={4}>

@@ -82,10 +82,14 @@ const shared = {
           "maxLength": "Длина должна быть не более {maxLength} символов!",
         }
       },
+      "select": {
+        "errors": {
+          "required": "Поле обязательно для заполнения!",
+        }
+      },
       "submitButton": "Сохранить изменения",
     }
   }
 };
 
 export default shared;
-

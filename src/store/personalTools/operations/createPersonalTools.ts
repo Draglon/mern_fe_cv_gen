@@ -2,22 +2,10 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import axios from "@/lib/axios";
 import { personalToolsCreateRoute } from "@/lib/apiRoutes";
-import { Locales } from "@/lib/constants/props/locales";
+import { ParamsType } from "@/lib/constants/props/resume/personalTools";
 import { userIdSelector } from "@/store/auth/selectors";
 import { CREATE_PERSONAL_TOOLS } from "./../types";
 import { RootState } from '../../store';
-
-type ParamsType = {
-  values: {
-    sectionTitle?: string,
-    tools: {
-      tool: string;
-      level: string;
-      visible: boolean;
-    }[];
-  };
-  locale: Locales;
-};
 
 const createPersonalToolsOperation = createAsyncThunk(
   CREATE_PERSONAL_TOOLS,

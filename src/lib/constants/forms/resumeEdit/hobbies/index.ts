@@ -1,11 +1,1 @@
-export const EXPERIENCE_DEFAULT_VALUES = {
-  position: "",
-  companyName: "",
-  location: "",
-  placeOfWork: "",
-  workingTime: "",
-  startDate: "",
-  endDate: "",
-  description: "",
-  skills: [],
-};
+export const HOBBIES_DEFAULT_VALUES = [{ hobby: "" }];
