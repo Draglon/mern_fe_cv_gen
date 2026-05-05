@@ -1,9 +1,9 @@
 "use client";
+import { useEffect, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { Form } from "antd";
 
-import { REGEX_STRING } from "@/lib/constants/regex";
 import {
   PersonalInfoProps,
   FieldType,
@@ -11,6 +11,10 @@ import {
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
+import { getSectionTitleRules } from "@/utils/forms/validations/resume/sectionTitleValidation";
+import { getInputTextNameRules } from "@/utils/forms/validations/resume/inputTextNameValidation";
+import { getTextareaRules } from "@/utils/forms/validations/resume/textareaValidation";
+import { getEmailRules } from "@/utils/forms/validations/emailValidation";
 import createPersonalInfo from "@/store/personalInfo/operations/createPersonalInfo";
 import updatePersonalInfo from "@/store/personalInfo/operations/updatePersonalInfo";
 import { personalInfoByLocaleSelector } from "@/store/personalInfo/selectors";
@@ -30,10 +34,20 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoProps) => {
   const defaultValues = useAppSelector((state) =>
     personalInfoByLocaleSelector(state, locale)
   );
-  const { control, handleSubmit, formState, register } = useForm<FieldType>({
+  const { control, handleSubmit, formState, reset } = useForm<FieldType>({
     defaultValues,
     mode: "onChange",
   });
+  const sectionTitleRules = useMemo(
+    () => getSectionTitleRules(tShared),
+    [tShared]
+  );
+  const inputTextNameRules = useMemo(
+    () => getInputTextNameRules(tShared),
+    [tShared]
+  );
+  const textareaRules = useMemo(() => getTextareaRules(tShared), [tShared]);
+  const emailRules = useMemo(() => getEmailRules(tShared), [tShared]);
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
@@ -47,6 +61,10 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoProps) => {
       await dispatch(createPersonalInfo(params));
     }
   });
+
+  useEffect(() => {
+    reset(defaultValues);
+  }, [reset, defaultValues]);
 
   return (
     <Form
@@ -63,14 +81,9 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoProps) => {
             name="sectionTitle"
             controlName="sectionTitle"
             control={control}
-            label={t("form.sectionTitle.label")}
-            placeholder={t("form.sectionTitle.placeholder")}
-            register={register("sectionTitle", {
-              pattern: {
-                value: REGEX_STRING,
-                message: t("form.sectionTitle.errors.required"),
-              },
-            })}
+            label={tShared("form.sectionTitle.label")}
+            placeholder={tShared("form.sectionTitle.placeholder")}
+            rules={sectionTitleRules}
             Field={InputField}
             size="large"
           />
@@ -93,16 +106,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoProps) => {
               control={control}
               label={t("form.firstName.label")}
               placeholder={t("form.firstName.placeholder")}
-              register={register("firstName", {
-                required: {
-                  value: true,
-                  message: t("form.firstName.errors.required"),
-                },
-                minLength: {
-                  value: 3,
-                  message: t("form.firstName.errors.minLength"),
-                },
-              })}
+              rules={inputTextNameRules}
               Field={InputField}
               size="large"
             />
@@ -113,16 +117,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoProps) => {
               control={control}
               label={t("form.lastName.label")}
               placeholder={t("form.lastName.placeholder")}
-              register={register("lastName", {
-                required: {
-                  value: true,
-                  message: t("form.lastName.errors.required"),
-                },
-                minLength: {
-                  value: 3,
-                  message: t("form.lastName.errors.minLength"),
-                },
-              })}
+              rules={inputTextNameRules}
               Field={InputField}
               size="large"
             />
@@ -134,12 +129,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoProps) => {
             control={control}
             label={t("form.aboutMe.label")}
             placeholder={t("form.aboutMe.placeholder")}
-            register={register("aboutMe", {
-              required: {
-                value: true,
-                message: t("form.aboutMe.errors.required"),
-              },
-            })}
+            rules={textareaRules}
             Field={TextAreaField}
             size="large"
           />
@@ -154,12 +144,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoProps) => {
             control={control}
             label={t("form.email.label")}
             placeholder={t("form.email.placeholder")}
-            register={register("email", {
-              required: {
-                value: true,
-                message: t("form.email.errors.required"),
-              },
-            })}
+            rules={emailRules}
             Field={InputField}
             size="large"
           />

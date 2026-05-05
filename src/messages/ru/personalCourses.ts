@@ -2,19 +2,9 @@ const personalCourses = {
   "PersonalCourses": {
     "title": "Курсы",
     "form": {
-      "sectionTitle": {
-        "label": "Заголовок раздела",
-        "placeholder": "Ввести название раздела",
-        "errors": {
-          "required": "Пожалуйста, введите название вашего раздела!",
-        }
-      },
       "course": {
         "label": "Название курса",
         "placeholder": "Введите курс",
-        "errors": {
-          "required": "Пожалуйста, введите ваш курс!",
-        }
       },
       "startDate": {
         "label": "Дата начала",
@@ -33,9 +23,6 @@ const personalCourses = {
       "description": {
         "label": "Описание",
         "placeholder": "Описание ввода",
-        "errors": {
-          "required": "Пожалуйста, введите ваше описание!",
-        }
       },
     },
   },

@@ -82,6 +82,20 @@ const shared = {
           "maxLength": "Must be no more than {maxLength} characters!",
         }
       },
+      "inputNumber": {
+        "errors": {
+          "required": "Field is required!",
+          "minNumber": "Must be at least {minNumber} value!",
+          "maxNumber": "Must be no more than {maxNumber} value!",
+        }
+      },
+      "textarea": {
+        "errors": {
+          "required": "Field is required!",
+          "minLength": "Must be at least {minLength} characters!",
+          "maxLength": "Must be no more than {maxLength} characters!",
+        }
+      },
       "select": {
         "errors": {
           "required": "Field is required!",

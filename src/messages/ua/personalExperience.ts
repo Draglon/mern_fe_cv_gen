@@ -2,13 +2,6 @@ const personalExperience = {
   "PersonalExperience": {
     "title": "Досвід",
     "form": {
-      "sectionTitle": {
-        "label": "Section title",
-        "placeholder": "Input section title",
-        "errors": {
-          "required": "Please input your section title!",
-        }
-      },
       "recentPositionsCount": {
         "label": "Останні місця роботи",
         "placeholder": "Введіть число",
@@ -19,23 +12,14 @@ const personalExperience = {
       "position": {
         "label": "Посада",
         "placeholder": "Введіть вашу посаду",
-        "errors": {
-          "required": "Будь ласка, введіть свою посаду!",
-        }
       },
       "companyName": {
         "label": "Назва компанії",
         "placeholder": "Введіть назву компанії",
-        "errors": {
-          "required": "Будь ласка, введіть назву вашої компанії!",
-        }
       },
       "location": {
         "label": "Розташування",
         "placeholder": "Введіть розташування",
-        "errors": {
-          "required": "Будь ласка, введіть розташування!",
-        }
       },
       "employmentType": {
         "label": "Місце роботи",
@@ -68,16 +52,10 @@ const personalExperience = {
       "description": {
         "label": "Опис",
         "placeholder": "Введіть опис",
-        "errors": {
-          "required": "Будь ласка, введіть опис!",
-        }
       },
       "skills": {
         "label": "Навички",
         "placeholder": "Введіть майстерність",
-        "errors": {
-          "required": "Будь ласка, введіть майстерність!",
-        }
       },
     },
   },

@@ -2,40 +2,21 @@ const personalEducation = {
   "PersonalEducation": {
     "title": "Освіта",
     "form": {
-      "sectionTitle": {
-        "label": "Назва розділу",
-        "placeholder": "Ввести назву розділу",
-        "errors": {
-          "required": "Будь ласка, введіть назву вашого розділу!",
-        }
-      },
       "institute": {
         "label": "Інститут",
         "placeholder": "Введіть інститут",
-        "errors": {
-          "required": "Будь ласка, введіть свій інститут!",
-        }
       },
       "degree": {
         "label": "Ступінь",
         "placeholder": "Введіть ступінь освіти",
-        "errors": {
-          "required": "Будь ласка, введіть свій ступінь!",
-        }
       },
       "faculty": {
         "label": "Факультет",
         "placeholder": "Введіть факультет",
-        "errors": {
-          "required": "Будь ласка, введіть свій факультет!",
-        }
       },
       "specialization": {
         "label": "Спеціалізація",
         "placeholder": "Введіть Спеціалізацію",
-        "errors": {
-          "required": "Будь ласка, введіть свою спеціалізацію!",
-        }
       },
       "startDate": {
         "label": "Дата початку",

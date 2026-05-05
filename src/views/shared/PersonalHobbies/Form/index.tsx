@@ -96,9 +96,9 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesProps) => {
               control={control}
               label={t("form.hobby.label")}
               placeholder={t("form.hobby.placeholder")}
-              size="large"
-              Field={InputField}
               rules={inputTextRules}
+              Field={InputField}
+              size="large"
             />
             {fields.length > 1 && (
               <MinusCircleOutlined

@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
@@ -10,9 +11,11 @@ import {
   PersonalToolsProps,
   FieldType,
 } from "@/lib/constants/props/resume/personalTools";
-import { REGEX_STRING } from "@/lib/constants/regex";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
+import { getSectionTitleRules } from "@/utils/forms/validations/resume/sectionTitleValidation";
+import { getInputTextNameRules } from "@/utils/forms/validations/resume/inputTextNameValidation";
+import { getInputNumberRules } from "@/utils/forms/validations/resume/inputNumberValidation";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalTools from "@/store/personalTools/operations/createPersonalTools";
 import updatePersonalTools from "@/store/personalTools/operations/updatePersonalTools";
@@ -32,7 +35,7 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsProps) => {
     personalToolsByLocaleSelector(state, locale)
   );
 
-  const { control, handleSubmit, register, formState } = useForm({
+  const { control, handleSubmit, formState, reset } = useForm({
     defaultValues,
     mode: "onChange",
   });
@@ -40,6 +43,18 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsProps) => {
     control,
     name: "tools",
   });
+  const sectionTitleRules = useMemo(
+    () => getSectionTitleRules(tShared),
+    [tShared]
+  );
+  const inputTextNameRules = useMemo(
+    () => getInputTextNameRules(tShared),
+    [tShared]
+  );
+  const inputNumberRules = useMemo(
+    () => getInputNumberRules(tShared),
+    [tShared]
+  );
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
@@ -58,6 +73,10 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsProps) => {
     }
   });
 
+  useEffect(() => {
+    reset(defaultValues);
+  }, [reset, defaultValues]);
+
   return (
     <Form
       name={`create-personal-tools-${locale}`}
@@ -73,14 +92,9 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsProps) => {
           name="sectionTitle"
           controlName="sectionTitle"
           control={control}
-          label={t("form.sectionTitle.label")}
-          placeholder={t("form.sectionTitle.placeholder")}
-          register={register("sectionTitle", {
-            pattern: {
-              value: REGEX_STRING,
-              message: t("form.sectionTitle.errors.required"),
-            },
-          })}
+          label={tShared("form.sectionTitle.label")}
+          placeholder={tShared("form.sectionTitle.placeholder")}
+          rules={sectionTitleRules}
           Field={InputField}
           size="large"
         />
@@ -96,14 +110,9 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsProps) => {
               className="form__item--field"
               label={t("form.tool.label")}
               placeholder={t("form.tool.placeholder")}
-              size="large"
+              rules={inputTextNameRules}
               Field={InputField}
-              register={register(`tools.${index}.tool`, {
-                required: {
-                  value: true,
-                  message: t("form.tool.errors.required"),
-                },
-              })}
+              size="large"
             />
             <FormItem
               name={[index, "level"]}
@@ -112,14 +121,9 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsProps) => {
               className="form__item--field"
               label={t("form.level.label")}
               placeholder={t("form.level.placeholder")}
-              register={register(`tools.${index}.level`, {
-                required: {
-                  value: true,
-                  message: t("form.level.errors.required"),
-                },
-              })}
-              size="large"
+              rules={inputNumberRules}
               Field={InputField}
+              size="large"
             />
             <FormItem
               name={[index, "visible"]}

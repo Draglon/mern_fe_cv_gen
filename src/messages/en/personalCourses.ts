@@ -2,19 +2,9 @@ const personalCourses = {
   "PersonalCourses": {
     "title": "Courses",
     "form": {
-      "sectionTitle": {
-        "label": "Section title",
-        "placeholder": "Input section title",
-        "errors": {
-          "required": "Please input your section title!",
-        }
-      },
       "course": {
         "label": "Course name",
         "placeholder": "Input course",
-        "errors": {
-          "required": "Please input your course!",
-        }
       },
       "startDate": {
         "label": "Start date",
@@ -33,9 +23,6 @@ const personalCourses = {
       "description": {
         "label": "Description",
         "placeholder": "Input description",
-        "errors": {
-          "required": "Please input your description!",
-        }
       },
     },
   },

@@ -1,16 +1,21 @@
 "use client";
+import { useEffect, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
 
-import { REGEX_DIGITS, REGEX_STRING } from "@/lib/constants/regex";
+import { REGEX_DIGITS } from "@/lib/constants/regex";
 import {
   PersonalExperiencesProps,
   FieldType,
 } from "@/lib/constants/props/resume/personalExperiences";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
+import { getSectionTitleRules } from "@/utils/forms/validations/resume/sectionTitleValidation";
+import { getInputTextRules } from "@/utils/forms/validations/resume/inputTextValidation";
+import { getTextareaRules } from "@/utils/forms/validations/resume/textareaValidation";
+import { getSelectRules } from "@/utils/forms/validations/resume/selectValidation";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalExperience from "@/store/personalExperience/operations/createPersonalExperience";
 import updatePersonalExperience from "@/store/personalExperience/operations/updatePersonalExperience";
@@ -34,14 +39,22 @@ const PersonalExperienceForm = ({
   const defaultValues = useAppSelector((state) =>
     personalExperienceByLocaleSelector(state, locale)
   );
-  const { control, handleSubmit, register, formState } = useForm<FieldType>({
-    defaultValues,
-    mode: "onChange",
-  });
+  const { control, handleSubmit, register, formState, reset } =
+    useForm<FieldType>({
+      defaultValues,
+      mode: "onChange",
+    });
   const { fields, prepend, remove } = useFieldArray({
     control,
     name: "experiences",
   });
+  const sectionTitleRules = useMemo(
+    () => getSectionTitleRules(tShared),
+    [tShared]
+  );
+  const inputTextRules = useMemo(() => getInputTextRules(tShared), [tShared]);
+  const textareaRules = useMemo(() => getTextareaRules(tShared), [tShared]);
+  const selectRules = useMemo(() => getSelectRules(tShared), [tShared]);
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
@@ -55,6 +68,10 @@ const PersonalExperienceForm = ({
       await dispatch(createPersonalExperience(params));
     }
   });
+
+  useEffect(() => {
+    reset(defaultValues);
+  }, [reset, defaultValues]);
 
   return (
     <Form
@@ -71,14 +88,9 @@ const PersonalExperienceForm = ({
           name="sectionTitle"
           controlName="sectionTitle"
           control={control}
-          label={t("form.sectionTitle.label")}
-          placeholder={t("form.sectionTitle.placeholder")}
-          register={register("sectionTitle", {
-            pattern: {
-              value: REGEX_STRING,
-              message: t("form.sectionTitle.errors.required"),
-            },
-          })}
+          label={tShared("form.sectionTitle.label")}
+          placeholder={tShared("form.sectionTitle.placeholder")}
+          rules={sectionTitleRules}
           Field={InputField}
           size="large"
         />
@@ -110,14 +122,9 @@ const PersonalExperienceForm = ({
               className="form__item--field"
               label={t("form.position.label")}
               placeholder={t("form.position.placeholder")}
-              register={register(`experiences.${index}.position`, {
-                required: {
-                  value: true,
-                  message: t("form.position.errors.required"),
-                },
-              })}
-              size="large"
+              rules={inputTextRules}
               Field={InputField}
+              size="large"
             />
             <FormItem
               name={[index, "companyName"]}
@@ -126,14 +133,9 @@ const PersonalExperienceForm = ({
               className="form__item--field"
               label={t("form.companyName.label")}
               placeholder={t("form.companyName.placeholder")}
-              register={register(`experiences.${index}.companyName`, {
-                required: {
-                  value: true,
-                  message: t("form.companyName.errors.required"),
-                },
-              })}
-              size="large"
+              rules={inputTextRules}
               Field={InputField}
+              size="large"
             />
             <FormItem
               name={[index, "location"]}
@@ -142,14 +144,9 @@ const PersonalExperienceForm = ({
               className="form__item--field"
               label={t("form.location.label")}
               placeholder={t("form.location.placeholder")}
-              register={register(`experiences.${index}.location`, {
-                required: {
-                  value: true,
-                  message: t("form.location.errors.required"),
-                },
-              })}
-              size="large"
+              rules={inputTextRules}
               Field={InputField}
+              size="large"
             />
             <FormItem
               name={[index, "employmentType"]}
@@ -158,14 +155,9 @@ const PersonalExperienceForm = ({
               className="form__item--field"
               label={t("form.employmentType.label")}
               placeholder={t("form.employmentType.placeholder")}
-              register={register(`experiences.${index}.employmentType`, {
-                required: {
-                  value: true,
-                  message: t("form.employmentType.errors.required"),
-                },
-              })}
-              size="large"
+              rules={selectRules}
               Field={InputField}
+              size="large"
             />
             <FormItem
               name={[index, "workFormat"]}
@@ -174,14 +166,9 @@ const PersonalExperienceForm = ({
               className="form__item--field"
               label={t("form.workFormat.label")}
               placeholder={t("form.workFormat.placeholder")}
-              register={register(`experiences.${index}.workFormat`, {
-                required: {
-                  value: true,
-                  message: t("form.workFormat.errors.required"),
-                },
-              })}
-              size="large"
+              rules={selectRules}
               Field={InputField}
+              size="large"
             />
             <FormItem
               name={[index, "startDate"]}
@@ -222,12 +209,7 @@ const PersonalExperienceForm = ({
               className="form__item--field"
               label={t("form.description.label")}
               placeholder={t("form.description.placeholder")}
-              register={register(`experiences.${index}.description`, {
-                required: {
-                  value: true,
-                  message: t("form.description.errors.required"),
-                },
-              })}
+              rules={textareaRules}
               size="large"
               Field={TextAreaField}
             />
@@ -238,12 +220,7 @@ const PersonalExperienceForm = ({
               className="form__item--field"
               label={t("form.skills.label")}
               placeholder={t("form.skills.placeholder")}
-              register={register(`experiences.${index}.skills`, {
-                required: {
-                  value: true,
-                  message: t("form.skills.errors.required"),
-                },
-              })}
+              rules={inputTextRules}
               mode="tags"
               size="large"
               Field={SelectField}

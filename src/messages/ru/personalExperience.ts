@@ -2,13 +2,6 @@ const personalExperience = {
   "PersonalExperience": {
     "title": "Опыт работы",
     "form": {
-      "sectionTitle": {
-        "label": "Заголовок раздела",
-        "placeholder": "Введите заголовок раздела",
-        "errors": {
-          "required": "Пожалуйста, введите название вашего раздела!",
-        }
-      },
       "recentPositionsCount": {
         "label": "Последние места работы",
         "placeholder": "Введите число",
@@ -19,23 +12,14 @@ const personalExperience = {
       "position": {
         "label": "Должность",
         "placeholder": "Введите вашу должность",
-        "errors": {
-          "required": "Пожалуйста, введите вашу должность!",
-        }
       },
       "companyName": {
         "label": "Название компании",
         "placeholder": "Введите название компании",
-        "errors": {
-          "required": "Введите название вашей компании!",
-        }
       },
       "location": {
         "label": "Расположение",
         "placeholder": "Введите расположение",
-        "errors": {
-          "required": "Пожалуйста, введите местоположение!",
-        }
       },
       "employmentType": {
         "label": "Место работы",
@@ -68,16 +52,10 @@ const personalExperience = {
       "description": {
         "label": "Описание",
         "placeholder": "Введите описание",
-        "errors": {
-          "required": "Пожалуйста, введите ваше описание!",
-        }
       },
       "skills": {
         "label": "Навыки",
         "placeholder": "Введите свои навыки",
-        "errors": {
-          "required": "Пожалуйста, введите ваш навык!",
-        }
       },
     },
   },

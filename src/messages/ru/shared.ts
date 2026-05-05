@@ -82,6 +82,20 @@ const shared = {
           "maxLength": "Длина должна быть не более {maxLength} символов!",
         }
       },
+      "inputNumber": {
+        "errors": {
+          "required": "Поле обязательно для заполнения!",
+          "minNumber": "Значение должно быть не менее {minNumber}!",
+          "maxNumber": "Значение не должно превышать {maxNumber}!",
+        }
+      },
+      "textarea": {
+        "errors": {
+          "required": "Поле обязательно для заполнения!",
+          "minLength": "Длина должна быть не менее {minLength} символов!",
+          "maxLength": "Длина должна быть не более {maxLength} символов!",
+        }
+      },
       "select": {
         "errors": {
           "required": "Поле обязательно для заполнения!",

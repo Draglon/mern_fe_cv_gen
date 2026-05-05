@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
@@ -8,9 +9,10 @@ import {
   PersonalEducationProps,
   FieldType,
 } from "@/lib/constants/props/resume/personalEducation";
-import { REGEX_STRING } from "@/lib/constants/regex";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
+import { getSectionTitleRules } from "@/utils/forms/validations/resume/sectionTitleValidation";
+import { getInputTextRules } from "@/utils/forms/validations/resume/inputTextValidation";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalEducation from "@/store/personalEducation/operations/createPersonalEducation";
 import updatePersonalEducation from "@/store/personalEducation/operations/updatePersonalEducation";
@@ -29,14 +31,20 @@ const PersonalEducationForm = ({ locale, isEdit }: PersonalEducationProps) => {
   const defaultValues = useAppSelector((state) =>
     personalEducationByLocaleSelector(state, locale)
   );
-  const { control, handleSubmit, register, formState } = useForm<FieldType>({
-    defaultValues,
-    mode: "onChange",
-  });
+  const { control, handleSubmit, register, formState, reset } =
+    useForm<FieldType>({
+      defaultValues,
+      mode: "onChange",
+    });
   const { fields, append, remove } = useFieldArray({
     control,
     name: "education",
   });
+  const sectionTitleRules = useMemo(
+    () => getSectionTitleRules(tShared),
+    [tShared]
+  );
+  const inputTextRules = useMemo(() => getInputTextRules(tShared), [tShared]);
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
@@ -50,6 +58,10 @@ const PersonalEducationForm = ({ locale, isEdit }: PersonalEducationProps) => {
       await dispatch(createPersonalEducation(params));
     }
   });
+
+  useEffect(() => {
+    reset(defaultValues);
+  }, [reset, defaultValues]);
 
   return (
     <Form
@@ -66,14 +78,9 @@ const PersonalEducationForm = ({ locale, isEdit }: PersonalEducationProps) => {
           name="sectionTitle"
           controlName="sectionTitle"
           control={control}
-          label={t("form.sectionTitle.label")}
-          placeholder={t("form.sectionTitle.placeholder")}
-          register={register("sectionTitle", {
-            pattern: {
-              value: REGEX_STRING,
-              message: t("form.sectionTitle.errors.required"),
-            },
-          })}
+          label={tShared("form.sectionTitle.label")}
+          placeholder={tShared("form.sectionTitle.placeholder")}
+          rules={sectionTitleRules}
           Field={InputField}
           size="large"
         />
@@ -89,14 +96,9 @@ const PersonalEducationForm = ({ locale, isEdit }: PersonalEducationProps) => {
               className="form__item--field"
               label={t("form.institute.label")}
               placeholder={t("form.institute.placeholder")}
-              register={register(`education.${index}.institute`, {
-                required: {
-                  value: true,
-                  message: t("form.institute.errors.required"),
-                },
-              })}
-              size="large"
+              rules={inputTextRules}
               Field={InputField}
+              size="large"
             />
             <FormItem
               name={[index, "degree"]}
@@ -105,14 +107,9 @@ const PersonalEducationForm = ({ locale, isEdit }: PersonalEducationProps) => {
               className="form__item--field"
               label={t("form.degree.label")}
               placeholder={t("form.degree.placeholder")}
-              register={register(`education.${index}.degree`, {
-                required: {
-                  value: true,
-                  message: t("form.degree.errors.required"),
-                },
-              })}
-              size="large"
+              rules={inputTextRules}
               Field={InputField}
+              size="large"
             />
             <FormItem
               name={[index, "faculty"]}
@@ -121,14 +118,9 @@ const PersonalEducationForm = ({ locale, isEdit }: PersonalEducationProps) => {
               className="form__item--field"
               label={t("form.faculty.label")}
               placeholder={t("form.faculty.placeholder")}
-              register={register(`education.${index}.faculty`, {
-                required: {
-                  value: true,
-                  message: t("form.faculty.errors.required"),
-                },
-              })}
-              size="large"
+              rules={inputTextRules}
               Field={InputField}
+              size="large"
             />
             <FormItem
               name={[index, "specialization"]}
@@ -137,14 +129,9 @@ const PersonalEducationForm = ({ locale, isEdit }: PersonalEducationProps) => {
               className="form__item--field"
               label={t("form.specialization.label")}
               placeholder={t("form.specialization.placeholder")}
-              register={register(`education.${index}.specialization`, {
-                required: {
-                  value: true,
-                  message: t("form.specialization.errors.required"),
-                },
-              })}
-              size="large"
+              rules={inputTextRules}
               Field={InputField}
+              size="large"
             />
             <FormItem
               name={[index, "startDate"]}

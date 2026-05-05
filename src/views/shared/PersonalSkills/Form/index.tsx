@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
@@ -8,9 +9,11 @@ import {
   PersonalSkillsProps,
   FieldType,
 } from "@/lib/constants/props/resume/personalSkills";
-import { REGEX_STRING } from "@/lib/constants/regex";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
+import { getSectionTitleRules } from "@/utils/forms/validations/resume/sectionTitleValidation";
+import { getInputTextNameRules } from "@/utils/forms/validations/resume/inputTextNameValidation";
+import { getInputNumberRules } from "@/utils/forms/validations/resume/inputNumberValidation";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalSkills from "@/store/personalSkills/operations/createPersonalSkills";
 import updatePersonalSkills from "@/store/personalSkills/operations/updatePersonalSkills";
@@ -29,7 +32,7 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsProps) => {
   const defaultValues = useAppSelector((state) =>
     personalSkillsByLocaleSelector(state, locale)
   );
-  const { control, handleSubmit, register, formState } = useForm({
+  const { control, handleSubmit, formState, reset } = useForm({
     defaultValues,
     mode: "onChange",
   });
@@ -37,6 +40,18 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsProps) => {
     control,
     name: "skills",
   });
+  const sectionTitleRules = useMemo(
+    () => getSectionTitleRules(tShared),
+    [tShared]
+  );
+  const inputTextNameRules = useMemo(
+    () => getInputTextNameRules(tShared),
+    [tShared]
+  );
+  const inputNumberRules = useMemo(
+    () => getInputNumberRules(tShared),
+    [tShared]
+  );
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
@@ -50,6 +65,10 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsProps) => {
       await dispatch(createPersonalSkills(params));
     }
   });
+
+  useEffect(() => {
+    reset(defaultValues);
+  }, [reset, defaultValues]);
 
   return (
     <Form
@@ -66,14 +85,9 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsProps) => {
           name="sectionTitle"
           controlName="sectionTitle"
           control={control}
-          label={t("form.sectionTitle.label")}
-          placeholder={t("form.sectionTitle.placeholder")}
-          register={register("sectionTitle", {
-            pattern: {
-              value: REGEX_STRING,
-              message: t("form.sectionTitle.errors.required"),
-            },
-          })}
+          label={tShared("form.sectionTitle.label")}
+          placeholder={tShared("form.sectionTitle.placeholder")}
+          rules={sectionTitleRules}
           Field={InputField}
           size="large"
         />
@@ -89,14 +103,9 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsProps) => {
               className="form__item--field"
               label={t("form.skill.label")}
               placeholder={t("form.skill.placeholder")}
-              size="large"
+              rules={inputTextNameRules}
               Field={InputField}
-              register={register(`skills.${index}.skill`, {
-                required: {
-                  value: true,
-                  message: t("form.skill.errors.required"),
-                },
-              })}
+              size="large"
             />
             <FormItem
               name={[index, "level"]}
@@ -105,14 +114,9 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsProps) => {
               className="form__item--field"
               label={t("form.level.label")}
               placeholder={t("form.level.placeholder")}
-              size="large"
+              rules={inputNumberRules}
               Field={InputField}
-              register={register(`skills.${index}.level`, {
-                required: {
-                  value: true,
-                  message: t("form.level.errors.required"),
-                },
-              })}
+              size="large"
             />
             <FormItem
               name={[index, "visible"]}

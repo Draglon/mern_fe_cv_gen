@@ -2,13 +2,6 @@ const personalExperience = {
   "PersonalExperience": {
     "title": "Experience",
     "form": {
-      "sectionTitle": {
-        "label": "Section title",
-        "placeholder": "Input section title",
-        "errors": {
-          "required": "Please input your section title!",
-        }
-      },
       "recentPositionsCount": {
         "label": "Last places of works",
         "placeholder": "Input number",
@@ -19,23 +12,14 @@ const personalExperience = {
       "position": {
         "label": "Position",
         "placeholder": "Input position",
-        "errors": {
-          "required": "Please input your position!",
-        }
       },
       "companyName": {
         "label": "Company name",
         "placeholder": "Input company name",
-        "errors": {
-          "required": "Please input your company name!",
-        }
       },
       "location": {
         "label": "Location",
         "placeholder": "Input location",
-        "errors": {
-          "required": "Please input your location!",
-        }
       },
       "employmentType": {
         "label": "Place of work",
@@ -68,16 +52,10 @@ const personalExperience = {
       "description": {
         "label": "Description",
         "placeholder": "Input description",
-        "errors": {
-          "required": "Please input your description!",
-        }
       },
       "skills": {
         "label": "Skills",
         "placeholder": "Select skills",
-        "errors": {
-          "required": "Please select your skills!",
-        }
       },
     },
   },

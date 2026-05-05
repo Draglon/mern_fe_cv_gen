@@ -82,6 +82,20 @@ const shared = {
           "maxLength": "Має містити не більше {maxLength} символів!",
         }
       },
+      "inputNumber": {
+        "errors": {
+          "required": "Обов'язкове поле!",
+          "minNumber": "Значення має бути не менше {minNumber}!",
+          "maxNumber": "Значення не повинно перевищувати {maxNumber}!",
+        }
+      },
+      "textarea": {
+        "errors": {
+          "required": "Обов'язкове поле!",
+          "minLength": "Має містити щонайменше {minLength} символів!",
+          "maxLength": "Має містити не більше {maxLength} символів!",
+        }
+      },
       "select": {
         "errors": {
           "required": "Обов'язкове поле!",

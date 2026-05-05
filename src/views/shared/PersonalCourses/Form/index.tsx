@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
@@ -8,9 +9,11 @@ import {
   PersonalCoursesProps,
   FieldType,
 } from "@/lib/constants/props/resume/personalCourses";
-import { REGEX_STRING } from "@/lib/constants/regex";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
+import { getSectionTitleRules } from "@/utils/forms/validations/resume/sectionTitleValidation";
+import { getInputTextRules } from "@/utils/forms/validations/resume/inputTextValidation";
+import { getTextareaRules } from "@/utils/forms/validations/resume/textareaValidation";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalCourses from "@/store/personalCourses/operations/createPersonalCourses";
 import updatePersonalCourses from "@/store/personalCourses/operations/updatePersonalCourses";
@@ -30,14 +33,21 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesProps) => {
   const defaultValues = useAppSelector((state) =>
     personalCoursesByLocaleSelector(state, locale)
   );
-  const { control, handleSubmit, register, formState } = useForm<FieldType>({
-    defaultValues,
-    mode: "onChange",
-  });
+  const { control, handleSubmit, register, formState, reset } =
+    useForm<FieldType>({
+      defaultValues,
+      mode: "onChange",
+    });
   const { fields, append, remove } = useFieldArray({
     control,
     name: "courses",
   });
+  const sectionTitleRules = useMemo(
+    () => getSectionTitleRules(tShared),
+    [tShared]
+  );
+  const inputTextRules = useMemo(() => getInputTextRules(tShared), [tShared]);
+  const textareaRules = useMemo(() => getTextareaRules(tShared), [tShared]);
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
@@ -51,6 +61,10 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesProps) => {
       await dispatch(createPersonalCourses(params));
     }
   });
+
+  useEffect(() => {
+    reset(defaultValues);
+  }, [reset, defaultValues]);
 
   return (
     <Form
@@ -67,14 +81,9 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesProps) => {
           name="sectionTitle"
           controlName="sectionTitle"
           control={control}
-          label={t("form.sectionTitle.label")}
-          placeholder={t("form.sectionTitle.placeholder")}
-          register={register("sectionTitle", {
-            pattern: {
-              value: REGEX_STRING,
-              message: t("form.sectionTitle.errors.required"),
-            },
-          })}
+          label={tShared("form.sectionTitle.label")}
+          placeholder={tShared("form.sectionTitle.placeholder")}
+          rules={sectionTitleRules}
           Field={InputField}
           size="large"
         />
@@ -90,14 +99,9 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesProps) => {
               className="form__item--field"
               label={t("form.course.label")}
               placeholder={t("form.course.placeholder")}
-              register={register(`courses.${index}.course`, {
-                required: {
-                  value: true,
-                  message: t("form.course.errors.required"),
-                },
-              })}
-              size="large"
+              rules={inputTextRules}
               Field={InputField}
+              size="large"
             />
             <FormItem
               name={[index, "description"]}
@@ -106,14 +110,9 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesProps) => {
               className="form__item--field"
               label={t("form.description.label")}
               placeholder={t("form.description.placeholder")}
-              register={register(`courses.${index}.description`, {
-                required: {
-                  value: true,
-                  message: t("form.description.errors.required"),
-                },
-              })}
-              size="large"
+              rules={textareaRules}
               Field={TextAreaField}
+              size="large"
             />
             <FormItem
               name={[index, "startDate"]}
@@ -128,8 +127,8 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesProps) => {
                   message: t("form.startDate.errors.required"),
                 },
               })}
-              size="large"
               Field={InputField}
+              size="large"
             />
             <FormItem
               name={[index, "endDate"]}
@@ -144,8 +143,8 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesProps) => {
                   message: t("form.endDate.errors.required"),
                 },
               })}
-              size="large"
               Field={InputField}
+              size="large"
             />
             {fields.length > 1 && (
               <MinusCircleOutlined
