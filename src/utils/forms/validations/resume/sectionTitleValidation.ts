@@ -1,5 +1,5 @@
 import { MIN_INPUT_LENGTH, MAX_INPUT_LENGTH } from "@/lib/constants";
-import { REGEX_STRING } from "@/lib/constants/regex";
+import { REGEX } from "@/lib/constants/regex";
 
 type TFunction = (
   key: string,
@@ -8,7 +8,7 @@ type TFunction = (
 
 export const getSectionTitleRules = (tShared:TFunction) => ({
   pattern: {
-    value: REGEX_STRING,
+    value: REGEX.string,
     message: tShared("form.sectionTitle.errors.pattern"),
   },
   minLength: {

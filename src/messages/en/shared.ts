@@ -101,6 +101,11 @@ const shared = {
           "required": "Field is required!",
         }
       },
+      "datePiker": {
+        "errors": {
+          "required": "Field is required!",
+        }
+      },
       "submitButton": "Save changes",
     }
   },

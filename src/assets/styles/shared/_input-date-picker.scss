@@ -1,0 +1,121 @@
+.data-picker {
+  background-color: var(--input-default-bg-color);
+  border: 1px solid var(--input-default-border-color);
+  border-radius: var(--input-radius);
+  color: var(--input-color) !important;
+  font-family: var(--text-primary-font-family);
+  font-size: var(--input-font-size);
+  padding: var(--input-padding) !important;
+  line-height: var(--input-line-height) !important;
+  width: 100%;
+  &:focus, &:hover {
+    background-color: var(--input-focus-bg-color) !important;
+    border: 1px solid var(--input-focus-border-color) !important;
+  }
+  &::placeholder {
+    color: var(--input-placeholder-color);
+    font-family: var(--text-primary-font-family);
+  }
+  .ant-picker-input {
+    input {
+      border: none !important;
+      height: var(--input-height-md);
+    }
+  }
+  // Large
+  &.ant-picker-large {
+    .ant-picker-input {
+      input {
+        height: var(--input-height-lg);
+      }
+    }
+  }
+  .ant-picker-status-error {
+    border: 2px solid red;
+  }
+  .ant-picker-status-warning {
+
+  }
+}
+
+.ant-picker-dropdown {
+  .ant-picker-panel-container {
+    .ant-picker-panel-layout {
+      .ant-picker-panel {
+        .ant-picker-header {}
+        .ant-picker-body {}
+        .ant-picker-footer {}
+      }
+    }
+  }
+}
+
+/* DARK */
+// .data-picker {
+//   background: var(--blue-darkest);
+//   border-color: var(--blue-darker);
+//   color: var(--white);
+
+//   input {
+//     color: var(--white);
+//   }
+
+//   .ant-picker-suffix {
+//     color: var(--grey-light);
+//   }
+
+//   &:hover {
+//     border-color: var(--purple-400-dark);
+//   }
+
+//   &.ant-picker-focused {
+//     border-color: var(--purple-500-dark);
+//     box-shadow: 0 0 0 2px rgba(140, 108, 255, 0.2);
+//   }
+// }
+
+// .data-picker-popup {
+//   .ant-picker-panel-container {
+//     background: var(--blue-darkest);
+//     border: 1px solid var(--blue-darker);
+//     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+//   }
+
+//   .ant-picker-header {
+//     color: var(--white);
+//     border-bottom: 1px solid var(--blue-darker);
+//   }
+
+//   .ant-picker-header button {
+//     color: var(--white);
+//   }
+
+//   .ant-picker-content th {
+//     color: var(--grey-light);
+//   }
+
+//   .ant-picker-cell {
+//     color: var(--white);
+//   }
+
+//   .ant-picker-cell-disabled {
+//     opacity: 0.3;
+//   }
+
+//   .ant-picker-cell:hover .ant-picker-cell-inner {
+//     background: var(--purple-200-dark);
+//   }
+
+//   .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner {
+//     background: var(--purple-500-dark);
+//     color: var(--white);
+//   }
+
+//   .ant-picker-cell-in-view.ant-picker-cell-today .ant-picker-cell-inner::before {
+//     border-color: var(--purple-500-dark);
+//   }
+
+//   .ant-picker-time-panel {
+//     background: var(--blue-darkest);
+//   }
+// }

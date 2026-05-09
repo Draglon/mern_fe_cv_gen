@@ -6,4 +6,6 @@ export const LANGUAGE_LEVEL = [
   "upperIntermediate",
   "advanced",
   "proficiency",
-];
+] as const;
+
+export type LanguageLevel = (typeof LANGUAGE_LEVEL)[number];

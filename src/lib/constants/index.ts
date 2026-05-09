@@ -24,9 +24,12 @@ export const HTTP_STATUSES = {
   gone: 410,
   unprocessableEntity: 422,
   tooManyRequests: 429,
-}
+} as const;
+
+export type HttpStatus =
+  (typeof HTTP_STATUSES)[keyof typeof HTTP_STATUSES];
 
 export const HTTP_CODES = {
   incorrectCurrentPassword: "INCORRECT_CURRENT_PASSWORD",
   newPasswordEqualsOld: "NEW_PASSWORD_EQUALS_OLD",
-};
+} as const;

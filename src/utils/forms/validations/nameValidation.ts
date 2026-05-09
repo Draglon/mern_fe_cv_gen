@@ -1,5 +1,5 @@
 import { MIN_NAME_LENGTH, MAX_NAME_LENGTH } from "@/lib/constants";
-import { REGEX_NAME } from "@/lib/constants/regex";
+import { REGEX } from "@/lib/constants/regex";
 
 type TFunction = (
   key: string,
@@ -8,7 +8,7 @@ type TFunction = (
 
 export const getNameRules = (tShared:TFunction, field: "firstName" | "lastName") => ({
   pattern: {
-    value: REGEX_NAME,
+    value: REGEX.name,
     message: tShared(`form.${field}.errors.pattern`),
   },
   minLength: {

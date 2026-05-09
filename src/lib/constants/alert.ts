@@ -3,4 +3,4 @@ export const ALERT_KINDS = {
   info: "info",
   warning: "warning",
   error: "error",
-};
+} as const;

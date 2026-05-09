@@ -168,6 +168,19 @@
   --checkbox-bg-color-checked: var(--purple-500-light);
   --checkbox-bg-color-checked-hover: var(--purple-600-light);
   --checkbox-bg-color-disabled: var(--purple-200-light);
+  // Date picker
+  --checkbox-default-border-color: var(--border-color);
+  --checkbox-border-color: var(--purple-300-light);
+  --checkbox-border-color-hover: var(--purple-400-light);
+  --checkbox-border-color-checked: var(--purple-500-light);
+  --checkbox-border-color-checked-hover: var(--purple-600-light);
+  --checkbox-border-color-disabled: var(--purple-100-light);
+  --checkbox-text-color: var(--text-primary-color);
+  --checkbox-bg-color: var(--purple-100-light);
+  --checkbox-bg-color-hover: var(--purple-200-light);
+  --checkbox-bg-color-checked: var(--purple-500-light);
+  --checkbox-bg-color-checked-hover: var(--purple-600-light);
+  --checkbox-bg-color-disabled: var(--purple-200-light);
   // Alert
   --alert-info-bg-color: var(--purple-100-light);
   --alert-info-border-color: var(--purple-300-light);

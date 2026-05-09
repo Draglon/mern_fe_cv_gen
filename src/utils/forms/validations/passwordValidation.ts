@@ -2,7 +2,7 @@ import type { UseFormGetValues, UseFormTrigger } from "react-hook-form";
 
 import { FieldType } from "@/lib/constants/props/settings/changePassword";
 import { MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH } from "@/lib/constants";
-import { REGEX_HAS_DIGITS, REGEX_HAS_LETTERS } from "@/lib/constants/regex";
+import { REGEX } from "@/lib/constants/regex";
 
 type TFunction = (
   key: string,
@@ -28,11 +28,11 @@ export const getPasswordRules = (tShared:TFunction) => ({
 
   validate: {
     hasUppercase: (value: string) =>
-      REGEX_HAS_LETTERS.test(value) ||
+      REGEX.hasLetters.test(value) ||
       tShared("form.password.errors.uppercase"),
 
     hasNumber: (value: string) =>
-      REGEX_HAS_DIGITS.test(value) ||
+      REGEX.hasDigits.test(value) ||
       tShared("form.password.errors.number"),
   },
 });

@@ -5,7 +5,7 @@ export const TEMPLATES = {
   standford: "standford",
   edinburgh: "edinburgh",
   edinburghPlus: "edinburgh-plus",
-};
+} as const;
 
 export const TEMPLATES_LIST = [
   {

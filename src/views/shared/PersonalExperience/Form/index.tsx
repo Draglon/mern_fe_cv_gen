@@ -5,7 +5,7 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
 
-import { REGEX_DIGITS } from "@/lib/constants/regex";
+import { REGEX } from "@/lib/constants/regex";
 import {
   PersonalExperiencesProps,
   FieldType,
@@ -103,7 +103,7 @@ const PersonalExperienceForm = ({
           placeholder={t("form.recentPositionsCount.placeholder")}
           register={register("recentPositionsCount", {
             pattern: {
-              value: REGEX_DIGITS,
+              value: REGEX.digits,
               message: t("form.recentPositionsCount.errors.required"),
             },
           })}

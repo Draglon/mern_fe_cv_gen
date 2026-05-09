@@ -1,5 +1,5 @@
 import { MAX_EMAIL_LENGTH } from "@/lib/constants";
-import { REGEX_EMAIL } from "@/lib/constants/regex";
+import { REGEX } from "@/lib/constants/regex";
 
 type TFunction = (
   key: string,
@@ -9,7 +9,7 @@ type TFunction = (
 export const getEmailRules = (tShared:TFunction) => ({
   required: tShared("form.email.errors.required"),
   pattern: {
-    value: REGEX_EMAIL,
+    value: REGEX.email,
     message: tShared("form.email.errors.pattern"),
   },
   maxLength: {

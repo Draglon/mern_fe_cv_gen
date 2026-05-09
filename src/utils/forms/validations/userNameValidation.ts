@@ -1,5 +1,5 @@
 import { MIN_NIKE_NAME_LENGTH, MAX_NIKE_NAME_LENGTH } from "@/lib/constants";
-import { REGEX_NICK_NAME } from "@/lib/constants/regex";
+import { REGEX } from "@/lib/constants/regex";
 
 type TFunction = (
   key: string,
@@ -9,7 +9,7 @@ type TFunction = (
 export const getUserNameRules = (tShared:TFunction) => ({
   required: tShared("form.userName.errors.required"),
   pattern: {
-    value: REGEX_NICK_NAME,
+    value: REGEX.userName,
     message: tShared("form.userName.errors.pattern"),
   },
   minLength: {

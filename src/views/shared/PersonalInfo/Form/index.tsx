@@ -14,6 +14,7 @@ import isSubmitLoading from "@/utils/isSubmitLoading";
 import { getSectionTitleRules } from "@/utils/forms/validations/resume/sectionTitleValidation";
 import { getInputTextNameRules } from "@/utils/forms/validations/resume/inputTextNameValidation";
 import { getTextareaRules } from "@/utils/forms/validations/resume/textareaValidation";
+import { getInputDatePickerRules } from "@/utils/forms/validations/resume/inputDatePickerValidation";
 import { getEmailRules } from "@/utils/forms/validations/emailValidation";
 import createPersonalInfo from "@/store/personalInfo/operations/createPersonalInfo";
 import updatePersonalInfo from "@/store/personalInfo/operations/updatePersonalInfo";
@@ -24,6 +25,7 @@ import InputField from "@/views/shared/InputField";
 import TextAreaField from "@/views/shared/TextAreaField";
 import UploadFileField from "@/views/shared/UploadFileField";
 import PhoneNumberField from "@/views/shared/PhoneNumberField";
+import DatePickerField from "@/views/shared/DatePickerField";
 import Button from "@/views/shared/antd/Button";
 import Divider from "@/views/shared/antd/Divider";
 
@@ -48,6 +50,10 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoProps) => {
   );
   const textareaRules = useMemo(() => getTextareaRules(tShared), [tShared]);
   const emailRules = useMemo(() => getEmailRules(tShared), [tShared]);
+  const datePickerRules = useMemo(
+    () => getInputDatePickerRules(tShared),
+    [tShared]
+  );
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
@@ -186,7 +192,8 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoProps) => {
             control={control}
             label={t("form.birthday.label")}
             placeholder={t("form.birthday.placeholder")}
-            Field={InputField}
+            rules={datePickerRules}
+            Field={DatePickerField}
             size="large"
           />
 

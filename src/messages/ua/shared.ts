@@ -101,6 +101,11 @@ const shared = {
           "required": "Обов'язкове поле!",
         }
       },
+      "datePiker": {
+        "errors": {
+          "required": "Обов'язкове поле!",
+        }
+      },
       "submitButton": "Зберегти зміни",
     }
   }
