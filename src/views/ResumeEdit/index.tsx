@@ -1,10 +1,14 @@
 "use client";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useTranslations } from "next-intl";
 
 import { Locales } from "@/lib/constants/props/locales";
 import { DEFAULT_LOCALE } from "@/lib/constants/locales";
-import { RESUME_ITEMS, DEFAULT_RESUME_ITEM } from "@/lib/constants/resume";
+import {
+  RESUME_ITEMS,
+  DEFAULT_RESUME_ITEM,
+  ResumeKey,
+} from "@/lib/constants/resume";
 
 import Tabs from "@/views/shared/antd/Tabs";
 import LocalTabs from "@/views/shared/LocalTabs";
@@ -12,22 +16,28 @@ import { Title } from "@/views/shared/antd/Typography";
 
 const ResumeEdit = () => {
   const t = useTranslations("ResumeEdit");
-  const [currentTab, setCurrentTab] = useState(DEFAULT_RESUME_ITEM);
-  const [locale, setLocale] = useState(DEFAULT_LOCALE);
+  const [currentTab, setCurrentTab] = useState<ResumeKey>(DEFAULT_RESUME_ITEM);
+  const [locale, setLocale] = useState<Locales>(DEFAULT_LOCALE);
 
   const onChangeTab = (tabKey: string): void => {
-    setCurrentTab(tabKey);
+    if (RESUME_ITEMS.some((item) => item.key === tabKey)) {
+      setCurrentTab(tabKey as ResumeKey);
+    }
   };
 
-  const onChangeLocale = (locale: string): void => {
+  const onChangeLocale = (locale: Locales): void => {
     setLocale(locale);
   };
 
-  const EDIT_RESUME_TABS = RESUME_ITEMS.map(({ key, Component }) => ({
-    key: key,
-    label: t(`tabs.${key}`),
-    children: <Component locale={locale as Locales} isEdit />,
-  }));
+  const EDIT_RESUME_TABS = useMemo(
+    () =>
+      RESUME_ITEMS.map(({ key, Component }) => ({
+        key,
+        label: t(`tabs.${key}`),
+        children: <Component locale={locale} isEdit />,
+      })),
+    [locale, t]
+  );
 
   return (
     <div className="page__wrapper">
@@ -38,7 +48,7 @@ const ResumeEdit = () => {
         <LocalTabs onChange={onChangeLocale} />
         <Tabs
           items={EDIT_RESUME_TABS}
-          defaultActiveKey={currentTab}
+          activeKey={currentTab}
           onChange={onChangeTab}
         />
       </div>

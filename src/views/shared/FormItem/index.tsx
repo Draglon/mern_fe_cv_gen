@@ -28,7 +28,7 @@ const FormItem = <T extends FieldValues>({
       rules={rules}
       render={({ field, fieldState }) => (
         <div className={clsx("form__item", className)}>
-          {label && <label>{label}</label>}
+          {label && <label className="form__item-label">{label}</label>}
 
           <Field {...field} {...restProps} errors={fieldState.error} />
         </div>

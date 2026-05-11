@@ -7,7 +7,7 @@
   padding: var(--select-padding) !important;
   line-height: var(--select-line-height) !important;
   height: var(--select-height-md);
-  &:focus, &:hover {
+  &.ant-select-open, &:focus, &:hover {
     background-color: var(--select-focus-bg-color);
     border: 1px solid var(--select-focus-border-color);
   }

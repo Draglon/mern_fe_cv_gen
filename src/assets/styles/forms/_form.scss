@@ -37,7 +37,7 @@
       width: 100%;
     }
 
-    .ant-form-item-label > label {
+    &-label {
       color: var(--text-primary-color);
       font-family: var(--text-primary-font-family) !important;
       font-weight: bold;

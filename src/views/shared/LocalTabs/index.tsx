@@ -2,13 +2,14 @@
 import { ReactNode } from "react";
 import { useTranslations } from "next-intl";
 
+import { Locales } from "@/lib/constants/props/locales";
 import { LOCALES, DEFAULT_LOCALE } from "@/lib/constants/locales";
 
 import Tabs from "@/views/shared/antd/Tabs";
 
 type LocalTabsProp = {
   Component?: ReactNode;
-  onChange: (locale: string) => void;
+  onChange: (locale: Locales) => void;
 };
 
 const LocalTabs = ({ Component, onChange }: LocalTabsProp) => {

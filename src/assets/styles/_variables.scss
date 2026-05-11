@@ -116,6 +116,8 @@
   --input-color: var(--text-primary-color);
   --input-disabled-color: var(--text-secondary-color);
   --input-placeholder-color: var(--primary-color-disabled);
+  --input-icon-color: var(--primary-color);
+  --input-icon-error-color: var(--red-light-theme);
   // textarea
   --textarea-min-height: 100px;
   --textarea-padding: 12px 14px;
@@ -169,18 +171,20 @@
   --checkbox-bg-color-checked-hover: var(--purple-600-light);
   --checkbox-bg-color-disabled: var(--purple-200-light);
   // Date picker
-  --checkbox-default-border-color: var(--border-color);
-  --checkbox-border-color: var(--purple-300-light);
-  --checkbox-border-color-hover: var(--purple-400-light);
-  --checkbox-border-color-checked: var(--purple-500-light);
-  --checkbox-border-color-checked-hover: var(--purple-600-light);
-  --checkbox-border-color-disabled: var(--purple-100-light);
-  --checkbox-text-color: var(--text-primary-color);
-  --checkbox-bg-color: var(--purple-100-light);
-  --checkbox-bg-color-hover: var(--purple-200-light);
-  --checkbox-bg-color-checked: var(--purple-500-light);
-  --checkbox-bg-color-checked-hover: var(--purple-600-light);
-  --checkbox-bg-color-disabled: var(--purple-200-light);
+  --date-picker-dropdown-border-color: var(--primary-color);
+  --date-picker-dropdown-radius: 8px;
+  --date-picker-dropdown-box-shadow-color: var(--primary-color);
+  --date-picker-dropdown-btn-color: var(--black);
+  --date-picker-dropdown-btn-color-hover: var(--primary-color);
+  --date-picker-dropdown-th-color: var(--black);
+  --date-picker-dropdown-cell-inner-bg-hover: var(--purple-200-light);
+  --date-picker-dropdown-cell-inner-color: var(--black);
+  --date-picker-dropdown-cell-inner-color-hover: var(--black);
+  --date-picker-dropdown-cell-inner-disabled-color: var(--text-secondary-color);
+  --date-picker-dropdown-cell-inner-selected-bg: var(--primary-color);
+  --date-picker-dropdown-cell-inner-selected-color: var(--white);
+  --date-picker-dropdown-now-btn: var(--link-default-color);
+  --date-picker-dropdown-now-btn-hover: var(--link-hover-color);
   // Alert
   --alert-info-bg-color: var(--purple-100-light);
   --alert-info-border-color: var(--purple-300-light);
@@ -248,6 +252,8 @@
   --input-color: var(--text-primary-color);
   --input-disabled-color: var(--primary-color-disabled);
   --input-placeholder-color: var(--primary-color-disabled);
+  --input-icon-color: var(--primary-color);
+  --input-icon-error-color: var(--red-dark-theme);
   // select
   --select-default-bg-color: #0F0F1A;
   --select-focus-bg-color: #0F0F1A;
@@ -281,6 +287,19 @@
   --checkbox-bg-color-checked: var(--purple-400-dark);
   --checkbox-bg-color-checked-hover: var(--purple-600-dark);
   --checkbox-bg-color-disabled: var(--purple-200-dark);
+  // Date picker
+  --date-picker-dropdown-border-color: var(--primary-color);
+  --date-picker-dropdown-box-shadow-color: var(--primary-border-color);
+  --date-picker-dropdown-btn-color: var(--white);
+  --date-picker-dropdown-btn-color-hover: var(--primary-color);
+  --date-picker-dropdown-th-color: var(--white);
+  --date-picker-dropdown-cell-inner-bg-hover: var(--purple-300-light);
+  --date-picker-dropdown-cell-inner-color: var(--white);
+  --date-picker-dropdown-cell-inner-color-hover: var(--white);
+  --date-picker-dropdown-cell-inner-disabled-color: var(--text-secondary-color);
+  --date-picker-dropdown-cell-inner-selected-color: var(--white);
+  --date-picker-dropdown-now-btn: var(--link-default-color);
+  --date-picker-dropdown-now-btn-hover: var(--link-hover-color);
   // Tabs
   --tabs-border-color: var(--purple-200-dark);
   --tabs-bg-color: var(--transparent);

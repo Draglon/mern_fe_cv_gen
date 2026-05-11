@@ -1,5 +1,5 @@
-.data-picker {
-  background-color: var(--input-default-bg-color);
+.ant-picker {
+  background-color: var(--input-default-bg-color) !important;
   border: 1px solid var(--input-default-border-color);
   border-radius: var(--input-radius);
   color: var(--input-color) !important;
@@ -8,7 +8,7 @@
   padding: var(--input-padding) !important;
   line-height: var(--input-line-height) !important;
   width: 100%;
-  &:focus, &:hover {
+  &.ant-picker-focused, &:focus, &:hover {
     background-color: var(--input-focus-bg-color) !important;
     border: 1px solid var(--input-focus-border-color) !important;
   }
@@ -16,13 +16,17 @@
     color: var(--input-placeholder-color);
     font-family: var(--text-primary-font-family);
   }
+  // middle or default
   .ant-picker-input {
+    &.ant-picker-input-placeholder > input {
+      color: var(--input-placeholder-color) !important;
+    }
     input {
       border: none !important;
       height: var(--input-height-md);
     }
   }
-  // Large
+  // large
   &.ant-picker-large {
     .ant-picker-input {
       input {
@@ -30,92 +34,84 @@
       }
     }
   }
-  .ant-picker-status-error {
-    border: 2px solid red;
+  // small
+  .ant-picker-small {
+    .ant-picker-input {
+      input {
+        height: var(--input-height-sm);
+      }
+    }
   }
-  .ant-picker-status-warning {
-
+  &.ant-picker-status-error {
+    border: 1px solid var(--input-error-border-color);
+    .anticon-calendar {
+      color: var(--input-icon-error-color) !important;
+    }
+  }
+  .anticon-close-circle, .anticon-calendar {
+    color: var(--input-icon-color);
   }
 }
 
 .ant-picker-dropdown {
   .ant-picker-panel-container {
+    background-color: var(--select-default-bg-color);
+    border-radius: var(--date-picker-dropdown-radius);
+    box-shadow: 0 0 3px var(--date-picker-dropdown-box-shadow-color);
     .ant-picker-panel-layout {
       .ant-picker-panel {
-        .ant-picker-header {}
-        .ant-picker-body {}
-        .ant-picker-footer {}
+        .ant-picker-header {
+          border-bottom: 1px solid var(--date-picker-dropdown-border-color);
+          .ant-picker-month-btn, .ant-picker-year-btn, button {
+            color: var(--date-picker-dropdown-btn-color);
+            &:hover {
+              color: var(--date-picker-dropdown-btn-color-hover);
+            }
+          }
+        }
+        .ant-picker-body {
+          th {
+            color: var(--date-picker-dropdown-th-color);
+          }
+          .ant-picker-cell {
+            color: var(--date-picker-dropdown-cell-inner-disabled-color);
+            transition: color .3s, background-color .3s;
+            &.ant-picker-cell-hover {
+              .ant-picker-cell-inner {
+                background-color: var(--date-picker-dropdown-cell-inner-bg-hover);
+                color: var(--date-picker-dropdown-cell-inner-color-hover);
+              }
+            }
+            &.ant-picker-cell-selected {
+              &.ant-picker-cell-in-view {
+                .ant-picker-cell-inner {
+                  background-color: var(--date-picker-dropdown-cell-inner-selected-bg) !important;
+                  color: var(--date-picker-dropdown-cell-inner-selected-color) !important;
+                }
+              }
+            }
+            &.ant-picker-cell-in-view {
+              .ant-picker-cell-inner {
+                color: var(--date-picker-dropdown-cell-inner-color);
+              }
+              &.ant-picker-cell-hover {
+                .ant-picker-cell-inner {
+                  background-color: var(--date-picker-dropdown-cell-inner-bg-hover);
+                }
+              }
+            }
+          }
+        }
+      }
+      .ant-picker-footer {
+        border-top: 1px solid var(--date-picker-dropdown-border-color);
+        .ant-picker-now-btn {
+          color: var(--date-picker-dropdown-now-btn);
+          &:hover {
+            color: var(--date-picker-dropdown-now-btn-hover);
+          }
+        }
       }
     }
   }
 }
-
-/* DARK */
-// .data-picker {
-//   background: var(--blue-darkest);
-//   border-color: var(--blue-darker);
-//   color: var(--white);
-
-//   input {
-//     color: var(--white);
-//   }
-
-//   .ant-picker-suffix {
-//     color: var(--grey-light);
-//   }
-
-//   &:hover {
-//     border-color: var(--purple-400-dark);
-//   }
-
-//   &.ant-picker-focused {
-//     border-color: var(--purple-500-dark);
-//     box-shadow: 0 0 0 2px rgba(140, 108, 255, 0.2);
-//   }
-// }
-
-// .data-picker-popup {
-//   .ant-picker-panel-container {
-//     background: var(--blue-darkest);
-//     border: 1px solid var(--blue-darker);
-//     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
-//   }
-
-//   .ant-picker-header {
-//     color: var(--white);
-//     border-bottom: 1px solid var(--blue-darker);
-//   }
-
-//   .ant-picker-header button {
-//     color: var(--white);
-//   }
-
-//   .ant-picker-content th {
-//     color: var(--grey-light);
-//   }
-
-//   .ant-picker-cell {
-//     color: var(--white);
-//   }
-
-//   .ant-picker-cell-disabled {
-//     opacity: 0.3;
-//   }
-
-//   .ant-picker-cell:hover .ant-picker-cell-inner {
-//     background: var(--purple-200-dark);
-//   }
-
-//   .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner {
-//     background: var(--purple-500-dark);
-//     color: var(--white);
-//   }
-
-//   .ant-picker-cell-in-view.ant-picker-cell-today .ant-picker-cell-inner::before {
-//     border-color: var(--purple-500-dark);
-//   }
-
-//   .ant-picker-time-panel {
-//     background: var(--blue-darkest);
-//   }
-// }
