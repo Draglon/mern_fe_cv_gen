@@ -1,4 +1,4 @@
-import { LANGUAGE_LEVEL } from "@/lib/constants/languages";
+import { LANGUAGE_LEVEL, LanguageLevel } from "@/lib/constants/languages";
 
 type TFunction = (
   key: string,
@@ -12,6 +12,6 @@ export const getSelectRules = (tShared:TFunction) => ({
 export const getSelectLanguageRules = (tShared:TFunction) => ({
   required: tShared("form.languageLevel.errors.required"),
   validate: (value: string) =>
-    LANGUAGE_LEVEL.includes(value) ||
+    LANGUAGE_LEVEL.includes(value as LanguageLevel) ||
     tShared("form.languageLevel.errors.invalidLanguageLevel"),
 });

@@ -101,10 +101,21 @@ const shared = {
           "required": "Обов'язкове поле!",
         }
       },
+      "languageLevel": {
+        "errors": {
+          "required": "Обов'язкове поле!",
+          "invalidLanguageLevel": "Недійсний рівень мови!"
+        },
+      },
       "datePiker": {
         "errors": {
           "required": "Обов'язкове поле!",
         }
+      },
+      "inputLink": {
+        "errors": {
+          "invalid": "Будь ласка, введіть коректне посилання!",
+        } 
       },
       "submitButton": "Зберегти зміни",
     }

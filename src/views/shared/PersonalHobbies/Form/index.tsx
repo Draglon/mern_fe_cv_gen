@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
@@ -9,10 +9,9 @@ import {
   PersonalHobbiesProps,
   FieldType,
 } from "@/lib/constants/props/resume/personalHobbies";
+import useResumeEditRules from "@/hooks/useResumeEditRules";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
-import { getSectionTitleRules } from "@/utils/forms/validations/resume/sectionTitleValidation";
-import { getInputTextRules } from "@/utils/forms/validations/resume/inputTextValidation";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalHobbies from "@/store/personalHobbies/operations/createPersonalHobbies";
 import updatePersonalHobbies from "@/store/personalHobbies/operations/updatePersonalHobbies";
@@ -28,6 +27,7 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesProps) => {
   const dispatch = useAppDispatch();
   const t = useTranslations("PersonalHobbies");
   const tShared = useTranslations("shared");
+  const rules = useResumeEditRules();
   const defaultValues = useAppSelector((state) =>
     personalHobbiesByLocaleSelector(state, locale)
   );
@@ -39,11 +39,6 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesProps) => {
     control,
     name: "hobbies",
   });
-  const sectionTitleRules = useMemo(
-    () => getSectionTitleRules(tShared),
-    [tShared]
-  );
-  const inputTextRules = useMemo(() => getInputTextRules(tShared), [tShared]);
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
@@ -79,7 +74,7 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesProps) => {
           control={control}
           label={tShared("form.sectionTitle.label")}
           placeholder={tShared("form.sectionTitle.placeholder")}
-          rules={sectionTitleRules}
+          rules={rules.sectionTitleRules}
           Field={InputField}
           size="large"
         />
@@ -96,7 +91,7 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesProps) => {
               control={control}
               label={t("form.hobby.label")}
               placeholder={t("form.hobby.placeholder")}
-              rules={inputTextRules}
+              rules={rules.inputTextRules}
               Field={InputField}
               size="large"
             />

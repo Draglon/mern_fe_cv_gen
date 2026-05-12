@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
@@ -9,12 +9,10 @@ import {
   PersonalLanguagesProps,
   FieldType,
 } from "@/lib/constants/props/resume/personalLanguages";
+import useResumeEditRules from "@/hooks/useResumeEditRules";
 import { LANGUAGE_LEVEL } from "@/lib/constants/languages";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
-import { getSectionTitleRules } from "@/utils/forms/validations/resume/sectionTitleValidation";
-import { getInputTextRules } from "@/utils/forms/validations/resume/inputTextValidation";
-import { getSelectLanguageRules } from "@/utils/forms/validations/resume/selectValidation";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalLanguages from "@/store/personalLanguages/operations/createPersonalLanguages";
 import updatePersonalLanguages from "@/store/personalLanguages/operations/updatePersonalLanguages";
@@ -28,9 +26,10 @@ import SelectField from "@/views/shared/SelectField";
 import Divider from "@/views/shared/antd/Divider";
 
 const PersonalLanguagesForm = ({ locale, isEdit }: PersonalLanguagesProps) => {
+  const dispatch = useAppDispatch();
   const t = useTranslations("PersonalLanguages");
   const tShared = useTranslations("shared");
-  const dispatch = useAppDispatch();
+  const rules = useResumeEditRules();
   const defaultValues = useAppSelector((state) =>
     personalLanguagesByLocaleSelector(state, locale)
   );
@@ -42,12 +41,6 @@ const PersonalLanguagesForm = ({ locale, isEdit }: PersonalLanguagesProps) => {
     control,
     name: "languages",
   });
-  const sectionTitleRules = useMemo(
-    () => getSectionTitleRules(tShared),
-    [tShared]
-  );
-  const selectLanguageRules = useMemo(() => getSelectLanguageRules(t), [t]);
-  const inputTextRules = useMemo(() => getInputTextRules(tShared), [tShared]);
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
@@ -83,7 +76,7 @@ const PersonalLanguagesForm = ({ locale, isEdit }: PersonalLanguagesProps) => {
           control={control}
           label={tShared("form.sectionTitle.label")}
           placeholder={tShared("form.sectionTitle.placeholder")}
-          rules={sectionTitleRules}
+          rules={rules.sectionTitleRules}
           Field={InputField}
           size="large"
         />
@@ -100,7 +93,7 @@ const PersonalLanguagesForm = ({ locale, isEdit }: PersonalLanguagesProps) => {
                 control={control}
                 label={t("form.language.label")}
                 placeholder={t("form.language.placeholder")}
-                rules={inputTextRules}
+                rules={rules.inputTextRules}
                 Field={InputField}
                 size="large"
               />
@@ -111,7 +104,7 @@ const PersonalLanguagesForm = ({ locale, isEdit }: PersonalLanguagesProps) => {
                 control={control}
                 label={t("form.languageLevel.label")}
                 placeholder={t("form.languageLevel.placeholder")}
-                rules={selectLanguageRules}
+                rules={rules.selectLanguageRules}
                 Field={SelectField}
                 options={LANGUAGE_LEVEL.map((level) => ({
                   label: t(`form.languageLevel.levelOptions.${level}`),

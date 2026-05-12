@@ -101,10 +101,21 @@ const shared = {
           "required": "Field is required!",
         }
       },
+      "languageLevel": {
+        "errors": {
+          "required": "Field is required!",
+          "invalidLanguageLevel": "Invalid language level!"
+        },
+      },
       "datePiker": {
         "errors": {
           "required": "Field is required!",
         }
+      },
+      "inputLink": {
+        "errors": {
+          "invalid": "Please enter a valid URL!",
+        } 
       },
       "submitButton": "Save changes",
     }

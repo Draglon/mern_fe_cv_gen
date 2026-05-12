@@ -9,7 +9,7 @@ import Tabs from "@/views/shared/antd/Tabs";
 
 type LocalTabsProp = {
   Component?: ReactNode;
-  onChange: (locale: Locales) => void;
+  onChange: (locale: string) => void;
 };
 
 const LocalTabs = ({ Component, onChange }: LocalTabsProp) => {

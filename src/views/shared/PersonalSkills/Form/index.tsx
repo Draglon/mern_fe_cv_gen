@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
@@ -9,11 +9,9 @@ import {
   PersonalSkillsProps,
   FieldType,
 } from "@/lib/constants/props/resume/personalSkills";
+import useResumeEditRules from "@/hooks/useResumeEditRules";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
-import { getSectionTitleRules } from "@/utils/forms/validations/resume/sectionTitleValidation";
-import { getInputTextNameRules } from "@/utils/forms/validations/resume/inputTextNameValidation";
-import { getInputNumberRules } from "@/utils/forms/validations/resume/inputNumberValidation";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalSkills from "@/store/personalSkills/operations/createPersonalSkills";
 import updatePersonalSkills from "@/store/personalSkills/operations/updatePersonalSkills";
@@ -26,9 +24,10 @@ import Checkbox from "@/views/shared/antd/Checkbox";
 import Divider from "@/views/shared/antd/Divider";
 
 const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsProps) => {
+  const dispatch = useAppDispatch();
   const t = useTranslations("PersonalSkills");
   const tShared = useTranslations("shared");
-  const dispatch = useAppDispatch();
+  const rules = useResumeEditRules();
   const defaultValues = useAppSelector((state) =>
     personalSkillsByLocaleSelector(state, locale)
   );
@@ -40,18 +39,6 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsProps) => {
     control,
     name: "skills",
   });
-  const sectionTitleRules = useMemo(
-    () => getSectionTitleRules(tShared),
-    [tShared]
-  );
-  const inputTextNameRules = useMemo(
-    () => getInputTextNameRules(tShared),
-    [tShared]
-  );
-  const inputNumberRules = useMemo(
-    () => getInputNumberRules(tShared),
-    [tShared]
-  );
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
@@ -87,7 +74,7 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsProps) => {
           control={control}
           label={tShared("form.sectionTitle.label")}
           placeholder={tShared("form.sectionTitle.placeholder")}
-          rules={sectionTitleRules}
+          rules={rules.sectionTitleRules}
           Field={InputField}
           size="large"
         />
@@ -103,7 +90,7 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsProps) => {
               className="form__item--field"
               label={t("form.skill.label")}
               placeholder={t("form.skill.placeholder")}
-              rules={inputTextNameRules}
+              rules={rules.inputTextNameRules}
               Field={InputField}
               size="large"
             />
@@ -114,7 +101,7 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsProps) => {
               className="form__item--field"
               label={t("form.level.label")}
               placeholder={t("form.level.placeholder")}
-              rules={inputNumberRules}
+              rules={rules.inputNumberRules}
               Field={InputField}
               size="large"
             />

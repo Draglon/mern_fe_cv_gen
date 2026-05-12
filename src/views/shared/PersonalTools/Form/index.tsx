@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
@@ -11,11 +11,9 @@ import {
   PersonalToolsProps,
   FieldType,
 } from "@/lib/constants/props/resume/personalTools";
+import useResumeEditRules from "@/hooks/useResumeEditRules";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
-import { getSectionTitleRules } from "@/utils/forms/validations/resume/sectionTitleValidation";
-import { getInputTextNameRules } from "@/utils/forms/validations/resume/inputTextNameValidation";
-import { getInputNumberRules } from "@/utils/forms/validations/resume/inputNumberValidation";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalTools from "@/store/personalTools/operations/createPersonalTools";
 import updatePersonalTools from "@/store/personalTools/operations/updatePersonalTools";
@@ -28,9 +26,10 @@ import Checkbox from "@/views/shared/antd/Checkbox";
 import Divider from "@/views/shared/antd/Divider";
 
 const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsProps) => {
+  const dispatch = useAppDispatch();
   const t = useTranslations("PersonalTools");
   const tShared = useTranslations("shared");
-  const dispatch = useAppDispatch();
+  const rules = useResumeEditRules();
   const defaultValues = useAppSelector((state) =>
     personalToolsByLocaleSelector(state, locale)
   );
@@ -43,18 +42,6 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsProps) => {
     control,
     name: "tools",
   });
-  const sectionTitleRules = useMemo(
-    () => getSectionTitleRules(tShared),
-    [tShared]
-  );
-  const inputTextNameRules = useMemo(
-    () => getInputTextNameRules(tShared),
-    [tShared]
-  );
-  const inputNumberRules = useMemo(
-    () => getInputNumberRules(tShared),
-    [tShared]
-  );
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
@@ -94,7 +81,7 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsProps) => {
           control={control}
           label={tShared("form.sectionTitle.label")}
           placeholder={tShared("form.sectionTitle.placeholder")}
-          rules={sectionTitleRules}
+          rules={rules.sectionTitleRules}
           Field={InputField}
           size="large"
         />
@@ -110,7 +97,7 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsProps) => {
               className="form__item--field"
               label={t("form.tool.label")}
               placeholder={t("form.tool.placeholder")}
-              rules={inputTextNameRules}
+              rules={rules.inputTextNameRules}
               Field={InputField}
               size="large"
             />
@@ -121,7 +108,7 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsProps) => {
               className="form__item--field"
               label={t("form.level.label")}
               placeholder={t("form.level.placeholder")}
-              rules={inputNumberRules}
+              rules={rules.inputNumberRules}
               Field={InputField}
               size="large"
             />

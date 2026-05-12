@@ -9,10 +9,6 @@ const personalLanguages = {
       "languageLevel": {
         "label": "Уровень",
         "placeholder": "Выберите уровень языка",
-        "errors": {
-          "required": "Поле обязательно для заполнения!",
-          "invalidLanguageLevel": "Неверный уровень владения языком!"
-        },
         "levelOptions": {
           "native": "Родной",
           "elementary": "Элементарный (A1)",

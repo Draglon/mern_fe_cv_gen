@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { Form } from "antd";
@@ -8,14 +8,10 @@ import {
   PersonalInfoProps,
   FieldType,
 } from "@/lib/constants/props/resume/personalInfo";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import useResumeEditRules from "@/hooks/useResumeEditRules";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
-import { getSectionTitleRules } from "@/utils/forms/validations/resume/sectionTitleValidation";
-import { getInputTextNameRules } from "@/utils/forms/validations/resume/inputTextNameValidation";
-import { getTextareaRules } from "@/utils/forms/validations/resume/textareaValidation";
-import { getInputDatePickerRules } from "@/utils/forms/validations/resume/inputDatePickerValidation";
-import { getEmailRules } from "@/utils/forms/validations/emailValidation";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalInfo from "@/store/personalInfo/operations/createPersonalInfo";
 import updatePersonalInfo from "@/store/personalInfo/operations/updatePersonalInfo";
 import { personalInfoByLocaleSelector } from "@/store/personalInfo/selectors";
@@ -32,6 +28,7 @@ import Divider from "@/views/shared/antd/Divider";
 const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoProps) => {
   const t = useTranslations("PersonalInfo");
   const tShared = useTranslations("shared");
+  const rules = useResumeEditRules();
   const dispatch = useAppDispatch();
   const defaultValues = useAppSelector((state) =>
     personalInfoByLocaleSelector(state, locale)
@@ -40,20 +37,6 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoProps) => {
     defaultValues,
     mode: "onChange",
   });
-  const sectionTitleRules = useMemo(
-    () => getSectionTitleRules(tShared),
-    [tShared]
-  );
-  const inputTextNameRules = useMemo(
-    () => getInputTextNameRules(tShared),
-    [tShared]
-  );
-  const textareaRules = useMemo(() => getTextareaRules(tShared), [tShared]);
-  const emailRules = useMemo(() => getEmailRules(tShared), [tShared]);
-  const datePickerRules = useMemo(
-    () => getInputDatePickerRules(tShared),
-    [tShared]
-  );
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
@@ -89,7 +72,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoProps) => {
             control={control}
             label={tShared("form.sectionTitle.label")}
             placeholder={tShared("form.sectionTitle.placeholder")}
-            rules={sectionTitleRules}
+            rules={rules.sectionTitleRules}
             Field={InputField}
             size="large"
           />
@@ -112,7 +95,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoProps) => {
               control={control}
               label={t("form.firstName.label")}
               placeholder={t("form.firstName.placeholder")}
-              rules={inputTextNameRules}
+              rules={rules.inputTextNameRules}
               Field={InputField}
               size="large"
             />
@@ -123,7 +106,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoProps) => {
               control={control}
               label={t("form.lastName.label")}
               placeholder={t("form.lastName.placeholder")}
-              rules={inputTextNameRules}
+              rules={rules.inputTextNameRules}
               Field={InputField}
               size="large"
             />
@@ -135,7 +118,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoProps) => {
             control={control}
             label={t("form.aboutMe.label")}
             placeholder={t("form.aboutMe.placeholder")}
-            rules={textareaRules}
+            rules={rules.textareaRules}
             Field={TextAreaField}
             size="large"
           />
@@ -150,7 +133,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoProps) => {
             control={control}
             label={t("form.email.label")}
             placeholder={t("form.email.placeholder")}
-            rules={emailRules}
+            rules={rules.emailRules}
             Field={InputField}
             size="large"
           />
@@ -192,7 +175,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoProps) => {
             control={control}
             label={t("form.birthday.label")}
             placeholder={t("form.birthday.placeholder")}
-            rules={datePickerRules}
+            rules={rules.datePickerRules}
             Field={DatePickerField}
             size="large"
           />
@@ -206,6 +189,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoProps) => {
             control={control}
             label={t("form.linkedIn.label")}
             placeholder={t("form.linkedIn.placeholder")}
+            rules={rules.inputLinkRules}
             Field={InputField}
             size="large"
           />
@@ -216,6 +200,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoProps) => {
             control={control}
             label={t("form.portfolio.label")}
             placeholder={t("form.portfolio.placeholder")}
+            rules={rules.inputLinkRules}
             Field={InputField}
             size="large"
           />

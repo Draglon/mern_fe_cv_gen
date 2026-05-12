@@ -25,8 +25,8 @@ const ResumeEdit = () => {
     }
   };
 
-  const onChangeLocale = (locale: Locales): void => {
-    setLocale(locale);
+  const onChangeLocale = (locale: string): void => {
+    setLocale(locale as Locales);
   };
 
   const EDIT_RESUME_TABS = useMemo(

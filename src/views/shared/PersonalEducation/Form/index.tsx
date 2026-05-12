@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
@@ -9,10 +9,9 @@ import {
   PersonalEducationProps,
   FieldType,
 } from "@/lib/constants/props/resume/personalEducation";
+import useResumeEditRules from "@/hooks/useResumeEditRules";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
-import { getSectionTitleRules } from "@/utils/forms/validations/resume/sectionTitleValidation";
-import { getInputTextRules } from "@/utils/forms/validations/resume/inputTextValidation";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalEducation from "@/store/personalEducation/operations/createPersonalEducation";
 import updatePersonalEducation from "@/store/personalEducation/operations/updatePersonalEducation";
@@ -27,6 +26,7 @@ import Divider from "@/views/shared/antd/Divider";
 const PersonalEducationForm = ({ locale, isEdit }: PersonalEducationProps) => {
   const t = useTranslations("PersonalEducation");
   const tShared = useTranslations("shared");
+  const rules = useResumeEditRules();
   const dispatch = useAppDispatch();
   const defaultValues = useAppSelector((state) =>
     personalEducationByLocaleSelector(state, locale)
@@ -40,11 +40,6 @@ const PersonalEducationForm = ({ locale, isEdit }: PersonalEducationProps) => {
     control,
     name: "education",
   });
-  const sectionTitleRules = useMemo(
-    () => getSectionTitleRules(tShared),
-    [tShared]
-  );
-  const inputTextRules = useMemo(() => getInputTextRules(tShared), [tShared]);
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
@@ -80,7 +75,7 @@ const PersonalEducationForm = ({ locale, isEdit }: PersonalEducationProps) => {
           control={control}
           label={tShared("form.sectionTitle.label")}
           placeholder={tShared("form.sectionTitle.placeholder")}
-          rules={sectionTitleRules}
+          rules={rules.sectionTitleRules}
           Field={InputField}
           size="large"
         />
@@ -96,7 +91,7 @@ const PersonalEducationForm = ({ locale, isEdit }: PersonalEducationProps) => {
               className="form__item--field"
               label={t("form.institute.label")}
               placeholder={t("form.institute.placeholder")}
-              rules={inputTextRules}
+              rules={rules.inputTextRules}
               Field={InputField}
               size="large"
             />
@@ -107,7 +102,7 @@ const PersonalEducationForm = ({ locale, isEdit }: PersonalEducationProps) => {
               className="form__item--field"
               label={t("form.degree.label")}
               placeholder={t("form.degree.placeholder")}
-              rules={inputTextRules}
+              rules={rules.inputTextRules}
               Field={InputField}
               size="large"
             />
@@ -118,7 +113,7 @@ const PersonalEducationForm = ({ locale, isEdit }: PersonalEducationProps) => {
               className="form__item--field"
               label={t("form.faculty.label")}
               placeholder={t("form.faculty.placeholder")}
-              rules={inputTextRules}
+              rules={rules.inputTextRules}
               Field={InputField}
               size="large"
             />
@@ -129,7 +124,7 @@ const PersonalEducationForm = ({ locale, isEdit }: PersonalEducationProps) => {
               className="form__item--field"
               label={t("form.specialization.label")}
               placeholder={t("form.specialization.placeholder")}
-              rules={inputTextRules}
+              rules={rules.inputTextRules}
               Field={InputField}
               size="large"
             />

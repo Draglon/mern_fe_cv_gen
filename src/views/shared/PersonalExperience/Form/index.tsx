@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
@@ -10,12 +10,9 @@ import {
   PersonalExperiencesProps,
   FieldType,
 } from "@/lib/constants/props/resume/personalExperiences";
+import useResumeEditRules from "@/hooks/useResumeEditRules";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
-import { getSectionTitleRules } from "@/utils/forms/validations/resume/sectionTitleValidation";
-import { getInputTextRules } from "@/utils/forms/validations/resume/inputTextValidation";
-import { getTextareaRules } from "@/utils/forms/validations/resume/textareaValidation";
-import { getSelectRules } from "@/utils/forms/validations/resume/selectValidation";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalExperience from "@/store/personalExperience/operations/createPersonalExperience";
 import updatePersonalExperience from "@/store/personalExperience/operations/updatePersonalExperience";
@@ -35,6 +32,7 @@ const PersonalExperienceForm = ({
 }: PersonalExperiencesProps) => {
   const t = useTranslations("PersonalExperience");
   const tShared = useTranslations("shared");
+  const rules = useResumeEditRules();
   const dispatch = useAppDispatch();
   const defaultValues = useAppSelector((state) =>
     personalExperienceByLocaleSelector(state, locale)
@@ -48,13 +46,6 @@ const PersonalExperienceForm = ({
     control,
     name: "experiences",
   });
-  const sectionTitleRules = useMemo(
-    () => getSectionTitleRules(tShared),
-    [tShared]
-  );
-  const inputTextRules = useMemo(() => getInputTextRules(tShared), [tShared]);
-  const textareaRules = useMemo(() => getTextareaRules(tShared), [tShared]);
-  const selectRules = useMemo(() => getSelectRules(tShared), [tShared]);
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     const params = {
@@ -90,7 +81,7 @@ const PersonalExperienceForm = ({
           control={control}
           label={tShared("form.sectionTitle.label")}
           placeholder={tShared("form.sectionTitle.placeholder")}
-          rules={sectionTitleRules}
+          rules={rules.sectionTitleRules}
           Field={InputField}
           size="large"
         />
@@ -122,7 +113,7 @@ const PersonalExperienceForm = ({
               className="form__item--field"
               label={t("form.position.label")}
               placeholder={t("form.position.placeholder")}
-              rules={inputTextRules}
+              rules={rules.inputTextRules}
               Field={InputField}
               size="large"
             />
@@ -133,7 +124,7 @@ const PersonalExperienceForm = ({
               className="form__item--field"
               label={t("form.companyName.label")}
               placeholder={t("form.companyName.placeholder")}
-              rules={inputTextRules}
+              rules={rules.inputTextRules}
               Field={InputField}
               size="large"
             />
@@ -144,7 +135,7 @@ const PersonalExperienceForm = ({
               className="form__item--field"
               label={t("form.location.label")}
               placeholder={t("form.location.placeholder")}
-              rules={inputTextRules}
+              rules={rules.inputTextRules}
               Field={InputField}
               size="large"
             />
@@ -155,7 +146,7 @@ const PersonalExperienceForm = ({
               className="form__item--field"
               label={t("form.employmentType.label")}
               placeholder={t("form.employmentType.placeholder")}
-              rules={selectRules}
+              rules={rules.selectRules}
               Field={InputField}
               size="large"
             />
@@ -166,7 +157,7 @@ const PersonalExperienceForm = ({
               className="form__item--field"
               label={t("form.workFormat.label")}
               placeholder={t("form.workFormat.placeholder")}
-              rules={selectRules}
+              rules={rules.selectRules}
               Field={InputField}
               size="large"
             />
@@ -209,7 +200,7 @@ const PersonalExperienceForm = ({
               className="form__item--field"
               label={t("form.description.label")}
               placeholder={t("form.description.placeholder")}
-              rules={textareaRules}
+              rules={rules.textareaRules}
               size="large"
               Field={TextAreaField}
             />
@@ -220,7 +211,7 @@ const PersonalExperienceForm = ({
               className="form__item--field"
               label={t("form.skills.label")}
               placeholder={t("form.skills.placeholder")}
-              rules={inputTextRules}
+              rules={rules.inputTextRules}
               mode="tags"
               size="large"
               Field={SelectField}

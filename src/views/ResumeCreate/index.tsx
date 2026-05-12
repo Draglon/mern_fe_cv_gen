@@ -25,8 +25,8 @@ const ResumeCreate = () => {
     setCurrent(dec(current));
   };
 
-  const onChange = (locale: Locales): void => {
-    setLocale(locale);
+  const onChange = (locale: string): void => {
+    setLocale(locale as Locales);
   };
 
   const CREATE_RESUME_STEPS = RESUME_ITEMS.map(({ key, Component }) => ({

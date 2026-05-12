@@ -101,10 +101,21 @@ const shared = {
           "required": "Поле обязательно для заполнения!",
         }
       },
+      "languageLevel": {
+        "errors": {
+          "required": "Поле обязательно для заполнения!",
+          "invalidLanguageLevel": "Неверный уровень владения языком!"
+        },
+      },
       "datePiker": {
         "errors": {
           "required": "Поле обязательно для заполнения!",
         }
+      },
+      "inputLink": {
+        "errors": {
+          "invalid": "Пожалуйста, введите корректную ссылку!",
+        } 
       },
       "submitButton": "Сохранить изменения",
     }
