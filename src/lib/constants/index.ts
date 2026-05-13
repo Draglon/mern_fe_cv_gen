@@ -12,6 +12,7 @@ export const MAX_EMAIL_LENGTH = 255;
 export const MAX_PASSWORD_LENGTH = 72;
 export const MIN_PASSWORD_LENGTH = 6;
 export const MAX_PHONE_NUMBER_LENGTH = 15;
+export const MIN_NUMBER = 0;
 export const MIN_LEVEL_NUMBER = 0;
 export const MAX_LEVEL_NUMBER = 100;
 

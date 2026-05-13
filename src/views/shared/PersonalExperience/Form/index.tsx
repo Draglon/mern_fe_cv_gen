@@ -5,7 +5,6 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
 
-import { REGEX } from "@/lib/constants/regex";
 import {
   PersonalExperiencesProps,
   FieldType,
@@ -22,6 +21,7 @@ import FormItem from "@/views/shared/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
 import InputField from "@/views/shared/InputField";
+import InputNumberField from "@/views/shared/InputNumberField";
 import TextAreaField from "@/views/shared/TextAreaField";
 import SelectField from "@/views/shared/SelectField";
 import Divider from "@/views/shared/antd/Divider";
@@ -92,15 +92,11 @@ const PersonalExperienceForm = ({
           control={control}
           label={t("form.recentPositionsCount.label")}
           placeholder={t("form.recentPositionsCount.placeholder")}
-          register={register("recentPositionsCount", {
-            pattern: {
-              value: REGEX.digits,
-              message: t("form.recentPositionsCount.errors.required"),
-            },
-          })}
-          Field={InputField}
+          rules={rules.inputNumberRecentPositionsCountRules}
+          Field={InputNumberField}
           size="large"
         />
+
         <Divider />
       </div>
       <FormList name="experience" prepend={prepend} fieldValues={fields}>

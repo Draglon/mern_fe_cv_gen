@@ -20,6 +20,7 @@ import FormItem from "@/views/shared/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
 import InputField from "@/views/shared/InputField";
+import InputNumberField from "@/views/shared/InputNumberField";
 import Checkbox from "@/views/shared/antd/Checkbox";
 import Divider from "@/views/shared/antd/Divider";
 
@@ -101,8 +102,8 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsProps) => {
               className="form__item--field"
               label={t("form.level.label")}
               placeholder={t("form.level.placeholder")}
-              rules={rules.inputNumberRules}
-              Field={InputField}
+              rules={rules.inputNumberLevelRules}
+              Field={InputNumberField}
               size="large"
             />
             <FormItem

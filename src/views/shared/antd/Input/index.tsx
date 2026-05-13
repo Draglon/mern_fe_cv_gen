@@ -8,9 +8,19 @@ const Input = ({ classNames, size = "middle", ...rest }: InputProps) => {
   const { Password } = AntdInput;
 
   return equals(rest?.type, "password") ? (
-    <Password className={clsx("input", classNames)} size={size} {...rest} />
+    <Password
+      className={clsx("input", classNames)}
+      size={size}
+      data-testid="inputPassword"
+      {...rest}
+    />
   ) : (
-    <AntdInput className={clsx("input", classNames)} size={size} {...rest} />
+    <AntdInput
+      className={clsx("input", classNames)}
+      size={size}
+      data-testid="input"
+      {...rest}
+    />
   );
 };
 

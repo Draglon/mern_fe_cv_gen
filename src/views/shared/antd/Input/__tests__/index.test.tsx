@@ -6,32 +6,34 @@ import Input from "../";
 describe("Input", () => {
   describe("renders component", () => {
     const defaultProps = {
-      className: "input--class",
+      classNames: "input--class",
     };
 
     const renderComponent = (props = defaultProps) =>
       render(<Input {...props} />);
 
-    it("with default props", () => {
+    it("renders with default props", () => {
       renderComponent();
 
-      screen.debug();
+      const input = screen.getByTestId("input");
 
-      expect(screen.getByRole("input")).toBeInTheDocument();
-      expect(screen.getByRole("input")).toHaveClass("input input--class");
-      expect(screen.getByRole("input")).toHaveAttribute("type", "text");
+      expect(input).toBeInTheDocument();
+      expect(input).toHaveAttribute("type", "text");
+      expect(input).toHaveClass("input", "input--class");
     });
 
-    it("with default props", () => {
-      const props = {
-        ...defaultProps,
-        type: "password",
-      };
+    it("renders password input", () => {
+      const props = { ...defaultProps, type: "password" };
       renderComponent(props);
 
-      expect(screen.getByRole("input")).toBeInTheDocument();
-      expect(screen.getByRole("input")).toHaveClass("input input--class");
-      expect(screen.getByRole("input")).toHaveAttribute("type", "password");
+      const inputPassword = screen.getByTestId("inputPassword");
+
+      expect(inputPassword).toBeInTheDocument();
+      expect(inputPassword).toHaveAttribute("type", "password");
+
+      const wrapper = inputPassword.closest(".ant-input-password");
+
+      expect(wrapper).toHaveClass("input", "input--class");
     });
   });
 });
