@@ -165,6 +165,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoProps) => {
             control={control}
             label={t("form.telegram.label")}
             placeholder={t("form.telegram.placeholder")}
+            rules={rules.inputTelegramRules}
             Field={InputField}
             size="large"
           />

@@ -117,6 +117,11 @@ const shared = {
           "invalid": "Будь ласка, введіть коректне посилання!",
         } 
       },
+      "inputTelegram": {
+        "errors": {
+          "pattern": "Введіть коректний Telegram username (5–32 символів: латиниця, цифри, _). Наприклад: @username",
+        }
+      },
       "submitButton": "Зберегти зміни",
     }
   }

@@ -117,6 +117,11 @@ const shared = {
           "invalid": "Please enter a valid URL!",
         } 
       },
+      "inputTelegram": {
+        "errors": {
+          "pattern": "Enter a valid Telegram username (5–32 characters, letters, numbers, underscore, optional @). Example: @username",
+        }
+      },
       "submitButton": "Save changes",
     }
   },

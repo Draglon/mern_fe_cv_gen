@@ -7,6 +7,7 @@ import { getInputNumberLevelRules, getInputNumberRecentPositionsCountRules } fro
 import { getTextareaRules } from "@/utils/forms/validations/resume/textareaValidation";
 import { getSelectRules, getSelectLanguageRules } from "@/utils/forms/validations/resume/selectValidation";
 import { getInputDatePickerRules } from "@/utils/forms/validations/resume/inputDatePickerValidation";
+import { getInputTelegramRules } from "@/utils/forms/validations/resume/inputTelegramValidation";
 import { getInputLinkRules } from "@/utils/forms/validations/resume/inputLinkValidation";
 import { getEmailRules } from "@/utils/forms/validations/emailValidation";
 
@@ -23,6 +24,7 @@ const useResumeEditRules = () => {
     selectRules: getSelectRules(tShared),
     selectLanguageRules: getSelectLanguageRules(tShared),
     emailRules: getEmailRules(tShared),
+    inputTelegramRules: getInputTelegramRules(tShared),
     inputLinkRules: getInputLinkRules(tShared),
     datePickerRules: getInputDatePickerRules(tShared),
   };
