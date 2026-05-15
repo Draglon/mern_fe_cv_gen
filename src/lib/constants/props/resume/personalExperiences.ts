@@ -13,6 +13,7 @@ export type ExperienceType = {
   workFormat: string;
   startDate: string;
   endDate: string;
+  isCurrent: boolean;
   description: string;
   skills: string[];
 };

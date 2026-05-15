@@ -9,6 +9,7 @@ export const EXPERIENCES_DEFAULT_VALUES: ExperienceType[] = [
     workFormat: "",
     startDate: "",
     endDate: "",
+    isCurrent: false,
     description: "",
     skills: [],
   },

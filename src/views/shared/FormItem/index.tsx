@@ -6,7 +6,6 @@ type Props<T extends FieldValues> = {
   controlName: Path<T>;
   control: Control<T>;
   className?: string;
-  label?: string;
   Field: React.ComponentType<any>;
   children?: React.ReactNode;
   [key: string]: any;
@@ -16,7 +15,6 @@ const FormItem = <T extends FieldValues>({
   controlName,
   control,
   className,
-  label,
   Field,
   rules,
   ...restProps
@@ -28,8 +26,6 @@ const FormItem = <T extends FieldValues>({
       rules={rules}
       render={({ field, fieldState }) => (
         <div className={clsx("form__item", className)}>
-          {label && <label className="form__item-label">{label}</label>}
-
           <Field {...field} {...restProps} errors={fieldState.error} />
         </div>
       )}

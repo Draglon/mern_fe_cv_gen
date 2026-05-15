@@ -9,6 +9,7 @@ import {
   PersonalExperiencesProps,
   FieldType,
 } from "@/lib/constants/props/resume/personalExperiences";
+import { EMPLOYMENT_TYPES, WORK_FORMATS } from "@/lib/constants/experiences";
 import useResumeEditRules from "@/hooks/useResumeEditRules";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
@@ -20,11 +21,13 @@ import { personalExperienceByLocaleSelector } from "@/store/personalExperience/s
 import FormItem from "@/views/shared/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
+import Divider from "@/views/shared/antd/Divider";
+
 import InputField from "@/views/shared/InputField";
 import InputNumberField from "@/views/shared/InputNumberField";
 import TextAreaField from "@/views/shared/TextAreaField";
 import SelectField from "@/views/shared/SelectField";
-import Divider from "@/views/shared/antd/Divider";
+import CheckboxField from "@/views/shared/CheckboxField";
 
 const PersonalExperienceForm = ({
   locale,
@@ -103,6 +106,15 @@ const PersonalExperienceForm = ({
         {fields.map((field, index) => (
           <Space key={field.id} align="baseline" className="form__list-space">
             <FormItem
+              name={[index, "current"]}
+              controlName={`experiences.${index}.isCurrent`}
+              control={control}
+              className="form__item--field"
+              label={t("form.isCurrent.label")}
+              size="large"
+              Field={CheckboxField}
+            />
+            <FormItem
               name={[index, "position"]}
               controlName={`experiences.${index}.position`}
               control={control}
@@ -136,25 +148,31 @@ const PersonalExperienceForm = ({
               size="large"
             />
             <FormItem
+              className="form__item--field"
               name={[index, "employmentType"]}
               controlName={`experiences.${index}.employmentType`}
               control={control}
-              className="form__item--field"
               label={t("form.employmentType.label")}
               placeholder={t("form.employmentType.placeholder")}
-              rules={rules.selectRules}
-              Field={InputField}
+              Field={SelectField}
+              options={EMPLOYMENT_TYPES.map((type) => ({
+                label: t(`form.employmentType.options.${type}`),
+                value: type,
+              }))}
               size="large"
             />
             <FormItem
+              className="form__item--field"
               name={[index, "workFormat"]}
               controlName={`experiences.${index}.workFormat`}
               control={control}
-              className="form__item--field"
               label={t("form.workFormat.label")}
               placeholder={t("form.workFormat.placeholder")}
-              rules={rules.selectRules}
-              Field={InputField}
+              Field={SelectField}
+              options={WORK_FORMATS.map((workFormat) => ({
+                label: t(`form.workFormat.options.${workFormat}`),
+                value: workFormat,
+              }))}
               size="large"
             />
             <FormItem
@@ -164,12 +182,12 @@ const PersonalExperienceForm = ({
               className="form__item--field"
               label={t("form.startDate.label")}
               placeholder={t("form.startDate.placeholder")}
-              register={register(`experiences.${index}.startDate`, {
-                required: {
-                  value: true,
-                  message: t("form.startDate.errors.required"),
-                },
-              })}
+              // register={register(`experiences.${index}.startDate`, {
+              //   required: {
+              //     value: true,
+              //     message: t("form.startDate.errors.required"),
+              //   },
+              // })}
               size="large"
               Field={InputField}
             />
@@ -180,12 +198,12 @@ const PersonalExperienceForm = ({
               className="form__item--field"
               label={t("form.endDate.label")}
               placeholder={t("form.endDate.placeholder")}
-              register={register(`experiences.${index}.endDate`, {
-                required: {
-                  value: true,
-                  message: t("form.endDate.errors.required"),
-                },
-              })}
+              // register={register(`experiences.${index}.endDate`, {
+              //   required: {
+              //     value: true,
+              //     message: t("form.endDate.errors.required"),
+              //   },
+              // })}
               size="large"
               Field={InputField}
             />

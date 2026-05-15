@@ -24,6 +24,12 @@ const personalExperience = {
       "employmentType": {
         "label": "Place of work",
         "placeholder": "Select place of work",
+        "options": {
+          "fullTime": "Full time",
+          "partTime": "Part time",
+          "contract": "Contract",
+          "internship": "Internship",
+        },
         "errors": {
           "required": "Please select your place of work!",
         }
@@ -31,6 +37,11 @@ const personalExperience = {
       "workFormat": {
         "label": "Working time",
         "placeholder": "Select working time",
+        "options": {
+          "office": "Office work",
+          "remote": "Remote work",
+          "hybrid": "Hybrid working format",
+        },
         "errors": {
           "required": "Please select your working time!",
         }
@@ -48,6 +59,9 @@ const personalExperience = {
         "errors": {
           "required": "Please input your end date!",
         }
+      },
+      "isCurrent": {
+        "label": "Current work",
       },
       "description": {
         "label": "Description",

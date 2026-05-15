@@ -8,6 +8,7 @@ import isPresent from "@/utils/isPresent";
 import { Text } from "@/views/shared/antd/Typography";
 
 type PhoneNumberFieldProps = {
+  label?: string;
   value?: string | Value;
   defaultCountry?: Country;
   status?: "error" | "warning" | "success" | "validating";
@@ -19,6 +20,7 @@ type PhoneNumberFieldProps = {
 };
 
 const PhoneNumberField = ({
+  label,
   value = "",
   defaultCountry,
   errors,
@@ -32,6 +34,7 @@ const PhoneNumberField = ({
 
   return (
     <div className="input-field">
+      {label && <label className="input-field__label">{label}</label>}
       <PhoneInput
         className={classNames}
         value={formatPhoneNumberIntl(value).replaceAll(" ", "")}

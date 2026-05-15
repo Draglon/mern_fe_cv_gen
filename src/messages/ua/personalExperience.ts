@@ -24,6 +24,12 @@ const personalExperience = {
       "employmentType": {
         "label": "Місце роботи",
         "placeholder": "Вкажить місце роботы",
+        "options": {
+          "fullTime": "Повна зайнятість",
+          "partTime": "Неповний робочий день",
+          "contract": "Контракт",
+          "internship": "Стажування",
+        },
         "errors": {
           "required": "Будь ласка, вкажить місце роботы!",
         }
@@ -31,6 +37,11 @@ const personalExperience = {
       "workFormat": {
         "label": "Час роботи",
         "placeholder": "Введіть час роботи",
+        "options": {
+          "office": "Офісна робота",
+          "remote": "Дистанційна робота",
+          "hybrid": "Гібридний робочий формат",
+        },
         "errors": {
           "required": "Будь ласка, введіть час роботи!",
         }
@@ -48,6 +59,9 @@ const personalExperience = {
         "errors": {
           "required": "Будь ласка, введіть дату завершення!",
         }
+      },
+      "isCurrent": {
+        "label": "Поточна робота",
       },
       "description": {
         "label": "Опис",
