@@ -12,6 +12,7 @@ import {
 import useResumeEditRules from "@/hooks/useResumeEditRules";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
+import { getInputEndDateRules } from "@/utils/forms/validations/resume/inputDatePickerValidation";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalCourses from "@/store/personalCourses/operations/createPersonalCourses";
 import updatePersonalCourses from "@/store/personalCourses/operations/updatePersonalCourses";
@@ -22,6 +23,7 @@ import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
 import InputField from "@/views/shared/InputField";
 import TextAreaField from "@/views/shared/TextAreaField";
+import DatePickerField from "@/views/shared/DatePickerField";
 import Divider from "@/views/shared/antd/Divider";
 
 const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesProps) => {
@@ -32,7 +34,7 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesProps) => {
   const defaultValues = useAppSelector((state) =>
     personalCoursesByLocaleSelector(state, locale)
   );
-  const { control, handleSubmit, register, formState, reset } =
+  const { control, handleSubmit, formState, reset, getValues } =
     useForm<FieldType>({
       defaultValues,
       mode: "onChange",
@@ -114,13 +116,8 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesProps) => {
               className="form__item--field"
               label={t("form.startDate.label")}
               placeholder={t("form.startDate.placeholder")}
-              register={register(`courses.${index}.startDate`, {
-                required: {
-                  value: true,
-                  message: t("form.startDate.errors.required"),
-                },
-              })}
-              Field={InputField}
+              rules={rules.datePickerRules}
+              Field={DatePickerField}
               size="large"
             />
             <FormItem
@@ -130,13 +127,12 @@ const PersonalCoursesForm = ({ locale, isEdit }: PersonalCoursesProps) => {
               className="form__item--field"
               label={t("form.endDate.label")}
               placeholder={t("form.endDate.placeholder")}
-              register={register(`courses.${index}.endDate`, {
-                required: {
-                  value: true,
-                  message: t("form.endDate.errors.required"),
-                },
+              rules={getInputEndDateRules({
+                tShared,
+                getValues,
+                startDatePath: `courses.${index}.startDate`,
               })}
-              Field={InputField}
+              Field={DatePickerField}
               size="large"
             />
             {fields.length > 1 && (

@@ -2,9 +2,10 @@
 import { useTranslations } from "next-intl";
 import { isEmpty } from "ramda";
 
-import splitText from "@/utils/splitText";
 import { Locales } from "@/lib/constants/props/locales";
 import { ExperienceType } from "@/lib/constants/props/resume/personalExperiences";
+import splitText from "@/utils/splitText";
+import { formatDateRange } from "@/utils/dateTime";
 
 import { Title, Text, Paragraph } from "@/views/shared/antd/Typography";
 
@@ -18,6 +19,7 @@ const PersonalExperience = ({
   templateLocale,
 }: ExperiencesProps) => {
   const t = useTranslations("Template");
+  const tShared = useTranslations("shared");
 
   return (
     <div className="experience">
@@ -29,7 +31,7 @@ const PersonalExperience = ({
                 {item.position}
               </Title>
               <Paragraph className="experience__period" type="secondary" italic>
-                {item.startDate} - {item.endDate}
+                {formatDateRange({ ...item, locale: templateLocale, tShared })}
               </Paragraph>
             </div>
             <Paragraph className="experience__company">

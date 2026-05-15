@@ -13,6 +13,7 @@ const shared = {
     "add": "Добавить",
     "save": "Сохранять",
     "addField": "Добавить поля",
+    "currentTime": "Текущее время",
     "form": {
       "avatarUrl": {
         "label": "Загрузить аватар",
@@ -107,9 +108,11 @@ const shared = {
           "invalidLanguageLevel": "Неверный уровень владения языком!"
         },
       },
-      "datePiker": {
+      "datePicker": {
         "errors": {
           "required": "Поле обязательно для заполнения!",
+          "invalid": "Неверный формат даты!",
+          "endDateAfterStart": "Дата окончания должна быть больше или равна дате начала!",
         }
       },
       "inputLink": {

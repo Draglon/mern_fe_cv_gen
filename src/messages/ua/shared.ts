@@ -13,6 +13,7 @@ const shared = {
     "add": "Додати",
     "save": "Зберегти",
     "addField": "Додати поля",
+    "currentTime": "Поточний час",
     "form": {
       "avatarUrl": {
         "label": "Завантажити аватар",
@@ -107,9 +108,11 @@ const shared = {
           "invalidLanguageLevel": "Недійсний рівень мови!"
         },
       },
-      "datePiker": {
+      "datePicker": {
         "errors": {
           "required": "Обов'язкове поле!",
+          "invalid": "Невірний формат дати!",
+          "endDateAfterStart": "Дата завершення повинна бути більшою або дорівнювати даті початку!",
         }
       },
       "inputLink": {

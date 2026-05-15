@@ -13,6 +13,7 @@ const shared = {
     "add": "Add",
     "save": "Save",
     "addField": "Add fields",
+    "currentTime": "Current time",
     "form": {
       "avatarUrl": {
         "label": "Upload avatar",
@@ -107,9 +108,11 @@ const shared = {
           "invalidLanguageLevel": "Invalid language level!"
         },
       },
-      "datePiker": {
+      "datePicker": {
         "errors": {
           "required": "Field is required!",
+          "invalid": "Invalid date format!",
+          "endDateAfterStart": "End date must be later than or equal to start date!",
         }
       },
       "inputLink": {

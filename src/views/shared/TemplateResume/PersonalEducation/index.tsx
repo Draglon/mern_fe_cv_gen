@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { Locales } from "@/lib/constants/props/locales";
 import { PersonalEducationProps } from "@/lib/constants/props/resume";
 import { EducationType } from "@/lib/constants/props/resume/personalEducation";
+import { formatDateRange } from "@/utils/dateTime";
 import { educationByLocale } from "@/utils/personalEducation";
 
 import { Title, Text, Paragraph } from "@/views/shared/antd/Typography";
@@ -18,6 +19,7 @@ const PersonalEducation = ({
   personalEducation,
 }: EducationsProps) => {
   const t = useTranslations("Template");
+  const tShared = useTranslations("shared");
   const education = educationByLocale(personalEducation, templateLocale);
 
   return (
@@ -29,7 +31,7 @@ const PersonalEducation = ({
               {item.degree}
             </Title>
             <Text className="section__period" type="secondary" italic>
-              {item.startDate} - {item.endDate}
+              {formatDateRange({ ...item, locale: templateLocale, tShared })}
             </Text>
           </header>
           <Paragraph className="section__paragraph">

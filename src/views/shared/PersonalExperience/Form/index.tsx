@@ -13,6 +13,7 @@ import { EMPLOYMENT_TYPES, WORK_FORMATS } from "@/lib/constants/experiences";
 import useResumeEditRules from "@/hooks/useResumeEditRules";
 import isSubmitDisabled from "@/utils/isSubmitDisabled";
 import isSubmitLoading from "@/utils/isSubmitLoading";
+import { getInputEndDateRules } from "@/utils/forms/validations/resume/inputDatePickerValidation";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalExperience from "@/store/personalExperience/operations/createPersonalExperience";
 import updatePersonalExperience from "@/store/personalExperience/operations/updatePersonalExperience";
@@ -28,6 +29,7 @@ import InputNumberField from "@/views/shared/InputNumberField";
 import TextAreaField from "@/views/shared/TextAreaField";
 import SelectField from "@/views/shared/SelectField";
 import CheckboxField from "@/views/shared/CheckboxField";
+import DatePickerField from "@/views/shared/DatePickerField";
 
 const PersonalExperienceForm = ({
   locale,
@@ -40,7 +42,7 @@ const PersonalExperienceForm = ({
   const defaultValues = useAppSelector((state) =>
     personalExperienceByLocaleSelector(state, locale)
   );
-  const { control, handleSubmit, register, formState, reset } =
+  const { control, handleSubmit, formState, reset, getValues, watch } =
     useForm<FieldType>({
       defaultValues,
       mode: "onChange",
@@ -182,14 +184,9 @@ const PersonalExperienceForm = ({
               className="form__item--field"
               label={t("form.startDate.label")}
               placeholder={t("form.startDate.placeholder")}
-              // register={register(`experiences.${index}.startDate`, {
-              //   required: {
-              //     value: true,
-              //     message: t("form.startDate.errors.required"),
-              //   },
-              // })}
+              rules={rules.datePickerRules}
+              Field={DatePickerField}
               size="large"
-              Field={InputField}
             />
             <FormItem
               name={[index, "endDate"]}
@@ -198,14 +195,15 @@ const PersonalExperienceForm = ({
               className="form__item--field"
               label={t("form.endDate.label")}
               placeholder={t("form.endDate.placeholder")}
-              // register={register(`experiences.${index}.endDate`, {
-              //   required: {
-              //     value: true,
-              //     message: t("form.endDate.errors.required"),
-              //   },
-              // })}
+              rules={getInputEndDateRules({
+                tShared,
+                getValues,
+                startDatePath: `experiences.${index}.startDate`,
+                isCurrentPath: `experiences.${index}.isCurrent`,
+              })}
+              disabled={watch(`experiences.${index}.isCurrent`)}
+              Field={DatePickerField}
               size="large"
-              Field={InputField}
             />
             <FormItem
               name={[index, "description"]}
@@ -215,8 +213,8 @@ const PersonalExperienceForm = ({
               label={t("form.description.label")}
               placeholder={t("form.description.placeholder")}
               rules={rules.textareaRules}
-              size="large"
               Field={TextAreaField}
+              size="large"
             />
             <FormItem
               name={[index, "skills"]}
@@ -226,9 +224,9 @@ const PersonalExperienceForm = ({
               label={t("form.skills.label")}
               placeholder={t("form.skills.placeholder")}
               rules={rules.inputTextRules}
-              mode="tags"
-              size="large"
               Field={SelectField}
+              size="large"
+              mode="tags"
             />
             {fields.length > 1 && (
               <MinusCircleOutlined

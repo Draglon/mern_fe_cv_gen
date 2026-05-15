@@ -12,11 +12,12 @@ import {
   SendOutlined,
 } from "@ant-design/icons";
 
-import profileName from "@/utils/profileName";
 import {
   TEMPLATES,
   TEMPLATES_PERSONAL_DATA_ICONS,
 } from "@/lib/constants/templates";
+import profileName from "@/utils/profileName";
+import { formatDate } from "@/utils/dateTime";
 import { PersonalInfoProps, TemplateProps } from "@/lib/constants/props/resume";
 import { Text, Paragraph } from "@/views/shared/antd/Typography";
 
@@ -114,7 +115,7 @@ const PersonalData = ({
             {t("personalData.birthday", { locale: templateLocale })}
           </Text>
           <Paragraph className="personal-data__paragraph">
-            {birthday[templateLocale]}
+            {formatDate(birthday[templateLocale], templateLocale)}
           </Paragraph>
         </div>
       )}
