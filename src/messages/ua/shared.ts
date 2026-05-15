@@ -13,7 +13,6 @@ const shared = {
     "add": "Додати",
     "save": "Зберегти",
     "addField": "Додати поля",
-    "currentTime": "Поточний час",
     "form": {
       "avatarUrl": {
         "label": "Завантажити аватар",

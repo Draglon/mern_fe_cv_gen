@@ -19,7 +19,6 @@ const PersonalExperience = ({
   templateLocale,
 }: ExperiencesProps) => {
   const t = useTranslations("Template");
-  const tShared = useTranslations("shared");
 
   return (
     <div className="experience">
@@ -31,7 +30,13 @@ const PersonalExperience = ({
                 {item.position}
               </Title>
               <Paragraph className="experience__period" type="secondary" italic>
-                {formatDateRange({ ...item, locale: templateLocale, tShared })}
+                {formatDateRange({
+                  ...item,
+                  locale: templateLocale,
+                  tCurrentTime: t("personalExperience.currentTime", {
+                    locale: templateLocale,
+                  }),
+                })}
               </Paragraph>
             </div>
             <Paragraph className="experience__company">

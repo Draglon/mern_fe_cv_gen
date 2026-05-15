@@ -2,16 +2,11 @@ import dayjs from "@/lib/dayjs";
 import { Locales } from "@/lib/constants/props/locales";
 import { DEFAULT_LOCALE } from "@/lib/constants/locales";
 
-type TFunction = (
-  key: string,
-  values?: Record<string, string | number>
-) => string;
-
 export type formatDateRangeType = {
   startDate?: string;
   endDate?: string | null;
   locale: Locales;
-  tShared: TFunction;
+  tCurrentTime?: string;
 };
 
 const getCurrentLocale = (locale: Locales) => {
@@ -23,21 +18,19 @@ const getCurrentLocale = (locale: Locales) => {
 const dayjsByCurrentLocale = (date: string, locale: Locales) => dayjs(date).locale(getCurrentLocale(locale));
 const shortMonthYearFormat = (date: string, locale: Locales) => dayjsByCurrentLocale(date, locale).format("MMM YYYY").toLowerCase();
 
-export const formatDate = (date: string, locale: Locales) => {
+export const formatDate = (date: string, locale: Locales): string => {
   if (!date) return "";
 
-  return dayjsByCurrentLocale(date, locale).format("DD MMM YYYY").toLowerCase();
+  return dayjsByCurrentLocale(date, locale).format("DD MMM YYYY");
 };
 
 export const formatDateRange = ({
   startDate,
   endDate,
   locale,
-  tShared,
-}: formatDateRangeType) => {
+  tCurrentTime,
+}: formatDateRangeType): string => {
   if (!startDate) return "";
 
-  const currentTime = tShared("currentTime").toLowerCase();
-
-  return `${shortMonthYearFormat(startDate, locale)} - ${endDate ? shortMonthYearFormat(endDate, locale) : currentTime}`;
+  return `${shortMonthYearFormat(startDate, locale)} - ${endDate ? shortMonthYearFormat(endDate, locale) : tCurrentTime}`.toLowerCase();
 };

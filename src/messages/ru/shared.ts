@@ -13,7 +13,6 @@ const shared = {
     "add": "Добавить",
     "save": "Сохранять",
     "addField": "Добавить поля",
-    "currentTime": "Текущее время",
     "form": {
       "avatarUrl": {
         "label": "Загрузить аватар",
