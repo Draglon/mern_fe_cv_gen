@@ -14,12 +14,13 @@ const updatePersonalInfoOperation = createAsyncThunk(
     try {
       const state = getState() as RootState;
       const personalInfoId = personalInfoIdSelector(state);
-      const { values, locale } = params;
+      const { values, locale, resumeLocale } = params;
       const userUrl: string = await normalizeUrl(values.userUrl);
       const formattedParams = {
         ...values,
         userUrl,
         locale,
+        resumeLocale,
       };
 
       const { data } = await axios.patch(personalInfoRoute(personalInfoId), formattedParams);

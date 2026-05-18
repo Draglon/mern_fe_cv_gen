@@ -13,10 +13,11 @@ const updatePersonalSkillsOperation = createAsyncThunk(
     try {
       const state = getState() as RootState;
       const personalSkillsId = personalSkillsIdSelector(state);
-      const { values, locale } = params;
+      const { values, locale, resumeLocale } = params;
       const formattedParams = {
         ...values,
         locale,
+        resumeLocale,
       };
 
       const { data } = await axios.patch(personalSkillsRoute(personalSkillsId), formattedParams);

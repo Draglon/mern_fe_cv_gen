@@ -8,20 +8,23 @@ import { isLoadingSelector } from "@/store/personalLanguages/selectors";
 
 import PersonalLanguagesForm from "@/views/shared/PersonalLanguages/Form";
 
-const PersonalLanguages = ({ locale, isEdit }: PersonalLanguagesProps) => {
+const PersonalLanguages = ({
+  resumeLocale,
+  isEdit,
+}: PersonalLanguagesProps) => {
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(isLoadingSelector);
 
   useEffect(() => {
-    if (locale) {
+    if (resumeLocale) {
       dispatch(fetchPersonalLanguages());
     }
-  }, [dispatch, locale]);
+  }, [dispatch, resumeLocale]);
 
   return isLoading ? (
     <>Loading</>
   ) : (
-    <PersonalLanguagesForm locale={locale} isEdit={isEdit} />
+    <PersonalLanguagesForm resumeLocale={resumeLocale} isEdit={isEdit} />
   );
 };
 

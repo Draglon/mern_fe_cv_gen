@@ -1,6 +1,6 @@
 "use client";
 import { useEffect } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
@@ -32,15 +32,16 @@ import CheckboxField from "@/views/shared/CheckboxField";
 import DatePickerField from "@/views/shared/DatePickerField";
 
 const PersonalExperienceForm = ({
-  locale,
+  resumeLocale,
   isEdit,
 }: PersonalExperiencesProps) => {
   const t = useTranslations("PersonalExperience");
   const tShared = useTranslations("shared");
+  const locale = useLocale();
   const rules = useResumeEditRules();
   const dispatch = useAppDispatch();
   const defaultValues = useAppSelector((state) =>
-    personalExperienceByLocaleSelector(state, locale)
+    personalExperienceByLocaleSelector(state, resumeLocale)
   );
   const { control, handleSubmit, formState, reset, getValues, watch } =
     useForm<FieldType>({
@@ -56,6 +57,7 @@ const PersonalExperienceForm = ({
     const params = {
       values,
       locale,
+      resumeLocale,
     };
 
     if (isEdit) {
@@ -71,7 +73,7 @@ const PersonalExperienceForm = ({
 
   return (
     <Form
-      name={`create-personal-experience-${locale}`}
+      name={`create-personal-experience-${resumeLocale}`}
       className="form form--personal-experience"
       onFinish={onFinish}
       autoComplete="off"

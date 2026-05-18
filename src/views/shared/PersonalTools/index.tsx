@@ -8,20 +8,20 @@ import { isLoadingSelector } from "@/store/personalTools/selectors";
 
 import PersonalToolsForm from "@/views/shared/PersonalTools/Form";
 
-const PersonalTools = ({ locale, isEdit }: PersonalToolsProps) => {
+const PersonalTools = ({ resumeLocale, isEdit }: PersonalToolsProps) => {
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(isLoadingSelector);
 
   useEffect(() => {
-    if (locale) {
+    if (resumeLocale) {
       dispatch(fetchPersonalTools());
     }
-  }, [dispatch, locale]);
+  }, [dispatch, resumeLocale]);
 
   return isLoading ? (
     <>Loading</>
   ) : (
-    <PersonalToolsForm locale={locale} isEdit={isEdit} />
+    <PersonalToolsForm resumeLocale={resumeLocale} isEdit={isEdit} />
   );
 };
 

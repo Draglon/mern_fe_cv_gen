@@ -1,6 +1,6 @@
 "use client";
 import { useEffect } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
@@ -25,13 +25,17 @@ import InputField from "@/views/shared/InputField";
 import DatePickerField from "@/views/shared/DatePickerField";
 import Divider from "@/views/shared/antd/Divider";
 
-const PersonalEducationForm = ({ locale, isEdit }: PersonalEducationProps) => {
+const PersonalEducationForm = ({
+  resumeLocale,
+  isEdit,
+}: PersonalEducationProps) => {
   const t = useTranslations("PersonalEducation");
   const tShared = useTranslations("shared");
+  const locale = useLocale();
   const rules = useResumeEditRules();
   const dispatch = useAppDispatch();
   const defaultValues = useAppSelector((state) =>
-    personalEducationByLocaleSelector(state, locale)
+    personalEducationByLocaleSelector(state, resumeLocale)
   );
   const { control, handleSubmit, formState, reset, getValues } =
     useForm<FieldType>({
@@ -47,6 +51,7 @@ const PersonalEducationForm = ({ locale, isEdit }: PersonalEducationProps) => {
     const params = {
       values,
       locale,
+      resumeLocale,
     };
 
     if (isEdit) {
@@ -62,7 +67,7 @@ const PersonalEducationForm = ({ locale, isEdit }: PersonalEducationProps) => {
 
   return (
     <Form
-      name={`create-personal-education-${locale}`}
+      name={`create-personal-education-${resumeLocale}`}
       className="form form--personal-education"
       onFinish={onFinish}
       autoComplete="off"

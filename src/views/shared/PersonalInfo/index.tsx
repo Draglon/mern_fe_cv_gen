@@ -8,20 +8,20 @@ import { isLoadingSelector } from "@/store/personalInfo/selectors";
 
 import PersonalInfoForm from "@/views/shared/PersonalInfo/Form";
 
-const PersonalInfo = ({ locale, isEdit }: PersonalInfoProps) => {
+const PersonalInfo = ({ resumeLocale, isEdit }: PersonalInfoProps) => {
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(isLoadingSelector);
 
   useEffect(() => {
-    if (locale) {
+    if (resumeLocale) {
       dispatch(fetchPersonalInfo());
     }
-  }, [dispatch, locale]);
+  }, [dispatch, resumeLocale]);
 
   return isLoading ? (
     <>Loading</>
   ) : (
-    <PersonalInfoForm locale={locale} isEdit={isEdit} />
+    <PersonalInfoForm resumeLocale={resumeLocale} isEdit={isEdit} />
   );
 };
 

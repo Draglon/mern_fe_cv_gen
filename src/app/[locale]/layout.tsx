@@ -5,10 +5,10 @@ import { notFound } from "next/navigation";
 import { getMessages, getTranslations } from "next-intl/server";
 
 import { routing } from "@/i18n/routing";
+import ThemeProvider from "@/providers/themeProvider";
+import NotificationProvider from "@/providers/notificationProvider";
 import StoreProvider from "@/store/StoreProvider";
 import "@/app/styles.scss";
-
-import { Providers } from "./providers";
 
 const roboto = Roboto({
   weight: ["300", "400", "500", "700"],
@@ -50,11 +50,11 @@ export default async function RootLayout({ children, params }: Props) {
     >
       <body>
         <StoreProvider>
-          <Providers>
+          <ThemeProvider>
             <NextIntlClientProvider messages={messages}>
-              {children}
+              <NotificationProvider>{children}</NotificationProvider>
             </NextIntlClientProvider>
-          </Providers>
+          </ThemeProvider>
         </StoreProvider>
       </body>
     </html>

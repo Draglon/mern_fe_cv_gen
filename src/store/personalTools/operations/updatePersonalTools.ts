@@ -13,10 +13,11 @@ const updatePersonalToolsOperation = createAsyncThunk(
     try {
       const state = getState() as RootState;
       const personalToolsId = personalToolsIdSelector(state);
-      const { values, locale } = params;
+      const { values, locale, resumeLocale } = params;
       const formattedParams = {
         ...values,
         locale,
+        resumeLocale,
       };
 
       const { data } = await axios.patch(personalToolsRoute(personalToolsId), formattedParams);

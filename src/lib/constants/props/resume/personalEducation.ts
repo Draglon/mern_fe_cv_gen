@@ -1,7 +1,5 @@
-import { Locales } from "@/lib/constants/props/locales";
-
 export type PersonalEducationProps = {
-  locale: Locales;
+  resumeLocale: string;
   isEdit?: boolean;
 };
 
@@ -21,5 +19,6 @@ export type FieldType = {
 
 export type ParamsType = {
   values: FieldType;
-  locale: Locales;
+  locale: string;
+  resumeLocale: string;
 };

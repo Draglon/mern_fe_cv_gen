@@ -15,7 +15,7 @@ const ResumeCreate = () => {
   const t = useTranslations("ResumeCreate");
   const tShared = useTranslations("shared");
   const [current, setCurrent] = useState<number>(0);
-  const [locale, setLocale] = useState<Locales>(DEFAULT_LOCALE);
+  const [resumeLocale, onChangeLocale] = useState<Locales>(DEFAULT_LOCALE);
 
   const onNext = (): void => {
     setCurrent(inc(current));
@@ -25,8 +25,8 @@ const ResumeCreate = () => {
     setCurrent(dec(current));
   };
 
-  const onChange = (locale: string): void => {
-    setLocale(locale as Locales);
+  const onChange = (resumeLocale: string): void => {
+    onChangeLocale(resumeLocale as Locales);
   };
 
   const CREATE_RESUME_STEPS = RESUME_ITEMS.map(({ key, Component }) => ({
@@ -34,7 +34,7 @@ const ResumeCreate = () => {
     content: (
       <LocalTabs
         onChange={onChange}
-        Component={<Component locale={locale} />}
+        Component={<Component resumeLocale={resumeLocale} />}
       />
     ),
   }));

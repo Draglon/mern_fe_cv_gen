@@ -14,12 +14,13 @@ const createPersonalInfoOperation = createAsyncThunk(
     try {
       const state = getState() as RootState;
       const userId = userIdSelector(state);
-      const { values, locale } = params;
+      const { values, locale, resumeLocale } = params;
       const userUrl: string = await normalizeUrl(values.userUrl);
       const formattedParams = {
         ...values,
         userUrl,
         locale,
+        resumeLocale,
         userId,
       };
 

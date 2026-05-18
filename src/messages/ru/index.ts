@@ -16,6 +16,7 @@ import personalCourses from "./personalCourses";
 import personalSkills from "./personalSkills";
 import personalTools from "./personalTools";
 import navigation from "./navigation";
+import notifications from "./notifications";
 import localeSwitcher from "./localeSwitcher";
 import localeTabs from "./localeTabs";
 import stubs from "./stubs";
@@ -41,6 +42,7 @@ export default {
   ...personalSkills,
   ...personalTools,
   ...navigation,
+  ...notifications,
   ...localeSwitcher,
   ...localeTabs,
   ...stubs,

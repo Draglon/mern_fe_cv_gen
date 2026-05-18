@@ -1,6 +1,6 @@
 "use client";
 import { useEffect } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
@@ -26,13 +26,14 @@ import InputNumberField from "@/views/shared/InputNumberField";
 import Checkbox from "@/views/shared/antd/Checkbox";
 import Divider from "@/views/shared/antd/Divider";
 
-const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsProps) => {
+const PersonalToolsForm = ({ resumeLocale, isEdit }: PersonalToolsProps) => {
   const dispatch = useAppDispatch();
   const t = useTranslations("PersonalTools");
   const tShared = useTranslations("shared");
+  const locale = useLocale();
   const rules = useResumeEditRules();
   const defaultValues = useAppSelector((state) =>
-    personalToolsByLocaleSelector(state, locale)
+    personalToolsByLocaleSelector(state, resumeLocale)
   );
 
   const { control, handleSubmit, formState, reset } = useForm({
@@ -48,6 +49,7 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsProps) => {
     const params = {
       values,
       locale,
+      resumeLocale,
     };
 
     if (isEdit) {
@@ -67,7 +69,7 @@ const PersonalToolsForm = ({ locale, isEdit }: PersonalToolsProps) => {
 
   return (
     <Form
-      name={`create-personal-tools-${locale}`}
+      name={`create-personal-tools-${resumeLocale}`}
       className="form form--personal-tools"
       onFinish={onFinish}
       autoComplete="off"

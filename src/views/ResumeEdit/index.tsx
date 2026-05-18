@@ -17,7 +17,7 @@ import { Title } from "@/views/shared/antd/Typography";
 const ResumeEdit = () => {
   const t = useTranslations("ResumeEdit");
   const [currentTab, setCurrentTab] = useState<ResumeKey>(DEFAULT_RESUME_ITEM);
-  const [locale, setLocale] = useState<Locales>(DEFAULT_LOCALE);
+  const [resumeLocale, setResumeLocale] = useState<Locales>(DEFAULT_LOCALE);
 
   const onChangeTab = (tabKey: string): void => {
     if (RESUME_ITEMS.some((item) => item.key === tabKey)) {
@@ -26,7 +26,7 @@ const ResumeEdit = () => {
   };
 
   const onChangeLocale = (locale: string): void => {
-    setLocale(locale as Locales);
+    setResumeLocale(locale as Locales);
   };
 
   const EDIT_RESUME_TABS = useMemo(
@@ -34,9 +34,9 @@ const ResumeEdit = () => {
       RESUME_ITEMS.map(({ key, Component }) => ({
         key,
         label: t(`tabs.${key}`),
-        children: <Component locale={locale} isEdit />,
+        children: <Component resumeLocale={resumeLocale} isEdit />,
       })),
-    [locale, t]
+    [resumeLocale, t]
   );
 
   return (

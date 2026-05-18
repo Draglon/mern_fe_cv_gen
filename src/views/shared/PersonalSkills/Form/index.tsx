@@ -1,6 +1,6 @@
 "use client";
 import { useEffect } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
@@ -24,13 +24,14 @@ import InputNumberField from "@/views/shared/InputNumberField";
 import Checkbox from "@/views/shared/antd/Checkbox";
 import Divider from "@/views/shared/antd/Divider";
 
-const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsProps) => {
+const PersonalSkillsForm = ({ resumeLocale, isEdit }: PersonalSkillsProps) => {
   const dispatch = useAppDispatch();
   const t = useTranslations("PersonalSkills");
   const tShared = useTranslations("shared");
+  const locale = useLocale();
   const rules = useResumeEditRules();
   const defaultValues = useAppSelector((state) =>
-    personalSkillsByLocaleSelector(state, locale)
+    personalSkillsByLocaleSelector(state, resumeLocale)
   );
   const { control, handleSubmit, formState, reset } = useForm({
     defaultValues,
@@ -45,6 +46,7 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsProps) => {
     const params = {
       values,
       locale,
+      resumeLocale,
     };
 
     if (isEdit) {
@@ -60,7 +62,7 @@ const PersonalSkillsForm = ({ locale, isEdit }: PersonalSkillsProps) => {
 
   return (
     <Form
-      name={`create-personal-skills-${locale}`}
+      name={`create-personal-skills-${resumeLocale}`}
       className="form form--personal-skills"
       onFinish={onFinish}
       autoComplete="off"

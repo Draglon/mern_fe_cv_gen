@@ -1,4 +1,4 @@
-import { combineReducers, configureStore, UnknownAction } from '@reduxjs/toolkit';
+import { combineReducers, configureStore, UnknownAction, createListenerMiddleware } from '@reduxjs/toolkit';
 import {
   persistReducer,
   PersistConfig,
@@ -11,17 +11,21 @@ import {
 } from 'redux-persist';
 import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
 
-import authReducer from "./auth";
-import modalReducer from "./modal";
-import resumeReducer from "./resume";
-import personalInfoReducer from "./personalInfo";
-import personalHobbiesReducer from "./personalHobbies";
-import personalLanguagesReducer from "./personalLanguages";
-import personalExperienceReducer from "./personalExperience";
-import personalEducationReducer from "./personalEducation";
-import personalCoursesReducer from "./personalCourses";
-import personalSkillsReducer from "./personalSkills";
-import personalToolsReducer from "./personalTools";
+import { registerNotifications } from "@/store/middleware/notifications/registerNotifications";
+import authReducer from "@/store/auth";
+import modalReducer from "@/store/modal";
+import resumeReducer from "@/store/resume";
+import personalInfoReducer from "@/store/personalInfo";
+import personalHobbiesReducer from "@/store/personalHobbies";
+import personalLanguagesReducer from "@/store/personalLanguages";
+import personalExperienceReducer from "@/store/personalExperience";
+import personalEducationReducer from "@/store/personalEducation";
+import personalCoursesReducer from "@/store/personalCourses";
+import personalSkillsReducer from "@/store/personalSkills";
+import personalToolsReducer from "@/store/personalTools";
+
+const listenerMiddleware = createListenerMiddleware();
+registerNotifications(listenerMiddleware);
 
 const createNoopStorage = () => {
   return {
@@ -75,19 +79,19 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 export const makeStore = () => configureStore({
   reducer: persistedReducer,
   devTools: process.env.NODE_ENV !== 'production',
-      middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware({
-        serializableCheck: {
-          ignoredActions: [
-            FLUSH,
-            REHYDRATE,
-            PAUSE,
-            PERSIST,
-            PURGE,
-            REGISTER,
-          ],
-        },
-      }),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [
+          FLUSH,
+          REHYDRATE,
+          PAUSE,
+          PERSIST,
+          PURGE,
+          REGISTER,
+        ],
+      },
+    }).prepend(listenerMiddleware.middleware),
 });
 
 // Infer the type of makeStore

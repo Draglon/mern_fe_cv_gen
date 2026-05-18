@@ -8,20 +8,20 @@ import { isLoadingSelector } from "@/store/personalSkills/selectors";
 
 import PersonalSkillsForm from "@/views/shared/PersonalSkills/Form";
 
-const PersonalSkills = ({ locale, isEdit }: PersonalSkillsProps) => {
+const PersonalSkills = ({ resumeLocale, isEdit }: PersonalSkillsProps) => {
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(isLoadingSelector);
 
   useEffect(() => {
-    if (locale) {
+    if (resumeLocale) {
       dispatch(fetchPersonalSkills());
     }
-  }, [dispatch, locale]);
+  }, [dispatch, resumeLocale]);
 
   return isLoading ? (
     <>Loading</>
   ) : (
-    <PersonalSkillsForm locale={locale} isEdit={isEdit} />
+    <PersonalSkillsForm resumeLocale={resumeLocale} isEdit={isEdit} />
   );
 };
 

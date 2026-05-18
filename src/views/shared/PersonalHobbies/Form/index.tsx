@@ -1,6 +1,6 @@
 "use client";
 import { useEffect } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
@@ -23,13 +23,17 @@ import Button from "@/views/shared/antd/Button";
 import InputField from "@/views/shared/InputField";
 import Divider from "@/views/shared/antd/Divider";
 
-const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesProps) => {
+const PersonalHobbiesForm = ({
+  resumeLocale,
+  isEdit,
+}: PersonalHobbiesProps) => {
   const dispatch = useAppDispatch();
   const t = useTranslations("PersonalHobbies");
   const tShared = useTranslations("shared");
+  const locale = useLocale();
   const rules = useResumeEditRules();
   const defaultValues = useAppSelector((state) =>
-    personalHobbiesByLocaleSelector(state, locale)
+    personalHobbiesByLocaleSelector(state, resumeLocale)
   );
   const { control, handleSubmit, formState, reset } = useForm<FieldType>({
     defaultValues,
@@ -44,6 +48,7 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesProps) => {
     const params = {
       values,
       locale,
+      resumeLocale,
     };
 
     if (isEdit) {
@@ -59,7 +64,7 @@ const PersonalHobbiesForm = ({ locale, isEdit }: PersonalHobbiesProps) => {
 
   return (
     <Form
-      name={`create-personal-hobbies-${locale}`}
+      name={`create-personal-hobbies-${resumeLocale}`}
       className="form form--personal-hobbies"
       onFinish={onFinish}
       autoComplete="off"

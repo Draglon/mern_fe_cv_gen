@@ -13,10 +13,11 @@ const createPersonalSkillsOperation = createAsyncThunk(
     try {
       const state = getState() as RootState;
       const userId = userIdSelector(state);
-      const { values, locale } = params;
+      const { values, locale, resumeLocale } = params;
       const formattedParams = {
         ...values,
         locale,
+        resumeLocale,
         userId
       };
 

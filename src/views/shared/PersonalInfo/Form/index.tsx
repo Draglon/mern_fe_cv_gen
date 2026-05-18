@@ -1,6 +1,6 @@
 "use client";
 import { useEffect } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { Form } from "antd";
 
@@ -25,13 +25,14 @@ import DatePickerField from "@/views/shared/DatePickerField";
 import Button from "@/views/shared/antd/Button";
 import Divider from "@/views/shared/antd/Divider";
 
-const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoProps) => {
+const PersonalInfoForm = ({ resumeLocale, isEdit }: PersonalInfoProps) => {
   const t = useTranslations("PersonalInfo");
   const tShared = useTranslations("shared");
+  const locale = useLocale();
   const rules = useResumeEditRules();
   const dispatch = useAppDispatch();
   const defaultValues = useAppSelector((state) =>
-    personalInfoByLocaleSelector(state, locale)
+    personalInfoByLocaleSelector(state, resumeLocale)
   );
   const { control, handleSubmit, formState, reset } = useForm<FieldType>({
     defaultValues,
@@ -42,6 +43,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoProps) => {
     const params = {
       values,
       locale,
+      resumeLocale,
     };
 
     if (isEdit) {
@@ -57,7 +59,7 @@ const PersonalInfoForm = ({ locale, isEdit }: PersonalInfoProps) => {
 
   return (
     <Form
-      name={`create-personal-info-${locale}`}
+      name={`create-personal-info-${resumeLocale}`}
       className="form form--personal-info"
       onFinish={onFinish}
       autoComplete="off"

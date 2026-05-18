@@ -8,20 +8,20 @@ import { isLoadingSelector } from "@/store/personalHobbies/selectors";
 
 import PersonalHobbiesForm from "@/views/shared/PersonalHobbies/Form";
 
-const PersonalHobbies = ({ locale, isEdit }: PersonalHobbiesProps) => {
+const PersonalHobbies = ({ resumeLocale, isEdit }: PersonalHobbiesProps) => {
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(isLoadingSelector);
 
   useEffect(() => {
-    if (locale) {
+    if (resumeLocale) {
       dispatch(fetchPersonalHobbies());
     }
-  }, [dispatch, locale]);
+  }, [dispatch, resumeLocale]);
 
   return isLoading ? (
     <>Loading</>
   ) : (
-    <PersonalHobbiesForm locale={locale} isEdit={isEdit} />
+    <PersonalHobbiesForm resumeLocale={resumeLocale} isEdit={isEdit} />
   );
 };
 

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
@@ -25,13 +25,17 @@ import InputField from "@/views/shared/InputField";
 import SelectField from "@/views/shared/SelectField";
 import Divider from "@/views/shared/antd/Divider";
 
-const PersonalLanguagesForm = ({ locale, isEdit }: PersonalLanguagesProps) => {
+const PersonalLanguagesForm = ({
+  resumeLocale,
+  isEdit,
+}: PersonalLanguagesProps) => {
   const dispatch = useAppDispatch();
   const t = useTranslations("PersonalLanguages");
   const tShared = useTranslations("shared");
+  const locale = useLocale();
   const rules = useResumeEditRules();
   const defaultValues = useAppSelector((state) =>
-    personalLanguagesByLocaleSelector(state, locale)
+    personalLanguagesByLocaleSelector(state, resumeLocale)
   );
   const { control, handleSubmit, formState, reset } = useForm({
     defaultValues,
@@ -46,6 +50,7 @@ const PersonalLanguagesForm = ({ locale, isEdit }: PersonalLanguagesProps) => {
     const params = {
       values,
       locale,
+      resumeLocale,
     };
 
     if (isEdit) {
@@ -61,7 +66,7 @@ const PersonalLanguagesForm = ({ locale, isEdit }: PersonalLanguagesProps) => {
 
   return (
     <Form
-      name={`create-personal-languages-${locale}`}
+      name={`create-personal-languages-${resumeLocale}`}
       className="form form--personal-languages"
       onFinish={onFinish}
       autoComplete="off"
