@@ -1,6 +1,6 @@
 "use client";
 import { useMemo } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 
 import { useRouter } from "@/i18n/navigation";
@@ -23,22 +23,24 @@ import InputField from "@/views/shared/InputField";
 import Button from "@/views/shared/antd/Button";
 
 const Registration = () => {
+  const locale = useLocale();
   const router = useRouter();
   const tRegistration = useTranslations("Registration");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
-  const { control, handleSubmit, formState, register, setError } =
-    useForm<FieldType>({
-      defaultValues: SIGNUP_DEFAULT_VALUES,
-      mode: "onChange",
-    });
+  const { control, handleSubmit, formState, setError } = useForm<FieldType>({
+    defaultValues: SIGNUP_DEFAULT_VALUES,
+    mode: "onChange",
+  });
   const userNameRules = useMemo(() => getUserNameRules(tShared), [tShared]);
   const passwordRules = useMemo(() => getPasswordRules(tShared), [tShared]);
   const emailRules = useMemo(() => getEmailRules(tShared), [tShared]);
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     try {
-      const data = await dispatch(fetchRegister(values)).unwrap();
+      const data = await dispatch(
+        fetchRegister({ ...values, locale })
+      ).unwrap();
 
       if (data?.token) {
         router.push(loginRoute);

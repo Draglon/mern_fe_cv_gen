@@ -1,6 +1,6 @@
 "use client";
 import { useMemo } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 
 import { useRouter } from "@/i18n/navigation";
@@ -27,6 +27,7 @@ import Button from "@/views/shared/antd/Button";
 import Alert from "@/views/shared/antd/Alert";
 
 const Login = () => {
+  const locale = useLocale();
   const t = useTranslations("Login");
   const tShared = useTranslations("shared");
   const router = useRouter();
@@ -41,7 +42,7 @@ const Login = () => {
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     try {
-      const data = await dispatch(fetchAuth(values)).unwrap();
+      const data = await dispatch(fetchAuth({ ...values, locale })).unwrap();
 
       if (data?.token) {
         localStorage.setItem("token", data.token);

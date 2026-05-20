@@ -1,5 +1,17 @@
 const notifications = {
   "notifications": {
+    "login": {
+      "auth": {
+        "success": "Authorization successful",
+        "error": "Failed to log in"
+      },
+    },
+    "register": {
+      "create": {
+        "success": "New user created",
+        "error": "Failed to register new user"
+      },
+    },
     "personalInfo": {
       "create": {
         "success": "Personal info created",

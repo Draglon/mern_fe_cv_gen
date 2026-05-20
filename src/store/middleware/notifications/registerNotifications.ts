@@ -3,6 +3,8 @@ import { ListenerMiddlewareInstance, AsyncThunk } from "@reduxjs/toolkit";
 import { getNotificationMessages } from "@/i18n/notifications/getNotificationMessages";
 import { createAsyncNotificationHandler } from "@/store/middleware/notifications/createAsyncNotificationHandler";
 
+import loginOperation from "@/store/auth/operations/fetchAuth";
+import registerOperation from "@/store/auth/operations/fetchRegister";
 import createPersonalInfoOperation from "@/store/personalInfo/operations/createPersonalInfo";
 import updatePersonalInfoOperation from "@/store/personalInfo/operations/updatePersonalInfo";
 import createPersonalHobbiesOperation from "@/store/personalHobbies/operations/createPersonalHobbies";
@@ -30,6 +32,8 @@ export const registerNotifications = (
     domain: string;
     action: string;
   }> = [
+    { thunk: loginOperation, domain: "login", action: "auth" },
+    { thunk: registerOperation, domain: "register", action: "create" },
     { thunk: createPersonalInfoOperation, domain: "personalInfo", action: "create" },
     { thunk: updatePersonalInfoOperation, domain: "personalInfo", action: "update" },
     { thunk: createPersonalHobbiesOperation, domain: "personalHobbies", action: "create" },

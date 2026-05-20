@@ -1,5 +1,17 @@
 const notifications = {
   "notifications": {
+    "login": {
+      "auth": {
+        "success": "Авторизація пройшла успішно",
+        "error": "Не вдалося авторизуватися"
+      },
+    },
+    "register": {
+      "create": {
+        "success": "Новий користувач створено",
+        "error": "Не вдалося зареєструвати нового користувача"
+      },
+    },
     "personalInfo": {
       "create": {
         "success": "Особисту інформацію створено",

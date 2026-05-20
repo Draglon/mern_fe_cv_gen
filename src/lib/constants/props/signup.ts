@@ -4,4 +4,4 @@ export type FieldType = {
   password: string;
 };
 
-export type ParamsType = FieldType;
+export type ParamsType = FieldType & { locale: string };
