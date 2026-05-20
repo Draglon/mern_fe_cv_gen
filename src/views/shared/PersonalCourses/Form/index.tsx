@@ -24,6 +24,7 @@ import Button from "@/views/shared/antd/Button";
 import InputField from "@/views/shared/InputField";
 import TextAreaField from "@/views/shared/TextAreaField";
 import DatePickerField from "@/views/shared/DatePickerField";
+import CheckboxField from "@/views/shared/CheckboxField";
 import Divider from "@/views/shared/antd/Divider";
 
 const PersonalCoursesForm = ({
@@ -38,7 +39,7 @@ const PersonalCoursesForm = ({
   const defaultValues = useAppSelector((state) =>
     personalCoursesByLocaleSelector(state, resumeLocale)
   );
-  const { control, handleSubmit, formState, reset, getValues } =
+  const { control, handleSubmit, formState, reset, getValues, watch } =
     useForm<FieldType>({
       defaultValues,
       mode: "onChange",
@@ -93,6 +94,15 @@ const PersonalCoursesForm = ({
         {fields.map((field, index) => (
           <Space key={field.id} align="baseline" className="form__list-space">
             <FormItem
+              name={[index, "current"]}
+              controlName={`courses.${index}.isCurrent`}
+              control={control}
+              className="form__item--field"
+              label={t("form.isCurrent.label")}
+              size="large"
+              Field={CheckboxField}
+            />
+            <FormItem
               name={[index, "course"]}
               controlName={`courses.${index}.course`}
               control={control}
@@ -136,7 +146,9 @@ const PersonalCoursesForm = ({
                 tShared,
                 getValues,
                 startDatePath: `courses.${index}.startDate`,
+                isCurrentPath: `courses.${index}.isCurrent`,
               })}
+              disabled={watch(`courses.${index}.isCurrent`)}
               Field={DatePickerField}
               size="large"
             />

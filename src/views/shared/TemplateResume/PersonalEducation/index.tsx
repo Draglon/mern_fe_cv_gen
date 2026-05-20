@@ -19,7 +19,6 @@ const PersonalEducation = ({
   personalEducation,
 }: EducationsProps) => {
   const t = useTranslations("Template");
-  const tShared = useTranslations("shared");
   const education = educationByLocale(personalEducation, templateLocale);
 
   return (
@@ -31,7 +30,13 @@ const PersonalEducation = ({
               {item.degree}
             </Title>
             <Text className="section__period" type="secondary" italic>
-              {formatDateRange({ ...item, locale: templateLocale, tShared })}
+              {formatDateRange({
+                ...item,
+                locale: templateLocale,
+                tCurrentTime: t("personalEducation.currentTime", {
+                  locale: templateLocale,
+                }),
+              })}
             </Text>
           </header>
           <Paragraph className="section__paragraph">

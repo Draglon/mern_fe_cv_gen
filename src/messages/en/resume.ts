@@ -43,9 +43,11 @@ const resume = {
     },
     "personalEducation": {
       "title": "{locale, select, en {Education} ru {Образование} ua {Освіта} other {Unknown}}",
+      "currentTime": "{locale, select, en {Current time} ru {Текущее время} ua {Поточний час} other {Unknown}}",
     },
     "personalCourses": {
       "title": "{locale, select, en {Courses} ru {Курсы} ua {Курси} other {Unknown}}",
+      "currentTime": "{locale, select, en {Current time} ru {Текущее время} ua {Поточний час} other {Unknown}}",
     },
     "personalSkills": {
       "title": "{locale, select, en {Hard skills} ru {Навыки} ua {Навички} other {Unknown}}",

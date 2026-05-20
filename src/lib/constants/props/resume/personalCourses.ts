@@ -8,6 +8,7 @@ export type CourseType = {
   description: string;
   startDate: string;
   endDate: string;
+  isCurrent: false;
 };
 
 export type FieldType = {

@@ -8,5 +8,6 @@ export const EDUCATION_DEFAULT_VALUES: EducationType[] = [
     specialization: "",
     startDate: "",
     endDate: "",
+    isCurrent: false
   },
 ];

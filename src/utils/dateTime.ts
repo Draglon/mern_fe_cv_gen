@@ -6,6 +6,7 @@ export type formatDateRangeType = {
   startDate?: string;
   endDate?: string | null;
   locale: Locales;
+  isCurrent: boolean;
   tCurrentTime?: string;
 };
 
@@ -25,12 +26,15 @@ export const formatDate = (date: string, locale: Locales): string => {
 };
 
 export const formatDateRange = ({
+  isCurrent,
   startDate,
   endDate,
   locale,
   tCurrentTime,
 }: formatDateRangeType): string => {
   if (!startDate) return "";
+  const formattedStartDate = shortMonthYearFormat(startDate, locale);
+  const formattedEndDate = !isCurrent && endDate ? shortMonthYearFormat(endDate, locale) : tCurrentTime;
 
-  return `${shortMonthYearFormat(startDate, locale)} - ${endDate ? shortMonthYearFormat(endDate, locale) : tCurrentTime}`.toLowerCase();
+  return `${formattedStartDate} - ${formattedEndDate}`.toLowerCase();
 };

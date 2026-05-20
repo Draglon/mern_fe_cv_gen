@@ -24,6 +24,9 @@ const personalCourses = {
         "label": "Описание",
         "placeholder": "Описание ввода",
       },
+      "isCurrent": {
+        "label": "Текущий курс",
+      },
     },
   },
 };

@@ -32,6 +32,9 @@ const personalEducation = {
           "required": "Будь ласка, введіть дату завершення!",
         }
       },
+      "isCurrent": {
+        "label": "Поточна освіта",
+      },
     },
   },
 };

@@ -20,6 +20,9 @@ const personalCourses = {
           "required": "Будь ласка, введіть дату завершення!",
         }
       },
+      "isCurrent": {
+        "label": "Поточний курс",
+      },
       "description": {
         "label": "Опис",
         "placeholder": "Опис вхідних даних",

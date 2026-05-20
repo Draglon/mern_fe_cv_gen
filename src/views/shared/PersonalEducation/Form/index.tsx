@@ -23,6 +23,7 @@ import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
 import InputField from "@/views/shared/InputField";
 import DatePickerField from "@/views/shared/DatePickerField";
+import CheckboxField from "@/views/shared/CheckboxField";
 import Divider from "@/views/shared/antd/Divider";
 
 const PersonalEducationForm = ({
@@ -37,7 +38,7 @@ const PersonalEducationForm = ({
   const defaultValues = useAppSelector((state) =>
     personalEducationByLocaleSelector(state, resumeLocale)
   );
-  const { control, handleSubmit, formState, reset, getValues } =
+  const { control, handleSubmit, formState, reset, getValues, watch } =
     useForm<FieldType>({
       defaultValues,
       mode: "onChange",
@@ -91,6 +92,15 @@ const PersonalEducationForm = ({
       <FormList name="education" append={append} fieldValues={fields}>
         {fields.map((field, index) => (
           <Space key={field.id} align="baseline" className="form__list-space">
+            <FormItem
+              name={[index, "current"]}
+              controlName={`education.${index}.isCurrent`}
+              control={control}
+              className="form__item--field"
+              label={t("form.isCurrent.label")}
+              size="large"
+              Field={CheckboxField}
+            />
             <FormItem
               name={[index, "institute"]}
               controlName={`education.${index}.institute`}
@@ -157,7 +167,9 @@ const PersonalEducationForm = ({
                 tShared,
                 getValues,
                 startDatePath: `education.${index}.startDate`,
+                isCurrentPath: `education.${index}.isCurrent`,
               })}
+              disabled={watch(`education.${index}.isCurrent`)}
               Field={DatePickerField}
               size="large"
             />

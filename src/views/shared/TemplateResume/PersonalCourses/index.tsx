@@ -15,7 +15,7 @@ type CoursesProps = {
 };
 
 const PersonalCourses = ({ templateLocale, personalCourses }: CoursesProps) => {
-  const tShared = useTranslations("shared");
+  const t = useTranslations("Template");
   const courses = coursesByLocale(personalCourses, templateLocale);
 
   return (
@@ -27,7 +27,13 @@ const PersonalCourses = ({ templateLocale, personalCourses }: CoursesProps) => {
               {item.course}
             </Title>
             <Text className="section__period" type="secondary" italic>
-              {formatDateRange({ ...item, locale: templateLocale, tShared })}
+              {formatDateRange({
+                ...item,
+                locale: templateLocale,
+                tCurrentTime: t("personalCourses.currentTime", {
+                  locale: templateLocale,
+                }),
+              })}
             </Text>
           </header>
           <Paragraph className="section__label" italic>

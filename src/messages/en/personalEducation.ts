@@ -32,6 +32,9 @@ const personalEducation = {
           "required": "Please input your end date!",
         }
       },
+      "isCurrent": {
+        "label": "Current education",
+      },
     },
   },
 };

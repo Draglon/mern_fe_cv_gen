@@ -20,6 +20,9 @@ const personalCourses = {
           "required": "Please input your end date!",
         }
       },
+      "isCurrent": {
+        "label": "Current courses",
+      },
       "description": {
         "label": "Description",
         "placeholder": "Input description",

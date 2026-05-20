@@ -6,5 +6,6 @@ export const COURSES_DEFAULT_VALUES: CourseType[] = [
     description: "",
     startDate: "",
     endDate: "",
+    isCurrent: false,
   },
 ];
