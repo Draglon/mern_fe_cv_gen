@@ -5,3 +5,7 @@ export type Locale = {
   ua?: string;
   ru?: string;
 }
+
+export type WithLocale<T> = T & {
+  locale: string;
+};

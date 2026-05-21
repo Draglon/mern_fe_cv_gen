@@ -12,6 +12,26 @@ const notifications = {
         "error": "Failed to register new user"
       },
     },
+    "profile": {
+      "update": {
+        "success": "User profile updated successfully",
+        "error": "Failed to update user profile"
+      },
+    },
+    "settings": {
+      "changeEmail": {
+        "success": "User email updated successfully",
+        "error": "Failed to update user email"
+      },
+      "changePassword": {
+        "success": "User password updated successfully",
+        "error": "Failed to update user password"
+      },
+      "deleteAccount": {
+        "success": "User account deleted successfully",
+        "error": "Failed to delete user account"
+      },
+    },
     "personalInfo": {
       "create": {
         "success": "Personal info created",

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useMemo } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 
 import { FieldType } from "@/lib/constants/props/settings/changeEmail";
@@ -25,6 +25,7 @@ import InputField from "@/views/shared/InputField";
 
 const ChangeEmail = () => {
   const dispatch = useAppDispatch();
+  const locale = useLocale();
   const t = useTranslations("Settings");
   const tShared = useTranslations("shared");
   const email = useAppSelector(userEmailSelector);
@@ -39,7 +40,12 @@ const ChangeEmail = () => {
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     try {
-      await dispatch(updateUserEmail(values)).unwrap();
+      const params = {
+        ...values,
+        locale,
+      };
+
+      await dispatch(updateUserEmail(params)).unwrap();
     } catch (error) {
       if (isErrorStatusIncorrectData(error)) {
         setError("password", {

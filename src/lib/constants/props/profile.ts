@@ -1,3 +1,5 @@
+import { WithLocale } from "@/lib/constants/props/locales";
+
 export type FieldType = {
   avatarUrl: string[];
   firstName: string;
@@ -5,4 +7,4 @@ export type FieldType = {
   userName: string;
 };
 
-export type ParamsType = FieldType;
+export type ParamsType = WithLocale<FieldType>;

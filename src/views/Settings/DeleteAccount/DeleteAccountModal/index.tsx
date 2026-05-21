@@ -1,6 +1,6 @@
 "use client";
 import { useMemo } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 
 import { useRouter } from "@/i18n/navigation";
@@ -30,6 +30,7 @@ import Button from "@/views/shared/antd/Button";
 
 const DeleteAccountModal = () => {
   const dispatch = useAppDispatch();
+  const locale = useLocale();
   const t = useTranslations("Settings");
   const tShared = useTranslations("shared");
   const router = useRouter();
@@ -43,7 +44,12 @@ const DeleteAccountModal = () => {
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     try {
-      await dispatch(deleteAccount(values)).unwrap();
+      const params = {
+        ...values,
+        locale,
+      };
+
+      await dispatch(deleteAccount(params)).unwrap();
       await clearAuthSession(dispatch);
 
       dispatch(hideModalAction());

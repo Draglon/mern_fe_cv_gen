@@ -5,6 +5,10 @@ import { createAsyncNotificationHandler } from "@/store/middleware/notifications
 
 import loginOperation from "@/store/auth/operations/fetchAuth";
 import registerOperation from "@/store/auth/operations/fetchRegister";
+import updateUserProfileOperation from "@/store/auth/operations/updateUserProfile";
+import updateUserEmailOperation from "@/store/auth/operations/updateUserEmail";
+import updateUserPasswordOperation from "@/store/auth/operations/updateUserPassword";
+import deleteAccountOperation from "@/store/auth/operations/deleteAccount";
 import createPersonalInfoOperation from "@/store/personalInfo/operations/createPersonalInfo";
 import updatePersonalInfoOperation from "@/store/personalInfo/operations/updatePersonalInfo";
 import createPersonalHobbiesOperation from "@/store/personalHobbies/operations/createPersonalHobbies";
@@ -34,6 +38,10 @@ export const registerNotifications = (
   }> = [
     { thunk: loginOperation, domain: "login", action: "auth" },
     { thunk: registerOperation, domain: "register", action: "create" },
+    { thunk: updateUserProfileOperation, domain: "profile", action: "update" },
+    { thunk: updateUserEmailOperation, domain: "settings", action: "changeEmail" },
+    { thunk: updateUserPasswordOperation, domain: "settings", action: "changePassword" },
+    { thunk: deleteAccountOperation, domain: "settings", action: "deleteAccount" },
     { thunk: createPersonalInfoOperation, domain: "personalInfo", action: "create" },
     { thunk: updatePersonalInfoOperation, domain: "personalInfo", action: "update" },
     { thunk: createPersonalHobbiesOperation, domain: "personalHobbies", action: "create" },

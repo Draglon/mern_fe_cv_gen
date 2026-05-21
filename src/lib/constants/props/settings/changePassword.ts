@@ -1,4 +1,4 @@
-import { Omit } from "node_modules/cypress/types/lodash";
+import { WithLocale } from "@/lib/constants/props/locales";
 
 export type FieldType = {
   currentPassword: string;
@@ -6,4 +6,4 @@ export type FieldType = {
   confirmPassword: string;
 };
 
-export type ParamsType = Omit<FieldType, "confirmPassword">;
+export type ParamsType = WithLocale<Omit<FieldType, "confirmPassword">>;

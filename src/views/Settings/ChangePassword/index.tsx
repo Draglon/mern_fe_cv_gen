@@ -1,6 +1,6 @@
 "use client";
 import { useMemo } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 
 import { FieldType } from "@/lib/constants/props/settings/changePassword";
@@ -26,6 +26,7 @@ import InputField from "@/views/shared/InputField";
 
 const ChangePassword = () => {
   const dispatch = useAppDispatch();
+  const locale = useLocale();
   const t = useTranslations("Settings");
   const tShared = useTranslations("shared");
   const {
@@ -53,7 +54,12 @@ const ChangePassword = () => {
 
   const onFinish = handleSubmit(async (values: FieldType) => {
     try {
-      await dispatch(updateUserPassword(values)).unwrap();
+      const params = {
+        ...values,
+        locale,
+      };
+
+      await dispatch(updateUserPassword(params)).unwrap();
       reset(CHANGE_PASSWORD_DEFAULT_VALUES);
     } catch (error) {
       if (isErrorCodeIncorrectCurrentPassword(error)) {

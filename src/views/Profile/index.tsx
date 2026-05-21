@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useMemo } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 
 import { FieldType } from "@/lib/constants/props/profile";
@@ -20,6 +20,7 @@ import UploadFileField from "@/views/shared/UploadFileField";
 import Button from "@/views/shared/antd/Button";
 
 const Profile = () => {
+  const locale = useLocale();
   const tProfile = useTranslations("Profile");
   const tShared = useTranslations("shared");
   const dispatch = useAppDispatch();
@@ -39,7 +40,11 @@ const Profile = () => {
   );
 
   const onFinish = handleSubmit(async (values: FieldType) => {
-    await dispatch(updateUserProfile(values)).unwrap();
+    const params = {
+      ...values,
+      locale,
+    };
+    await dispatch(updateUserProfile(params)).unwrap();
   });
 
   useEffect(() => {
