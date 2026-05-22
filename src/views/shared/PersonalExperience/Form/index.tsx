@@ -109,15 +109,23 @@ const PersonalExperienceForm = ({
       <FormList name="experience" prepend={prepend} fieldValues={fields}>
         {fields.map((field, index) => (
           <Space key={field.id} align="baseline" className="form__list-space">
-            <FormItem
-              name={[index, "current"]}
-              controlName={`experiences.${index}.isCurrent`}
-              control={control}
-              className="form__item--field"
-              label={t("form.isCurrent.label")}
-              size="large"
-              Field={CheckboxField}
-            />
+            <header>
+              <FormItem
+                name={[index, "current"]}
+                controlName={`experiences.${index}.isCurrent`}
+                control={control}
+                className="form__item--field"
+                label={t("form.isCurrent.label")}
+                size="large"
+                Field={CheckboxField}
+              />
+              {fields.length > 1 && (
+                <MinusCircleOutlined
+                  className="form__item--button-remove"
+                  onClick={() => remove(index)}
+                />
+              )}
+            </header>
             <FormItem
               name={[index, "position"]}
               controlName={`experiences.${index}.position`}
@@ -230,12 +238,6 @@ const PersonalExperienceForm = ({
               size="large"
               mode="tags"
             />
-            {fields.length > 1 && (
-              <MinusCircleOutlined
-                className="form__item--button-remove"
-                onClick={() => remove(index)}
-              />
-            )}
           </Space>
         ))}
       </FormList>

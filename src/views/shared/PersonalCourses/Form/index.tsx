@@ -93,15 +93,23 @@ const PersonalCoursesForm = ({
       <FormList name="courses" append={append} fieldValues={fields}>
         {fields.map((field, index) => (
           <Space key={field.id} align="baseline" className="form__list-space">
-            <FormItem
-              name={[index, "current"]}
-              controlName={`courses.${index}.isCurrent`}
-              control={control}
-              className="form__item--field"
-              label={t("form.isCurrent.label")}
-              size="large"
-              Field={CheckboxField}
-            />
+            <header>
+              <FormItem
+                name={[index, "current"]}
+                controlName={`courses.${index}.isCurrent`}
+                control={control}
+                className="form__item--field"
+                label={t("form.isCurrent.label")}
+                size="large"
+                Field={CheckboxField}
+              />
+              {fields.length > 1 && (
+                <MinusCircleOutlined
+                  className="form__item--button-remove"
+                  onClick={() => remove(index)}
+                />
+              )}
+            </header>
             <FormItem
               name={[index, "course"]}
               controlName={`courses.${index}.course`}
@@ -152,12 +160,6 @@ const PersonalCoursesForm = ({
               Field={DatePickerField}
               size="large"
             />
-            {fields.length > 1 && (
-              <MinusCircleOutlined
-                className="form__item--button-remove"
-                onClick={() => remove(index)}
-              />
-            )}
           </Space>
         ))}
       </FormList>
