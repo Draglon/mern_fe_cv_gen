@@ -181,6 +181,7 @@ const PersonalInfoForm = ({ resumeLocale, isEdit }: PersonalInfoProps) => {
             rules={rules.datePickerRules}
             Field={DatePickerField}
             size="large"
+            locale={resumeLocale}
           />
 
           <Divider />

@@ -1,3 +1,5 @@
+import { EMPLOYMENT_TYPE_OPTIONS, WORK_FORMAT_OPTIONS } from "@/messages/common/selectOptions";
+
 const personalExperience = {
   "PersonalExperience": {
     "title": "Experience",
@@ -24,12 +26,7 @@ const personalExperience = {
       "employmentType": {
         "label": "Place of work",
         "placeholder": "Select place of work",
-        "options": {
-          "fullTime": "Full time",
-          "partTime": "Part time",
-          "contract": "Contract",
-          "internship": "Internship",
-        },
+        "options": EMPLOYMENT_TYPE_OPTIONS,
         "errors": {
           "required": "Please select your place of work!",
         }
@@ -37,11 +34,7 @@ const personalExperience = {
       "workFormat": {
         "label": "Working time",
         "placeholder": "Select working time",
-        "options": {
-          "office": "Office work",
-          "remote": "Remote work",
-          "hybrid": "Hybrid working format",
-        },
+        "options": WORK_FORMAT_OPTIONS,
         "errors": {
           "required": "Please select your working time!",
         }

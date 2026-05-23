@@ -1,3 +1,5 @@
+import { EMPLOYMENT_TYPE_OPTIONS, WORK_FORMAT_OPTIONS } from "@/messages/common/selectOptions";
+
 const personalExperience = {
   "PersonalExperience": {
     "title": "Опыт работы",
@@ -24,12 +26,7 @@ const personalExperience = {
       "employmentType": {
         "label": "Место работы",
         "placeholder": "Выберите место работы",
-        "options": {
-          "fullTime": "На постоянной основе",
-          "partTime": "Неполная занятость",
-          "contract": "Договор",
-          "internship": "Стажировка",
-        },
+        "options": EMPLOYMENT_TYPE_OPTIONS,
         "errors": {
           "required": "Пожалуйста, выберите ваше место работы!",
         }
@@ -37,11 +34,7 @@ const personalExperience = {
       "workFormat": {
         "label": "Время работы",
         "placeholder": "Выберите время работы",
-        "options": {
-          "office": "Работа в офисе",
-          "remote": "Удалённая работа",
-          "hybrid": "Гибридный формат работы",
-        },
+        "options": WORK_FORMAT_OPTIONS,
         "errors": {
           "required": "Пожалуйста, выберите ваше время работы!",
         }

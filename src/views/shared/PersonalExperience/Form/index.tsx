@@ -167,9 +167,11 @@ const PersonalExperienceForm = ({
               label={t("form.employmentType.label")}
               placeholder={t("form.employmentType.placeholder")}
               Field={SelectField}
-              options={EMPLOYMENT_TYPES.map((type) => ({
-                label: t(`form.employmentType.options.${type}`),
-                value: type,
+              options={EMPLOYMENT_TYPES.map((employmentType) => ({
+                label: t(
+                  `form.employmentType.options.${employmentType}.${resumeLocale}`
+                ),
+                value: employmentType,
               }))}
               size="large"
             />
@@ -182,7 +184,9 @@ const PersonalExperienceForm = ({
               placeholder={t("form.workFormat.placeholder")}
               Field={SelectField}
               options={WORK_FORMATS.map((workFormat) => ({
-                label: t(`form.workFormat.options.${workFormat}`),
+                label: t(
+                  `form.workFormat.options.${workFormat}.${resumeLocale}`
+                ),
                 value: workFormat,
               }))}
               size="large"
@@ -197,6 +201,7 @@ const PersonalExperienceForm = ({
               rules={rules.datePickerRules}
               Field={DatePickerField}
               size="large"
+              locale={resumeLocale}
             />
             <FormItem
               name={[index, "endDate"]}
@@ -214,6 +219,7 @@ const PersonalExperienceForm = ({
               disabled={watch(`experiences.${index}.isCurrent`)}
               Field={DatePickerField}
               size="large"
+              locale={resumeLocale}
             />
             <FormItem
               name={[index, "description"]}

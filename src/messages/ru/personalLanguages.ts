@@ -1,26 +1,20 @@
+import { LANGUAGE_LEVEL_OPTIONS } from "@/messages/common/selectOptions";
+
 const personalLanguages = {
   "PersonalLanguages": {
     "title": "Языки",
     "form": {
       "language": {
         "label": "Язык",
-        "placeholder": "Введите язык",
+        "placeholder": "Введите язык"
       },
       "languageLevel": {
         "label": "Уровень",
         "placeholder": "Выберите уровень языка",
-        "levelOptions": {
-          "native": "Родной",
-          "elementary": "Элементарный (A1)",
-          "preIntermediate": "Предварительно-средний (A2)",
-          "intermediate": "Средний (B1)",
-          "upperIntermediate": "Выше среднего (B2)",
-          "advanced": "Продвинутый (C1)",
-          "proficiency": "Профессиональный (C2)"
-        }
-      },
-    },
-  },
+        "levelOptions": LANGUAGE_LEVEL_OPTIONS
+      }
+    }
+  }
 };
 
 export default personalLanguages;

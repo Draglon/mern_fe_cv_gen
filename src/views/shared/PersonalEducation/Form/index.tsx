@@ -163,6 +163,7 @@ const PersonalEducationForm = ({
               rules={rules.datePickerRules}
               Field={DatePickerField}
               size="large"
+              locale={resumeLocale}
             />
             <FormItem
               name={[index, "endDate"]}
@@ -180,6 +181,7 @@ const PersonalEducationForm = ({
               disabled={watch(`education.${index}.isCurrent`)}
               Field={DatePickerField}
               size="large"
+              locale={resumeLocale}
             />
           </Space>
         ))}

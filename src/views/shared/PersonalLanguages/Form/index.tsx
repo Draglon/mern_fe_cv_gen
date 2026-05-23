@@ -112,7 +112,9 @@ const PersonalLanguagesForm = ({
                 rules={rules.selectLanguageRules}
                 Field={SelectField}
                 options={LANGUAGE_LEVEL.map((level) => ({
-                  label: t(`form.languageLevel.levelOptions.${level}`),
+                  label: t(
+                    `form.languageLevel.levelOptions.${level}.${resumeLocale}`
+                  ),
                   value: level,
                 }))}
                 size="large"
