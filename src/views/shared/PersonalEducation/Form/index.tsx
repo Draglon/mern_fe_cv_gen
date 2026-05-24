@@ -24,7 +24,6 @@ import Button from "@/views/shared/antd/Button";
 import InputField from "@/views/shared/InputField";
 import DatePickerField from "@/views/shared/DatePickerField";
 import CheckboxField from "@/views/shared/CheckboxField";
-import Divider from "@/views/shared/antd/Divider";
 
 const PersonalEducationForm = ({
   resumeLocale,
@@ -75,7 +74,7 @@ const PersonalEducationForm = ({
       layout="vertical"
       preserve
     >
-      <div className="w-full mb-32">
+      <header className="form__header">
         <FormItem
           className="form__item--field"
           name="sectionTitle"
@@ -87,8 +86,7 @@ const PersonalEducationForm = ({
           Field={InputField}
           size="large"
         />
-        <Divider />
-      </div>
+      </header>
       <FormList name="education" append={append} fieldValues={fields}>
         {fields.map((field, index) => (
           <Space key={field.id} align="baseline" className="form__list-space">

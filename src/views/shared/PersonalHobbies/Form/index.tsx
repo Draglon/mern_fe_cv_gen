@@ -21,7 +21,6 @@ import FormItem from "@/views/shared/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
 import InputField from "@/views/shared/InputField";
-import Divider from "@/views/shared/antd/Divider";
 
 const PersonalHobbiesForm = ({
   resumeLocale,
@@ -71,7 +70,7 @@ const PersonalHobbiesForm = ({
       layout="vertical"
       preserve
     >
-      <div className="w-full mb-32">
+      <header className="form__header">
         <FormItem
           className="form__item--field"
           name="sectionTitle"
@@ -83,8 +82,7 @@ const PersonalHobbiesForm = ({
           Field={InputField}
           size="large"
         />
-        <Divider />
-      </div>
+      </header>
 
       <FormList name="hobbies" append={append} fieldValues={fields}>
         {fields.map((field, index) => (

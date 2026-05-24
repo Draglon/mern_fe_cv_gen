@@ -2,6 +2,15 @@
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+  .form__header {
+    border-bottom: 1px solid var(--divider-bg-color);
+    padding-bottom: 16px;
+    margin-bottom: 32px;
+    width: 100%;
+    .form__item--field {
+      margin-bottom: 0;
+    }
+  }
   .form__list-space {
     border-bottom: 1px solid var(--divider-bg-color);
     padding: 20px 0;

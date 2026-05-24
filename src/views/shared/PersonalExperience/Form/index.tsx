@@ -22,7 +22,6 @@ import { personalExperienceByLocaleSelector } from "@/store/personalExperience/s
 import FormItem from "@/views/shared/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
-import Divider from "@/views/shared/antd/Divider";
 
 import InputField from "@/views/shared/InputField";
 import InputNumberField from "@/views/shared/InputNumberField";
@@ -80,7 +79,7 @@ const PersonalExperienceForm = ({
       layout="vertical"
       preserve
     >
-      <div className="w-full mb-32">
+      <header className="form__header">
         <FormItem
           className="form__item--field"
           name="sectionTitle"
@@ -103,9 +102,7 @@ const PersonalExperienceForm = ({
           Field={InputNumberField}
           size="large"
         />
-
-        <Divider />
-      </div>
+      </header>
       <FormList name="experience" prepend={prepend} fieldValues={fields}>
         {fields.map((field, index) => (
           <Space key={field.id} align="baseline" className="form__list-space">
@@ -127,23 +124,23 @@ const PersonalExperienceForm = ({
               )}
             </header>
             <FormItem
-              name={[index, "position"]}
-              controlName={`experiences.${index}.position`}
-              control={control}
-              className="form__item--field"
-              label={t("form.position.label")}
-              placeholder={t("form.position.placeholder")}
-              rules={rules.inputTextRules}
-              Field={InputField}
-              size="large"
-            />
-            <FormItem
               name={[index, "companyName"]}
               controlName={`experiences.${index}.companyName`}
               control={control}
               className="form__item--field"
               label={t("form.companyName.label")}
               placeholder={t("form.companyName.placeholder")}
+              rules={rules.inputTextRules}
+              Field={InputField}
+              size="large"
+            />
+            <FormItem
+              name={[index, "position"]}
+              controlName={`experiences.${index}.position`}
+              control={control}
+              className="form__item--field"
+              label={t("form.position.label")}
+              placeholder={t("form.position.placeholder")}
               rules={rules.inputTextRules}
               Field={InputField}
               size="large"

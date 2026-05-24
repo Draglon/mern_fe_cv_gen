@@ -3,6 +3,7 @@ import { useTranslations } from "next-intl";
 import { getSectionTitleRules } from "@/utils/forms/validations/resume/sectionTitleValidation";
 import { getInputTextNameRules } from "@/utils/forms/validations/resume/inputTextNameValidation";
 import { getInputTextRules } from "@/utils/forms/validations/resume/inputTextValidation";
+import { getInputPostalAddressRules } from "@/utils/forms/validations/resume/inputPostalAddressValidation";
 import { getInputNumberLevelRules, getInputNumberRecentPositionsCountRules } from "@/utils/forms/validations/resume/inputNumberValidation";
 import { getTextareaRules } from "@/utils/forms/validations/resume/textareaValidation";
 import { getSelectRules, getSelectLanguageRules } from "@/utils/forms/validations/resume/selectValidation";
@@ -18,6 +19,7 @@ const useResumeEditRules = () => {
     sectionTitleRules: getSectionTitleRules(tShared),
     inputTextNameRules: getInputTextNameRules(tShared),
     inputTextRules: getInputTextRules(tShared),
+    inputPostalAddressRules: getInputPostalAddressRules(tShared),
     inputNumberLevelRules: getInputNumberLevelRules(tShared),
     inputNumberRecentPositionsCountRules: getInputNumberRecentPositionsCountRules(tShared),
     textareaRules: getTextareaRules(tShared),

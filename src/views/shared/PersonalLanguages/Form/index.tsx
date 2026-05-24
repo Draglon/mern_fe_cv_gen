@@ -23,7 +23,6 @@ import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
 import InputField from "@/views/shared/InputField";
 import SelectField from "@/views/shared/SelectField";
-import Divider from "@/views/shared/antd/Divider";
 
 const PersonalLanguagesForm = ({
   resumeLocale,
@@ -73,7 +72,7 @@ const PersonalLanguagesForm = ({
       layout="vertical"
       preserve
     >
-      <div className="w-full mb-32">
+      <header className="form__header">
         <FormItem
           className="form__item--field"
           name="sectionTitle"
@@ -85,8 +84,7 @@ const PersonalLanguagesForm = ({
           Field={InputField}
           size="large"
         />
-        <Divider />
-      </div>
+      </header>
       <FormList name="languages" append={append} fieldValues={fields}>
         {fields.map((field, index) => {
           return (

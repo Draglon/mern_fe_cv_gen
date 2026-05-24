@@ -24,7 +24,6 @@ import Button from "@/views/shared/antd/Button";
 import InputField from "@/views/shared/InputField";
 import InputNumberField from "@/views/shared/InputNumberField";
 import Checkbox from "@/views/shared/antd/Checkbox";
-import Divider from "@/views/shared/antd/Divider";
 
 const PersonalToolsForm = ({ resumeLocale, isEdit }: PersonalToolsProps) => {
   const dispatch = useAppDispatch();
@@ -76,7 +75,7 @@ const PersonalToolsForm = ({ resumeLocale, isEdit }: PersonalToolsProps) => {
       layout="vertical"
       preserve
     >
-      <div className="w-full mb-32">
+      <header className="form__header">
         <FormItem
           className="form__item--field"
           name="sectionTitle"
@@ -88,8 +87,7 @@ const PersonalToolsForm = ({ resumeLocale, isEdit }: PersonalToolsProps) => {
           Field={InputField}
           size="large"
         />
-        <Divider />
-      </div>
+      </header>
       <FormList name="tools" append={append} fieldValues={fields}>
         {fields.map((field, index) => (
           <Space key={field.id} align="baseline" className="form__list-space">

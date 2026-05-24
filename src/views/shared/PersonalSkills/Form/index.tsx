@@ -22,7 +22,6 @@ import Button from "@/views/shared/antd/Button";
 import InputField from "@/views/shared/InputField";
 import InputNumberField from "@/views/shared/InputNumberField";
 import Checkbox from "@/views/shared/antd/Checkbox";
-import Divider from "@/views/shared/antd/Divider";
 
 const PersonalSkillsForm = ({ resumeLocale, isEdit }: PersonalSkillsProps) => {
   const dispatch = useAppDispatch();
@@ -69,7 +68,7 @@ const PersonalSkillsForm = ({ resumeLocale, isEdit }: PersonalSkillsProps) => {
       layout="vertical"
       preserve
     >
-      <div className="w-full mb-32">
+      <header className="form__header">
         <FormItem
           className="form__item--field"
           name="sectionTitle"
@@ -81,8 +80,7 @@ const PersonalSkillsForm = ({ resumeLocale, isEdit }: PersonalSkillsProps) => {
           Field={InputField}
           size="large"
         />
-        <Divider />
-      </div>
+      </header>
       <FormList name="skills" append={append} fieldValues={fields}>
         {fields.map((field, index) => (
           <Space key={field.id} align="baseline" className="form__list-space">

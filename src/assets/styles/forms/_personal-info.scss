@@ -1,4 +1,13 @@
 .form--personal-info {
+  .form__header {
+    border-bottom: 1px solid var(--divider-bg-color);
+    padding-bottom: 16px;
+    margin-bottom: 32px;
+    width: 100%;
+    .form__item--field {
+      margin-bottom: 0;
+    }
+  }
   .upload-file {
     .ant-upload-list-item-container {
       width: 180px !important;
@@ -13,10 +22,6 @@
 
 @media (min-width: 900px) {
   .form--personal-info {
-    // .form__wrapper {
-    //   display: flex;
-    // }
-
     .form__row {
      .form__item {
         width: 50%;

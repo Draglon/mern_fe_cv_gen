@@ -25,7 +25,6 @@ import InputField from "@/views/shared/InputField";
 import TextAreaField from "@/views/shared/TextAreaField";
 import DatePickerField from "@/views/shared/DatePickerField";
 import CheckboxField from "@/views/shared/CheckboxField";
-import Divider from "@/views/shared/antd/Divider";
 
 const PersonalCoursesForm = ({
   resumeLocale,
@@ -76,7 +75,7 @@ const PersonalCoursesForm = ({
       layout="vertical"
       preserve
     >
-      <div className="w-full mb-32">
+      <header className="form__header">
         <FormItem
           className="form__item--field"
           name="sectionTitle"
@@ -88,8 +87,7 @@ const PersonalCoursesForm = ({
           Field={InputField}
           size="large"
         />
-        <Divider />
-      </div>
+      </header>
       <FormList name="courses" append={append} fieldValues={fields}>
         {fields.map((field, index) => (
           <Space key={field.id} align="baseline" className="form__list-space">

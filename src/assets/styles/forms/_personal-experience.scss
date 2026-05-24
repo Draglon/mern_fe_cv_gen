@@ -2,29 +2,40 @@
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+  .form__header {
+    border-bottom: 1px solid var(--divider-bg-color);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 16px;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    width: 100%;
+    .form__item--field {
+      margin-bottom: 0;
+    }
+  }
   .form__list-space {
     border-top: 1px solid var(--divider-bg-color);
-    padding: 20px 0;
-    position: relative;
     flex-wrap: wrap;
     column-gap: 16px;
+    padding: 20px 0;
     width: 100%;
     .ant-space-item {
       &:nth-child(1),
-      &:nth-child(8),
+      &:nth-child(2),
       &:nth-child(9),
       &:nth-child(10) {
         width: 100%;
       }
-      &:nth-child(2),
-      &:nth-child(3) {
-        width: calc(50% - 8px);
-      }
+      &:nth-child(3),
       &:nth-child(4),
       &:nth-child(5),
-      &:nth-child(6),
-      &:nth-child(7) {
+      &:nth-child(6) {
         width: calc(25% - 12px);
+      }
+      &:nth-child(7),
+      &:nth-child(8) {
+        width: calc(50% - 8px);
       }
     }
   }

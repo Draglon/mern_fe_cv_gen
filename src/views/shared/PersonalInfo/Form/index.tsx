@@ -66,7 +66,7 @@ const PersonalInfoForm = ({ resumeLocale, isEdit }: PersonalInfoProps) => {
       layout="vertical"
     >
       <div className="form__wrapper">
-        <div className="w-full mb-32">
+        <header className="form__header">
           <FormItem
             className="form__item--field"
             name="sectionTitle"
@@ -78,8 +78,7 @@ const PersonalInfoForm = ({ resumeLocale, isEdit }: PersonalInfoProps) => {
             Field={InputField}
             size="large"
           />
-          <Divider />
-        </div>
+        </header>
         <div className="form__side-left">
           <FormItem
             name="userUrl"
@@ -146,6 +145,7 @@ const PersonalInfoForm = ({ resumeLocale, isEdit }: PersonalInfoProps) => {
             control={control}
             label={t("form.address.label")}
             placeholder={t("form.address.placeholder")}
+            rules={rules.inputPostalAddressRules}
             Field={InputField}
             size="large"
           />
