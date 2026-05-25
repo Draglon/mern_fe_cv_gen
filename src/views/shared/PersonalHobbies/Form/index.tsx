@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
-import { MinusCircleOutlined } from "@ant-design/icons";
+import { DeleteOutlined } from "@ant-design/icons";
 
 import {
   PersonalHobbiesProps,
@@ -21,6 +21,7 @@ import FormItem from "@/views/shared/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
 import InputField from "@/views/shared/InputField";
+import { Title } from "@/views/shared/antd/Typography";
 
 const PersonalHobbiesForm = ({
   resumeLocale,
@@ -86,24 +87,30 @@ const PersonalHobbiesForm = ({
 
       <FormList name="hobbies" append={append} fieldValues={fields}>
         {fields.map((field, index) => (
-          <Space key={field.id} align="baseline" className="form__list-space">
-            <FormItem
-              className="form__item--field"
-              name={[index, "hobby"]}
-              controlName={`hobbies.${index}.hobby`}
-              control={control}
-              label={t("form.hobby.label")}
-              placeholder={t("form.hobby.placeholder")}
-              rules={rules.inputTextRules}
-              Field={InputField}
-              size="large"
-            />
-            {fields.length > 1 && (
-              <MinusCircleOutlined
-                className="form__item--button-remove"
-                onClick={() => remove(index)}
+          <Space key={field.id} align="baseline" className="card">
+            <header className="card__header">
+              <Title className="mt-0" level={3}>
+                {t("cardTitle", { index: index + 1 })}
+              </Title>
+              {fields.length > 1 && (
+                <Button className="card__remove" onClick={() => remove(index)}>
+                  <DeleteOutlined className="card__remove-icon" />
+                </Button>
+              )}
+            </header>
+            <section className="card__section">
+              <FormItem
+                className="form__item--field"
+                name={[index, "hobby"]}
+                controlName={`hobbies.${index}.hobby`}
+                control={control}
+                label={t("form.hobby.label")}
+                placeholder={t("form.hobby.placeholder")}
+                rules={rules.inputTextRules}
+                Field={InputField}
+                size="large"
               />
-            )}
+            </section>
           </Space>
         ))}
       </FormList>

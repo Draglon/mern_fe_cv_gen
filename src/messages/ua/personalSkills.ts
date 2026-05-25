@@ -1,6 +1,7 @@
 const personalSkills = {
   "PersonalSkills": {
     "title": "Навички",
+    "cardTitle": "Навичка {index}",
     "form": {
       "skill": {
         "label": "Майстерність",

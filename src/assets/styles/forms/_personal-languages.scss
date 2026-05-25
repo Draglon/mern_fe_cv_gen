@@ -1,4 +1,7 @@
 .form--personal-languages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
   .form__header {
     border-bottom: 1px solid var(--divider-bg-color);
     padding-bottom: 16px;
@@ -8,24 +11,11 @@
       margin-bottom: 0;
     }
   }
-  .form__list-space {
-    position: relative;
-    align-items: flex-start;
-    column-gap: 16px;
-    margin-bottom: 16px;
-    width: 100%;
-    .ant-space-item {
-      &:nth-child(1),
-      &:nth-child(2) {
-        width: 50%;
-      }
-      &:nth-child(3) {
-        position: absolute;
-        top: 5px;
-        right: 0;
-        line-height: 0;
-        width: 14px;
-        height: 14px;
+  .card {
+    .card__section {
+      .form__item {
+        margin-bottom: 0;
+        width: calc(50% - 8px);
       }
     }
   }

@@ -201,6 +201,12 @@
   --alert-error-bg-color: rgba(239, 68, 68, 0.1);
   --alert-error-border-color: rgba(239, 68, 68, 0.3);
   --alert-error-color: var(--red-light-theme);
+  // Card
+  --card-border-color: var(--purple-100-light);
+  --card-header-bg-color: #F9F5FD;
+  --card-section-bg-color: var(--white);
+  --card-remove-icon-color: var(--red-light-theme);
+  --card-remove-icon-border-color: var(--red-light-theme);
 }
 
 .dark {

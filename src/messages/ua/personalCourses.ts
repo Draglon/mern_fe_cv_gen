@@ -1,6 +1,7 @@
 const personalCourses = {
   "PersonalCourses": {
     "title": "Курси",
+    "cardTitle": "Курс {index}",
     "form": {
       "course": {
         "label": "Назва курсу",

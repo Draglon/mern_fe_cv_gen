@@ -1,6 +1,7 @@
 const personalHobbies = {
   "PersonalHobbies": {
     "title": "Hobbies",
+    "cardTitle": "Hobby {index}",
     "form": {
       "hobby": {
         "label": "Hobby",

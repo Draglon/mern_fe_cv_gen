@@ -1,6 +1,7 @@
 const personalTools = {
   "PersonalTools": {
     "title": "Инструменты",
+    "cardTitle": "Инструмент {index}",
     "form": {
       "tool": {
         "label": "Инструмент",

@@ -1,0 +1,48 @@
+.card {
+  border: 2px solid var(--card-border-color);
+  border-radius: 8px;
+  flex-wrap: wrap;
+  gap: 0;
+  overflow: hidden;
+  width: 100%;
+
+  &__header {
+    background-color: var(--card-header-bg-color);
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    width: 100%;
+    .form__item {
+      margin: 0;
+    }
+  }
+
+  .ant-space-item {
+    width: 100%;
+  }
+
+  &__section {
+    background-color: var(--card-section-bg-color);
+    display: inline-flex;
+    flex-wrap: wrap;
+    column-gap: 16px;
+    padding: 20px;
+    width: 100%;
+  }
+
+  .card__remove {
+    background-color: white !important;
+    border-color: 1px solid var(--card-remove-icon-border-color) !important;
+    box-shadow: inset 0 0 2px var(--card-remove-icon-border-color) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 32px !important;
+    height: 32px !important;
+    &:hover, &:focus {
+      box-shadow: inset 0 0 3px var(--card-remove-icon-border-color) !important;
+    }
+  }
+  .card__remove-icon {
+    color: var(--card-remove-icon-color);
+  }
+}

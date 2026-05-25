@@ -8,8 +8,7 @@ type CheckboxFieldProps = {
 const CheckboxField = ({ label, ...rest }: CheckboxFieldProps) => {
   return (
     <div className="checkbox-field">
-      <Checkbox {...rest} />
-      {label && <label className="checkbox-field__label">{label}</label>}
+      <Checkbox {...rest}>{label}</Checkbox>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { LANGUAGE_LEVEL_OPTIONS } from "@/messages/common/selectOptions";
 const personalLanguages = {
   "PersonalLanguages": {
     "title": "Языки",
+    "cardTitle": "Язык {index}",
     "form": {
       "language": {
         "label": "Язык",

@@ -3,6 +3,7 @@ import { EMPLOYMENT_TYPE_OPTIONS, WORK_FORMAT_OPTIONS } from "@/messages/common/
 const personalExperience = {
   "PersonalExperience": {
     "title": "Experience",
+    "cardTitle": "Experience {index}",
     "form": {
       "recentPositionsCount": {
         "label": "Last places of works",

@@ -1,6 +1,7 @@
 const personalEducation = {
   "PersonalEducation": {
     "title": "Освіта",
+    "cardTitle": "Освіта {index}",
     "form": {
       "institute": {
         "label": "Інститут",

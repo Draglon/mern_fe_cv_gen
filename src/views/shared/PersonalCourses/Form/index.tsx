@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
-import { MinusCircleOutlined } from "@ant-design/icons";
+import { DeleteOutlined } from "@ant-design/icons";
 
 import {
   PersonalCoursesProps,
@@ -25,6 +25,7 @@ import InputField from "@/views/shared/InputField";
 import TextAreaField from "@/views/shared/TextAreaField";
 import DatePickerField from "@/views/shared/DatePickerField";
 import CheckboxField from "@/views/shared/CheckboxField";
+import { Title } from "@/views/shared/antd/Typography";
 
 const PersonalCoursesForm = ({
   resumeLocale,
@@ -90,76 +91,82 @@ const PersonalCoursesForm = ({
       </header>
       <FormList name="courses" append={append} fieldValues={fields}>
         {fields.map((field, index) => (
-          <Space key={field.id} align="baseline" className="form__list-space">
-            <header>
-              <FormItem
-                name={[index, "current"]}
-                controlName={`courses.${index}.isCurrent`}
-                control={control}
-                className="form__item--field"
-                label={t("form.isCurrent.label")}
-                size="large"
-                Field={CheckboxField}
-              />
-              {fields.length > 1 && (
-                <MinusCircleOutlined
-                  className="form__item--button-remove"
-                  onClick={() => remove(index)}
+          <Space key={field.id} align="baseline" className="card">
+            <header className="card__header">
+              <div className="d-flex justify-content-space-between">
+                <Title className="mt-0 mr-8" level={3}>
+                  {t("cardTitle", { index: index + 1 })}
+                </Title>
+                <FormItem
+                  name={[index, "current"]}
+                  controlName={`courses.${index}.isCurrent`}
+                  control={control}
+                  className="form__item--field"
+                  label={t("form.isCurrent.label")}
+                  size="large"
+                  Field={CheckboxField}
                 />
+              </div>
+              {fields.length > 1 && (
+                <Button className="card__remove" onClick={() => remove(index)}>
+                  <DeleteOutlined className="card__remove-icon" />
+                </Button>
               )}
             </header>
-            <FormItem
-              name={[index, "course"]}
-              controlName={`courses.${index}.course`}
-              control={control}
-              className="form__item--field"
-              label={t("form.course.label")}
-              placeholder={t("form.course.placeholder")}
-              rules={rules.inputTextRules}
-              Field={InputField}
-              size="large"
-            />
-            <FormItem
-              name={[index, "description"]}
-              controlName={`courses.${index}.description`}
-              control={control}
-              className="form__item--field"
-              label={t("form.description.label")}
-              placeholder={t("form.description.placeholder")}
-              rules={rules.textareaRules}
-              Field={TextAreaField}
-              size="large"
-            />
-            <FormItem
-              name={[index, "startDate"]}
-              controlName={`courses.${index}.startDate`}
-              control={control}
-              className="form__item--field"
-              label={t("form.startDate.label")}
-              placeholder={t("form.startDate.placeholder")}
-              rules={rules.datePickerRules}
-              Field={DatePickerField}
-              size="large"
-              locale={resumeLocale}
-            />
-            <FormItem
-              name={[index, "endDate"]}
-              controlName={`courses.${index}.endDate`}
-              control={control}
-              className="form__item--field"
-              label={t("form.endDate.label")}
-              placeholder={t("form.endDate.placeholder")}
-              rules={getInputEndDateRules({
-                tShared,
-                getValues,
-                startDatePath: `courses.${index}.startDate`,
-                isCurrentPath: `courses.${index}.isCurrent`,
-              })}
-              disabled={watch(`courses.${index}.isCurrent`)}
-              Field={DatePickerField}
-              size="large"
-              locale={resumeLocale}
-            />
+            <section className="card__section">
+              <FormItem
+                name={[index, "course"]}
+                controlName={`courses.${index}.course`}
+                control={control}
+                className="form__item--field"
+                label={t("form.course.label")}
+                placeholder={t("form.course.placeholder")}
+                rules={rules.inputTextRules}
+                Field={InputField}
+                size="large"
+              />
+              <FormItem
+                name={[index, "description"]}
+                controlName={`courses.${index}.description`}
+                control={control}
+                className="form__item--field"
+                label={t("form.description.label")}
+                placeholder={t("form.description.placeholder")}
+                rules={rules.textareaRules}
+                Field={TextAreaField}
+                size="large"
+              />
+              <FormItem
+                name={[index, "startDate"]}
+                controlName={`courses.${index}.startDate`}
+                control={control}
+                className="form__item--field"
+                label={t("form.startDate.label")}
+                placeholder={t("form.startDate.placeholder")}
+                rules={rules.datePickerRules}
+                Field={DatePickerField}
+                size="large"
+                locale={resumeLocale}
+              />
+              <FormItem
+                name={[index, "endDate"]}
+                controlName={`courses.${index}.endDate`}
+                control={control}
+                className="form__item--field"
+                label={t("form.endDate.label")}
+                placeholder={t("form.endDate.placeholder")}
+                rules={getInputEndDateRules({
+                  tShared,
+                  getValues,
+                  startDatePath: `courses.${index}.startDate`,
+                  isCurrentPath: `courses.${index}.isCurrent`,
+                })}
+                disabled={watch(`courses.${index}.isCurrent`)}
+                Field={DatePickerField}
+                size="large"
+                locale={resumeLocale}
+              />
+            </section>
           </Space>
         ))}
       </FormList>
