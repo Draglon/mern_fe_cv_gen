@@ -13,6 +13,7 @@ const shared = {
     "add": "Add",
     "save": "Save",
     "addField": "Add fields",
+    "downloadPDF": "Download PDF",
     "form": {
       "avatarUrl": {
         "label": "Upload avatar",

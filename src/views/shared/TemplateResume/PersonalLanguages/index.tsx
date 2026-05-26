@@ -29,9 +29,7 @@ const PersonalLanguages = ({
               {language}
             </Text>
             <Text className="personal-languages__text section__text">
-              {t(`personalLanguages.level.${level}`, {
-                locale: templateLocale,
-              })}
+              {t(`personalLanguages.level.${level}.${templateLocale}`)}
             </Text>
           </li>
         ))}

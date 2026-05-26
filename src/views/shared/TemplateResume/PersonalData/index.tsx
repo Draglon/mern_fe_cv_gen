@@ -42,7 +42,7 @@ const PersonalData = ({
       {equals(template, TEMPLATES.standford) && (
         <div className="personal-data__item">
           <Text className="personal-data__text" strong>
-            {t("personalData.name", { locale: templateLocale })}
+            {t(`personalData.name.${templateLocale}`)}
           </Text>
           <Paragraph className="personal-data__paragraph">
             {profileName(personalInfo, templateLocale)}
@@ -56,7 +56,7 @@ const PersonalData = ({
             <HomeOutlined className="personal-data__icon" />
           )}
           <Text className="personal-data__text" strong>
-            {t("personalData.address", { locale: templateLocale })}
+            {t(`personalData.address.${templateLocale}`)}
           </Text>
           <Paragraph className="personal-data__paragraph">
             {address[templateLocale]}
@@ -70,7 +70,7 @@ const PersonalData = ({
             <PhoneOutlined className="personal-data__icon" />
           )}
           <Text className="personal-data__text" strong>
-            {t("personalData.phoneNumber", { locale: templateLocale })}
+            {t(`personalData.phoneNumber.${templateLocale}`)}
           </Text>
           <Paragraph className="personal-data__paragraph">
             {formatPhoneNumberIntl(phoneNumber[templateLocale])}
@@ -84,7 +84,7 @@ const PersonalData = ({
             <MailOutlined className="personal-data__icon" />
           )}
           <Text className="personal-data__text" strong>
-            {t("personalData.email", { locale: templateLocale })}
+            {t(`personalData.email.${templateLocale}`)}
           </Text>
           <Paragraph className="personal-data__paragraph">
             {email[templateLocale]}
@@ -98,7 +98,7 @@ const PersonalData = ({
             <SendOutlined className="personal-data__icon" />
           )}
           <Text className="personal-data__text" strong>
-            {t("personalData.telegram", { locale: templateLocale })}
+            {t(`personalData.telegram.${templateLocale}`)}
           </Text>
           <Paragraph className="personal-data__paragraph">
             {telegram[templateLocale]}
@@ -112,7 +112,7 @@ const PersonalData = ({
             <CalendarOutlined className="personal-data__icon" />
           )}
           <Text className="personal-data__text" strong>
-            {t("personalData.birthday", { locale: templateLocale })}
+            {t(`personalData.birthday.${templateLocale}`)}
           </Text>
           <Paragraph className="personal-data__paragraph">
             {formatDate(birthday[templateLocale], templateLocale)}
@@ -126,7 +126,7 @@ const PersonalData = ({
             <LinkedinOutlined className="personal-data__icon" />
           )}
           <Text className="personal-data__text" strong>
-            {t("personalData.linkedIn", { locale: templateLocale })}
+            {t(`personalData.linkedIn.${templateLocale}`)}
           </Text>
           <Paragraph className="personal-data__paragraph">
             {linkedIn[templateLocale]}
@@ -140,7 +140,7 @@ const PersonalData = ({
             <LinkOutlined className="personal-data__icon" />
           )}
           <Text className="personal-data__text" strong>
-            {t("personalData.portfolio", { locale: templateLocale })}
+            {t(`personalData.portfolio.${templateLocale}`)}
           </Text>
           <Paragraph className="personal-data__paragraph">
             {portfolio[templateLocale]}

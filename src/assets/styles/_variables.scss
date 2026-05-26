@@ -382,7 +382,7 @@ $template-edinburgh-sidebar-bg-color: var(--grey-lightest);
 $template-edinburgh-sidebar-title-color: var(--blue-darkest);
 $template-edinburgh-sidebar-icon-color: var(--blue-darkest);
 $template-edinburgh-sidebar-text-color: var(--black);
-$template-edinburgh-sidebar-padding: 5mm;
+$template-edinburgh-sidebar-padding: 3mm;
 $template-edinburgh-sidebar-margin: 2mm;
 $template-edinburgh-sidebar-width: 80mm;
 // Template - container
@@ -395,7 +395,7 @@ $template-edinburgh-container-period-color: var(--grey-light);
 $template-edinburgh-container-hint-color: var(--grey-light);
 $template-edinburgh-container-padding: 4mm;
 $template-edinburgh-container-margin: 4mm;
-$template-edinburgh-container-width: calc($template-width - $template-standford-sidebar-width);
+$template-edinburgh-container-width: calc($template-width - $template-edinburgh-sidebar-width);
 // Personal - fullName
 $personal-edinburgh-fullName-bg-color: var(--blue-darker);
 $personal-edinburgh-fullName-border-color: var(--blue-darkest);

@@ -33,9 +33,9 @@ const PersonalExperience = ({
                 {formatDateRange({
                   ...item,
                   locale: templateLocale,
-                  tCurrentTime: t("personalExperience.currentTime", {
-                    locale: templateLocale,
-                  }),
+                  tCurrentTime: t(
+                    `personalExperience.currentTime.${templateLocale}`
+                  ),
                 })}
               </Paragraph>
             </div>
@@ -63,7 +63,7 @@ const PersonalExperience = ({
           {!isEmpty(item?.skills) && (
             <div className="skills">
               <Text className="skills__label" strong>
-                {t("skills", { locale: templateLocale })}
+                {t(`skills.${templateLocale}`)}
               </Text>
               <ul className="skills__list">
                 {item.skills.map((skill: string) => (

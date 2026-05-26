@@ -14,12 +14,12 @@ import getSectionTitle from "@/utils/getSectionTitle";
 const useResumeTemplateSidebar = ({ template, templateLocale, resume }: TemplateProps & { resume: ResumeProps }) => {
   const t = useTranslations("Template");
   const locale = templateLocale;
-  const infoTitle = t("personalData.title", { locale });
-  const hobbiesTitle = t("personalHobbies.title", { locale });
-  const languagesTitle = t("personalLanguages.title", { locale });
-  const skillsTitle = t("personalSkills.title", { locale });
-  const toolsTitle = t("personalTools.title", { locale });
-  const personalPhotoAlt = t("personalPhoto.alt", { locale })
+  const infoTitle = t(`personalData.title.${locale}`);
+  const hobbiesTitle = t(`personalHobbies.title.${locale}`);
+  const languagesTitle = t(`personalLanguages.title.${locale}`);
+  const skillsTitle = t(`personalSkills.title.${locale}`);
+  const toolsTitle = t(`personalTools.title.${locale}`);
+  const personalPhotoAlt = t(`personalPhoto.alt.${locale}`)
 
   const personalPhoto = resume?.personalInfo?.userUrl?.[locale];
   const personalInfoTitle = getSectionTitle({

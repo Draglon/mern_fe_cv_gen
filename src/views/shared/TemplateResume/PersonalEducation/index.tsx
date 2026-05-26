@@ -33,9 +33,9 @@ const PersonalEducation = ({
               {formatDateRange({
                 ...item,
                 locale: templateLocale,
-                tCurrentTime: t("personalEducation.currentTime", {
-                  locale: templateLocale,
-                }),
+                tCurrentTime: t(
+                  `personalEducation.currentTime.${templateLocale}`
+                ),
               })}
             </Text>
           </header>
@@ -46,13 +46,13 @@ const PersonalEducation = ({
           </Paragraph>
           <Paragraph className="section__paragraph">
             <Text className="section__text" strong>
-              {t("faculty", { locale: templateLocale })}
+              {t(`faculty.${templateLocale}`)}
             </Text>
             <Text className="section__text">{item.faculty}</Text>
           </Paragraph>
           <Paragraph className="section__paragraph">
             <Text className="section__text" strong>
-              {t("specialty", { locale: templateLocale })}
+              {t(`specialty.${templateLocale}`)}
             </Text>
             <Text className="section__text">{item.specialization}</Text>
           </Paragraph>

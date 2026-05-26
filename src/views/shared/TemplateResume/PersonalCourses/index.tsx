@@ -30,9 +30,9 @@ const PersonalCourses = ({ templateLocale, personalCourses }: CoursesProps) => {
               {formatDateRange({
                 ...item,
                 locale: templateLocale,
-                tCurrentTime: t("personalCourses.currentTime", {
-                  locale: templateLocale,
-                }),
+                tCurrentTime: t(
+                  `personalCourses.currentTime.${templateLocale}`
+                ),
               })}
             </Text>
           </header>

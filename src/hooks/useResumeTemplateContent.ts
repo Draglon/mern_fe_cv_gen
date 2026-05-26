@@ -11,12 +11,12 @@ import { experienceByLocale } from "@/utils/personalExperience";
 const useResumeTemplateContent = ({ template, templateLocale, resume }: TemplateProps & { resume: ResumeProps }) => {
   const t = useTranslations("Template");
   const locale = templateLocale;
-  const personalInfoTitle = t("personalInfo.title", { locale });
-  const experienceTitle = t("personalExperience.title", { locale });
-  const educationTitle = t("personalEducation.title", { locale });
-  const coursesTitle = t("personalCourses.title", { locale });
-  const skillsTitle = t("personalSkills.title", { locale });
-  const toolsTitle = t("personalTools.title", { locale });
+  const personalInfoTitle = t(`personalInfo.title.${locale}`);
+  const experienceTitle = t(`personalExperience.title.${locale}`);
+  const educationTitle = t(`personalEducation.title.${locale}`);
+  const coursesTitle = t(`personalCourses.title.${locale}`);
+  const skillsTitle = t(`personalSkills.title.${locale}`);
+  const toolsTitle = t(`personalTools.title.${locale}`);
 
   const experiences = experienceByLocale(resume?.personalExperience, locale);
   const recentPositionsCount = pathOr(
@@ -35,8 +35,7 @@ const useResumeTemplateContent = ({ template, templateLocale, resume }: Template
     defaultTitle: experienceTitle,
   });
   const personalExperienceText = recentPositionsCount
-    ? t("personalExperience.text", {
-        locale,
+    ? t(`personalExperience.text.${locale}`, {
         number: recentPositionsCount,
       })
     : undefined;
