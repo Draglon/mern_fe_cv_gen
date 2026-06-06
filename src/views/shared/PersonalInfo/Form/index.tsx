@@ -20,7 +20,7 @@ import FormItem from "@/views/shared/FormItem";
 import InputField from "@/views/shared/InputField";
 import TextAreaField from "@/views/shared/TextAreaField";
 import UploadFileField from "@/views/shared/UploadFileField";
-import PhoneNumberField from "@/views/shared/PhoneNumberField";
+import InputPhoneNumberField from "@/views/shared/InputPhoneNumberField";
 import DatePickerField from "@/views/shared/DatePickerField";
 import Button from "@/views/shared/antd/Button";
 import Divider from "@/views/shared/antd/Divider";
@@ -156,7 +156,8 @@ const PersonalInfoForm = ({ resumeLocale, isEdit }: PersonalInfoProps) => {
             control={control}
             label={t("form.phoneNumber.label")}
             placeholder={t("form.phoneNumber.placeholder")}
-            Field={PhoneNumberField}
+            rules={rules.inputPhoneNumberRules}
+            Field={InputPhoneNumberField}
             size="large"
             defaultCountry="UA"
           />

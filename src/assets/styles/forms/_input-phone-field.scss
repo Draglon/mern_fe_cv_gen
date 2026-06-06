@@ -1,0 +1,46 @@
+.input-phone-number-field {
+  &__label {
+    display: inline-block;
+    font-family: var(--text-primary-font-family);
+    font-size: 14px;
+    padding-bottom: 4px;
+  }
+
+  &__phone {
+    display: flex;
+    gap: 16px
+  }
+
+  &__country-code {
+
+  }
+
+  &__number {
+    flex: 1;
+  }
+
+  &__error {
+    color: var(--input-error-border-color);
+    display: block;
+    font-size: 14px;
+    font-weight: normal;
+    padding-top: 2px;
+  }
+}
+
+.country-option {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+
+  &__country-flag{
+    margin: 0;
+    width: 20px;
+    height: 14px;
+  }
+
+  &__calling-code {
+    opacity: 0.6;
+  }
+}

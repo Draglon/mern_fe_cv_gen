@@ -125,6 +125,13 @@ const shared = {
           "pattern": "Enter a valid Telegram username (5–32 characters, letters, numbers, underscore, optional @). Example: @username",
         }
       },
+      "inputPhoneNumber": {
+        "placeholder": "Input phone number",
+        "errors": {
+          "required": "Field is required!",
+          "invalid": "Invalid phone number format!",
+        }
+      },
       "submitButton": "Save changes",
     }
   },

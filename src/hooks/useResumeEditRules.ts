@@ -10,6 +10,7 @@ import { getSelectRules, getSelectLanguageRules } from "@/utils/forms/validation
 import { getInputDatePickerRules } from "@/utils/forms/validations/resume/inputDatePickerValidation";
 import { getInputTelegramRules } from "@/utils/forms/validations/resume/inputTelegramValidation";
 import { getInputLinkRules } from "@/utils/forms/validations/resume/inputLinkValidation";
+import { getInputPhoneNumberRules } from "@/utils/forms/validations/resume/inputPhoneNumberValidation";
 import { getEmailRules } from "@/utils/forms/validations/emailValidation";
 
 const useResumeEditRules = () => {
@@ -28,6 +29,7 @@ const useResumeEditRules = () => {
     emailRules: getEmailRules(tShared),
     inputTelegramRules: getInputTelegramRules(tShared),
     inputLinkRules: getInputLinkRules(tShared),
+    inputPhoneNumberRules: getInputPhoneNumberRules(tShared),
     datePickerRules: getInputDatePickerRules(tShared),
   };
 };

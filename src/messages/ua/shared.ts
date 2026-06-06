@@ -125,6 +125,13 @@ const shared = {
           "pattern": "Введіть коректний Telegram username (5–32 символів: латиниця, цифри, _). Наприклад: @username",
         }
       },
+      "inputPhoneNumber": {
+        "placeholder": "Введіть номер телефону",
+        "errors": {
+          "required": "Обов'язкове поле!",
+          "invalid": "Невірний формат номера телефону!",
+        }
+      },
       "submitButton": "Зберегти зміни",
     }
   }
