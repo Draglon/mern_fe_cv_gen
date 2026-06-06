@@ -10,6 +10,8 @@ import {
 import type { Country } from "react-phone-number-input";
 
 import { DEFAULT_PHONE_NUMBER_LOCALE } from "@/lib/constants/locales";
+import isPresent from "@/utils/isPresent";
+
 import Select from "@/views/shared/antd/Select";
 import Input from "@/views/shared/antd/Input";
 import { Text } from "@/views/shared/antd/Typography";
@@ -22,6 +24,7 @@ type InputPhoneNumberFieldProps = {
     type: string;
     message: string;
   };
+  status?: "error" | "warning";
   value?: string;
   defaultCountry?: Country;
   onChange: (value?: string) => void;
@@ -32,6 +35,7 @@ const InputPhoneNumberField = ({
   value = "",
   defaultCountry = DEFAULT_PHONE_NUMBER_LOCALE,
   errors,
+  status,
   onChange,
 }: InputPhoneNumberFieldProps) => {
   const tShared = useTranslations("shared");
@@ -108,15 +112,15 @@ const InputPhoneNumberField = ({
             value={nationalNumber}
             onChange={(e) => handleChange(e.target.value)}
             placeholder={tShared("form.inputPhoneNumber.placeholder")}
+            status={isPresent(errors) ? "error" : status}
           />
+          {errors?.message && (
+            <Text className="input-phone-number-field__error">
+              {errors.message}
+            </Text>
+          )}
         </div>
       </div>
-
-      {errors?.message && (
-        <Text className="input-phone-number-field__error">
-          {errors.message}
-        </Text>
-      )}
     </div>
   );
 };
