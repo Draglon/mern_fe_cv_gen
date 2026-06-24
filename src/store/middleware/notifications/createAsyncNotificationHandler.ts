@@ -25,7 +25,7 @@ export const createAsyncNotificationHandler = <
       const messages = await getMessages(action);
 
       notification.success({
-        message: "Success",
+        title: "Success",
         description: messages.success,
       });
     },
@@ -37,7 +37,7 @@ export const createAsyncNotificationHandler = <
       const messages = await getMessages(action as any);
 
       notification.error({
-        message: "Error",
+        title: "Error",
         description: messages.error,
       });
     },
