@@ -142,7 +142,6 @@ const PersonalEducationForm = ({
                 className="form__item--field"
                 label={t("form.faculty.label")}
                 placeholder={t("form.faculty.placeholder")}
-                rules={rules.inputTextRules}
                 Field={InputField}
                 size="large"
               />
@@ -153,7 +152,6 @@ const PersonalEducationForm = ({
                 className="form__item--field"
                 label={t("form.specialization.label")}
                 placeholder={t("form.specialization.placeholder")}
-                rules={rules.inputTextRules}
                 Field={InputField}
                 size="large"
               />

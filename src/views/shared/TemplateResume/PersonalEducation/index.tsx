@@ -44,18 +44,22 @@ const PersonalEducation = ({
               {item.institute}
             </Text>
           </Paragraph>
-          <Paragraph className="section__paragraph">
-            <Text className="section__text" strong>
-              {t(`faculty.${templateLocale}`)}
-            </Text>
-            <Text className="section__text">{item.faculty}</Text>
-          </Paragraph>
-          <Paragraph className="section__paragraph">
-            <Text className="section__text" strong>
-              {t(`specialty.${templateLocale}`)}
-            </Text>
-            <Text className="section__text">{item.specialization}</Text>
-          </Paragraph>
+          {item?.faculty && (
+            <Paragraph className="section__paragraph">
+              <Text className="section__text" strong>
+                {t(`faculty.${templateLocale}`)}
+              </Text>
+              <Text className="section__text">{item.faculty}</Text>
+            </Paragraph>
+          )}
+          {item?.specialization && (
+            <Paragraph className="section__paragraph">
+              <Text className="section__text" strong>
+                {t(`specialty.${templateLocale}`)}
+              </Text>
+              <Text className="section__text">{item.specialization}</Text>
+            </Paragraph>
+          )}
         </div>
       ))}
     </>

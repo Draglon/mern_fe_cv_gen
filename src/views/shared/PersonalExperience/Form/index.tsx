@@ -242,7 +242,6 @@ const PersonalExperienceForm = ({
                 className="form__item--field"
                 label={t("form.skills.label")}
                 placeholder={t("form.skills.placeholder")}
-                rules={rules.inputTextRules}
                 Field={SelectField}
                 size="large"
                 mode="tags"
