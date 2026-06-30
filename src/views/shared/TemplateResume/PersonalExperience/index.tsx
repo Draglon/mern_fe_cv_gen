@@ -43,23 +43,24 @@ const PersonalExperience = ({
               <Text className="experience__company-label" strong>
                 {item.companyName}
               </Text>
-              <Text type="secondary"> · </Text>
-              <Text type="secondary">{item.workFormat}</Text>
+              {item?.workFormat && (
+                <Text type="secondary"> · {item.workFormat}</Text>
+              )}
             </Paragraph>
             <Paragraph className="experience__place" italic>
               <Text className="experience__place-label">{item.location}</Text>
-              <Text type="secondary"> · </Text>
-              <Text type="secondary">{item.employmentType}</Text>
+              {item?.employmentType && (
+                <Text type="secondary"> · {item.employmentType}</Text>
+              )}
             </Paragraph>
           </header>
-          <Paragraph className="experience__info">
-            {splitText(item.description).map((item: string) => (
-              <>
-                {item}
-                <br />
-              </>
+          <ul className="experience__info">
+            {splitText(item.description).map((item: string, index: number) => (
+              <li className="experience__info-item" key={index}>
+                <Text className="experience__info-item-text">{item}</Text>
+              </li>
             ))}
-          </Paragraph>
+          </ul>
           {!isEmpty(item?.skills) && (
             <div className="skills">
               <Text className="skills__label" strong>

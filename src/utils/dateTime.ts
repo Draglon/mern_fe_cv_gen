@@ -22,7 +22,9 @@ const shortMonthYearFormat = (date: string, locale: Locales) => dayjsByCurrentLo
 export const formatDate = (date: string, locale: Locales): string => {
   if (!date) return "";
 
-  return dayjsByCurrentLocale(date, locale).format("DD MMM YYYY");
+  const dayjsDate = dayjsByCurrentLocale(date, locale);
+
+  return `${dayjsDate.date()} ${dayjsDate.format("MMM YYYY")}`;
 };
 
 export const formatDateRange = ({

@@ -19,7 +19,9 @@ const PersonalHobbies = ({ templateLocale, personalHobbies }: HobbiesProps) => {
       <ul className="personal-interests__list">
         {hobbies.map(({ hobby }: HobbyType, index: number) => (
           <li className="personal-interests__item" key={index}>
-            <Text className="personal-interests__text">{hobby}</Text>
+            <Text className="personal-interests__text" strong>
+              {hobby}
+            </Text>
           </li>
         ))}
       </ul>
