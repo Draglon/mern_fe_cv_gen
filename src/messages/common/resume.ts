@@ -1,3 +1,5 @@
+import { EMPLOYMENT_TYPE_OPTIONS, WORK_FORMAT_OPTIONS } from "@/messages/common/selectOptions";
+
 export const RESUME = {
   "personalInfo": {
     "title": {
@@ -126,7 +128,9 @@ export const RESUME = {
       "en": "Current time",
       "ru": "Текущее время",
       "ua": "Поточний час"
-    }
+    },
+    "workFormat": WORK_FORMAT_OPTIONS,
+    "employmentType": EMPLOYMENT_TYPE_OPTIONS
   },
   "personalEducation": {
     "title": {

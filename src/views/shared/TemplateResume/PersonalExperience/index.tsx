@@ -44,13 +44,25 @@ const PersonalExperience = ({
                 {item.companyName}
               </Text>
               {item?.workFormat && (
-                <Text type="secondary"> · {item.workFormat}</Text>
+                <Text type="secondary">
+                  {" "}
+                  ·{" "}
+                  {t(
+                    `personalExperience.workFormat.${item.workFormat}.${templateLocale}`
+                  )}
+                </Text>
               )}
             </Paragraph>
             <Paragraph className="experience__place" italic>
               <Text className="experience__place-label">{item.location}</Text>
               {item?.employmentType && (
-                <Text type="secondary"> · {item.employmentType}</Text>
+                <Text type="secondary">
+                  {" "}
+                  ·{" "}
+                  {t(
+                    `personalExperience.employmentType.${item.employmentType}.${templateLocale}`
+                  )}
+                </Text>
               )}
             </Paragraph>
           </header>
