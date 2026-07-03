@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { Locales } from "@/lib/constants/props/locales";
 import { PersonalCoursesProps } from "@/lib/constants/props/resume";
 import { CourseType } from "@/lib/constants/props/resume/personalCourses";
-import { formatDateRange } from "@/utils/dateTime";
+import { formatYearRange } from "@/utils/dateTime";
 import { coursesByLocale } from "@/utils/personalCourses";
 
 import { Title, Text, Paragraph } from "@/views/shared/antd/Typography";
@@ -27,7 +27,7 @@ const PersonalCourses = ({ templateLocale, personalCourses }: CoursesProps) => {
               {item.course}
             </Title>
             <Text className="section__period" type="secondary" italic>
-              {formatDateRange({
+              {formatYearRange({
                 ...item,
                 locale: templateLocale,
                 tCurrentTime: t(

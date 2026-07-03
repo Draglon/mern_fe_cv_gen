@@ -18,6 +18,7 @@ const getCurrentLocale = (locale: Locales) => {
 
 const dayjsByCurrentLocale = (date: string, locale: Locales) => dayjs(date).locale(getCurrentLocale(locale));
 const shortMonthYearFormat = (date: string, locale: Locales) => dayjsByCurrentLocale(date, locale).format("MMM YYYY").toLowerCase();
+const shortYearFormat = (date: string, locale: Locales) => dayjsByCurrentLocale(date, locale).format("YYYY").toLowerCase();
 
 export const formatDate = (date: string, locale: Locales): string => {
   if (!date) return "";
@@ -37,6 +38,20 @@ export const formatDateRange = ({
   if (!startDate) return "";
   const formattedStartDate = shortMonthYearFormat(startDate, locale);
   const formattedEndDate = !isCurrent && endDate ? shortMonthYearFormat(endDate, locale) : tCurrentTime;
+
+  return `${formattedStartDate} - ${formattedEndDate}`.toLowerCase();
+};
+
+export const formatYearRange = ({
+  isCurrent,
+  startDate,
+  endDate,
+  locale,
+  tCurrentTime,
+}: formatDateRangeType): string => {
+  if (!startDate) return "";
+  const formattedStartDate = shortYearFormat(startDate, locale);
+  const formattedEndDate = !isCurrent && endDate ? shortYearFormat(endDate, locale) : tCurrentTime;
 
   return `${formattedStartDate} - ${formattedEndDate}`.toLowerCase();
 };
