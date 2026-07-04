@@ -4,6 +4,7 @@ import { Dispatch, SetStateAction } from "react";
 import clsx from "clsx";
 
 import { TEMPLATES_LIST } from "@/lib/constants/templates";
+import Button from "@/views/shared/antd/Button";
 
 type ResumeTemplatesListProps = {
   activeTemplate: string;
@@ -18,12 +19,12 @@ const ResumeTemplatesList = ({
     <ul className="templates-list">
       {TEMPLATES_LIST.map(({ template, image }, index) => (
         <li key={index} className="templates-list__item">
-          <a
-            className={clsx("templates-list__link", {
-              "templates-list__link--active": activeTemplate === template,
+          <Button
+            className={clsx("templates-list__btn", {
+              "templates-list__btn--active": activeTemplate === template,
             })}
-            href="#"
-            role="button"
+            color="default"
+            variant="link"
             onClick={() => setTemplate(template)}
           >
             <Image
@@ -33,7 +34,7 @@ const ResumeTemplatesList = ({
               width={160}
               height={240}
             />
-          </a>
+          </Button>
         </li>
       ))}
     </ul>

@@ -2,16 +2,11 @@ import standfordImage from "@/../public/images/templates/standford.jpg";
 import edinburghImage from "@/../public/images/templates/edinburgh.jpg";
 
 export const TEMPLATES = {
-  standford: "standford",
   edinburgh: "edinburgh",
-  edinburghPlus: "edinburgh-plus",
+  standford: "standford",
 } as const;
 
 export const TEMPLATES_LIST = [
-  {
-    template: TEMPLATES.edinburghPlus,
-    image: edinburghImage,
-  },
   {
     template: TEMPLATES.edinburgh,
     image: edinburghImage,
@@ -24,19 +19,16 @@ export const TEMPLATES_LIST = [
 
 export const TEMPLATES_PERSONAL_INFO_FULLNAME = [
   TEMPLATES.edinburgh,
-  TEMPLATES.edinburghPlus,
 ];
 
 export const TEMPLATES_PERSONAL_DATA_ICONS = [
   TEMPLATES.edinburgh,
-  TEMPLATES.edinburghPlus,
 ];
 
 export const TEMPLATES_SIDEBARS_SKILLS = [
-  TEMPLATES.edinburghPlus,
+  TEMPLATES.edinburgh,
 ];
 
 export const TEMPLATES_SIDEBARS_TOOLS = [
-  TEMPLATES.edinburghPlus,
+  TEMPLATES.edinburgh,
 ];
-

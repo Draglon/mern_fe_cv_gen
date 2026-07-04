@@ -46,6 +46,13 @@
         letter-spacing: 1px;
       }
     }
+    .personal-skills, .personal-tools {
+      padding: 0 5mm;
+      margin-bottom: 0;
+      &__label {
+        font-size: 9pt !important;
+      }
+    }
   }
 
   .template__container {
@@ -64,6 +71,9 @@
       .section__header {
         border-color: v.$template-edinburgh-container-border-color;
         margin-bottom: 2mm;
+        .section__text {
+          color: v.$template-edinburgh-container-hint-color !important;
+        }
       }
       .section__title {
         color: v.$template-edinburgh-container-header-color !important;
@@ -87,7 +97,6 @@
       border-radius: 0 0 50% 50%;
       padding: 7mm 5mm;
       margin: 0 -20mm;
-      min-height: 30mm;
     }
 
     &__title {
@@ -145,8 +154,22 @@
   .personal-interests {
     padding: 0 5mm;
     &__item {
-      font-weight: 500;
-      margin-bottom: 1mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-left: 3mm;
+      margin-bottom: 1mm !important;
+      position: relative;
+      &:before {
+        content: '';
+        background-color: var(--blue-darkest) !important;
+        position: absolute;
+        top: 6px;
+        left: 0;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+      }
     }
     &__text {
       color: v.$template-edinburgh-sidebar-text-color !important;
@@ -160,7 +183,19 @@
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      margin-bottom: 1mm;
+      padding-left: 3mm;
+      margin-bottom: 1mm !important;
+      position: relative;
+      &:before {
+        content: '';
+        background-color: var(--blue-darkest) !important;
+        position: absolute;
+        top: 6px;
+        left: 0;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+      }
     }
     &__text {
       color: v.$template-edinburgh-sidebar-text-color !important;
@@ -173,7 +208,7 @@
   }
 
   .personal-info {
-    margin-bottom: 5mm;
+    margin-bottom: 3mm;
     &__header {
       padding-bottom: 2mm;
       margin-bottom: 5mm;
@@ -185,7 +220,7 @@
   }
 
   .experience {
-    margin-bottom: 5mm;
+    margin-bottom: 3mm;
     &__item {
       padding-top: 3mm;
       &:first-child {
@@ -209,6 +244,7 @@
     &__title {
       margin-bottom: 1mm;
       margin: 0 !important;
+      width: 85mm;
     }
 
     &__period {
@@ -237,17 +273,31 @@
 
     &__info {
       font-size: 10.5pt !important;
-      margin-bottom: 2mm !important;
+      &-item {
+        position: relative;
+        padding-left: 3mm;
+        margin-bottom: 1mm !important;
+        &:before {
+          content: '';
+          background-color: var(--blue-dark) !important;
+          position: absolute;
+          top: 8px;
+          left: 0;
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+        }
+      }
     }
   }
 
   .skills {
     display: flex;
-    justify-content: baseline;
+    justify-content: flex-start;
     align-items: start;
     &__label {
       color: v.$template-edinburgh-container-hint-color !important;
-      font-size: 10pt !important;
+      font-size: 8.5pt !important;
       white-space: nowrap;
     }
     &__list {
@@ -255,7 +305,7 @@
         display: inline-block;
         &:before {
           content: '·';
-          font-size: 9pt !important;
+          font-size: 8.5pt !important;
           font-weight: 300;
           margin: 0 1mm;
         }
@@ -276,30 +326,29 @@
   }
 
   .personal-skills {
-    margin-bottom: 5mm;
+    margin-bottom: 3mm;
     &__item {
       display: flex;
       justify-content: flex-start;
       align-items: center;
-      margin-bottom: 1mm;
+      padding-left: 3mm;
+      margin-bottom: 1mm !important;
+      position: relative;
+      &:before {
+        content: '';
+        background-color: var(--blue-darkest) !important;
+        position: absolute;
+        top: 6px;
+        left: 0;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+      }
     }
 
     &__label {
       color: v.$template-edinburgh-container-text-color !important;
     }
-
-    // &__progress {
-    //   background-color: var(--white);
-    //   border: 1px solid var(--grey-light);
-    //   border-radius: 1mm;
-    //   width: 50mm;
-    //   height: 2mm;
-    //   &-value {
-    //     background-color: var(--blue-dark);
-    //     border-radius: 1mm;
-    //     height: 100%;
-    //   }
-    // }
   }
 
   .personal-tools {
@@ -307,25 +356,24 @@
       display: flex;
       justify-content: flex-start;
       align-items: center;
-      margin-bottom: 1mm;
+      padding-left: 3mm;
+      margin-bottom: 1mm !important;
+      position: relative;
+      &:before {
+        content: '';
+        background-color: var(--blue-darkest) !important;
+        position: absolute;
+        top: 6px;
+        left: 0;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+      }
     }
 
     &__label {
       color: v.$template-edinburgh-container-text-color !important;
     }
-
-    // &__progress {
-    //   background-color: var(--white);
-    //   border: 1px solid var(--grey-light);
-    //   border-radius: 1mm;
-    //   width: 50mm;
-    //   height: 2mm;
-    //   &-value {
-    //     background-color: var(--blue-dark);
-    //     border-radius: 1mm;
-    //     height: 100%;
-    //   }
-    // }
   }
 }
 

@@ -3,28 +3,48 @@
 .templates-list {
   margin: 0 auto;
   width: 180px;
+
   &__item {
     border-radius: 15px;
     margin-bottom: 15px;
     overflow: hidden;
   }
 
-  &__link {
+  &__btn {
+    cursor: pointer;
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--transparent);
+    border-radius: 15px;
     display: block;
+    padding: 0 !important;
     position: relative;
-    background-color: rgba(0,0,0,0);
-    transition: background-color 1s;
+    overflow: hidden;
+    width: 100% !important;
+    height: auto !important;
+    transition: border-color .3s;
 
-    &:hover,
-    &--active{
+    &:hover, &--active {
+      border-width: 2px !important;
+      border-style: solid !important;
+      border-color: var(--link-visited-color) !important;
+    }
+
+    &--active {
+      cursor: default;
       &:after {
-        content: '';
+        content: '✔';
+        background-color: var(--link-visited-color);
+        border-radius: 50%;
+        color: var(--white);
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(63, 54, 225, 0.1);
+        top: 6px;
+        right: 6px;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        text-align: center;
+        text-indent: 2px;
       }
     }
   }

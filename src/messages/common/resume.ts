@@ -130,7 +130,12 @@ export const RESUME = {
       "ua": "Поточний час"
     },
     "workFormat": WORK_FORMAT_OPTIONS,
-    "employmentType": EMPLOYMENT_TYPE_OPTIONS
+    "employmentType": EMPLOYMENT_TYPE_OPTIONS,
+    "techStack": {
+      "en": "Tech stack",
+      "ru": "Стек технологий",
+      "ua": "Стек технологій"
+    },
   },
   "personalEducation": {
     "title": {

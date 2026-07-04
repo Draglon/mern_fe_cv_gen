@@ -45,8 +45,7 @@ const PersonalExperience = ({
               </Text>
               {item?.workFormat && (
                 <Text type="secondary">
-                  {" "}
-                  ·{" "}
+                  {" · "}
                   {t(
                     `personalExperience.workFormat.${item.workFormat}.${templateLocale}`
                   )}
@@ -57,8 +56,7 @@ const PersonalExperience = ({
               <Text className="experience__place-label">{item.location}</Text>
               {item?.employmentType && (
                 <Text type="secondary">
-                  {" "}
-                  ·{" "}
+                  {" · "}
                   {t(
                     `personalExperience.employmentType.${item.employmentType}.${templateLocale}`
                   )}
@@ -76,7 +74,7 @@ const PersonalExperience = ({
           {!isEmpty(item?.skills) && (
             <div className="skills">
               <Text className="skills__label" strong>
-                {t(`skills.${templateLocale}`)}
+                {`${t(`personalExperience.techStack.${templateLocale}`)}: `}
               </Text>
               <ul className="skills__list">
                 {item.skills.map((skill: string) => (
