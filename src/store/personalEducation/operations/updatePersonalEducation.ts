@@ -21,7 +21,7 @@ const updatePersonalEducationOperation = createAsyncThunk(
         resumeLocale,
       };
 
-      const { data } = await axios.patch(personalEducationRoute(personalEducationId), formattedParams);
+      const { data } = await axios.put(personalEducationRoute(personalEducationId), formattedParams);
 
       return data;
     } catch (error: unknown) {

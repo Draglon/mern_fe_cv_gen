@@ -287,6 +287,10 @@
           height: 5px;
           border-radius: 50%;
         }
+
+        &-text {
+          color: v.$template-edinburgh-container-text-color;
+        }
       }
     }
   }

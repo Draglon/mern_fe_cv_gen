@@ -20,7 +20,7 @@ const updatePersonalCoursesOperation = createAsyncThunk(
         resumeLocale,
       };
 
-      const { data } = await axios.patch(personalCoursesRoute(personalCoursesId), formattedParams);
+      const { data } = await axios.put(personalCoursesRoute(personalCoursesId), formattedParams);
 
       return data;
     } catch (error: unknown) {

@@ -20,7 +20,7 @@ const updatePersonalHobbiesOperation = createAsyncThunk(
         resumeLocale,
       };
 
-      const { data } = await axios.patch(personalHobbiesRoute(personalHobbiesId), formattedParams);
+      const { data } = await axios.put(personalHobbiesRoute(personalHobbiesId), formattedParams);
 
       return data;
     } catch (error: unknown) {

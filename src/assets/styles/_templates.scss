@@ -14,7 +14,7 @@
     cursor: pointer;
     border-width: 2px;
     border-style: solid;
-    border-color: var(--transparent);
+    border-color: var(--border-color);
     border-radius: 15px;
     display: block;
     padding: 0 !important;
@@ -27,14 +27,14 @@
     &:hover, &--active {
       border-width: 2px !important;
       border-style: solid !important;
-      border-color: var(--link-visited-color) !important;
+      border-color: var(--primary-border-color) !important;
     }
 
     &--active {
       cursor: default;
       &:after {
         content: '✔';
-        background-color: var(--link-visited-color);
+        background-color: var(--primary-border-color);
         border-radius: 50%;
         color: var(--white);
         position: absolute;

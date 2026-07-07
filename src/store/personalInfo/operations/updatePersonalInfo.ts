@@ -23,7 +23,7 @@ const updatePersonalInfoOperation = createAsyncThunk(
         resumeLocale,
       };
 
-      const { data } = await axios.patch(personalInfoRoute(personalInfoId), formattedParams);
+      const { data } = await axios.put(personalInfoRoute(personalInfoId), formattedParams);
 
       return data;
     } catch (error: unknown) {

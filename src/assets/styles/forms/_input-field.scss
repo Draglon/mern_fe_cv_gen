@@ -1,6 +1,7 @@
 .input-field {
   &__label {
     display: inline-block;
+    color: var(--input-label-color);
     font-family: var(--text-primary-font-family);
     font-size: 14px;
     padding-bottom: 4px;

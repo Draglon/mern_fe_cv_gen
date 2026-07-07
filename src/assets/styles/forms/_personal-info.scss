@@ -14,6 +14,11 @@
       height: 180px !important;
     }
   }
+  .upload-file-field {
+    &__label {
+      color: var(--input-label-color);
+    }
+  }
 
   .form__item--buttons {
     padding-top: 16px;

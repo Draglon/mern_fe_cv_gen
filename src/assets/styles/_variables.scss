@@ -43,6 +43,7 @@
   // main
   --background: #F8F7FF;
   --border-color: var(--grey-lightest);
+  --primary-border-color: var(--purple-500-light);
   --section-bg-color: var(--white);
   --primary-color: var(--purple-500-light);
   --primary-color-hover: var(--purple-600-light);
@@ -116,6 +117,7 @@
   --input-error-border-color: var(--red-light-theme);
   --input-disabled-border-color: var(--border-color);
   --input-success-border-color: var(--green-light-theme);
+  --input-label-color: var(--text-primary-color);
   --input-color: var(--text-primary-color);
   --input-disabled-color: var(--text-secondary-color);
   --input-placeholder-color: var(--primary-color-disabled);
@@ -258,6 +260,7 @@
   --input-error-border-color: var(--error-border-color);
   --input-disabled-border-color: var(--border-color);
   --input-success-border-color: var(--success-border-color);
+  --input-label-color: var(--text-primary-color);
   --input-color: var(--text-primary-color);
   --input-disabled-color: var(--primary-color-disabled);
   --input-placeholder-color: var(--primary-color-disabled);

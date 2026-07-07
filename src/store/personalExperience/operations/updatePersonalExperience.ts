@@ -15,7 +15,7 @@ const updatePersonalExperienceOperation = createAsyncThunk(
       const state = getState() as RootState;
       const personalExperienceId = personalExperiencesIdSelector(state);
 
-      const { data } = await axios.patch(personalExperienceRoute(personalExperienceId), formattedParams(params));
+      const { data } = await axios.put(personalExperienceRoute(personalExperienceId), formattedParams(params));
       return data;
     } catch (error: unknown) {
       console.log("error: ", error);

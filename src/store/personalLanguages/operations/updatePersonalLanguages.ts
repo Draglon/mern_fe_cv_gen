@@ -15,7 +15,7 @@ const updatePersonalLanguagesOperation = createAsyncThunk(
       const state = getState() as RootState;
       const personalLanguagesId = personalLanguagesIdSelector(state);
 
-      const { data } = await axios.patch(personalLanguagesRoute(personalLanguagesId), formattedParams(params));
+      const { data } = await axios.put(personalLanguagesRoute(personalLanguagesId), formattedParams(params));
       return data;
     } catch (error: unknown) {
       console.log("error: ", error);
