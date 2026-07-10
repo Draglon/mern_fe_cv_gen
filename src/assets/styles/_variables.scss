@@ -351,7 +351,8 @@ $page-wrapper-padding: 20px 16px;
 // ----------- Template ----------------------
 $template-bg-color: var(--white);
 $template-width: 21cm; // 797px;
-$template-height: auto; // 29.7cm; // 1127px;
+$template-height: auto;
+$template-min-height: 29.7cm; // 1127px;
 
 // ----------- Template Standford ------------
 // Template - sidebar

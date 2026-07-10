@@ -15,8 +15,10 @@ describe("Loader", () => {
     it("with default props", () => {
       renderComponent();
 
-      expect(screen.getByTestId("loader")).toBeInTheDocument();
-      expect(screen.getByTestId("loader")).toHaveClass("loader loader--class");
+      const element = screen.getByTestId("loader");
+
+      expect(element).toBeInTheDocument();
+      expect(element).toHaveClass("loader loader--class");
     });
   });
 });

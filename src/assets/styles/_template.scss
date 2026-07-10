@@ -6,6 +6,7 @@
   margin: 0 auto;
   width: v.$template-width;
   height: v.$template-height;
+  min-height: v.$template-min-height;
 
   & :is(h1, h2, h3, h4) {
     margin: 0;

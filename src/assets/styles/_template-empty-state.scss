@@ -1,0 +1,19 @@
+@use 'variables' as v;
+
+.template-empty-state {
+  padding: 30px;
+  text-align: center;
+  &__image {
+    display: block;
+    margin: 0 auto 32px;
+    width: 400px;
+    height: auto;
+  }
+  &__title {
+    margin-bottom: 32px !important;
+  }
+  &__description {
+    font-size: 18px !important;
+    margin-bottom: 24px !important;
+  }
+}

@@ -23,8 +23,9 @@
 @use 'page';
 @use 'header';
 @use 'template';
-@use 'templates';
+@use 'template-empty-state';
 @use 'template-settings';
+@use 'templates-list';
 
 // forms
 @use 'forms/form';
@@ -41,5 +42,5 @@
 @use 'forms/personal-tools';
 
 // templates
-@use 'template-edinburgh';
-@use 'template-standford';
+@use 'template--edinburgh';
+@use 'template--standford';
