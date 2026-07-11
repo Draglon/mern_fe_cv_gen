@@ -409,3 +409,31 @@ $personal-edinburgh-photo-width: 25mm;
 $personal-edinburgh-photo-height: 25mm;
 // Personal - info
 $personal-edinburgh-info-border-color: var(--grey-light);
+
+// ----------- Template Modern ------------
+// Template - sidebar
+$template-modern-sidebar-bg: #2a2b63;
+$template-modern-sidebar-bg-gradient-start: #2a2b63;
+$template-modern-sidebar-bg-gradient-center: #1d2050;
+$template-modern-sidebar-bg-gradient-end: #191c47;
+$template-modern-sidebar-border-color: var(--white);
+$template-modern-sidebar-title-color: var(--white);
+$template-modern-sidebar-icon-color: var(--white);
+$template-modern-sidebar-text-color: var(--white);
+$template-modern-sidebar-padding: 5mm;
+$template-modern-sidebar-margin: 2mm;
+$template-modern-sidebar-width: 80mm;
+// Template - container
+$template-modern-container-bg: var(--white);
+$template-modern-container-color: var(--grey);
+$template-modern-container-header-color: var(--blue-dark);
+$template-modern-container-text-color: var(--black);
+$template-modern-container-border-color: var(--grey-light);
+$template-modern-container-width: calc($template-width - $template-modern-sidebar-width);
+$template-modern-container-padding: 4mm;
+$template-modern-container-margin: 3mm;
+// Personal - photo
+$personal-modern-photo-width: 30mm;
+$personal-modern-photo-height: 30mm;
+$personal-modern-photo-border-width: 1mm;
+$personal-modern-photo-border-color: var(--white);

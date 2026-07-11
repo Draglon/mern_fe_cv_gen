@@ -74,8 +74,8 @@ const useResumeTemplateContent = ({ template, templateLocale, resume }: Template
     isPersonalExperience: isPresent(resume?.personalExperience),
     isPersonalEducation: isPresent(resume?.personalEducation),
     isPersonalCourses: isPresent(resume?.personalCourses),
-    isPersonalSkills: isPresent(resume?.personalSkills) && !equals(template, TEMPLATES.edinburgh),
-    isPersonalTools: isPresent(resume?.personalTools) && !equals(template, TEMPLATES.edinburgh),
+    isPersonalSkills: isPresent(resume?.personalSkills) && !equals(template, TEMPLATES.edinburgh) && !equals(template, TEMPLATES.modern),
+    isPersonalTools: isPresent(resume?.personalTools) && !equals(template, TEMPLATES.edinburgh) && !equals(template, TEMPLATES.modern),
   }
 }
 
