@@ -108,11 +108,9 @@ const PersonalToolsForm = ({ resumeLocale, isEdit }: PersonalToolsProps) => {
                 />
               </div>
 
-              {fields.length > 1 && (
-                <Button className="card__remove" onClick={() => remove(index)}>
-                  <DeleteOutlined className="card__remove-icon" />
-                </Button>
-              )}
+              <Button className="card__remove" onClick={() => remove(index)}>
+                <DeleteOutlined className="card__remove-icon" />
+              </Button>
             </header>
             <section className="card__section">
               <FormItem
