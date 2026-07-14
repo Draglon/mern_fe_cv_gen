@@ -48,12 +48,14 @@ const useResumeTemplateSidebar = ({ template, templateLocale, resume }: Template
     defaultTitle: toolsTitle,
   });
 
+  console.log("resume: ", resume);
+
   const isPersonalPhoto = isPresent(personalPhoto);
   const isPersonalFullName =
     isPresent(resume?.personalInfo) &&
     includes(template, TEMPLATES_PERSONAL_INFO_FULLNAME);
   const isPersonalInfo = isPresent(resume?.personalInfo);
-  const isPersonalHobbies = isPresent(resume?.personalHobbies);
+  const isPersonalHobbies = isPresent(resume?.personalHobbies?.hobbies?.[locale]);
   const isPersonalLanguages = isPresent(resume?.personalLanguages);
   const isPersonalSkills =
     isPresent(resume?.personalSkills) &&
