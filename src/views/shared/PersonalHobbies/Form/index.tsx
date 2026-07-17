@@ -16,6 +16,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalHobbies from "@/store/personalHobbies/operations/createPersonalHobbies";
 import updatePersonalHobbies from "@/store/personalHobbies/operations/updatePersonalHobbies";
 import { personalHobbiesByLocaleSelector } from "@/store/personalHobbies/selectors";
+import { personalHobbiesIdSelector } from "@/store/auth/selectors";
 
 import FormItem from "@/views/shared/FormItem";
 import FormList from "@/views/shared/antd/FormList";
@@ -35,6 +36,7 @@ const PersonalHobbiesForm = ({
   const defaultValues = useAppSelector((state) =>
     personalHobbiesByLocaleSelector(state, resumeLocale)
   );
+  const personalHobbiesId = useAppSelector(personalHobbiesIdSelector);
   const { control, handleSubmit, formState, reset } = useForm<FieldType>({
     defaultValues,
     mode: "onChange",
@@ -51,7 +53,7 @@ const PersonalHobbiesForm = ({
       resumeLocale,
     };
 
-    if (isEdit) {
+    if (isEdit && personalHobbiesId) {
       await dispatch(updatePersonalHobbies(params));
     } else {
       await dispatch(createPersonalHobbies(params));

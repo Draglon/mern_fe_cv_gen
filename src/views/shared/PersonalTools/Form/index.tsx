@@ -5,8 +5,6 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { Form, Space } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 
-import { redirect } from "@/i18n/navigation";
-import { resumeRoute } from "@/lib/routes";
 import {
   PersonalToolsProps,
   FieldType,
@@ -18,6 +16,8 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalTools from "@/store/personalTools/operations/createPersonalTools";
 import updatePersonalTools from "@/store/personalTools/operations/updatePersonalTools";
 import { personalToolsByLocaleSelector } from "@/store/personalTools/selectors";
+import { personalToolsIdSelector } from "@/store/auth/selectors";
+
 import FormItem from "@/views/shared/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
@@ -35,7 +35,7 @@ const PersonalToolsForm = ({ resumeLocale, isEdit }: PersonalToolsProps) => {
   const defaultValues = useAppSelector((state) =>
     personalToolsByLocaleSelector(state, resumeLocale)
   );
-
+  const personalToolsId = useAppSelector(personalToolsIdSelector);
   const { control, handleSubmit, formState, reset } = useForm({
     defaultValues,
     mode: "onChange",
@@ -52,14 +52,10 @@ const PersonalToolsForm = ({ resumeLocale, isEdit }: PersonalToolsProps) => {
       resumeLocale,
     };
 
-    if (isEdit) {
+    if (isEdit && personalToolsId) {
       await dispatch(updatePersonalTools(params));
     } else {
       await dispatch(createPersonalTools(params));
-    }
-
-    if (!isEdit) {
-      redirect({ href: resumeRoute, locale });
     }
   });
 

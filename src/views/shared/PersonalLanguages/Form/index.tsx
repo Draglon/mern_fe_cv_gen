@@ -17,6 +17,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalLanguages from "@/store/personalLanguages/operations/createPersonalLanguages";
 import updatePersonalLanguages from "@/store/personalLanguages/operations/updatePersonalLanguages";
 import { personalLanguagesByLocaleSelector } from "@/store/personalLanguages/selectors";
+import { personalLanguagesIdSelector } from "@/store/auth/selectors";
 
 import FormItem from "@/views/shared/FormItem";
 import FormList from "@/views/shared/antd/FormList";
@@ -37,6 +38,7 @@ const PersonalLanguagesForm = ({
   const defaultValues = useAppSelector((state) =>
     personalLanguagesByLocaleSelector(state, resumeLocale)
   );
+  const personalLanguagesId = useAppSelector(personalLanguagesIdSelector);
   const { control, handleSubmit, formState, reset } = useForm({
     defaultValues,
     mode: "onChange",
@@ -53,7 +55,7 @@ const PersonalLanguagesForm = ({
       resumeLocale,
     };
 
-    if (isEdit) {
+    if (isEdit && personalLanguagesId) {
       await dispatch(updatePersonalLanguages(params));
     } else {
       await dispatch(createPersonalLanguages(params));

@@ -16,6 +16,8 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalSkills from "@/store/personalSkills/operations/createPersonalSkills";
 import updatePersonalSkills from "@/store/personalSkills/operations/updatePersonalSkills";
 import { personalSkillsByLocaleSelector } from "@/store/personalSkills/selectors";
+import { personalSkillsIdSelector } from "@/store/auth/selectors";
+
 import FormItem from "@/views/shared/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
@@ -33,6 +35,7 @@ const PersonalSkillsForm = ({ resumeLocale, isEdit }: PersonalSkillsProps) => {
   const defaultValues = useAppSelector((state) =>
     personalSkillsByLocaleSelector(state, resumeLocale)
   );
+  const personalSkillsId = useAppSelector(personalSkillsIdSelector);
   const { control, handleSubmit, formState, reset } = useForm({
     defaultValues,
     mode: "onChange",
@@ -49,7 +52,7 @@ const PersonalSkillsForm = ({ resumeLocale, isEdit }: PersonalSkillsProps) => {
       resumeLocale,
     };
 
-    if (isEdit) {
+    if (isEdit && personalSkillsId) {
       await dispatch(updatePersonalSkills(params));
     } else {
       await dispatch(createPersonalSkills(params));

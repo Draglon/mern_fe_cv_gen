@@ -17,6 +17,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalCourses from "@/store/personalCourses/operations/createPersonalCourses";
 import updatePersonalCourses from "@/store/personalCourses/operations/updatePersonalCourses";
 import { personalCoursesByLocaleSelector } from "@/store/personalCourses/selectors";
+import { personalCoursesIdSelector } from "@/store/auth/selectors";
 
 import FormItem from "@/views/shared/FormItem";
 import FormList from "@/views/shared/antd/FormList";
@@ -39,6 +40,7 @@ const PersonalCoursesForm = ({
   const defaultValues = useAppSelector((state) =>
     personalCoursesByLocaleSelector(state, resumeLocale)
   );
+  const personalCoursesId = useAppSelector(personalCoursesIdSelector);
   const { control, handleSubmit, formState, reset, getValues, watch } =
     useForm<FieldType>({
       defaultValues,
@@ -56,7 +58,7 @@ const PersonalCoursesForm = ({
       resumeLocale,
     };
 
-    if (isEdit) {
+    if (isEdit && personalCoursesId) {
       await dispatch(updatePersonalCourses(params));
     } else {
       await dispatch(createPersonalCourses(params));

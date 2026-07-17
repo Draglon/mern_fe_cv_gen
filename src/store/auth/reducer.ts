@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import fetchAuth from "./operations/fetchAuth";
 import fetchRegister from "./operations/fetchRegister";
 import fetchUser from "./operations/fetchUser";
+import updateUserResume from "./operations/updateUserResume";
 import updateUserProfile from "./operations/updateUserProfile";
 import updateUserEmail from "./operations/updateUserEmail";
 import deleteAccount from "./operations/deleteAccount";
@@ -68,6 +69,25 @@ export const authSlice = createSlice({
       state.error = null;
     });
     builder.addCase(fetchUser.rejected, (state, action) => {
+      state.status = "error";
+      state.error = action.payload;
+    });
+
+    builder.addCase(updateUserResume.pending, (state) => {
+      state.status = "loading";
+      state.error = null;
+    });
+    builder.addCase(updateUserResume.fulfilled, (state, action) => {
+      console.log("state.data: ", state.data);
+      console.log("action.payload: ", action.payload);
+      state.data = {
+        ...state.data,
+        ...action.payload,
+      };
+      state.status = "loaded";
+      state.error = null;
+    });
+    builder.addCase(updateUserResume.rejected, (state, action) => {
       state.status = "error";
       state.error = action.payload;
     });

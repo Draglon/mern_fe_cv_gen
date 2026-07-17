@@ -33,6 +33,7 @@
 
   .template__resume {
     display: flex;
+    min-height: v.$template-min-height;
   }
 
   .section__period,

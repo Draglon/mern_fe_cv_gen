@@ -18,11 +18,11 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalExperience from "@/store/personalExperience/operations/createPersonalExperience";
 import updatePersonalExperience from "@/store/personalExperience/operations/updatePersonalExperience";
 import { personalExperienceByLocaleSelector } from "@/store/personalExperience/selectors";
+import { personalExperiencesIdSelector } from "@/store/auth/selectors";
 
 import FormItem from "@/views/shared/FormItem";
 import FormList from "@/views/shared/antd/FormList";
 import Button from "@/views/shared/antd/Button";
-
 import InputField from "@/views/shared/InputField";
 import InputNumberField from "@/views/shared/InputNumberField";
 import TextAreaField from "@/views/shared/TextAreaField";
@@ -43,6 +43,7 @@ const PersonalExperienceForm = ({
   const defaultValues = useAppSelector((state) =>
     personalExperienceByLocaleSelector(state, resumeLocale)
   );
+  const personalExperiencesId = useAppSelector(personalExperiencesIdSelector);
   const { control, handleSubmit, formState, reset, getValues, watch } =
     useForm<FieldType>({
       defaultValues,
@@ -60,7 +61,7 @@ const PersonalExperienceForm = ({
       resumeLocale,
     };
 
-    if (isEdit) {
+    if (isEdit && personalExperiencesId) {
       await dispatch(updatePersonalExperience(params));
     } else {
       await dispatch(createPersonalExperience(params));

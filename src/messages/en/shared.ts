@@ -10,6 +10,7 @@ const shared = {
     "create": "Create",
     "next": "Next",
     "previous": "Previous",
+    "finish": "Finish",
     "add": "Add",
     "save": "Save",
     "addField": "Add fields",

@@ -17,6 +17,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalEducation from "@/store/personalEducation/operations/createPersonalEducation";
 import updatePersonalEducation from "@/store/personalEducation/operations/updatePersonalEducation";
 import { personalEducationByLocaleSelector } from "@/store/personalEducation/selectors";
+import { personalHobbiesIdSelector } from "@/store/auth/selectors";
 
 import FormItem from "@/views/shared/FormItem";
 import FormList from "@/views/shared/antd/FormList";
@@ -38,6 +39,7 @@ const PersonalEducationForm = ({
   const defaultValues = useAppSelector((state) =>
     personalEducationByLocaleSelector(state, resumeLocale)
   );
+  const personalHobbiesId = useAppSelector(personalHobbiesIdSelector);
   const { control, handleSubmit, formState, reset, getValues, watch } =
     useForm<FieldType>({
       defaultValues,
@@ -55,7 +57,7 @@ const PersonalEducationForm = ({
       resumeLocale,
     };
 
-    if (isEdit) {
+    if (isEdit && personalHobbiesId) {
       await dispatch(updatePersonalEducation(params));
     } else {
       await dispatch(createPersonalEducation(params));

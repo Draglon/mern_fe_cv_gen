@@ -15,6 +15,7 @@ export const userIdSelector = createSelector(userSelector, prop("_id"));
 export const userEmailSelector = createSelector(userSelector, prop("email"));
 export const userNameSelector = createSelector(userSelector, prop("userName"));
 export const userProfileSelector = createSelector(userSelector, getProfileDefaultValues);
+export const userResumeSelector = createSelector(userSelector, prop("resume"));
 
 export const personalInfoIdSelector = createSelector(userSelector, prop("personalInfoId"));
 export const personalHobbiesIdSelector = createSelector(userSelector, prop("personalHobbiesId"));

@@ -15,6 +15,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalInfo from "@/store/personalInfo/operations/createPersonalInfo";
 import updatePersonalInfo from "@/store/personalInfo/operations/updatePersonalInfo";
 import { personalInfoByLocaleSelector } from "@/store/personalInfo/selectors";
+import { personalInfoIdSelector } from "@/store/auth/selectors";
 
 import FormItem from "@/views/shared/FormItem";
 import InputField from "@/views/shared/InputField";
@@ -34,6 +35,7 @@ const PersonalInfoForm = ({ resumeLocale, isEdit }: PersonalInfoProps) => {
   const defaultValues = useAppSelector((state) =>
     personalInfoByLocaleSelector(state, resumeLocale)
   );
+  const personalInfoId = useAppSelector(personalInfoIdSelector);
   const { control, handleSubmit, formState, reset } = useForm<FieldType>({
     defaultValues,
     mode: "onChange",
@@ -46,7 +48,7 @@ const PersonalInfoForm = ({ resumeLocale, isEdit }: PersonalInfoProps) => {
       resumeLocale,
     };
 
-    if (isEdit) {
+    if (isEdit && personalInfoId) {
       await dispatch(updatePersonalInfo(params));
     } else {
       await dispatch(createPersonalInfo(params));

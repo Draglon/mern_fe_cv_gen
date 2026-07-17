@@ -6,6 +6,7 @@ export const authUserRoute = "/auth/user";
 export const usersRoute = (userId: string) => `/users/${userId}`;
 export const usersEmailRoute = (userId: string) => `/users/${userId}/email`;
 export const usersPasswordRoute = (userId: string) => `/users/${userId}/password`;
+export const usersResumeRoute = (userId: string) => `/users/${userId}/resume`;
 // ---Resume---
 export const resumeRoute = (userId: string) => `/resume/${userId}`;
 // ---Personal---
