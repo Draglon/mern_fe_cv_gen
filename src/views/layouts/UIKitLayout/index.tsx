@@ -1,16 +1,16 @@
 "use client";
-import StubsHeader from "@/views/layouts/headers/StubsHeader";
+import UIKitHeader from "@/views/layouts/headers/UIKitHeader";
 import ModalRoot from "@/views/shared/ModalRoot";
 
 type Props = {
   children: React.ReactNode;
 };
 
-const GuestLayout = ({ children }: Props) => {
+const UIKitLayout = ({ children }: Props) => {
   return (
     <>
       <div className="page">
-        <StubsHeader />
+        <UIKitHeader />
         <main className="page__main">{children}</main>
       </div>
       <ModalRoot />
@@ -18,4 +18,4 @@ const GuestLayout = ({ children }: Props) => {
   );
 };
 
-export default GuestLayout;
+export default UIKitLayout;

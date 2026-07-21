@@ -1,5 +1,5 @@
-const stubs = {
-  "Stubs": {
+const uikit = {
+  "UIKit": {
     "layout": {
       "title": "Заглушка",
       "description": "Заглушка - опис"
@@ -8,4 +8,4 @@ const stubs = {
   },
 };
 
-export default stubs;
+export default uikit;

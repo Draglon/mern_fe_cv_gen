@@ -9,7 +9,7 @@ type Props = {
 
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "Stubs" });
+  const t = await getTranslations({ locale, namespace: "UIKit" });
 
   return {
     title: t("layout.title"),
@@ -17,4 +17,4 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 
-export { default } from "@/views/layouts/StubsLayout";
+export { default } from "@/views/layouts/UIKitLayout";
