@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`skills constants match snapshot 1`] = `
+{
+  "SKILLS_DEFAULT_VALUES": [
+    {
+      "level": "",
+      "skill": "",
+      "visible": true,
+    },
+  ],
+}
+`;

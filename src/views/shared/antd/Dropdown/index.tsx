@@ -8,6 +8,7 @@ const Dropdown = ({ className, children, ...restProps }: DropdownProps) => {
     <AntdDropdown
       className={clsx("dropdown", className)}
       trigger={["click"]}
+      data-testid="dropdown"
       {...restProps}
     >
       {children}

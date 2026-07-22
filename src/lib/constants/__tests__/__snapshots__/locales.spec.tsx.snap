@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`locales constants match snapshot 1`] = `
+{
+  "DEFAULT_LOCALE": "en",
+  "DEFAULT_PHONE_NUMBER_LOCALE": "US",
+  "FLAGS": {
+    "en": {
+      "blurDataURL": "data:image/png;base64,imagedata",
+      "height": 40,
+      "src": "/img.jpg",
+      "width": 40,
+    },
+    "ru": {
+      "blurDataURL": "data:image/png;base64,imagedata",
+      "height": 40,
+      "src": "/img.jpg",
+      "width": 40,
+    },
+    "ua": {
+      "blurDataURL": "data:image/png;base64,imagedata",
+      "height": 40,
+      "src": "/img.jpg",
+      "width": 40,
+    },
+  },
+  "LOCALES": [
+    "en",
+    "ua",
+    "ru",
+  ],
+}
+`;

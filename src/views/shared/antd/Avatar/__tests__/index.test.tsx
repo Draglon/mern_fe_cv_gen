@@ -3,19 +3,19 @@ import { render, screen } from "@testing-library/react";
 import Avatar from "../";
 
 describe("Avatar", () => {
-  describe("renders component", () => {
-    const defaultProps = {
-      className: "avatar--class",
-    };
+  const defaultProps = {
+    className: "avatar--class",
+  };
 
-    const renderComponent = (props = defaultProps) =>
-      render(<Avatar {...props} />);
+  const renderComponent = (props = defaultProps) =>
+    render(<Avatar {...props} />);
 
-    it("with default props", () => {
-      renderComponent();
+  it("renders with default props", () => {
+    renderComponent();
 
-      expect(screen.getByRole("avatar")).toBeInTheDocument();
-      expect(screen.getByRole("avatar")).toHaveClass("avatar avatar--class");
-    });
+    const avatar = screen.getByTestId("avatar");
+
+    expect(avatar).toBeInTheDocument();
+    expect(avatar).toHaveClass("avatar", "avatar--class");
   });
 });

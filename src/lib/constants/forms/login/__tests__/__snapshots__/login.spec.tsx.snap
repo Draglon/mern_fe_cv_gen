@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`login constants match snapshot 1`] = `
+{
+  "LOGIN_DEFAULT_VALUES": {
+    "email": "",
+    "password": "",
+  },
+}
+`;

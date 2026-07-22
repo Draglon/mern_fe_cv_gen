@@ -14,6 +14,7 @@ const Select = ({
       className={clsx("select", className)}
       rootClassName={clsx("select-dropdown", rootClassName)}
       options={options}
+      data-testid="select"
       {...rest}
     />
   );

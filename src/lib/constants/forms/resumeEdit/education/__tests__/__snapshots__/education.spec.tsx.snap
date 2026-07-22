@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`education constants match snapshot 1`] = `
+{
+  "EDUCATION_DEFAULT_VALUES": [
+    {
+      "degree": "",
+      "endDate": "",
+      "faculty": "",
+      "institute": "",
+      "isCurrent": false,
+      "specialization": "",
+      "startDate": "",
+    },
+  ],
+}
+`;

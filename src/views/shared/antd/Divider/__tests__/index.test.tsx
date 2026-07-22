@@ -14,8 +14,10 @@ describe("Divider", () => {
     it("with default props", () => {
       renderComponent();
 
-      expect(screen.getByRole("divider")).toBeInTheDocument();
-      expect(screen.getByRole("divider")).toHaveClass("divider divider--class");
+      const divider = screen.getByRole("separator");
+
+      expect(divider).toBeInTheDocument();
+      expect(divider).toHaveClass("divider", "divider--class");
     });
   });
 });

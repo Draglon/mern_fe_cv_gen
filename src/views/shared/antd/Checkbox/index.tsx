@@ -14,6 +14,7 @@ const Checkbox = ({
       className={clsx("checkbox", className)}
       checked={value}
       defaultChecked={value}
+      data-testid="checkbox"
       {...rest}
     >
       {children}

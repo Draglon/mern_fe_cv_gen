@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`experiences constants match snapshot 1`] = `
+{
+  "EXPERIENCES_DEFAULT_VALUES": [
+    {
+      "companyName": "",
+      "description": "",
+      "employmentType": "",
+      "endDate": "",
+      "isCurrent": false,
+      "location": "",
+      "position": "",
+      "skills": [],
+      "startDate": "",
+      "workFormat": "",
+    },
+  ],
+}
+`;

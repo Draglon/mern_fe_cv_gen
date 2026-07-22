@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`general constants match snapshot 1`] = `
+{
+  "HTTP_CODES": {
+    "incorrectCurrentPassword": "INCORRECT_CURRENT_PASSWORD",
+    "newPasswordEqualsOld": "NEW_PASSWORD_EQUALS_OLD",
+  },
+  "HTTP_STATUSES": {
+    "conflict": 409,
+    "forbidden": 403,
+    "gone": 410,
+    "incorrectData": 400,
+    "notFound": 404,
+    "tooManyRequests": 429,
+    "unauthorized": 401,
+    "unprocessableEntity": 422,
+  },
+  "MAX_EMAIL_LENGTH": 255,
+  "MAX_INPUT_LENGTH": 255,
+  "MAX_INPUT_POSTAL_ADDRESS_LENGTH": 255,
+  "MAX_LEVEL_NUMBER": 100,
+  "MAX_NAME_LENGTH": 100,
+  "MAX_NIKE_NAME_LENGTH": 20,
+  "MAX_PASSWORD_LENGTH": 72,
+  "MAX_PHONE_NUMBER_LENGTH": 15,
+  "MAX_TEXTAREA_CONTENT_LENGTH": 2000,
+  "MAX_TEXTAREA_CONTENT_MIDDLE_LENGTH": 500,
+  "MAX_TEXTAREA_CONTENT_NORMAL_LENGTH": 1000,
+  "MAX_TEXTAREA_CONTENT_SHORT_LENGTH": 255,
+  "MIN_INPUT_LENGTH": 3,
+  "MIN_INPUT_POSTAL_ADDRESS_LENGTH": 5,
+  "MIN_LEVEL_NUMBER": 0,
+  "MIN_NAME_LENGTH": 2,
+  "MIN_NIKE_NAME_LENGTH": 3,
+  "MIN_NUMBER": 0,
+  "MIN_PASSWORD_LENGTH": 6,
+}
+`;

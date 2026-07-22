@@ -14,8 +14,10 @@ describe("Tabs", () => {
     it("with default props", () => {
       renderComponent();
 
-      expect(screen.getByTestId("tabs")).toBeInTheDocument();
-      // expect(screen.getByTestId("tabs")).toHaveClass("tabs tabs--class");
+      const tabs = screen.getByTestId("tabs");
+
+      expect(tabs).toBeInTheDocument();
+      expect(tabs).toHaveClass("tabs", "tabs--class");
     });
   });
 });

@@ -5,7 +5,11 @@ import type { RadioProps } from "antd";
 
 const Radio = ({ className, children, ...rest }: RadioProps) => {
   return (
-    <AntdRadio className={clsx("checkbox", className)} {...rest}>
+    <AntdRadio
+      className={clsx("radio", className)}
+      data-testid="inputRadio"
+      {...rest}
+    >
       {children}
     </AntdRadio>
   );

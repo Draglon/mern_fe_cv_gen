@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`languages constants match snapshot 1`] = `
+{
+  "LANGUAGES_DEFAULT_VALUES": [
+    {
+      "language": "",
+      "level": "",
+    },
+  ],
+}
+`;

@@ -8,6 +8,7 @@ const Switch = ({ className, rootClassName, ...rest }: SwitchProps) => {
     <AntdSwitch
       className={clsx("switch", className)}
       rootClassName={clsx("switch-root", rootClassName)}
+      data-testid="switch"
       {...rest}
     />
   );

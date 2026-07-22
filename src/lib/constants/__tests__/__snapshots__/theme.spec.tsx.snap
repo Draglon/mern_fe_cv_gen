@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`theme constants match snapshot 1`] = `
+{
+  "THEME": {
+    "dark": "dark",
+    "light": "light",
+  },
+}
+`;

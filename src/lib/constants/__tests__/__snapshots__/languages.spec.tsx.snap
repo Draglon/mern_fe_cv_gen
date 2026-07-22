@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`languages constants match snapshot 1`] = `
+{
+  "LANGUAGE_LEVEL": [
+    "native",
+    "elementary",
+    "preIntermediate",
+    "intermediate",
+    "upperIntermediate",
+    "advanced",
+    "proficiency",
+  ],
+}
+`;

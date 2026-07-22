@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`templates constants match snapshot 1`] = `
+{
+  "TEMPLATES": {
+    "edinburgh": "edinburgh",
+    "modern": "modern",
+    "standford": "standford",
+  },
+  "TEMPLATES_LIST": [
+    {
+      "image": {
+        "blurDataURL": "data:image/png;base64,imagedata",
+        "height": 40,
+        "src": "/img.jpg",
+        "width": 40,
+      },
+      "template": "edinburgh",
+    },
+    {
+      "image": {
+        "blurDataURL": "data:image/png;base64,imagedata",
+        "height": 40,
+        "src": "/img.jpg",
+        "width": 40,
+      },
+      "template": "standford",
+    },
+    {
+      "image": {
+        "blurDataURL": "data:image/png;base64,imagedata",
+        "height": 40,
+        "src": "/img.jpg",
+        "width": 40,
+      },
+      "template": "modern",
+    },
+  ],
+  "TEMPLATES_PERSONAL_DATA_ICONS": [
+    "edinburgh",
+    "modern",
+  ],
+  "TEMPLATES_PERSONAL_INFO_FULLNAME": [
+    "edinburgh",
+    "modern",
+  ],
+  "TEMPLATES_SIDEBARS_SKILLS": [
+    "edinburgh",
+    "modern",
+  ],
+  "TEMPLATES_SIDEBARS_TOOLS": [
+    "edinburgh",
+    "modern",
+  ],
+}
+`;

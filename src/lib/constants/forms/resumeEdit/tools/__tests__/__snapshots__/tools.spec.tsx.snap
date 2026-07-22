@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`tools constants match snapshot 1`] = `
+{
+  "TOOLS_DEFAULT_VALUES": [
+    {
+      "level": "",
+      "tool": "",
+      "visible": true,
+    },
+  ],
+}
+`;

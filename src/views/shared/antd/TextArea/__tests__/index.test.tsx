@@ -5,7 +5,7 @@ import TextArea from "../";
 describe("TextArea", () => {
   describe("renders component", () => {
     const defaultProps = {
-      className: "text-area--class",
+      className: "textarea--class",
     };
 
     const renderComponent = (props = defaultProps) =>
@@ -14,11 +14,13 @@ describe("TextArea", () => {
     it("with default props", () => {
       renderComponent();
 
-      screen.debug();
+      const textArea = screen.getByTestId("textarea");
 
-      expect(screen.getByTestId("text-area")).toBeInTheDocument();
-      expect(screen.getByTestId("text-area")).toHaveClass(
-        "text-area text-area--class"
+      expect(textArea).toBeInTheDocument();
+      expect(textArea).toHaveClass(
+        "textarea",
+        "textarea--class",
+        "textarea__root"
       );
     });
   });

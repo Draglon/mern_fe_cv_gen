@@ -14,10 +14,11 @@ describe("Checkbox", () => {
     it("with default props", () => {
       renderComponent();
 
-      expect(screen.getByRole("checkbox")).toBeInTheDocument();
-      expect(screen.getByRole("checkbox")).toHaveClass(
-        "checkbox checkbox--class"
-      );
+      const checkbox = screen.getByTestId("checkbox");
+      const wrapper = checkbox.closest(".checkbox");
+
+      expect(wrapper).toBeInTheDocument();
+      expect(wrapper).toHaveClass("checkbox", "checkbox--class");
     });
   });
 });

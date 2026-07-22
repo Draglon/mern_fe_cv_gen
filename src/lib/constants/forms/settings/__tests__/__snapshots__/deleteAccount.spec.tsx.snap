@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`deleteAccount constants match snapshot 1`] = `
+{
+  "DELETE_ACCOUNT_DEFAULT_VALUES": {
+    "userName": "",
+  },
+}
+`;

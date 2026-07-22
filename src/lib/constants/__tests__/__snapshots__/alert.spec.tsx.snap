@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`alert constants match snapshot 1`] = `
+{
+  "ALERT_KINDS": {
+    "error": "error",
+    "info": "info",
+    "success": "success",
+    "warning": "warning",
+  },
+}
+`;

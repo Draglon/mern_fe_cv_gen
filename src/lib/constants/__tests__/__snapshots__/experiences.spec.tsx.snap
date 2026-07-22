@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`experiences constants match snapshot 1`] = `
+{
+  "EMPLOYMENT_TYPES": [
+    "fullTime",
+    "partTime",
+    "contract",
+    "internship",
+  ],
+  "WORK_FORMATS": [
+    "office",
+    "remote",
+    "hybrid",
+  ],
+}
+`;

@@ -9,7 +9,10 @@ import antdLocale from "@/lib/antdLocale";
 import { DATE_PICKER_FORMAT, DATE_FORMAT } from "@/lib/constants/format";
 import { DEFAULT_LOCALE } from "@/lib/constants/locales";
 
-type DatePickerProps = Omit<AntdDatePickerProps, "value" | "onChange"> & {
+export type DatePickerProps = Omit<
+  AntdDatePickerProps,
+  "value" | "onChange"
+> & {
   value?: string | null;
   locale?: string;
   onChange?: (value: string | null) => void;

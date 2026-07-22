@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`courses constants match snapshot 1`] = `
+{
+  "COURSES_DEFAULT_VALUES": [
+    {
+      "course": "",
+      "description": "",
+      "endDate": "",
+      "isCurrent": false,
+      "startDate": "",
+    },
+  ],
+}
+`;
