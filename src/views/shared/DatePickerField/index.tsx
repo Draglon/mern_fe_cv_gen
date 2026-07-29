@@ -1,31 +1,20 @@
 "use client";
-import isPresent from "@/utils/isPresent";
-import DatePicker from "@/views/shared/antd/DatePicker";
-import { Text } from "@/views/shared/antd/Typography";
+import getInputStatus from "@/utils/getInputStatus";
+import { InputFieldProps } from "@/lib/constants/props/forms/inputField";
 
-type DatePickerFieldProps = {
-  label?: string;
-  status?: "error" | "warning" | "success" | "validating";
-  errors?: {
-    type: string;
-    message: string;
-  };
-};
+import InputFieldWrapper from "@/views/shared/InputFieldWrapper";
+import DatePicker from "@/views/shared/antd/DatePicker";
 
 const DatePickerField = ({
   label,
   errors,
   status,
   ...rest
-}: DatePickerFieldProps) => {
+}: InputFieldProps) => {
   return (
-    <div className="input-field">
-      {label && <label className="input-field__label">{label}</label>}
-      <DatePicker status={isPresent(errors) ? "error" : status} {...rest} />
-      {errors?.message && (
-        <Text className="input-field__error">{errors?.message}</Text>
-      )}
-    </div>
+    <InputFieldWrapper errors={errors} label={label}>
+      <DatePicker status={getInputStatus({ errors, status })} {...rest} />
+    </InputFieldWrapper>
   );
 };
 

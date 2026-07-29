@@ -1,16 +1,9 @@
 "use client";
-import isPresent from "@/utils/isPresent";
-import InputNumber from "@/views/shared/antd/InputNumber";
-import { Text } from "@/views/shared/antd/Typography";
+import getInputStatus from "@/utils/getInputStatus";
+import { InputFieldProps } from "@/lib/constants/props/forms/inputField";
 
-type InputFieldProps = {
-  label?: string;
-  status?: "error" | "warning";
-  errors?: {
-    type: string;
-    message: string;
-  };
-};
+import InputFieldWrapper from "@/views/shared/InputFieldWrapper";
+import InputNumber from "@/views/shared/antd/InputNumber";
 
 const InputNumberField = ({
   label,
@@ -19,13 +12,9 @@ const InputNumberField = ({
   ...rest
 }: InputFieldProps) => {
   return (
-    <div className="input-field">
-      {label && <label className="input-field__label">{label}</label>}
-      <InputNumber status={isPresent(errors) ? "error" : status} {...rest} />
-      {errors?.message && (
-        <Text className="input-field__error">{errors?.message}</Text>
-      )}
-    </div>
+    <InputFieldWrapper errors={errors} label={label}>
+      <InputNumber status={getInputStatus({ errors, status })} {...rest} />
+    </InputFieldWrapper>
   );
 };
 

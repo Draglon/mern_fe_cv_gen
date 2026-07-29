@@ -13,7 +13,7 @@ type itemProps = {
   onClick?: () => void;
 };
 
-type DropdownMenuProps = {
+export type DropdownMenuProps = {
   items: itemProps[];
   icon: ReactNode;
   shouldStopPropagation?: boolean;
@@ -42,6 +42,7 @@ const DropdownMenu = ({
         <a
           role="button"
           onClick={shouldStopPropagation ? stopPropagation : undefined}
+          data-testid="btn-stop-propagation"
         >
           {icon}
         </a>

@@ -5,7 +5,7 @@ import { Link } from "@/i18n/navigation";
 import Button from "@/views/shared/antd/Button";
 import DropdownMenuItemContent from "./Content";
 
-type DropdownMenuItemProps = {
+export type DropdownMenuItemProps = {
   id?: string;
   href?: string;
   target?: string;
@@ -39,13 +39,19 @@ const DropdownMenuItem = ({
 }: DropdownMenuItemProps) => {
   if (isNextLink && href) {
     return (
-      <Link href={href} target={target} legacyBehavior={legacyBehavior}>
+      <Link
+        href={href}
+        target={target}
+        legacyBehavior={legacyBehavior}
+        data-testid="next-link"
+      >
         <Button
           id={id}
           className={clsx("dropdown__item", itemClassNames)}
           role="button"
           type="link"
           color="default"
+          data-testid="next-link-button"
           {...restProps}
         >
           <DropdownMenuItemContent
@@ -61,21 +67,24 @@ const DropdownMenuItem = ({
   }
 
   if (isLink && href) {
-    <a
-      id={id}
-      href={href}
-      target={target}
-      className={clsx("dropdown__item", itemClassNames)}
-      {...restProps}
-    >
-      <DropdownMenuItemContent
-        itemTextClassNames={itemTextClassNames}
-        iconLeft={iconLeft}
-        iconRight={iconRight}
+    return (
+      <a
+        id={id}
+        href={href}
+        target={target}
+        className={clsx("dropdown__item", itemClassNames)}
+        data-testid="link"
+        {...restProps}
       >
-        {children}
-      </DropdownMenuItemContent>
-    </a>;
+        <DropdownMenuItemContent
+          itemTextClassNames={itemTextClassNames}
+          iconLeft={iconLeft}
+          iconRight={iconRight}
+        >
+          {children}
+        </DropdownMenuItemContent>
+      </a>
+    );
   }
 
   return (
@@ -87,6 +96,7 @@ const DropdownMenuItem = ({
       color="default"
       disabled={disabled}
       onClick={onClick}
+      data-testid="button"
       {...restProps}
     >
       <DropdownMenuItemContent

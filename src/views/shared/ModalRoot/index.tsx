@@ -13,7 +13,7 @@ const ModalRoot = () => {
 
   const SpecificModal = MODAL_COMPONENTS[modalType];
 
-  return <SpecificModal {...(modalProps as any)} />;
+  return <SpecificModal {...(modalProps as Record<string, unknown>)} />;
 };
 
 export default ModalRoot;

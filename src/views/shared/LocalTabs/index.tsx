@@ -2,12 +2,11 @@
 import { ReactNode } from "react";
 import { useTranslations } from "next-intl";
 
-import { Locales } from "@/lib/constants/props/locales";
 import { LOCALES, DEFAULT_LOCALE } from "@/lib/constants/locales";
 
 import Tabs from "@/views/shared/antd/Tabs";
 
-type LocalTabsProp = {
+export type LocalTabsProp = {
   Component?: ReactNode;
   onChange: (locale: string) => void;
 };
@@ -27,6 +26,7 @@ const LocalTabs = ({ Component, onChange }: LocalTabsProp) => {
       items={items}
       onChange={onChange}
       defaultActiveKey={DEFAULT_LOCALE}
+      data-testid="tabs"
     />
   );
 };

@@ -2,11 +2,12 @@
 import clsx from "clsx";
 import { ReactNode } from "react";
 import { dec, equals } from "ramda";
+import { useTranslations } from "next-intl";
 
 import Button from "@/views/shared/antd/Button";
 import Steps from "@/views/shared/antd/Steps";
 
-type StepsProps = {
+export type StepsProps = {
   steps: { title: string; content: ReactNode }[];
   current?: number;
   withButtons?: boolean;
@@ -23,6 +24,7 @@ const StepsComponent = ({
   onNext,
   onPrev,
 }: StepsProps) => {
+  const tShared = useTranslations("shared");
   const isVertical = equals(orientation, "vertical");
 
   return (
@@ -32,15 +34,20 @@ const StepsComponent = ({
       </div>
       <div
         className={clsx("steps__content", { "w-three-quarters": isVertical })}
+        data-testid="steps-content"
       >
         {steps[current].content}
       </div>
       {withButtons && (
         <div className="steps__buttons">
-          {current > 0 && <Button onClick={onPrev}>Previous</Button>}
+          {current > 0 && (
+            <Button onClick={onPrev} dataTestId="btn-previous">
+              {tShared("previous")}
+            </Button>
+          )}
           {current < dec(steps.length) && (
-            <Button className="" type="primary" onClick={onNext}>
-              Next
+            <Button type="primary" onClick={onNext} dataTestId="btn-next">
+              {tShared("next")}
             </Button>
           )}
         </div>

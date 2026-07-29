@@ -5,7 +5,7 @@ type DropdownMenuItemProps = {
   itemTextClassNames?: string;
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
-  children?: ReactNode;
+  children: ReactNode;
 };
 
 const DropdownMenuItemContent = ({
@@ -16,11 +16,25 @@ const DropdownMenuItemContent = ({
 }: DropdownMenuItemProps) => {
   return (
     <>
-      {iconLeft && <span className="dropdown__icon-left">{iconLeft}</span>}
-      <span className={clsx("dropdown__text", itemTextClassNames)}>
+      {iconLeft && (
+        <span className="dropdown__icon-left" data-testid="dropdown-icon-left">
+          {iconLeft}
+        </span>
+      )}
+      <span
+        className={clsx("dropdown__text", itemTextClassNames)}
+        data-testid="dropdown-text"
+      >
         {children}
       </span>
-      {iconRight && <span className="dropdown__icon-right">{iconRight}</span>}
+      {iconRight && (
+        <span
+          className="dropdown__icon-right"
+          data-testid="dropdown-icon-right"
+        >
+          {iconRight}
+        </span>
+      )}
     </>
   );
 };

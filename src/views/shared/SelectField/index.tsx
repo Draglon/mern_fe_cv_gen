@@ -1,26 +1,15 @@
 "use client";
-import isPresent from "@/utils/isPresent";
+import getInputStatus from "@/utils/getInputStatus";
+import { InputFieldProps } from "@/lib/constants/props/forms/inputField";
+
+import InputFieldWrapper from "@/views/shared/InputFieldWrapper";
 import Select from "@/views/shared/antd/Select";
-import { Text } from "@/views/shared/antd/Typography";
 
-type SelectFieldProps = {
-  label?: string;
-  status?: "error" | "warning" | "success" | "validating";
-  errors?: {
-    type: string;
-    message: string;
-  };
-};
-
-const SelectField = ({ label, errors, status, ...rest }: SelectFieldProps) => {
+const SelectField = ({ label, errors, status, ...rest }: InputFieldProps) => {
   return (
-    <div className="input-field">
-      {label && <label className="input-field__label">{label}</label>}
-      <Select status={isPresent(errors) ? "error" : status} {...rest} />
-      {errors?.message && (
-        <Text className="input-field__error">{errors?.message}</Text>
-      )}
-    </div>
+    <InputFieldWrapper errors={errors} label={label}>
+      <Select status={getInputStatus({ errors, status })} {...rest} />
+    </InputFieldWrapper>
   );
 };
 

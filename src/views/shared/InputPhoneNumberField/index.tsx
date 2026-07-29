@@ -18,7 +18,7 @@ import { Text } from "@/views/shared/antd/Typography";
 
 import CountryOption from "./CountryOption";
 
-type InputPhoneNumberFieldProps = {
+export type InputPhoneNumberFieldProps = {
   label?: string;
   errors?: {
     type: string;

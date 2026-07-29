@@ -4,14 +4,14 @@ import { useTranslations } from "next-intl";
 
 import { useAppDispatch } from "@/store/hooks";
 import { hideModal as hideModalAction } from "@/store/modal/actions";
+
 import Modal from "@/views/shared/antd/Modal";
 
-type ModalProps = {
+type ConfirmModalProps = {
   okText?: string;
   cancelText?: string;
-  onConfirm?: any;
+  onConfirm?: () => void | Promise<void>;
   content?: ReactNode;
-  modalProps?: any;
 };
 
 const ConfirmModal = ({
@@ -20,7 +20,7 @@ const ConfirmModal = ({
   onConfirm,
   content,
   ...modalProps
-}: ModalProps) => {
+}: ConfirmModalProps) => {
   const dispatch = useAppDispatch();
   const t = useTranslations("shared");
 

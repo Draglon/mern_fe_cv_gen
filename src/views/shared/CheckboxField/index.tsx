@@ -1,11 +1,11 @@
 "use client";
 import Checkbox from "@/views/shared/antd/Checkbox";
 
-type CheckboxFieldProps = {
+type ConfirmModalProps = {
   label?: string;
 };
 
-const CheckboxField = ({ label, ...rest }: CheckboxFieldProps) => {
+const ConfirmModal = ({ label, ...rest }: ConfirmModalProps) => {
   return (
     <div className="checkbox-field">
       <Checkbox {...rest}>{label}</Checkbox>
@@ -13,4 +13,4 @@ const CheckboxField = ({ label, ...rest }: CheckboxFieldProps) => {
   );
 };
 
-export default CheckboxField;
+export default ConfirmModal;

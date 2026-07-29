@@ -28,9 +28,6 @@ const personalInfo = {
       "phoneNumber": {
         "label": "Phone number",
         "placeholder": "Input phone number",
-        "errors": {
-          "pattern": "Please input correct your phone number!",
-        }
       },
       "birthday": {
         "label": "Birthday",
