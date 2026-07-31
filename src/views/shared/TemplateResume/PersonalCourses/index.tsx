@@ -9,7 +9,7 @@ import { coursesByLocale } from "@/utils/personalCourses";
 
 import { Title, Text, Paragraph } from "@/views/shared/antd/Typography";
 
-type CoursesProps = {
+export type CoursesProps = {
   templateLocale: Locales;
   personalCourses: PersonalCoursesProps;
 };

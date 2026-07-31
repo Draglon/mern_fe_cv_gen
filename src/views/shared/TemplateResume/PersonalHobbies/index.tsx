@@ -6,7 +6,7 @@ import { hobbiesByLocale } from "@/utils/personalHobbies";
 
 import { Text } from "@/views/shared/antd/Typography";
 
-type HobbiesProps = {
+export type HobbiesProps = {
   templateLocale: Locales;
   personalHobbies: PersonalHobbiesProps;
 };

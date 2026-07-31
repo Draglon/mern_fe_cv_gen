@@ -2,7 +2,7 @@ import clsx from "clsx";
 
 import { Title, Text } from "@/views/shared/antd/Typography";
 
-type Props = {
+export type SectionProps = {
   children: React.ReactNode;
   title?: string;
   text?: string;
@@ -16,11 +16,11 @@ const Section = ({
   text = "",
   className,
   size = "middle",
-}: Props) => {
+}: SectionProps) => {
   return (
-    <section className={clsx("section", className)}>
+    <section className={clsx("section", className)} data-testid="section">
       {title && (
-        <header className="section__header">
+        <header className="section__header" data-testid="section-header">
           <Title className="section__title" level={size === "middle" ? 2 : 4}>
             {title}
           </Title>

@@ -10,7 +10,7 @@ export type EducationType = {
     specialization: string;
     startDate: string;
     endDate: string;
-    isCurrent: false;
+    isCurrent: boolean;
   };
 
 export type FieldType = {

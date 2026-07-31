@@ -4,7 +4,7 @@ import { Locales } from "@/lib/constants/props/locales";
 import { PersonalInfoProps } from "@/lib/constants/props/resume";
 import { Title } from "@/views/shared/antd/Typography";
 
-type PersonalFullNameProps = {
+export type PersonalFullNameProps = {
   templateLocale: Locales;
   personalInfo: PersonalInfoProps;
 };

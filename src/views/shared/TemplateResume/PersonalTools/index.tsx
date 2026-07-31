@@ -6,7 +6,7 @@ import { toolsByLocale } from "@/utils/personalTools";
 
 import { Text } from "@/views/shared/antd/Typography";
 
-type ToolsProps = {
+export type ToolsProps = {
   templateLocale: Locales;
   personalTools: PersonalToolsProps;
 };
@@ -19,7 +19,11 @@ const PersonalTools = ({ templateLocale, personalTools }: ToolsProps) => {
       {tools.map(
         ({ tool, level, visible }: ToolType, index: number) =>
           visible && (
-            <div className="personal-tools__item" key={index}>
+            <div
+              className="personal-tools__item"
+              key={index}
+              data-testid="personal-tools-item"
+            >
               <Text className="personal-tools__label" strong>
                 {tool}
               </Text>

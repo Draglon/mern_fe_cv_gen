@@ -8,7 +8,7 @@ export type CourseType = {
   description: string;
   startDate: string;
   endDate: string;
-  isCurrent: false;
+  isCurrent: boolean;
 };
 
 export type FieldType = {

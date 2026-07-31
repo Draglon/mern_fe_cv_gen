@@ -85,9 +85,9 @@ export type PersonalSkillsProps = {
 export type PersonalToolsProps = {
   sectionTitle?: Locale;
   tools: {
-    en?: ToolType[];
-    ua?: ToolType[];
-    ru?: ToolType[];
+    en: ToolType[];
+    ua: ToolType[];
+    ru: ToolType[];
   };
 };
 

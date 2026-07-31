@@ -40,7 +40,7 @@ const PersonalData = ({
   return (
     <div className="personal-data">
       {equals(template, TEMPLATES.standford) && (
-        <div className="personal-data__item">
+        <div className="personal-data__item" data-testid="personal-name">
           <Text className="personal-data__text" strong>
             {t(`personalData.name.${templateLocale}`)}
           </Text>
@@ -51,7 +51,7 @@ const PersonalData = ({
       )}
 
       {address && address[templateLocale] && (
-        <div className="personal-data__item">
+        <div className="personal-data__item" data-testid="personal-address">
           {includes(template, TEMPLATES_PERSONAL_DATA_ICONS) && (
             <HomeOutlined className="personal-data__icon" />
           )}
@@ -65,7 +65,10 @@ const PersonalData = ({
       )}
 
       {phoneNumber && phoneNumber[templateLocale] && (
-        <div className="personal-data__item">
+        <div
+          className="personal-data__item"
+          data-testid="personal-phone-number"
+        >
           {includes(template, TEMPLATES_PERSONAL_DATA_ICONS) && (
             <PhoneOutlined className="personal-data__icon" />
           )}
@@ -79,7 +82,7 @@ const PersonalData = ({
       )}
 
       {email && email[templateLocale] && (
-        <div className="personal-data__item">
+        <div className="personal-data__item" data-testid="personal-email">
           {includes(template, TEMPLATES_PERSONAL_DATA_ICONS) && (
             <MailOutlined className="personal-data__icon" />
           )}
@@ -93,7 +96,7 @@ const PersonalData = ({
       )}
 
       {telegram && telegram[templateLocale] && (
-        <div className="personal-data__item">
+        <div className="personal-data__item" data-testid="personal-telegram">
           {includes(template, TEMPLATES_PERSONAL_DATA_ICONS) && (
             <SendOutlined className="personal-data__icon" />
           )}
@@ -107,7 +110,7 @@ const PersonalData = ({
       )}
 
       {birthday && birthday[templateLocale] && (
-        <div className="personal-data__item">
+        <div className="personal-data__item" data-testid="personal-birthday">
           {includes(template, TEMPLATES_PERSONAL_DATA_ICONS) && (
             <CalendarOutlined className="personal-data__icon" />
           )}
@@ -121,7 +124,7 @@ const PersonalData = ({
       )}
 
       {linkedIn && linkedIn[templateLocale] && (
-        <div className="personal-data__item">
+        <div className="personal-data__item" data-testid="personal-linkedIn">
           {includes(template, TEMPLATES_PERSONAL_DATA_ICONS) && (
             <LinkedinOutlined className="personal-data__icon" />
           )}
@@ -135,7 +138,7 @@ const PersonalData = ({
       )}
 
       {portfolio && portfolio[templateLocale] && (
-        <div className="personal-data__item">
+        <div className="personal-data__item" data-testid="personal-portfolio">
           {includes(template, TEMPLATES_PERSONAL_DATA_ICONS) && (
             <LinkOutlined className="personal-data__icon" />
           )}

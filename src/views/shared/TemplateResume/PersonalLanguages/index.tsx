@@ -8,7 +8,7 @@ import { languagesByLocale } from "@/utils/personalLanguages";
 
 import { Text } from "@/views/shared/antd/Typography";
 
-type LanguagesProps = {
+export type LanguagesProps = {
   templateLocale: Locales;
   personalLanguages: PersonalLanguagesProps;
 };
@@ -25,10 +25,17 @@ const PersonalLanguages = ({
       <ul className="personal-languages__list">
         {languages.map(({ language, level }: LanguageType) => (
           <li className="personal-languages__item" key={language}>
-            <Text className="personal-languages__text section__text" strong>
+            <Text
+              className="personal-languages__text section__text"
+              strong
+              data-testid="personal-language"
+            >
               {language}
             </Text>
-            <Text className="personal-languages__text section__text">
+            <Text
+              className="personal-languages__text section__text"
+              data-testid="personal-language-level"
+            >
               {t(`personalLanguages.level.${level}.${templateLocale}`)}
             </Text>
           </li>

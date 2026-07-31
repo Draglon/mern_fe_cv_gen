@@ -6,7 +6,7 @@ import { skillsByLocale } from "@/utils/personalSkills";
 
 import { Text } from "@/views/shared/antd/Typography";
 
-type SkillsProps = {
+export type SkillsProps = {
   templateLocale: Locales;
   personalSkills: PersonalSkillsProps;
 };
@@ -18,7 +18,11 @@ const PersonalSkills = ({ templateLocale, personalSkills }: SkillsProps) => {
     <div className="personal-skills">
       {skills.map(({ skill, level, visible }: SkillType, index: number) =>
         visible ? (
-          <div className="personal-skills__item" key={index}>
+          <div
+            className="personal-skills__item"
+            key={index}
+            data-testid="personal-skills-item"
+          >
             <Text className="personal-skills__label" strong>
               {skill}
             </Text>

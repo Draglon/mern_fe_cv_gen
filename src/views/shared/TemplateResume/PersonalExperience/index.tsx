@@ -9,7 +9,7 @@ import { formatDateRange } from "@/utils/dateTime";
 
 import { Title, Text, Paragraph } from "@/views/shared/antd/Typography";
 
-type ExperiencesProps = {
+export type ExperiencesProps = {
   templateLocale: Locales;
   experiences: ExperienceType[];
 };

@@ -17,13 +17,20 @@ const PersonalInfo = ({
     <section className="personal-info">
       {equals(template, TEMPLATES.standford) && (
         <header className="personal-info__header">
-          <Title className="personal-info__fullname" level={1}>
+          <Title
+            className="personal-info__fullname"
+            level={1}
+            data-testid="personal-info-name"
+          >
             {profileName(personalInfo, templateLocale)}
           </Title>
         </header>
       )}
       {aboutMe && aboutMe[templateLocale] && (
-        <Paragraph className="personal-info__about">
+        <Paragraph
+          className="personal-info__about"
+          data-testid="personal-info-about"
+        >
           {aboutMe[templateLocale]}
         </Paragraph>
       )}
