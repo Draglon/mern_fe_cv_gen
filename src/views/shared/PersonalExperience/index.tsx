@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import fetchPersonalExperience from "@/store/personalExperience/operations/fetchPersonalExperience";
 import { isLoadingSelector } from "@/store/personalExperience/selectors";
 
+import Loader from "@/views/shared/antd/Loader";
 import PersonalExperienceForm from "@/views/shared/PersonalExperience/Form";
 
 const PersonalExperience = ({
@@ -22,7 +23,7 @@ const PersonalExperience = ({
   }, [dispatch, resumeLocale]);
 
   return isLoading ? (
-    <>Loading</>
+    <Loader />
   ) : (
     <PersonalExperienceForm resumeLocale={resumeLocale} isEdit={isEdit} />
   );

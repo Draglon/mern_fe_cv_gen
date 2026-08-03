@@ -1,14 +1,24 @@
-import { defineConfig, globalIgnores } from 'eslint/config'
-import nextVitals from 'eslint-config-next/core-web-vitals'
- 
-const eslintConfig = defineConfig([
+import { defineConfig, globalIgnores } from "eslint/config";
+import nextVitals from "eslint-config-next/core-web-vitals";
+
+export default defineConfig([
   ...nextVitals,
+
   globalIgnores([
-    '.next/**',
-    'out/**',
-    'build/**',
-    'next-env.d.ts',
+    ".next/**",
+    "out/**",
+    "build/**",
+    "next-env.d.ts",
   ]),
-])
- 
-export default eslintConfig
+
+  {
+    files: [
+      "**/__tests__/**/*.{ts,tsx}",
+      "**/*.test.{ts,tsx}",
+      "**/*.spec.{ts,tsx}",
+    ],
+    rules: {
+      "react/display-name": "off",
+    },
+  },
+]);

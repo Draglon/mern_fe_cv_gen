@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import fetchPersonalCourses from "@/store/personalCourses/operations/fetchPersonalCourses";
 import { isLoadingSelector } from "@/store/personalCourses/selectors";
 
+import Loader from "@/views/shared/antd/Loader";
 import PersonalCoursesForm from "@/views/shared/PersonalCourses/Form";
 
 const PersonalCourses = ({ resumeLocale, isEdit }: PersonalCoursesProps) => {
@@ -19,7 +20,7 @@ const PersonalCourses = ({ resumeLocale, isEdit }: PersonalCoursesProps) => {
   }, [dispatch, resumeLocale]);
 
   return isLoading ? (
-    <>Loading</>
+    <Loader />
   ) : (
     <PersonalCoursesForm resumeLocale={resumeLocale} isEdit={isEdit} />
   );

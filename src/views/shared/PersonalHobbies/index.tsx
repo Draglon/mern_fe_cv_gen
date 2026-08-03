@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import fetchPersonalHobbies from "@/store/personalHobbies/operations/fetchPersonalHobbies";
 import { isLoadingSelector } from "@/store/personalHobbies/selectors";
 
+import Loader from "@/views/shared/antd/Loader";
 import PersonalHobbiesForm from "@/views/shared/PersonalHobbies/Form";
 
 const PersonalHobbies = ({ resumeLocale, isEdit }: PersonalHobbiesProps) => {
@@ -19,7 +20,7 @@ const PersonalHobbies = ({ resumeLocale, isEdit }: PersonalHobbiesProps) => {
   }, [dispatch, resumeLocale]);
 
   return isLoading ? (
-    <>Loading</>
+    <Loader />
   ) : (
     <PersonalHobbiesForm resumeLocale={resumeLocale} isEdit={isEdit} />
   );

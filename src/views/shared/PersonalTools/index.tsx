@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import fetchPersonalTools from "@/store/personalTools/operations/fetchPersonalTools";
 import { isLoadingSelector } from "@/store/personalTools/selectors";
 
+import Loader from "@/views/shared/antd/Loader";
 import PersonalToolsForm from "@/views/shared/PersonalTools/Form";
 
 const PersonalTools = ({ resumeLocale, isEdit }: PersonalToolsProps) => {
@@ -19,7 +20,7 @@ const PersonalTools = ({ resumeLocale, isEdit }: PersonalToolsProps) => {
   }, [dispatch, resumeLocale]);
 
   return isLoading ? (
-    <>Loading</>
+    <Loader />
   ) : (
     <PersonalToolsForm resumeLocale={resumeLocale} isEdit={isEdit} />
   );

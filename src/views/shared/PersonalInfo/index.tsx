@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import fetchPersonalInfo from "@/store/personalInfo/operations/fetchPersonalInfo";
 import { isLoadingSelector } from "@/store/personalInfo/selectors";
 
+import Loader from "@/views/shared/antd/Loader";
 import PersonalInfoForm from "@/views/shared/PersonalInfo/Form";
 
 const PersonalInfo = ({ resumeLocale, isEdit }: PersonalInfoProps) => {
@@ -19,7 +20,7 @@ const PersonalInfo = ({ resumeLocale, isEdit }: PersonalInfoProps) => {
   }, [dispatch, resumeLocale]);
 
   return isLoading ? (
-    <>Loading</>
+    <Loader />
   ) : (
     <PersonalInfoForm resumeLocale={resumeLocale} isEdit={isEdit} />
   );

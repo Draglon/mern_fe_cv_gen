@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import fetchPersonalSkills from "@/store/personalSkills/operations/fetchPersonalSkills";
 import { isLoadingSelector } from "@/store/personalSkills/selectors";
 
+import Loader from "@/views/shared/antd/Loader";
 import PersonalSkillsForm from "@/views/shared/PersonalSkills/Form";
 
 const PersonalSkills = ({ resumeLocale, isEdit }: PersonalSkillsProps) => {
@@ -19,7 +20,7 @@ const PersonalSkills = ({ resumeLocale, isEdit }: PersonalSkillsProps) => {
   }, [dispatch, resumeLocale]);
 
   return isLoading ? (
-    <>Loading</>
+    <Loader />
   ) : (
     <PersonalSkillsForm resumeLocale={resumeLocale} isEdit={isEdit} />
   );

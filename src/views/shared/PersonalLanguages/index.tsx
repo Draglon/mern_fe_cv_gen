@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import fetchPersonalLanguages from "@/store/personalLanguages/operations/fetchPersonalLanguages";
 import { isLoadingSelector } from "@/store/personalLanguages/selectors";
 
+import Loader from "@/views/shared/antd/Loader";
 import PersonalLanguagesForm from "@/views/shared/PersonalLanguages/Form";
 
 const PersonalLanguages = ({
@@ -22,7 +23,7 @@ const PersonalLanguages = ({
   }, [dispatch, resumeLocale]);
 
   return isLoading ? (
-    <>Loading</>
+    <Loader />
   ) : (
     <PersonalLanguagesForm resumeLocale={resumeLocale} isEdit={isEdit} />
   );
