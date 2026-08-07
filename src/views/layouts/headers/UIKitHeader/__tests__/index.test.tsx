@@ -1,14 +1,12 @@
 import { render, screen } from "@testing-library/react";
 
-import Home from "../";
+import UIKitHeader from "../";
 
 jest.mock("next-intl", () => ({
   useTranslations: jest.fn((namespace: string) => {
     const translations = {
-      Home: {
+      UIKit: {
         title: "Title",
-        subtitle: "Sub title",
-        createResumeButton: "Create resume",
       },
     };
 
@@ -19,23 +17,13 @@ jest.mock("next-intl", () => ({
   }),
 }));
 
-jest.mock("@/views/layouts/GuestLayout", () => ({
+jest.mock("@/views/shared/ThemeSwitcher", () => ({
   __esModule: true,
-  default: ({ children, ...props }: any) => <div {...props}>{children}</div>,
-}));
-
-jest.mock("@/views/shared/antd/Button", () => ({
-  __esModule: true,
-  default: ({ children, dataTestId, ...props }: any) => (
-    <button {...props} data-testid={dataTestId}>
+  default: ({ children, ...props }: any) => (
+    <div {...props} data-testid="themeSwitcher">
       {children}
-    </button>
+    </div>
   ),
-}));
-
-jest.mock("@/views/shared/NavigationLink", () => ({
-  __esModule: true,
-  default: ({ children, ...props }: any) => <a {...props}>{children}</a>,
 }));
 
 jest.mock("@/views/shared/antd/Typography", () => ({
@@ -43,21 +31,18 @@ jest.mock("@/views/shared/antd/Typography", () => ({
   Title: ({ children, ...props }: any) => <h1 {...props}>{children}</h1>,
 }));
 
-describe("Home", () => {
+describe("UIKitHeader", () => {
   describe("renders component", () => {
     const defaultProps = {};
 
     const renderComponent = (props = defaultProps) =>
-      render(<Home {...props} />);
+      render(<UIKitHeader {...props} />);
 
     it("with default props", () => {
       renderComponent();
 
       expect(screen.getByText("Title")).toBeInTheDocument();
-      expect(screen.getByText("Sub title")).toBeInTheDocument();
-      expect(screen.getByTestId("btnCreateResume")).toHaveTextContent(
-        "Create resume"
-      );
+      expect(screen.getByTestId("themeSwitcher")).toBeInTheDocument();
     });
   });
 });

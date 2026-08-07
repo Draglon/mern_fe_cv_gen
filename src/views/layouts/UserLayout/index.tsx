@@ -3,6 +3,7 @@ import { useEffect } from "react";
 
 import { useAppDispatch } from "@/store/hooks";
 import fetchUser from "@/store/auth/operations/fetchUser";
+
 import UserHeader from "@/views/layouts/headers/UserHeader";
 import ModalRoot from "@/views/shared/ModalRoot";
 
