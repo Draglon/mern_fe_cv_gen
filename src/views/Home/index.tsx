@@ -1,10 +1,12 @@
 "use client";
 import { useTranslations } from "next-intl";
 
+import { loginRoute } from "@/lib/routes";
+
 import GuestLayout from "@/views/layouts/GuestLayout";
-import { Title } from "@/views/shared/antd/Typography";
 import Button from "@/views/shared/antd/Button";
 import NavigationLink from "@/views/shared/NavigationLink";
+import { Title } from "@/views/shared/antd/Typography";
 
 const Home = () => {
   const t = useTranslations("Home");
@@ -18,8 +20,12 @@ const Home = () => {
         <Title className="page__subtitle" level={4}>
           {t("subtitle")}
         </Title>
-        <NavigationLink href="/login">
-          <Button className="page__button" size="large">
+        <NavigationLink href={loginRoute}>
+          <Button
+            className="page__button"
+            size="large"
+            dataTestId="btnCreateResume"
+          >
             {t("createResumeButton")}
           </Button>
         </NavigationLink>
