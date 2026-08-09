@@ -81,4 +81,4 @@ const useResumeTemplateSidebar = ({ template, templateLocale, resume }: Template
   }
 }
 
-export default useResumeTemplateSidebar
+export default useResumeTemplateSidebar;

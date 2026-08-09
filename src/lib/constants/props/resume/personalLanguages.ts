@@ -5,7 +5,7 @@ export type PersonalLanguagesProps = {
 
 export type LanguageType = {
   language: string;
-  level: string;
+  level: "native" | "elementary" | "preIntermediate" | "intermediate" | "upperIntermediate" | "advanced" | "proficiency";
 };
 
 export type FieldType = {

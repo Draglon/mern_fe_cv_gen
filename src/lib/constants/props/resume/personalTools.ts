@@ -5,7 +5,7 @@ export type PersonalToolsProps = {
 
 export type ToolType = {
   tool: string;
-  level: string;
+  level: number;
   visible: boolean;
 };
 

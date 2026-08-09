@@ -5,7 +5,7 @@ export type PersonalSkillsProps = {
 
 export type SkillType = {
   skill: string;
-  level: string;
+  level: number;
   visible: boolean;
 };
 

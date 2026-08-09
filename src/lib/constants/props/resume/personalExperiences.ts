@@ -7,8 +7,8 @@ export type ExperienceType = {
   position: string;
   companyName: string;
   location: string;
-  employmentType: string;
-  workFormat: string;
+  employmentType: "fullTime" | "partTime" | "contract" | "internship";
+  workFormat: "office" | "remote" | "hybrid";
   startDate: string;
   endDate: string;
   isCurrent: boolean;

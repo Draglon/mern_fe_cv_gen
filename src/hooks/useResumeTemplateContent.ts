@@ -79,4 +79,4 @@ const useResumeTemplateContent = ({ template, templateLocale, resume }: Template
   }
 }
 
-export default useResumeTemplateContent
+export default useResumeTemplateContent;
