@@ -1,12 +1,12 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-
-import PersonalCoursesForm from "..";
-
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { useForm, useFieldArray } from "react-hook-form";
 
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import createPersonalCourses from "@/store/personalCourses/operations/createPersonalCourses";
 import updatePersonalCourses from "@/store/personalCourses/operations/updatePersonalCourses";
+import { personalCoursesByLocaleSelector } from "@/store/personalCourses/selectors";
+
+import PersonalCoursesForm from "..";
 
 jest.mock("next-intl", () => ({
   useLocale: () => "en",
@@ -14,10 +14,16 @@ jest.mock("next-intl", () => ({
     typeof values?.index === "number" ? `${key}-${values.index}` : key,
 }));
 
-jest.mock("@/store/hooks");
+const mockedReset = jest.fn();
 jest.mock("react-hook-form");
+
+jest.mock("@/store/hooks");
 jest.mock("@/store/personalCourses/operations/createPersonalCourses");
 jest.mock("@/store/personalCourses/operations/updatePersonalCourses");
+jest.mock("@/store/personalCourses/selectors");
+const mockPersonalCoursesByLocaleSelector = jest.mocked(
+  personalCoursesByLocaleSelector
+);
 
 jest.mock("@/views/shared/FormItem", () => {
   function MockFormItem() {
@@ -97,12 +103,17 @@ describe("PersonalCoursesForm", () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+
     mockUseAppDispatch.mockReturnValue(dispatch);
 
+    mockPersonalCoursesByLocaleSelector.mockReturnValue({
+      sectionTitle: "",
+      courses: [],
+    });
+
     mockUseAppSelector
-      .mockReturnValueOnce({
-        sectionTitle: "",
-        courses: [],
+      .mockImplementationOnce((selector) => {
+        return selector({} as any);
       })
       .mockReturnValueOnce("courses-id");
 
@@ -110,7 +121,7 @@ describe("PersonalCoursesForm", () => {
       control: {} as any,
       handleSubmit,
       formState: {} as any,
-      reset: jest.fn(),
+      reset: mockedReset,
       getValues: jest.fn(),
       watch: jest.fn().mockReturnValue(false),
     } as any);
@@ -176,29 +187,30 @@ describe("PersonalCoursesForm", () => {
   });
 
   it("calls reset with default values", () => {
-    const reset = jest.fn();
+    render(<PersonalCoursesForm resumeLocale="en" isEdit={false} />);
 
-    mockUseForm.mockReturnValue({
-      control: {} as any,
-      handleSubmit: jest.fn(() => jest.fn()),
-      formState: {} as any,
-      reset,
-      getValues: jest.fn(),
-      watch: jest.fn(),
-    } as any);
+    expect(mockedReset).toHaveBeenCalledWith({
+      sectionTitle: "",
+      courses: [],
+    });
+  });
 
-    mockUseAppSelector.mockImplementation((selector) => {
-      return selector({
-        personalCourses: {},
-        auth: {},
-      } as any);
+  it("gets default values from personalCoursesByLocaleSelector", () => {
+    mockUseAppSelector
+      .mockReset()
+      .mockImplementationOnce((callback) => {
+        return callback({} as any);
+      })
+      .mockReturnValueOnce("courses-id");
+
+    mockPersonalCoursesByLocaleSelector.mockReturnValue({
+      sectionTitle: "",
+      courses: [],
     });
 
     render(<PersonalCoursesForm resumeLocale="en" isEdit={false} />);
 
-    expect(reset).toHaveBeenCalledWith({
-      sectionTitle: "",
-      courses: [],
-    });
+    expect(mockPersonalCoursesByLocaleSelector).toHaveBeenCalledTimes(1);
+    expect(mockPersonalCoursesByLocaleSelector).toHaveBeenCalledWith({}, "en");
   });
 });
