@@ -20,10 +20,26 @@ jest.mock("react-hook-form");
 jest.mock("@/store/hooks");
 jest.mock("@/store/personalCourses/operations/createPersonalCourses");
 jest.mock("@/store/personalCourses/operations/updatePersonalCourses");
+const mockCreatePersonalCourses = jest.mocked(createPersonalCourses);
+const mockUpdatePersonalCourses = jest.mocked(updatePersonalCourses);
 jest.mock("@/store/personalCourses/selectors");
 const mockPersonalCoursesByLocaleSelector = jest.mocked(
   personalCoursesByLocaleSelector
 );
+
+jest.mock("antd", () => ({
+  Form: ({ children, onFinish, preserve, layout, ...props }: any) => (
+    <form
+      {...props}
+      onSubmit={(event) => {
+        event.preventDefault();
+        onFinish?.(event);
+      }}
+    >
+      {children}
+    </form>
+  ),
+}));
 
 jest.mock("@/views/shared/FormItem", () => {
   function MockFormItem() {
@@ -57,33 +73,13 @@ jest.mock("@/views/shared/InputField", () => {
   return MockInputField;
 });
 
-jest.mock("@/views/shared/TextAreaField", () => {
-  function MockTextAreaField() {
-    return <textarea />;
+jest.mock("../Item", () => {
+  function MockFormItem() {
+    return <div data-testid="courses-form-item" />;
   }
 
-  return MockTextAreaField;
+  return MockFormItem;
 });
-
-jest.mock("@/views/shared/DatePickerField", () => {
-  function MockDatePickerField() {
-    return <input />;
-  }
-
-  return MockDatePickerField;
-});
-
-jest.mock("@/views/shared/CheckboxField", () => {
-  function MockCheckboxField() {
-    return <input type="checkbox" />;
-  }
-
-  return MockCheckboxField;
-});
-
-jest.mock("@/views/shared/antd/Typography", () => ({
-  Title: ({ children }: any) => <div>{children}</div>,
-}));
 
 describe("PersonalCoursesForm", () => {
   const dispatch = jest.fn();
@@ -103,7 +99,6 @@ describe("PersonalCoursesForm", () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-
     mockUseAppDispatch.mockReturnValue(dispatch);
 
     mockPersonalCoursesByLocaleSelector.mockReturnValue({
@@ -112,9 +107,7 @@ describe("PersonalCoursesForm", () => {
     });
 
     mockUseAppSelector
-      .mockImplementationOnce((selector) => {
-        return selector({} as any);
-      })
+      .mockImplementationOnce((selector) => selector({} as any))
       .mockReturnValueOnce("courses-id");
 
     mockUseForm.mockReturnValue({
@@ -135,82 +128,112 @@ describe("PersonalCoursesForm", () => {
     dispatch.mockResolvedValue({});
   });
 
+  it("calls reset with default values", () => {
+    const defaultValues = {
+      sectionTitle: "",
+      courses: [],
+    };
+
+    render(<PersonalCoursesForm resumeLocale="en" isEdit={false} />);
+
+    expect(mockPersonalCoursesByLocaleSelector).toHaveBeenCalledWith({}, "en");
+
+    expect(mockedReset).toHaveBeenCalledWith(defaultValues);
+  });
+
   it("dispatches updatePersonalCourses in edit mode", async () => {
-    const { container } = render(
-      <PersonalCoursesForm resumeLocale="en" isEdit />
+    render(<PersonalCoursesForm resumeLocale="en" isEdit />);
+
+    const form = document.querySelector(
+      'form[name="create-personal-courses-en"]'
     );
 
-    const form = container.querySelector("form")!;
-    fireEvent.submit(form);
+    fireEvent.submit(form!);
 
     await waitFor(() => {
-      expect(dispatch).toHaveBeenCalledWith(
-        updatePersonalCourses({
-          values: {
-            sectionTitle: "Courses",
-            courses: [],
-          },
-          locale: "en",
-          resumeLocale: "en",
-        })
-      );
+      expect(mockUpdatePersonalCourses).toHaveBeenCalledWith({
+        values: {
+          sectionTitle: "Courses",
+          courses: [],
+        },
+        locale: "en",
+        resumeLocale: "en",
+      });
     });
   });
 
   it("dispatches createPersonalCourses in create mode", async () => {
+    render(<PersonalCoursesForm resumeLocale="en" isEdit={false} />);
+
+    const form = document.querySelector(
+      'form[name="create-personal-courses-en"]'
+    );
+
+    fireEvent.submit(form!);
+
+    await waitFor(() => {
+      expect(mockCreatePersonalCourses).toHaveBeenCalledWith({
+        values: {
+          sectionTitle: "Courses",
+          courses: [],
+        },
+        locale: "en",
+        resumeLocale: "en",
+      });
+    });
+  });
+
+  it("dispatches createPersonalCourses when edit mode has no id", async () => {
     mockUseAppSelector
+      .mockReset()
       .mockReturnValueOnce({
         sectionTitle: "",
         courses: [],
       })
-      .mockReturnValueOnce(undefined);
+      .mockReturnValueOnce(null);
 
-    const { container } = render(
-      <PersonalCoursesForm resumeLocale="en" isEdit={false} />
+    render(<PersonalCoursesForm resumeLocale="en" isEdit />);
+
+    const form = document.querySelector(
+      'form[name="create-personal-courses-en"]'
     );
 
-    const form = container.querySelector("form")!;
-    fireEvent.submit(form);
+    fireEvent.submit(form!);
 
     await waitFor(() => {
-      expect(dispatch).toHaveBeenCalledWith(
-        createPersonalCourses({
-          values: {
-            sectionTitle: "Courses",
-            courses: [],
-          },
-          locale: "en",
-          resumeLocale: "en",
-        })
-      );
+      expect(mockCreatePersonalCourses).toHaveBeenCalledWith({
+        values: {
+          sectionTitle: "Courses",
+          courses: [],
+        },
+        locale: "en",
+        resumeLocale: "en",
+      });
     });
+
+    expect(mockUpdatePersonalCourses).not.toHaveBeenCalled();
   });
 
-  it("calls reset with default values", () => {
+  it('initializes useFieldArray with "courses"', () => {
     render(<PersonalCoursesForm resumeLocale="en" isEdit={false} />);
 
-    expect(mockedReset).toHaveBeenCalledWith({
-      sectionTitle: "",
-      courses: [],
-    });
-  });
-
-  it("gets default values from personalCoursesByLocaleSelector", () => {
-    mockUseAppSelector
-      .mockReset()
-      .mockImplementationOnce((callback) => {
-        return callback({} as any);
+    expect(mockUseFieldArray).toHaveBeenCalledWith(
+      expect.objectContaining({
+        control: expect.anything(),
+        name: "courses",
       })
-      .mockReturnValueOnce("courses-id");
+    );
+  });
 
-    mockPersonalCoursesByLocaleSelector.mockReturnValue({
-      sectionTitle: "",
-      courses: [],
-    });
+  it("renders PersonalCoursesFormItem for each courses field", () => {
+    mockUseFieldArray.mockReturnValue({
+      fields: [{ id: "courses-1" }, { id: "courses-2" }],
+      append: jest.fn(),
+      remove: jest.fn(),
+    } as any);
 
     render(<PersonalCoursesForm resumeLocale="en" isEdit={false} />);
 
-    expect(mockPersonalCoursesByLocaleSelector).toHaveBeenCalledTimes(1);
-    expect(mockPersonalCoursesByLocaleSelector).toHaveBeenCalledWith({}, "en");
+    expect(screen.getAllByTestId("courses-form-item")).toHaveLength(2);
   });
 });

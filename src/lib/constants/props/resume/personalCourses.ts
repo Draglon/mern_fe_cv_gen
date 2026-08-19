@@ -1,3 +1,5 @@
+import { Control, UseFieldArrayRemove, UseFormGetValues } from "react-hook-form";
+
 export type PersonalCoursesProps = {
   resumeLocale: string;
   isEdit?: boolean;
@@ -19,5 +21,13 @@ export type FieldType = {
 export type ParamsType = {
   values: FieldType;
   locale: string;
+  resumeLocale: string;
+};
+
+export type PersonalCoursesItemProps = {
+  index: number,
+  control: Control<FieldType>;
+  remove: UseFieldArrayRemove;
+  getValues: UseFormGetValues<FieldType>;
   resumeLocale: string;
 };
