@@ -41,15 +41,11 @@ const Login = () => {
   const emailRules = useMemo(() => getEmailRules(tShared), [tShared]);
 
   const onFinish = handleSubmit(async (values: FieldType) => {
-    try {
-      const data = await dispatch(fetchAuth({ ...values, locale })).unwrap();
+    const data = await dispatch(fetchAuth({ ...values, locale })).unwrap();
 
-      if (data?.token) {
-        localStorage.setItem("token", data.token);
-        router.push(resumeRoute);
-      }
-    } catch (error) {
-      console.log(error);
+    if (data?.token) {
+      localStorage.setItem("token", data.token);
+      router.push(resumeRoute);
     }
   });
 
