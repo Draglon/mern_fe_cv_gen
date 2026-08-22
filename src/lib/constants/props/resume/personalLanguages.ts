@@ -3,9 +3,19 @@ export type PersonalLanguagesProps = {
   isEdit?: boolean;
 };
 
+export type LanguageLevelType = 
+  "native"
+  | "elementary"
+  | "preIntermediate"
+  | "intermediate"
+  | "upperIntermediate"
+  | "advanced"
+  | "proficiency"
+  | "";
+
 export type LanguageType = {
   language: string;
-  level: "native" | "elementary" | "preIntermediate" | "intermediate" | "upperIntermediate" | "advanced" | "proficiency";
+  level: LanguageLevelType;
 };
 
 export type FieldType = {
