@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { useLocale, useTranslations } from "next-intl";
 
+import { loginRoute } from "@/lib/routes";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import fetchRegister from "@/store/auth/operations/fetchRegister";
 import { isErrorStatusUnauthorized } from "@/utils/getErrorStatus";
@@ -283,5 +284,49 @@ describe("Registration", () => {
         message: "Email already exists!",
       });
     });
+  });
+
+  it("redirects to login page after successful registration", async () => {
+    const unwrap = jest.fn().mockResolvedValue({
+      token: "test-token",
+    });
+
+    const dispatch = jest.fn().mockReturnValue({ unwrap });
+
+    mockedUseAppDispatch.mockReturnValue(dispatch);
+
+    mockedFetchRegister.mockReturnValue({
+      type: "auth/register",
+    } as any);
+
+    renderComponent();
+
+    fireEvent.click(screen.getByRole("button", { name: "Sign up" }));
+
+    await waitFor(() => {
+      expect(mockPush).toHaveBeenCalledWith(loginRoute);
+    });
+  });
+
+  it("does not redirect when registration response has no token", async () => {
+    const unwrap = jest.fn().mockResolvedValue({});
+
+    const dispatch = jest.fn().mockReturnValue({ unwrap });
+
+    mockedUseAppDispatch.mockReturnValue(dispatch);
+
+    mockedFetchRegister.mockReturnValue({
+      type: "auth/register",
+    } as any);
+
+    renderComponent();
+
+    fireEvent.click(screen.getByRole("button", { name: "Sign up" }));
+
+    await waitFor(() => {
+      expect(unwrap).toHaveBeenCalled();
+    });
+
+    expect(mockPush).not.toHaveBeenCalled();
   });
 });

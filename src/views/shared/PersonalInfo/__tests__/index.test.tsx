@@ -1,18 +1,18 @@
 import { render, screen } from "@testing-library/react";
 
 import { PersonalInfoProps } from "@/lib/constants/props/resume/personalInfo";
-import { useAppSelector } from "@/store/hooks";
+import { useAppSelector, useAppDispatch } from "@/store/hooks";
 import fetchPersonalInfo from "@/store/personalInfo/operations/fetchPersonalInfo";
 
 import PersonalInfo from "../";
 
 const mockDispatch = jest.fn();
 jest.mock("@/store/hooks", () => ({
-  ...jest.requireActual("@/store/hooks"),
-  useAppDispatch: () => mockDispatch,
+  useAppDispatch: jest.fn(),
   useAppSelector: jest.fn(),
 }));
 
+const mockedUseAppDispatch = jest.mocked(useAppDispatch);
 const mockedUseAppSelector = jest.mocked(useAppSelector);
 
 jest.mock("@/store/personalInfo/operations/fetchPersonalInfo", () => ({
@@ -22,12 +22,12 @@ jest.mock("@/store/personalInfo/operations/fetchPersonalInfo", () => ({
 
 jest.mock("@/views/shared/antd/Loader", () => ({
   __esModule: true,
-  default: (props: any) => <div data-testid="loader" {...props} />,
+  default: () => <div data-testid="loader" />,
 }));
 
 jest.mock("@/views/shared/PersonalInfo/Form", () => ({
   __esModule: true,
-  default: (props: any) => <div data-testid="personal-info-form" {...props} />,
+  default: () => <div data-testid="personal-info-form" />,
 }));
 
 describe("PersonalInfo", () => {
@@ -39,12 +39,13 @@ describe("PersonalInfo", () => {
   const renderComponent = (props = defaultProps) =>
     render(<PersonalInfo {...props} />);
 
-  describe("renders component", () => {
-    beforeEach(() => {
-      jest.clearAllMocks();
-      mockedUseAppSelector.mockReturnValue(false);
-    });
+  beforeEach(() => {
+    jest.clearAllMocks();
+    mockedUseAppDispatch.mockReturnValue(mockDispatch);
+    mockedUseAppSelector.mockReturnValue(false);
+  });
 
+  describe("renders component", () => {
     it("with default props", () => {
       renderComponent();
 
@@ -65,10 +66,6 @@ describe("PersonalInfo", () => {
   });
 
   describe("useEffect", () => {
-    beforeEach(() => {
-      jest.clearAllMocks();
-    });
-
     it("dispatches fetchPersonalInfo when resumeLocale exists", () => {
       renderComponent();
 

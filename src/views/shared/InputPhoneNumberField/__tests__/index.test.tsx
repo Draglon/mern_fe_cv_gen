@@ -206,4 +206,82 @@ describe("InputPhoneNumberField", () => {
       })
     );
   });
+
+  it("does not update country and national number when phone value cannot be parsed", () => {
+    mockedParsePhoneNumber.mockReturnValue(undefined);
+
+    renderComponent({
+      ...defaultProps,
+      value: "+380501112233",
+      defaultCountry: "UA",
+    });
+
+    expect(selectMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        value: "UA",
+      })
+    );
+
+    expect(inputMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        value: "",
+      })
+    );
+  });
+
+  it("keeps default values when phone value cannot be parsed", () => {
+    mockedParsePhoneNumber.mockReturnValue(undefined);
+
+    renderComponent({
+      ...defaultProps,
+      value: "+380501112233",
+      defaultCountry: "UA",
+    });
+
+    expect(selectMock).toHaveBeenLastCalledWith(
+      expect.objectContaining({
+        value: "UA",
+      })
+    );
+
+    expect(inputMock).toHaveBeenLastCalledWith(
+      expect.objectContaining({
+        value: "",
+      })
+    );
+  });
+
+  it("changes country without calling onChange when national number is empty", () => {
+    const onChange = jest.fn();
+
+    renderComponent({
+      ...defaultProps,
+      onChange,
+    });
+
+    fireEvent.change(screen.getByTestId("country-select"), {
+      target: { value: "US" },
+    });
+
+    expect(onChange).not.toHaveBeenCalled();
+  });
+
+  it("uses defaultCountry when parsed phone number has no country", () => {
+    mockedParsePhoneNumber.mockReturnValue({
+      country: undefined,
+      nationalNumber: "999888777",
+    } as any);
+
+    renderComponent({
+      ...defaultProps,
+      value: "+9998888777",
+      defaultCountry: "UA",
+    });
+
+    expect(selectMock).toHaveBeenLastCalledWith(
+      expect.objectContaining({
+        value: "UA",
+      })
+    );
+  });
 });

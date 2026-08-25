@@ -1,18 +1,18 @@
 import { render, screen } from "@testing-library/react";
 
 import { PersonalLanguagesProps } from "@/lib/constants/props/resume/personalLanguages";
-import { useAppSelector } from "@/store/hooks";
+import { useAppSelector, useAppDispatch } from "@/store/hooks";
 import fetchPersonalLanguages from "@/store/personalLanguages/operations/fetchPersonalLanguages";
 
 import PersonalLanguages from "../";
 
 const mockDispatch = jest.fn();
 jest.mock("@/store/hooks", () => ({
-  ...jest.requireActual("@/store/hooks"),
-  useAppDispatch: () => mockDispatch,
+  useAppDispatch: jest.fn(),
   useAppSelector: jest.fn(),
 }));
 
+const mockedUseAppDispatch = jest.mocked(useAppDispatch);
 const mockedUseAppSelector = jest.mocked(useAppSelector);
 
 jest.mock(
@@ -25,14 +25,12 @@ jest.mock(
 
 jest.mock("@/views/shared/antd/Loader", () => ({
   __esModule: true,
-  default: (props: any) => <div data-testid="loader" {...props} />,
+  default: () => <div data-testid="loader" />,
 }));
 
 jest.mock("@/views/shared/PersonalLanguages/Form", () => ({
   __esModule: true,
-  default: (props: any) => (
-    <div data-testid="personal-languages-form" {...props} />
-  ),
+  default: () => <div data-testid="personal-languages-form" />,
 }));
 
 describe("PersonalLanguages", () => {
@@ -44,12 +42,13 @@ describe("PersonalLanguages", () => {
   const renderComponent = (props = defaultProps) =>
     render(<PersonalLanguages {...props} />);
 
-  describe("renders component", () => {
-    beforeEach(() => {
-      jest.clearAllMocks();
-      mockedUseAppSelector.mockReturnValue(false);
-    });
+  beforeEach(() => {
+    jest.clearAllMocks();
+    mockedUseAppDispatch.mockReturnValue(mockDispatch);
+    mockedUseAppSelector.mockReturnValue(false);
+  });
 
+  describe("renders component", () => {
     it("with default props", () => {
       renderComponent();
 
@@ -70,10 +69,6 @@ describe("PersonalLanguages", () => {
   });
 
   describe("useEffect", () => {
-    beforeEach(() => {
-      jest.clearAllMocks();
-    });
-
     it("dispatches fetchPersonalLanguages when resumeLocale exists", () => {
       renderComponent();
 

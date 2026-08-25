@@ -1,18 +1,18 @@
 import { render, screen } from "@testing-library/react";
 
 import { PersonalCoursesProps } from "@/lib/constants/props/resume/personalCourses";
-import { useAppSelector } from "@/store/hooks";
+import { useAppSelector, useAppDispatch } from "@/store/hooks";
 import fetchPersonalCourses from "@/store/personalCourses/operations/fetchPersonalCourses";
 
 import PersonalCourses from "../";
 
 const mockDispatch = jest.fn();
 jest.mock("@/store/hooks", () => ({
-  ...jest.requireActual("@/store/hooks"),
-  useAppDispatch: () => mockDispatch,
+  useAppDispatch: jest.fn(),
   useAppSelector: jest.fn(),
 }));
 
+const mockedUseAppDispatch = jest.mocked(useAppDispatch);
 const mockedUseAppSelector = jest.mocked(useAppSelector);
 
 jest.mock("@/store/personalCourses/operations/fetchPersonalCourses", () => ({
@@ -22,14 +22,12 @@ jest.mock("@/store/personalCourses/operations/fetchPersonalCourses", () => ({
 
 jest.mock("@/views/shared/antd/Loader", () => ({
   __esModule: true,
-  default: (props: any) => <div data-testid="loader" {...props} />,
+  default: () => <div data-testid="loader" />,
 }));
 
 jest.mock("@/views/shared/PersonalCourses/Form", () => ({
   __esModule: true,
-  default: (props: any) => (
-    <div data-testid="personal-courses-form" {...props} />
-  ),
+  default: () => <div data-testid="personal-courses-form" />,
 }));
 
 describe("PersonalCourses", () => {
@@ -41,12 +39,13 @@ describe("PersonalCourses", () => {
   const renderComponent = (props = defaultProps) =>
     render(<PersonalCourses {...props} />);
 
-  describe("renders component", () => {
-    beforeEach(() => {
-      jest.clearAllMocks();
-      mockedUseAppSelector.mockReturnValue(false);
-    });
+  beforeEach(() => {
+    jest.clearAllMocks();
+    mockedUseAppDispatch.mockReturnValue(mockDispatch);
+    mockedUseAppSelector.mockReturnValue(false);
+  });
 
+  describe("renders component", () => {
     it("with default props", () => {
       renderComponent();
 
@@ -67,10 +66,6 @@ describe("PersonalCourses", () => {
   });
 
   describe("useEffect", () => {
-    beforeEach(() => {
-      jest.clearAllMocks();
-    });
-
     it("dispatches fetchPersonalCourses when resumeLocale exists", () => {
       renderComponent();
 
