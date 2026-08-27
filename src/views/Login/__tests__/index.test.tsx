@@ -182,8 +182,10 @@ describe("Login", () => {
     mockedIsErrorStatusNotFound.mockReturnValue(false);
   });
 
+  const renderComponent = () => render(<Login />);
+
   it("renders login title and description", () => {
-    render(<Login />);
+    renderComponent();
 
     expect(screen.getByRole("heading", { name: "Login" })).toBeInTheDocument();
 
@@ -191,7 +193,7 @@ describe("Login", () => {
   });
 
   it("renders email and password fields", () => {
-    render(<Login />);
+    renderComponent();
 
     expect(screen.getByLabelText("Email")).toBeInTheDocument();
     expect(screen.getByLabelText("Password")).toBeInTheDocument();
@@ -202,7 +204,7 @@ describe("Login", () => {
   });
 
   it("renders submit button", () => {
-    render(<Login />);
+    renderComponent();
 
     expect(screen.getByRole("button", { name: "Sign in" })).toBeInTheDocument();
   });
@@ -210,7 +212,7 @@ describe("Login", () => {
   it("disables submit button when form is invalid", () => {
     mockedIsSubmitDisabled.mockReturnValue(true);
 
-    render(<Login />);
+    renderComponent();
 
     expect(screen.getByRole("button", { name: "Sign in" })).toBeDisabled();
   });
@@ -218,7 +220,7 @@ describe("Login", () => {
   it("shows loading state when submitting", () => {
     mockedIsSubmitLoading.mockReturnValue(true);
 
-    render(<Login />);
+    renderComponent();
 
     expect(screen.getByRole("button", { name: "Sign in" })).toBeDisabled();
   });
@@ -228,7 +230,7 @@ describe("Login", () => {
 
     mockedUseAppDispatch.mockReturnValue(jest.fn().mockReturnValue({ unwrap }));
 
-    render(<Login />);
+    renderComponent();
 
     fireEvent.change(screen.getByLabelText("Email"), {
       target: { value: "john@example.com" },
@@ -260,7 +262,7 @@ describe("Login", () => {
 
     const setItemSpy = jest.spyOn(Storage.prototype, "setItem");
 
-    render(<Login />);
+    renderComponent();
 
     fireEvent.change(screen.getByLabelText("Email"), {
       target: { value: "john@example.com" },
@@ -288,7 +290,7 @@ describe("Login", () => {
 
     mockedIsErrorStatusUnauthorized.mockReturnValue(true);
 
-    render(<Login />);
+    renderComponent();
 
     expect(screen.getByRole("alert")).toHaveTextContent(
       "Invalid email or password"
@@ -302,7 +304,7 @@ describe("Login", () => {
 
     mockedIsErrorStatusNotFound.mockReturnValue(true);
 
-    render(<Login />);
+    renderComponent();
 
     expect(screen.getByRole("alert")).toHaveTextContent(
       "Invalid email or password"
@@ -310,7 +312,7 @@ describe("Login", () => {
   });
 
   it("does not show invalid credentials alert when there is no matching error", () => {
-    render(<Login />);
+    renderComponent();
 
     expect(screen.queryByRole("alert")).not.toBeInTheDocument();
   });
