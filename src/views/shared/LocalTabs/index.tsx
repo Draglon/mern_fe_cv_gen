@@ -26,7 +26,6 @@ const LocalTabs = ({ Component, onChange }: LocalTabsProp) => {
       items={items}
       onChange={onChange}
       defaultActiveKey={DEFAULT_LOCALE}
-      data-testid="tabs"
     />
   );
 };

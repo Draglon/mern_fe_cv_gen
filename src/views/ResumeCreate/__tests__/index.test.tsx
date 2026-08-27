@@ -129,8 +129,10 @@ describe("ResumeCreate", () => {
     } as any);
   });
 
+  const renderComponent = () => render(<ResumeCreate />);
+
   it("renders ResumeCreate component", () => {
-    render(<ResumeCreate />);
+    renderComponent();
 
     expect(
       screen.getByRole("heading", { name: "Create resume" })
@@ -143,7 +145,7 @@ describe("ResumeCreate", () => {
   });
 
   it("renders next button on first step", () => {
-    render(<ResumeCreate />);
+    renderComponent();
 
     expect(screen.getByRole("button", { name: "Next" })).toBeInTheDocument();
     expect(
@@ -155,7 +157,7 @@ describe("ResumeCreate", () => {
   });
 
   it("changes to next step", () => {
-    render(<ResumeCreate />);
+    renderComponent();
 
     fireEvent.click(screen.getByRole("button", { name: "Next" }));
 
@@ -165,7 +167,7 @@ describe("ResumeCreate", () => {
   });
 
   it("changes resume locale", () => {
-    render(<ResumeCreate />);
+    renderComponent();
 
     expect(screen.getByTestId("personal-component")).toHaveTextContent(
       "Personal: en"
@@ -185,7 +187,7 @@ describe("ResumeCreate", () => {
       currentStep: 1,
     } as any);
 
-    render(<ResumeCreate />);
+    renderComponent();
 
     expect(
       screen.getByRole("button", { name: "Previous" })
@@ -195,7 +197,7 @@ describe("ResumeCreate", () => {
   it("renders finish button on last step", () => {
     mockedUseAppSelector.mockReturnValue({ currentStep: 1 } as any);
 
-    render(<ResumeCreate />);
+    renderComponent();
 
     expect(screen.getByRole("button", { name: "Finish" })).toBeInTheDocument();
     expect(
@@ -206,7 +208,7 @@ describe("ResumeCreate", () => {
   it("redirects after finishing resume creation", () => {
     mockedUseAppSelector.mockReturnValue({ currentStep: 1 } as any);
 
-    render(<ResumeCreate />);
+    renderComponent();
 
     fireEvent.click(screen.getByRole("button", { name: "Finish" }));
 
