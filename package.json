@@ -43,7 +43,7 @@
     "antd": "^6.1.0",
     "antd-img-crop": "^4.27.0",
     "axios": "^1.13.2",
-    "baseline-browser-mapping": "^2.10.23",
+    "baseline-browser-mapping": "^2.11.20",
     "clsx": "^2.1.1",
     "eslint": "^9.39.2",
     "eslint-config-next": "^16.0.10",
