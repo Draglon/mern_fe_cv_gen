@@ -17,8 +17,8 @@ const ResumeTemplatesList = ({
 }: ResumeTemplatesListProps) => {
   return (
     <ul className="templates-list">
-      {TEMPLATES_LIST.map(({ template, image }, index) => (
-        <li key={index} className="templates-list__item">
+      {TEMPLATES_LIST.map(({ template, image }) => (
+        <li key={template} className="templates-list__item">
           <Button
             className={clsx("templates-list__btn", {
               "templates-list__btn--active": activeTemplate === template,

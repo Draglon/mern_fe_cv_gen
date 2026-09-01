@@ -3,6 +3,8 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 
 import emptyStateImg from "@/assets/images/template/empty-state.png";
+import { resumeCreateRoute } from "@/lib/routes";
+
 import Button from "@/views/shared/antd/Button";
 import NavigationLink from "@/views/shared/NavigationLink";
 import { Title, Paragraph } from "@/views/shared/antd/Typography";
@@ -26,8 +28,13 @@ const ResumeTemplateEmptyState = () => {
       <Paragraph className="template-empty-state__description page__text mb-16">
         {t("emptyState.description")}
       </Paragraph>
-      <NavigationLink href="/resume_create">
-        <Button type="primary" size="large">
+      <NavigationLink href={resumeCreateRoute}>
+        <Button
+          type="primary"
+          size="large"
+          dataTestId="create-resume-button"
+          dataCy="create-resume-button"
+        >
           {t("emptyState.button")}
         </Button>
       </NavigationLink>

@@ -21,6 +21,8 @@ const ResumeTemplateNavigation = ({ resumeRef }: any) => {
           icon={<DownloadOutlined />}
           onClick={onDownloadPdf}
           size="small"
+          dataTestId="download-pdf-button"
+          dataCy="download-pdf-button"
         >
           {tShared("downloadPDF")}
         </Button>
