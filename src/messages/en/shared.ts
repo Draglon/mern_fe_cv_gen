@@ -21,12 +21,12 @@ const shared = {
       },
       "email": {
         "label": "Email",
-        "placeholder": "Input email",
+        "placeholder": "Enter your email",
         "errors": {
-          "required": "Please input your email!",
+          "required": "Please enter your email!",
           "maxLength": "The length must be no more than {maxLength} characters!",
-          "pattern": "Invalid email address! (For example: example@mail.com)",
-          "alreadyExists": "Электронная почта уже существует!",
+          "pattern": "Invalid email address! For example: example@mail.com",
+          "alreadyExists": "This email address is already in use!",
         }
       },
       "password": {
