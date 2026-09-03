@@ -7,6 +7,45 @@ jest.mock("next-intl", () => ({
   useTranslations: jest.fn(),
 }));
 
+jest.mock("@/lib/constants/resume", () => ({
+  DEFAULT_RESUME_ITEM: "general",
+
+  RESUME_ITEMS: [
+    {
+      key: "general",
+      Component: () => <div>General component</div>,
+    },
+    {
+      key: "hobbies",
+      Component: () => <div>Hobbies component</div>,
+    },
+    {
+      key: "languages",
+      Component: () => <div>Languages component</div>,
+    },
+    {
+      key: "experience",
+      Component: () => <div>Experience component</div>,
+    },
+    {
+      key: "education",
+      Component: () => <div>Education component</div>,
+    },
+    {
+      key: "courses",
+      Component: () => <div>Courses component</div>,
+    },
+    {
+      key: "skills",
+      Component: () => <div>Skills component</div>,
+    },
+    {
+      key: "tools",
+      Component: () => <div>Tools component</div>,
+    },
+  ],
+}));
+
 jest.mock("@/views/shared/antd/Typography", () => ({
   Title: ({ children, ...props }: any) => <h1 {...props}>{children}</h1>,
 }));
@@ -67,6 +106,14 @@ jest.mock("@/views/shared/antd/Tabs", () => ({
           </button>
         )
       )}
+
+      <button
+        type="button"
+        onClick={() => onChange?.("invalid")}
+        data-testid="tab-invalid"
+      >
+        Invalid
+      </button>
     </div>
   ),
 }));
@@ -134,7 +181,15 @@ describe("ResumeEdit", () => {
     );
   });
 
-  it("calls onChangeLocale when locale is changed", () => {
+  it("does not change current tab when invalid tab key is provided", () => {
+    renderComponent();
+
+    fireEvent.click(screen.getByTestId("tab-invalid"));
+
+    expect(screen.getByTestId("tab-general-active")).toBeInTheDocument();
+  });
+
+  it("changes resume locale", () => {
     renderComponent();
 
     fireEvent.click(screen.getByRole("button", { name: "UA" }));

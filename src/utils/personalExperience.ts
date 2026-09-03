@@ -4,7 +4,7 @@ import { Locales } from "@/lib/constants/props/locales";
 import { PersonalExperienceProps } from "@/lib/constants/props/resume";
 import { ExperienceType, EmploymentType, WorkFormat } from "@/lib/constants/props/resume/personalExperiences";
 
-export const experienceByLocale = (personalExperience: PersonalExperienceProps, locale: Locales) =>
+export const experienceByLocale = (locale: Locales, personalExperience?: PersonalExperienceProps) =>
   personalExperience?.experiences?.[locale]
   ? personalExperience.experiences[locale].map((item: ExperienceType) => ({
       ...item,

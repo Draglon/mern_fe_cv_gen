@@ -19,7 +19,7 @@ const PersonalEducation = ({
   personalEducation,
 }: EducationsProps) => {
   const t = useTranslations("Template");
-  const education = educationByLocale(personalEducation, templateLocale);
+  const education = educationByLocale(templateLocale, personalEducation);
 
   return (
     <>

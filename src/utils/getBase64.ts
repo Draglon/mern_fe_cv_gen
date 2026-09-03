@@ -1,4 +1,4 @@
-import type { GetProp, UploadFile, UploadProps } from "antd";
+import type { GetProp, UploadProps } from "antd";
 
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
 
@@ -10,6 +10,4 @@ const getBase64 = (file: FileType): Promise<string> =>
     reader.onerror = (error) => reject(error);
   });
 
-const getUrl = async (file: UploadFile) => file.url || await getBase64(file.originFileObj as FileType);
-
-export default getUrl;
+export default getBase64;

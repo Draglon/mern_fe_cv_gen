@@ -13,5 +13,5 @@ export const personalExperienceSelector = createSelector(getState, path(["person
 export const personalExperienceByLocaleSelector = createSelector([(_, locale) => locale, personalExperienceSelector], (locale, data) => ({
   sectionTitle: pathOr("", ["sectionTitle", locale], data),
   recentPositionsCount: pathOr(0, ["recentPositionsCount", locale], data),
-  experiences: data?.experiences?.[locale] ? experienceByLocale(data, locale) : EXPERIENCES_DEFAULT_VALUES,
+  experiences: data?.experiences?.[locale] ? experienceByLocale(locale, data) : EXPERIENCES_DEFAULT_VALUES,
 }));

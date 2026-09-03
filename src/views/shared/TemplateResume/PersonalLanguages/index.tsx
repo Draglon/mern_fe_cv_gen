@@ -18,7 +18,7 @@ const PersonalLanguages = ({
   personalLanguages,
 }: LanguagesProps) => {
   const t = useTranslations("Template");
-  const languages = languagesByLocale(personalLanguages, templateLocale);
+  const languages = languagesByLocale(templateLocale, personalLanguages);
 
   return (
     <div className="personal-languages">

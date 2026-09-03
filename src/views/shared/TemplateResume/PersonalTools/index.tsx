@@ -12,7 +12,7 @@ export type ToolsProps = {
 };
 
 const PersonalTools = ({ templateLocale, personalTools }: ToolsProps) => {
-  const tools = toolsByLocale(personalTools, templateLocale);
+  const tools = toolsByLocale(templateLocale, personalTools);
 
   return (
     <div className="personal-tools">

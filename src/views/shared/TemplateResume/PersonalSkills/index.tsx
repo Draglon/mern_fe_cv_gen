@@ -12,7 +12,7 @@ export type SkillsProps = {
 };
 
 const PersonalSkills = ({ templateLocale, personalSkills }: SkillsProps) => {
-  const skills = skillsByLocale(personalSkills, templateLocale);
+  const skills = skillsByLocale(templateLocale, personalSkills);
 
   return (
     <div className="personal-skills">

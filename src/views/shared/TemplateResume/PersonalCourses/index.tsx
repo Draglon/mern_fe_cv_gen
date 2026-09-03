@@ -16,7 +16,7 @@ export type CoursesProps = {
 
 const PersonalCourses = ({ templateLocale, personalCourses }: CoursesProps) => {
   const t = useTranslations("Template");
-  const courses = coursesByLocale(personalCourses, templateLocale);
+  const courses = coursesByLocale(templateLocale, personalCourses);
 
   return (
     <>

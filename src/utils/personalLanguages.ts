@@ -4,7 +4,7 @@ import { Locales } from "@/lib/constants/props/locales";
 import { PersonalLanguagesProps } from "@/lib/constants/props/resume";
 import { LanguageType, LanguageLevelType } from "@/lib/constants/props/resume/personalLanguages";
 
-export const languagesByLocale = (personalLanguages: PersonalLanguagesProps, locale: Locales) =>
+export const languagesByLocale = (locale: Locales, personalLanguages?: PersonalLanguagesProps) =>
   personalLanguages?.languages?.[locale]
   ? personalLanguages.languages[locale].map((item: LanguageType) => ({
       language: item.language,

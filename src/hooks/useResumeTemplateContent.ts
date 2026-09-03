@@ -18,7 +18,7 @@ const useResumeTemplateContent = ({ template, templateLocale, resume }: Template
   const skillsTitle = t(`personalSkills.title.${locale}`);
   const toolsTitle = t(`personalTools.title.${locale}`);
 
-  const experiences = experienceByLocale(resume?.personalExperience, locale);
+  const experiences = experienceByLocale(locale, resume?.personalExperience);
   const recentPositionsCount = pathOr(
     undefined,
     ["recentPositionsCount"],

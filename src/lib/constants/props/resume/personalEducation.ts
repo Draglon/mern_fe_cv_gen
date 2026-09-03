@@ -6,14 +6,14 @@ export type PersonalEducationProps = {
 };
 
 export type EducationType = {
-    institute: string;
-    degree: string;
-    faculty: string;
-    specialization: string;
-    startDate: string;
-    endDate: string;
-    isCurrent: boolean;
-  };
+  institute: string;
+  degree: string;
+  faculty: string;
+  specialization: string;
+  startDate: string;
+  endDate: string;
+  isCurrent: boolean;
+};
 
 export type FieldType = {
   sectionTitle: string;

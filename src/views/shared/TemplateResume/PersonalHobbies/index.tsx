@@ -12,7 +12,7 @@ export type HobbiesProps = {
 };
 
 const PersonalHobbies = ({ templateLocale, personalHobbies }: HobbiesProps) => {
-  const hobbies = hobbiesByLocale(personalHobbies, templateLocale);
+  const hobbies = hobbiesByLocale(templateLocale, personalHobbies);
 
   return (
     <div className="personal-interests">

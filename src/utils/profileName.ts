@@ -7,6 +7,7 @@ type Profile = {
   lastName: Locale;
 }
 
-const profileName = ({ firstName, lastName }: Profile, locale: Locales): string => firstName && lastName ? trim(`${firstName[locale]} ${lastName[locale]}`) : '-';
+const profileName = ({ firstName, lastName }: Profile, locale: Locales): string => 
+  (firstName[locale] && lastName[locale]) ? trim(`${firstName[locale]} ${lastName[locale]}`) : '-';
 
 export default profileName;

@@ -82,8 +82,8 @@ describe("useResumeTemplateContent", () => {
     );
 
     expect(mockedExperienceByLocale).toHaveBeenCalledWith(
-      resume.personalExperience,
       "en",
+      resume.personalExperience,
     );
   });
 

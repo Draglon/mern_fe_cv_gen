@@ -1,5 +1,5 @@
 import isBase64 from "@/utils/isBase64";
-import getBase64 from "@/utils/getBase64";
+import getBase64Url from "@/utils/getBase64Url";
 
 export const normalizeUrl = async (files?: any): Promise<string> => {
   const file = files?.[0];
@@ -8,5 +8,5 @@ export const normalizeUrl = async (files?: any): Promise<string> => {
 
   if (isBase64(file)) return file;
 
-  return await getBase64(file);
+  return await getBase64Url(file);
 };
