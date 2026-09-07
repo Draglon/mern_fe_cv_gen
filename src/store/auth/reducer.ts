@@ -78,8 +78,6 @@ export const authSlice = createSlice({
       state.error = null;
     });
     builder.addCase(updateUserResume.fulfilled, (state, action) => {
-      console.log("state.data: ", state.data);
-      console.log("action.payload: ", action.payload);
       state.data = {
         ...state.data,
         ...action.payload,

@@ -4,10 +4,12 @@ import { path, prop } from 'ramda';
 import { getProfileDefaultValues } from "@/utils/profile";
 import { RootState } from '../store';
 
-const getState = (state: RootState) => state;
+type AuthState = Pick<RootState, "auth">;
 
-export const isLoadingSelector = createSelector(getState, (state: RootState) => state.auth.status === "loading");
-export const isAuthSelector = createSelector(getState, (state: RootState) => Boolean(state.auth.data));
+const getState = (state: AuthState) => state;
+
+export const isLoadingSelector = createSelector(getState, state => state.auth.status === "loading");
+export const isAuthSelector = createSelector(getState, state => Boolean(state.auth.data));
 export const userSelector = createSelector(getState, path(["auth", "data"]));
 export const userErrorSelector = createSelector(getState, path(["auth", "error"]));
 

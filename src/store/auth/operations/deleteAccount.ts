@@ -16,7 +16,6 @@ const deleteAccountOperation = createAsyncThunk(
     try {
       await axios.delete(usersRoute(userId), { data: params });
     } catch (error: unknown) {
-      console.log("error: ", error);
       return rejectWithValue(error);
     }
   },

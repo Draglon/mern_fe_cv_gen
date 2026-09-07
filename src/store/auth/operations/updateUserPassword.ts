@@ -16,7 +16,6 @@ const updateUserPasswordOperation = createAsyncThunk(
     try {
       await axios.patch(usersPasswordRoute(userId), params);
     } catch (error: unknown) {
-      console.log("error: ", error);
       return rejectWithValue(error);
     }
   },

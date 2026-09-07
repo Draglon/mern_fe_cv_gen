@@ -11,7 +11,6 @@ const fetchUserOperation = createAsyncThunk(
       const { data } = await axios.get(authUserRoute, {});
       return data;
     } catch (error: unknown) {
-      console.log("error: ", error);
       return rejectWithValue(error);
     }
   },
