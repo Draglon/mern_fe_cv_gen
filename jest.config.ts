@@ -12,6 +12,21 @@ const config: Config = {
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/src/$1",
   },
+  collectCoverageFrom: [
+    "src/**/*.{ts,tsx}",
+    "!src/**/*.d.ts",
+    "!src/middleware.ts",
+    "!src/app/**",
+    "!src/lib/constants/props/**",
+    "!src/store/hooks.ts",
+    "!src/store/store.ts",
+    "!src/store/**/actions.ts",
+    "!src/store/**/types.ts",
+    "!src/store/**/index.ts",
+    "!src/store/**/operations/index.ts",
+    "!src/views/shared/ModalRoot/modalComponents.ts",
+    "!src/views/UIKit/**",
+  ],
 };
 
 export default createJestConfig(config);
