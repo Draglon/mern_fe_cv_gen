@@ -17,6 +17,7 @@ const config: Config = {
     "!src/**/*.d.ts",
     "!src/middleware.ts",
     "!src/app/**",
+    "!src/i18n/*.ts",
     "!src/lib/constants/props/**",
     "!src/store/hooks.ts",
     "!src/store/store.ts",
