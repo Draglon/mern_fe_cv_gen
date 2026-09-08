@@ -4,7 +4,7 @@ exports[`skills constants match snapshot 1`] = `
 {
   "SKILLS_DEFAULT_VALUES": [
     {
-      "level": "",
+      "level": 0,
       "skill": "",
       "visible": true,
     },

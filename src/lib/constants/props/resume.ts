@@ -47,7 +47,11 @@ export type PersonalLanguagesProps = {
 
 export type PersonalExperienceProps = {
   sectionTitle?: Locale;
-  recentPositionsCount?: number | string;
+  recentPositionsCount?: {
+    en?: number | string;
+    ua?: number | string;
+    ru?: number | string;
+  };
   experiences: {
     en: ExperienceType[];
     ua: ExperienceType[];
@@ -101,3 +105,7 @@ export type ResumeProps = {
   personalSkills: PersonalSkillsProps;
   personalTools: PersonalToolsProps;
 }
+
+export type ParamsType = {
+  userId: string;
+};

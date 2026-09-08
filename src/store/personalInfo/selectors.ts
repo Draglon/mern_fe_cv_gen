@@ -5,9 +5,11 @@ import { personalInfoByLocale } from '@/utils/personalInfo';
 
 import { RootState } from '../store';
 
-const getState = (state: RootState) => state;
+type PersonalInfoState = Pick<RootState, "personalInfo">;
 
-export const isLoadingSelector = createSelector(getState, (state: RootState) => state.personalInfo.status === "loading");
+const getState = (state: PersonalInfoState) => state;
+
+export const isLoadingSelector = createSelector(getState, state => state.personalInfo.status === "loading");
 export const personalInfoSelector = createSelector(getState, path(["personalInfo", "data"]));
 
 export const personalInfoByLocaleSelector = createSelector([(_, locale) => locale, personalInfoSelector], (locale, data) => personalInfoByLocale(data, locale));

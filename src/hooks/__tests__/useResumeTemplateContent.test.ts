@@ -50,23 +50,18 @@ describe("useResumeTemplateContent", () => {
     expect(result.current.personalInfoTitle).toBe(
       "personalInfo.title.en",
     );
-
     expect(result.current.personalExperienceTitle).toBe(
       "personalExperience.title.en",
     );
-
     expect(result.current.personalEducationTitle).toBe(
       "personalEducation.title.en",
     );
-
     expect(result.current.personalCoursesTitle).toBe(
       "personalCourses.title.en",
     );
-
     expect(result.current.personalSkillsTitle).toBe(
       "personalSkills.title.en",
     );
-
     expect(result.current.personalToolsTitle).toBe(
       "personalTools.title.en",
     );
@@ -176,19 +171,15 @@ describe("useResumeTemplateContent", () => {
     expect(result.current.personalExperienceTitle).toBe(
       "Custom personalExperience.title.en",
     );
-
     expect(result.current.personalEducationTitle).toBe(
       "Custom personalEducation.title.en",
     );
-
     expect(result.current.personalCoursesTitle).toBe(
       "Custom personalCourses.title.en",
     );
-
     expect(result.current.personalSkillsTitle).toBe(
       "Custom personalSkills.title.en",
     );
-
     expect(result.current.personalToolsTitle).toBe(
       "Custom personalTools.title.en",
     );
@@ -230,14 +221,14 @@ describe("useResumeTemplateContent", () => {
   it("keeps skills and tools visible for other templates", () => {
     const { result } = renderHook(() =>
       useResumeTemplateContent({
-        template: TEMPLATES.edinburgh,
+        template: TEMPLATES.standford,
         templateLocale: "en",
         resume,
       }),
     );
 
-    expect(result.current.isPersonalSkills).toBe(false);
-    expect(result.current.isPersonalTools).toBe(false);
+    expect(result.current.isPersonalSkills).toBe(true);
+    expect(result.current.isPersonalTools).toBe(true);
   });
 
   it("returns false for sections that are not present", () => {

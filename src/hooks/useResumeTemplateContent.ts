@@ -21,7 +21,7 @@ const useResumeTemplateContent = ({ template, templateLocale, resume }: Template
   const experiences = experienceByLocale(locale, resume?.personalExperience);
   const recentPositionsCount = pathOr(
     undefined,
-    ["recentPositionsCount"],
+    ["recentPositionsCount", locale],
     resume?.personalExperience
   );
   const formattedExperience = experiences.slice(

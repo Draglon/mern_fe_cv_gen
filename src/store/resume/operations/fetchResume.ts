@@ -2,15 +2,12 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import axios from "@/lib/axios";
 import { resumeRoute } from "@/lib/apiRoutes";
+import { ParamsType } from "@/lib/constants/props/resume";
 import { FETCH_RESUME } from "../types";
-
-type ParamsType = {
-  userId: string;
-};
 
 const fetchResumeOperation = createAsyncThunk(
   FETCH_RESUME,
-  async (params: ParamsType) => {
+  async (params: ParamsType, { rejectWithValue }) => {
     const { userId } = params;
 
     try {
@@ -19,6 +16,7 @@ const fetchResumeOperation = createAsyncThunk(
       return data;
     } catch (error) {
       console.log("error: ", error);
+      return rejectWithValue(error);
     }
   },
 );

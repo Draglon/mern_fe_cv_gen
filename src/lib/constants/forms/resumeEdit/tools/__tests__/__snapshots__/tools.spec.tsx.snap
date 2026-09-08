@@ -4,7 +4,7 @@ exports[`tools constants match snapshot 1`] = `
 {
   "TOOLS_DEFAULT_VALUES": [
     {
-      "level": "",
+      "level": 0,
       "tool": "",
       "visible": true,
     },

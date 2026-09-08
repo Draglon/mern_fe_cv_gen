@@ -68,7 +68,11 @@ export const resume: ResumeProps = {
   },
 
   personalExperience: {
-    recentPositionsCount: 2,
+    recentPositionsCount: {
+      en: 2,
+      ru: 0,
+      ua: 5,
+    },
     experiences: {
       en: [
         {

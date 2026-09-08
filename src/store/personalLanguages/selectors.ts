@@ -5,12 +5,19 @@ import { LANGUAGES_DEFAULT_VALUES } from '@/lib/constants/forms/resumeEdit/langu
 import { languagesByLocale } from "@/utils/personalLanguages";
 import { RootState } from '../store';
 
-const getState = (state: RootState) => state;
+type PersonalLanguagesState = Pick<RootState, "personalLanguages">;
 
-export const isLoadingSelector = createSelector(getState, (state: RootState) => state.personalLanguages.status === "loading");
+const getState = (state: PersonalLanguagesState) => state;
+
+export const isLoadingSelector = createSelector(getState, state => state.personalLanguages.status === "loading");
 export const personalLanguagesSelector = createSelector(getState, path(["personalLanguages", "data"]));
 
-export const personalLanguagesByLocaleSelector = createSelector([(_, locale) => locale, personalLanguagesSelector], (locale, data) => ({
-  sectionTitle: pathOr("", ["sectionTitle", locale], data),
-  languages: data?.languages?.[locale] ? languagesByLocale(data, locale) : LANGUAGES_DEFAULT_VALUES,
-}));
+export const personalLanguagesByLocaleSelector = createSelector(
+  [(_, locale) => locale, personalLanguagesSelector],
+  (locale, data) => ({
+    sectionTitle: pathOr("", ["sectionTitle", locale], data),
+    languages: data?.languages?.[locale]?.length
+      ? languagesByLocale(locale, data)
+      : LANGUAGES_DEFAULT_VALUES,
+  }),
+);
