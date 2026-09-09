@@ -25,7 +25,6 @@ const createPersonalSkillsOperation = createAsyncThunk(
 
       return data;
     } catch (error: unknown) {
-      console.log("error: ", error);
       return rejectWithValue(error);
     }
   },

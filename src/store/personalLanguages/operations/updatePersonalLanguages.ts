@@ -18,7 +18,6 @@ const updatePersonalLanguagesOperation = createAsyncThunk(
       const { data } = await axios.put(personalLanguagesRoute(personalLanguagesId), formattedParams(params));
       return data;
     } catch (error: unknown) {
-      console.log("error: ", error);
       return rejectWithValue(error);
     }
   },

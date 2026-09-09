@@ -18,7 +18,6 @@ const createPersonalExperienceOperation = createAsyncThunk(
       const { data } = await axios.post(personalExperienceCreateRoute, { ...formattedParams(params), userId });
       return data;
     } catch (error: unknown) {
-      console.log("error: ", error);
       return rejectWithValue(error);
     }
   },

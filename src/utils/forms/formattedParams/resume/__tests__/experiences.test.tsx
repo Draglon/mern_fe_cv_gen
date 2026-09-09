@@ -31,8 +31,9 @@ describe("formattedParams", () => {
     };
 
     expect(formattedParams(params)).toEqual({
-      ...params,
       ...params.values,
+      locale: "en",
+      resumeLocale: "en",
       experiences: [
         {
           ...experience,
@@ -53,8 +54,9 @@ describe("formattedParams", () => {
     };
 
     expect(formattedParams(params)).toEqual({
-      ...params,
       ...params.values,
+      locale: "en",
+      resumeLocale: "en",
       experiences: [],
     });
   });

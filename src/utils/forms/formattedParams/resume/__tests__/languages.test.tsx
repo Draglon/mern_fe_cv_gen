@@ -19,7 +19,6 @@ describe("formattedParams", () => {
     };
 
     expect(formattedParams(params)).toEqual({
-      ...params,
       ...params.values,
       languages: [
         {
@@ -27,6 +26,8 @@ describe("formattedParams", () => {
           level: "upper-intermediate",
         },
       ],
+      locale: "en",
+      resumeLocale: "en",
     });
   });
 
@@ -41,9 +42,10 @@ describe("formattedParams", () => {
     };
 
     expect(formattedParams(params)).toEqual({
-      ...params,
       ...params.values,
       languages: [],
+      locale: "en",
+      resumeLocale: "en",
     });
   });
 });

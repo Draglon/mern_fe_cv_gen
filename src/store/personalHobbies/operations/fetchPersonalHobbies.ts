@@ -16,7 +16,6 @@ const fetchPersonalHobbiesOperation = createAsyncThunk(
 
       return data;
     } catch (error) {
-      console.log("error: ", error);
       return rejectWithValue(error);
     }
   },

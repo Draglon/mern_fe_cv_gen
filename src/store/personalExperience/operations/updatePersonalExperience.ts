@@ -18,7 +18,6 @@ const updatePersonalExperienceOperation = createAsyncThunk(
       const { data } = await axios.put(personalExperienceRoute(personalExperienceId), formattedParams(params));
       return data;
     } catch (error: unknown) {
-      console.log("error: ", error);
       return rejectWithValue(error);
     }
   },
