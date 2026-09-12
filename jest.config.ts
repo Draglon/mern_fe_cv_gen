@@ -12,6 +12,9 @@ const config: Config = {
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/src/$1",
   },
+  testPathIgnorePatterns: [
+    "<rootDir>/tests/.*\\.spec\\.ts$",
+  ],
   collectCoverageFrom: [
     "src/**/*.{ts,tsx}",
     "!src/**/*.d.ts",
@@ -27,6 +30,7 @@ const config: Config = {
     "!src/store/**/operations/index.ts",
     "!src/views/shared/ModalRoot/modalComponents.ts",
     "!src/views/UIKit/**",
+    "!tests/**",
   ],
 };
 
