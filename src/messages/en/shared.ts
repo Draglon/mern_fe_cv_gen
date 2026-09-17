@@ -116,6 +116,11 @@ const shared = {
           "endDateAfterStart": "End date must be later than or equal to start date!",
         }
       },
+      "birthday": {
+        "errors": {
+          "invalid": "Invalid date format!",
+        }
+      },
       "inputLink": {
         "errors": {
           "invalid": "Please enter a valid URL!",

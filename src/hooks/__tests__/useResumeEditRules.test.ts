@@ -11,7 +11,7 @@ import { getInputPostalAddressRules } from "@/utils/forms/validations/resume/inp
 import { getInputNumberLevelRules, getInputNumberRecentPositionsCountRules } from "@/utils/forms/validations/resume/inputNumberValidation";
 import { getTextareaRules } from "@/utils/forms/validations/resume/textareaValidation";
 import { getSelectRules, getSelectLanguageRules } from "@/utils/forms/validations/resume/selectValidation";
-import { getInputDatePickerRules } from "@/utils/forms/validations/resume/inputDatePickerValidation";
+import { getInputDatePickerRules, getInputBirthdayRules } from "@/utils/forms/validations/resume/inputDatePickerValidation";
 import { getInputTelegramRules } from "@/utils/forms/validations/resume/inputTelegramValidation";
 import { getInputLinkRules } from "@/utils/forms/validations/resume/inputLinkValidation";
 import { getInputPhoneNumberRules } from "@/utils/forms/validations/resume/inputPhoneNumberValidation";
@@ -53,6 +53,7 @@ jest.mock("@/utils/forms/validations/resume/selectValidation", () => ({
 
 jest.mock("@/utils/forms/validations/resume/inputDatePickerValidation", () => ({
   getInputDatePickerRules: jest.fn(() => "inputDatePickerRules"),
+  getInputBirthdayRules: jest.fn(() => "inputBirthdayRules"),
 }));
 
 jest.mock("@/utils/forms/validations/resume/inputTelegramValidation", () => ({
@@ -100,6 +101,7 @@ describe("useResumeEditRules", () => {
       inputLinkRules: "inputLinkRules",
       inputPhoneNumberRules: "inputPhoneNumberRules",
       datePickerRules: "inputDatePickerRules",
+      birthdayRules: "inputBirthdayRules",
     });
   });
 
@@ -116,6 +118,7 @@ describe("useResumeEditRules", () => {
     expect(getSelectRules).toHaveBeenCalledWith(tShared);
     expect(getSelectLanguageRules).toHaveBeenCalledWith(tShared);
     expect(getInputDatePickerRules).toHaveBeenCalledWith(tShared);
+    expect(getInputBirthdayRules).toHaveBeenCalledWith(tShared);
     expect(getInputTelegramRules).toHaveBeenCalledWith(tShared);
     expect(getInputLinkRules).toHaveBeenCalledWith(tShared);
     expect(getInputPhoneNumberRules).toHaveBeenCalledWith(tShared);

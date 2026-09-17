@@ -10,6 +10,17 @@ type DateValidationParams = {
   isCurrentPath?: string;
 };
 
+export const getInputBirthdayRules = (tShared: TFunction) => ({
+  validate: {
+    validDate: (value: string) => {
+      if (!value) return true;
+
+      return !isNaN(Date.parse(value))
+        || tShared("form.birthday.errors.invalid");
+    },
+  },
+});
+
 export const getInputDatePickerRules = (tShared: TFunction) => ({
   required: {
     value: true,

@@ -7,7 +7,7 @@ import { getInputPostalAddressRules } from "@/utils/forms/validations/resume/inp
 import { getInputNumberLevelRules, getInputNumberRecentPositionsCountRules } from "@/utils/forms/validations/resume/inputNumberValidation";
 import { getTextareaRules } from "@/utils/forms/validations/resume/textareaValidation";
 import { getSelectRules, getSelectLanguageRules } from "@/utils/forms/validations/resume/selectValidation";
-import { getInputDatePickerRules } from "@/utils/forms/validations/resume/inputDatePickerValidation";
+import { getInputDatePickerRules, getInputBirthdayRules } from "@/utils/forms/validations/resume/inputDatePickerValidation";
 import { getInputTelegramRules } from "@/utils/forms/validations/resume/inputTelegramValidation";
 import { getInputLinkRules } from "@/utils/forms/validations/resume/inputLinkValidation";
 import { getInputPhoneNumberRules } from "@/utils/forms/validations/resume/inputPhoneNumberValidation";
@@ -31,6 +31,7 @@ const useResumeEditRules = () => {
     inputLinkRules: getInputLinkRules(tShared),
     inputPhoneNumberRules: getInputPhoneNumberRules(tShared),
     datePickerRules: getInputDatePickerRules(tShared),
+    birthdayRules: getInputBirthdayRules(tShared),
   };
 };
 

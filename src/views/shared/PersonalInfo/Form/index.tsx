@@ -181,7 +181,7 @@ const PersonalInfoForm = ({ resumeLocale, isEdit }: PersonalInfoProps) => {
             control={control}
             label={t("form.birthday.label")}
             placeholder={t("form.birthday.placeholder")}
-            rules={rules.datePickerRules}
+            rules={rules.birthdayRules}
             Field={DatePickerField}
             size="large"
             locale={resumeLocale}

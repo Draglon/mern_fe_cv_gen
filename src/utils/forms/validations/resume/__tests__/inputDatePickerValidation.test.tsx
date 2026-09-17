@@ -1,7 +1,22 @@
 import {
+  getInputBirthdayRules,
   getInputDatePickerRules,
   getInputEndDateRules,
 } from "../inputDatePickerValidation";
+
+describe("getInputBirthdayRules", () => {
+  it("returns birthday validation rules", () => {
+    const tShared = jest.fn((key: string) => key);
+
+    const result = getInputBirthdayRules(tShared);
+
+    expect(result.validate.validDate("2024-01-01")).toBe(true);
+    expect(result.validate.validDate("invalid-date")).toBe(
+      "form.birthday.errors.invalid"
+    );
+    expect(result.validate.validDate("")).toBe(true);
+  });
+});
 
 describe("getInputDatePickerRules", () => {
   it("returns date picker validation rules", () => {
