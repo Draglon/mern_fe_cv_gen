@@ -25,7 +25,7 @@ const PersonalExperienceFormItem = ({
   getValues,
   resumeLocale,
 }: PersonalExperienceItemProps) => {
-  const t = useTranslations("PersonalEducation");
+  const t = useTranslations("PersonalExperience");
   const tShared = useTranslations("shared");
   const rules = useResumeEditRules();
   const isCurrent = useWatch({
